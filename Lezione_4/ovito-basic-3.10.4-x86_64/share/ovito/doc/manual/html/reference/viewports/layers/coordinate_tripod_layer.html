@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coordinate tripod layer &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/viewports/layers/coordinate_tripod_layer.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python script viewport layer pro" href="python_script_layer.html" />
+    <link rel="prev" title="Color legend layer" href="color_legend_layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Viewports</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Viewport layers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="color_legend_layer.html">Color legend</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Coordinate tripod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script_layer.html">Python script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_label_layer.html">Text label</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust_view_dialog.html">Adjust view dialog</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Viewports</a> &raquo;</li>
+          <li><a href="index.html">Viewport layers</a> &raquo;</li>
+      <li>Coordinate tripod layer</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewport-layers-coordinate-tripod">
+<span id="coordinate-tripod-layer"></span><h1>Coordinate tripod layer<a class="headerlink" href="#viewport-layers-coordinate-tripod" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/coordinate_tripod_overlay_panel.png"><img alt="../../../_images/coordinate_tripod_overlay_panel.png" class="align-right" src="../../../_images/coordinate_tripod_overlay_panel.png" style="width: 30%;" /></a>
+<p>This <a class="reference internal" href="index.html#viewport-layers"><span class="std std-ref">viewport layer</span></a> inserts an axis tripod into the picture to
+indicate the orientation of the simulation coordinate system.</p>
+<a class="reference internal image-reference" href="../../../_images/coordinate_tripod_example.jpg"><img alt="../../../_images/coordinate_tripod_example.jpg" src="../../../_images/coordinate_tripod_example.jpg" style="width: 30%;" /></a>
+<p>Note that the coordinate axes depicted by the layer are those of the global Cartesian
+simulation coordinate system. They are <em>not</em> tied to the simulation cell vectors.</p>
+<section id="configuring-the-axes">
+<h2>Configuring the axes<a class="headerlink" href="#configuring-the-axes" title="Permalink to this heading"></a></h2>
+<p>The viewport layer can render up to four different axes with configurable
+text labels, colors, and spatial directions. By default, the three major Cartesian directions are shown.</p>
+<p>You can include <a class="reference internal" href="text_label_layer.html#viewport-layers-text-label-text-formatting"><span class="std std-ref">HTML markup elements</span></a> in the axes labels to format
+the text, e.g., to produce special notations such as superscripts, subscripts, or overlines.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.CoordinateTripodOverlay" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.CoordinateTripodOverlay</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="color_legend_layer.html" class="btn btn-neutral float-left" title="Color legend layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python_script_layer.html" class="btn btn-neutral float-right" title="Python script viewport layer pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

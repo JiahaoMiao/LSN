@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User-defined file readers &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/custom_file_readers.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User-defined viewport layers" href="custom_overlays.html" />
+    <link rel="prev" title="User-defined modifiers" href="custom_modifiers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User-defined file readers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-detect-method">The <code class="docutils literal notranslate"><span class="pre">detect</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-scan-method">The <code class="docutils literal notranslate"><span class="pre">scan</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-parse-method">The <code class="docutils literal notranslate"><span class="pre">parse</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-your-file-reader">Testing your file reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-parameters">User parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>User-defined file readers</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="user-defined-file-readers">
+<span id="writing-custom-file-readers"></span><h1>User-defined file readers<a class="headerlink" href="#user-defined-file-readers" title="Permalink to this heading"></a></h1>
+<p>OVITO already comes with a collection of <a class="reference external" href="../../reference/file_formats/file_formats_input.html#file-formats-input" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">built-in file readers</span></a>. But if you need
+to import a custom format, or some new file format not yet supported by the software, OVITO’s programming
+interface gives you the possibility to write your own file reader in the Python language.</p>
+<p>To implement a custom file reader you need to define a new Python class, similar to the
+<a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers-advanced-interface"><span class="std std-ref">advanced programming interface</span></a> for Python modifiers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span><span class="p">,</span> <span class="n">import_file</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span> <span class="nc">MyFileReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>You can freely choose the class name (we use <code class="docutils literal notranslate"><span class="pre">MyFileReader</span></code> as an example here) and the class must
+derive from the base <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface" title="ovito.io.FileReaderInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.io.FileReaderInterface</span></code></a>.</p>
+<p>Once your class <a class="reference internal" href="#writing-custom-file-readers-registration"><span class="std std-ref">has been registered</span></a>, OVITO Pro and the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.import_file" title="ovito.io.import_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> function
+will try to open files with the help of all installed file readers by calling their <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a> methods.
+The first one that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> from its <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a> method will be used by the system to actually import
+the requested file.</p>
+<p id="writing-custom-file-readers-example-file"><strong>Example file reader</strong></p>
+<p>In the following three sections, we will implement the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a>, <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.scan" title="ovito.io.FileReaderInterface.scan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scan()</span></code></a>, and <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> methods to
+import the following simple text-based data format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Header</span> <span class="n">of</span> <span class="n">MyFileFormat</span>
+<span class="n">Timestep</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">6</span> <span class="n">particles</span>
+<span class="o">&lt;</span><span class="n">x0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z2</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x3</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y3</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z3</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x4</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y4</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z4</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x5</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y5</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z5</span><span class="o">&gt;</span>
+<span class="n">Timestep</span> <span class="mi">10</span><span class="p">:</span> <span class="mi">3</span> <span class="n">particles</span>
+<span class="o">&lt;</span><span class="n">x0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z2</span><span class="o">&gt;</span>
+<span class="n">Timestep</span> <span class="mi">20</span><span class="p">:</span> <span class="mi">4</span> <span class="n">particles</span>
+<span class="o">&lt;</span><span class="n">x0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z2</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">x3</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">y3</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">z3</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This contrived file format stores multiple trajectory frames of a particle-based model and consists
+of a header line at the top of the file followed by multiple frame records, each marked by its own header line.
+Within the data sections, placeholders such as <code class="docutils literal notranslate"><span class="pre">&lt;x0&gt;</span> <span class="pre">&lt;y0&gt;</span> <span class="pre">&lt;z0&gt;</span></code> denote the xyz coordinates of particles.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>While these sections present a file reader for <a class="reference external" href="../../reference/pipelines/data_objects/particles.html#scene-objects-particles" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">particle data</span></a>,
+the same programming interface can also be used to implement importers for <a class="reference external" href="../../reference/pipelines/data_objects/index.html#scene-objects" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">other kinds of
+data</span></a> in OVITO, such as <a class="reference external" href="../../reference/pipelines/data_objects/surface_mesh.html#scene-objects-surface-mesh" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">surface meshes</span></a>, <a class="reference external" href="../../reference/pipelines/data_objects/voxel_grid.html#scene-objects-voxel-grid" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">voxel grids</span></a>, or <a class="reference external" href="../../reference/pipelines/data_objects/bonds.html#scene-objects-bonds" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">bonds</span></a>.</p>
+</div>
+<section id="the-detect-method">
+<span id="writing-custom-file-readers-detect-method"></span><h2>The <code class="docutils literal notranslate"><span class="pre">detect</span></code> method<a class="headerlink" href="#the-detect-method" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a> method is a <a class="reference external" href="https://docs.python.org/3/library/functions.html#staticmethod" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">static</span></code></a> method of
+the file reader class and takes the path of the file to be inspected as the only input parameter (no <code class="docutils literal notranslate"><span class="pre">self</span></code> parameter).</p>
+<p>This method is called by OVITO whenever the user tries to import a new file to determine whether that file can be
+parsed by your file reader. That means your implementation should return <code class="docutils literal notranslate"><span class="pre">True</span></code> if your reader class can process
+a given file and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. For efficiency, the decision should be made as quickly as possible, i.e. by reading and inspecting
+just the first few lines of the file, in order to not slow down the import of files that will be handled by other file readers.</p>
+<p>Let’s consider the following example, where our file reader looks for text files containing the string
+“<em>Header of MyFileFormat</em>” on the first line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span><span class="p">,</span> <span class="n">import_file</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span> <span class="nc">MyFileReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Header of MyFileFormat&quot;</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Our implementation of the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a> method opens the file, reads one line, and returns <code class="docutils literal notranslate"><span class="pre">True</span></code>
+in case it matches the key string we are looking for.</p>
+</section>
+<section id="the-scan-method">
+<span id="writing-custom-file-readers-scan-method"></span><h2>The <code class="docutils literal notranslate"><span class="pre">scan</span></code> method<a class="headerlink" href="#the-scan-method" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.scan" title="ovito.io.FileReaderInterface.scan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scan()</span></code></a> method is an optional method that should be
+implemented only if the files to be read by your reader can store multiple frames of a trajectory.
+It will be called by the system to index all frames in the imported file, populate the timeline in OVITO,
+and enable quick random access to individual trajectory frames.</p>
+<p>An implementation of the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.scan" title="ovito.io.FileReaderInterface.scan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scan()</span></code></a> method usually reads the whole file, discovers all frames, and
+communicates each frame’s metadata to the OVITO system. This happens via invocation of the <code class="docutils literal notranslate"><span class="pre">register_frame</span></code>
+callback function for each discovered frame. The callback is provided by the system and has the following
+signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">frame_info</span></code> can be (almost) any type of Python value and is used by your file reader to describe the storage location
+of each frame in the file. One might, for example, use the line number or the byte offset where each frame begins in the file
+as <code class="docutils literal notranslate"><span class="pre">frame_info</span></code>. Or, for a database format, one might use the unique record key
+of a frame as its <code class="docutils literal notranslate"><span class="pre">frame_info</span></code>, which can later help to access the data of the frame efficiently.
+The <code class="docutils literal notranslate"><span class="pre">frame_info</span></code> values will be stored by the OVITO system as part of the trajectory index and will
+be made available later again to your file reader’s <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> method when loading specific
+frames from the file.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> parameter is optional and specifies a human-readable text to be used as a descriptive label for the trajectory frame
+in the OVITO timeline. It has purely informational character, e.g., the simulation timestep.</p>
+<p>In our <a class="reference internal" href="#writing-custom-file-readers-example-file"><span class="std std-ref">example file format</span></a>, each frame begins on a new line with
+the format “<em>Timestep &lt;T&gt;: &lt;N&gt; particles</em>”. Here, <em>T</em> denotes the simulation timestep, and <em>N</em> the number
+of particles in the simulation snapshot. We might write the following <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.scan" title="ovito.io.FileReaderInterface.scan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scan()</span></code></a> method,
+which specifically searches for these frame headers using a regular expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span><span class="p">,</span> <span class="n">import_file</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">class</span> <span class="nc">MyFileReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Header of MyFileFormat&quot;</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(Timestep \d+): (\d+) particles&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">number_particles</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="o">=</span><span class="p">(</span><span class="n">line_number</span><span class="p">,</span> <span class="n">number_particles</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Here, both the line number at which a frame starts and the number of particles it contains are stored as <em>tuple</em> in
+the <code class="docutils literal notranslate"><span class="pre">frame_info</span></code> for later use. The string “<em>Timestep …</em>” is specified as a label when registering
+trajectory frames with OVITO.</p>
+</section>
+<section id="the-parse-method">
+<span id="writing-custom-file-readers-parse-method"></span><h2>The <code class="docutils literal notranslate"><span class="pre">parse</span></code> method<a class="headerlink" href="#the-parse-method" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> method is the main function you need to implement for a file reader.
+It will be called by OVITO to load actual data from the file, one trajectory frame at a time, and has the following basic signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>The first time your <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> implementation gets called by the system,
+it receives an empty <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> object, which should be populated with the
+information loaded from the input file. This typically involves creating one or more data objects, e.g. <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a>, <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a>,
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.SurfaceMesh" title="ovito.data.SurfaceMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">SurfaceMesh</span></code></a>, <a class="reference internal" href="../modules/ovito_data.html#ovito.data.TriangleMesh" title="ovito.data.TriangleMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleMesh</span></code></a>, within the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>,
+or populating the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.attributes</span></code></a> dictionary with auxiliary metadata
+parsed from the file.</p>
+<p>On subsequent invocations of <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a>, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> provided by the system may already contain objects
+from a previous trajectory frame, and your implementation should update or add only information that has changed
+in the current frame. That means, for example, that particle types shouldn’t be recreated by the file reader every time.
+Rather, existing data in the collection should be touched only selectively by the file reader to preserve any changes the user has made in the GUI
+in the meantime. This applies, for instance, to parameters of particle types such as color, radius, and name but also settings of visual elements,
+which can be concurrently edited by the user in the GUI.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Python API of OVITO provides special functions that create new data objects only if needed and otherwise preserve existing information
+and visualization settings associated with these objects:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.create_cell" title="ovito.data.DataCollection.create_cell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataCollection.create_cell()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.create_particles" title="ovito.data.DataCollection.create_particles"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataCollection.create_particles()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles.create_bonds" title="ovito.data.Particles.create_bonds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Particles.create_bonds()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="ovito.data.PropertyContainer.create_property"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PropertyContainer.create_property()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property.add_type_name" title="ovito.data.Property.add_type_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Property.add_type_name()</span></code></a> and <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property.add_type_id" title="ovito.data.Property.add_type_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Property.add_type_id()</span></code></a> (see <a class="reference internal" href="examples/file_readers/example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">example</span></a>)</p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.grids" title="ovito.data.DataCollection.grids"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.grids.create(identifier:</span> <span class="pre">str,</span> <span class="pre">vis_params:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">**kwargs)</span></code></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.surfaces" title="ovito.data.DataCollection.surfaces"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.surfaces.create(identifier:</span> <span class="pre">str,</span> <span class="pre">vis_params:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">**kwargs)</span></code></a> (see <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SurfaceMesh.create_face" title="ovito.data.SurfaceMesh.create_face"><code class="xref py py-meth docutils literal notranslate"><span class="pre">example</span></code></a>)</p></li>
+<li><p><a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.tables" title="ovito.data.DataCollection.tables"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.tables.create(identifier:</span> <span class="pre">str,</span> <span class="pre">vis_params:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">**kwargs)</span></code></a></p></li>
+</ul>
+</div>
+<p>In case you are developing a file reader for a <em>trajectory</em> file format, you can use the following extended signature of the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">frame_info</span></code> value, which was generated by the file reader’s <a class="reference internal" href="#writing-custom-file-readers-scan-method"><span class="std std-ref">scan() method</span></a> introduced above, and the zero-based
+trajectory frame to be loaded are passed to your <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> method by the system. Any further keyword arguments from the system
+go into the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> dictionary.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The trailing <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> parameter must always be part of the method’s parameters list to
+<a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments">accept all further arguments</a>,
+which may be provided by future versions of OVITO. It’s there for forward compatibility reasons
+and to receive all unused arguments your <code class="docutils literal notranslate"><span class="pre">parse</span></code> method is not interested in.</p>
+</div>
+<p>Please have another look at <a class="reference internal" href="#writing-custom-file-readers-example-file"><span class="std std-ref">our example file format</span></a> defined above, for which
+we will now implement a parsing method. The following <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a> implementation skips through the initial lines
+of the input file until it reaches the one where the requested frame begins. Then a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object with a data array
+for the <span class="guilabel">Position</span> property is created before the xyz coordinates of the particles are parsed from the file line by line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span><span class="p">,</span> <span class="n">import_file</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">re</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">MyFileReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="nd">@staticmethod</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos">10</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">11</span>            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">12</span>                <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="linenos">13</span>                <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Header of MyFileFormat&quot;</span>
+<span class="linenos">14</span>        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="linenos">15</span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="linenos">18</span>        <span class="n">expr</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(Timestep \d+): (\d+) particles&quot;</span>
+<span class="linenos">19</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">20</span>            <span class="k">for</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="linenos">21</span>                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="linenos">22</span>                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+<span class="linenos">23</span>                    <span class="n">num_particles</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="linenos">24</span>                    <span class="n">label</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">25</span>                    <span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="o">=</span><span class="p">(</span><span class="n">line_number</span><span class="p">,</span> <span class="n">num_particles</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="linenos">28</span>        <span class="n">starting_line_number</span><span class="p">,</span> <span class="n">num_particles</span> <span class="o">=</span> <span class="n">frame_info</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">31</span>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">starting_line_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos">32</span>                <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>            <span class="n">particles</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">create_particles</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">num_particles</span><span class="p">)</span>
+<span class="linenos">35</span>            <span class="n">positions</span> <span class="o">=</span> <span class="n">particles</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Position&quot;</span><span class="p">)</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_particles</span><span class="p">):</span>
+<span class="linenos">38</span>                <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>While this first example introduced the basic principles of user-defined file readers in OVITO,
+<a class="reference internal" href="examples/file_readers/example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">code example FR1</span></a> will present a more thorough implementation of a
+custom file reader, focusing on how to load more particle properties and the simulation cell geometry into OVITO.</p>
+</section>
+<section id="testing-your-file-reader">
+<span id="writing-custom-file-readers-testing"></span><h2>Testing your file reader<a class="headerlink" href="#testing-your-file-reader" title="Permalink to this heading"></a></h2>
+<p>To test your file reader outside of OVITO Pro, you can add a Python main program to the <code class="file docutils literal notranslate"><span class="pre">.py</span></code> file in which you define the file reader class
+and invoke the general <a class="reference internal" href="../modules/ovito_io.html#ovito.io.import_file" title="ovito.io.import_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyFileReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s2">&quot;myfile.dat&quot;</span><span class="p">,</span> <span class="n">input_format</span><span class="o">=</span><span class="n">MyFileReader</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we pass the custom file reader class to the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.import_file" title="ovito.io.import_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> function. This
+circumvents the automatic detection of the file format (your <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.detect" title="ovito.io.FileReaderInterface.detect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detect()</span></code></a> method
+won’t be called by the system!) and the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.scan" title="ovito.io.FileReaderInterface.scan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scan()</span></code></a> and <a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface.parse" title="ovito.io.FileReaderInterface.parse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse()</span></code></a>
+methods will be invoked immediately. The for-loop iterates over all trajectory frames registered by the file reader and
+loads them one by one.</p>
+<p id="writing-custom-file-readers-registration">The approach described above is good for testing or if you just want to use your custom file reader
+from a standalone Python program. For full integration into OVITO Pro and to make your file reader participate in
+the automatic file detection system, it needs to be installed and registered as a discoverable extension.
+This process is outlined in the section <a class="reference internal" href="advanced_topics.html#registering-custom-python-classes"><span class="std std-ref">Packaging and installation of user extensions for OVITO</span></a>.</p>
+</section>
+<section id="user-parameters">
+<span id="writing-custom-file-readers-parameters"></span><h2>User parameters<a class="headerlink" href="#user-parameters" title="Permalink to this heading"></a></h2>
+<p>Your Python file reader can optionally expose adjustable user parameters based on the <a class="reference external" href="https://docs.enthought.com/traits/traits_user_manual/intro.html">Traits</a> framework, which are
+displayed automatically in the user interface of OVITO Pro. The system works analogously to
+<a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers-advanced-interface-user-params"><span class="std std-ref">Python modifier classes that expose user-defined parameters</span></a>.</p>
+<p>The <a class="reference internal" href="../modules/ovito_io.html#ovito.io.import_file" title="ovito.io.import_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> function will forward any additional keyword arguments to your
+file reader class and initialize its parameter traits with matching names.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="advanced_topics.html#registering-custom-python-classes"><span class="std std-ref">Packaging and installation of user extensions for OVITO</span></a></p></li>
+<li><p><a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface" title="ovito.io.FileReaderInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.io.FileReaderInterface</span></code></a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom_modifiers.html" class="btn btn-neutral float-left" title="User-defined modifiers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_overlays.html" class="btn btn-neutral float-right" title="User-defined viewport layers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

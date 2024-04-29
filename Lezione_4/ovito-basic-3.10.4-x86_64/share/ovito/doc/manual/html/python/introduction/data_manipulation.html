@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manipulating data &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/data_manipulation.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User-defined modifiers" href="custom_modifiers.html" />
+    <link rel="prev" title="Data model" href="data_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manipulating data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-ownership">Data ownership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#announcing-object-modification">Announcing object modification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assigning-new-particle-properties">Assigning new particle properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assigning-new-bond-properties">Assigning new bond properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-property-values">Modifying property values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-global-attributes">Adding global attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-the-simulation-cell">Modifying the simulation cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-place-application-of-modifiers">In-place application of modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Manipulating data</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manipulating-data">
+<span id="data-manipulation-intro"></span><h1>Manipulating data<a class="headerlink" href="#manipulating-data" title="Permalink to this heading"></a></h1>
+<p>This chapter discusses how the contents of a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> can be modified or amended from Python code, e.g., how
+you can manipulate the values of particle properties or give particles additional properties. Please make sure to read the
+<a class="reference internal" href="data_model.html#data-model-intro"><span class="std std-ref">preceding section</span></a> first, which describes how the data structures in a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>
+container are organized.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#data-ownership"><span class="std std-ref">Data ownership</span></a></p></li>
+<li><p><a class="reference internal" href="#underscore-notation"><span class="std std-ref">Announcing object modification</span></a></p></li>
+<li><p><a class="reference internal" href="#creating-new-properties"><span class="std std-ref">Assigning new particle properties</span></a></p></li>
+<li><p><a class="reference internal" href="#creating-new-bond-properties"><span class="std std-ref">Assigning new bond properties</span></a></p></li>
+<li><p><a class="reference internal" href="#modifying-properties"><span class="std std-ref">Modifying property values</span></a></p></li>
+<li><p><a class="reference internal" href="#adding-global-attributes"><span class="std std-ref">Adding global attributes</span></a></p></li>
+<li><p><a class="reference internal" href="#modifying-simulation-cell"><span class="std std-ref">Modifying the simulation cell</span></a></p></li>
+<li><p><a class="reference internal" href="#direct-modifier-application"><span class="std std-ref">In-place application of modifiers</span></a></p></li>
+</ul>
+</div></blockquote>
+<section id="data-ownership">
+<span id="id1"></span><h2>Data ownership<a class="headerlink" href="#data-ownership" title="Permalink to this heading"></a></h2>
+<p>OVITO’s data pipeline system tries to avoid unnecessary and expensive data copies as far as possible. In order to achieve this goal, data objects
+follow a shared ownership model. That means they may be part of more than one <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> at the same time.
+For instance, when you duplicate an existing <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> using its <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.clone" title="ovito.data.DataCollection.clone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clone()</span></code></a> method,
+you will obtain a second data collection containing the exact same data objects as the original collection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">particles</span> <span class="ow">is</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The assertion statement above shows that the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object in the original data collection and in the cloned
+collection are physically one and the same Python object. In other words, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> data object
+has not been copied but rather just been inserted into the second data collection too. It is now owned simultaneously by both data collections.</p>
+<p>This type of “shallow” copying is used by OVITO’s data pipeline system in many situations. For instance, the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.FileSource" title="ovito.pipeline.FileSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileSource</span></code></a>
+of a pipeline always keeps the original <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> that was loaded from the input file in memory.
+(You can access it through the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.FileSource.data" title="ovito.pipeline.FileSource.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FileSource.data</span></code></a> field.) This unmodified master copy of the
+input data enables quick re-evaluations of the data pipeline in case a modifier is being changed, without needing to reload the input data
+again from disk. Modifiers in the pipeline always operate on a copy of the original <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>, and it is
+the final copy that the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pipeline.compute()</span></code></a> method returns to the caller. However,
+it would be inefficient for the system to fully copy the master <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>, including all its contents,
+because modifiers typically change just a small portion of a dataset at a time, or they just amend the dataset with some newly computed information
+without altering any of the existing data objects at all.</p>
+<a class="reference internal image-reference" href="../_images/shallow_copy_pipeline.svg"><img alt="../_images/shallow_copy_pipeline.svg" class="align-center" src="../_images/shallow_copy_pipeline.svg" width="90%" /></a>
+<p>This is where so-called shallow object copies come into play. It is okay to share data objects between more than one data collection
+as long as these data objects are not modified. In case you intend to modify a particular data object, for example, when implementing
+a <a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">user-defined modifier function</span></a>, you first have to make sure that the data object is exclusively owned
+by just one <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>. Otherwise, unwanted side effects would occur because changing the data object in your
+data collection would also affect the contents of another data collection owned by someone else.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Data objects can be part of more than one data collection (or another type of container) at a time.
+Then only read access to a shared data object is allowed because object modifications would
+result in unexpected side effects.</p>
+</div>
+</section>
+<section id="announcing-object-modification">
+<span id="underscore-notation"></span><h2>Announcing object modification<a class="headerlink" href="#announcing-object-modification" title="Permalink to this heading"></a></h2>
+<p>OVITO’s Python programming interface has safeguards in place that prevent you from accidentally modifying data objects
+that are shared with some other part of the program. Consider the following attempt to change
+the boundary condition flags of a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> object in a data collection returned by the pipeline system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">pbc</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="go">RuntimeError: You tried to modify a SimulationCell object that is currently shared by</span>
+<span class="go">multiple owners. Please explicitly request a mutable version of the data object by</span>
+<span class="go">using the &#39;_&#39; notation.</span>
+</pre></div>
+</div>
+<p>The attempt to assign a new value to the cell’s <code class="docutils literal notranslate"><span class="pre">pbc</span></code> field raised an error, because OVITO detects that the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a>
+object is not only part of the data collection returned by <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pipeline.compute()</span></code></a> but
+also of another internal data collection owned by the pipeline. Thus, modifying the simulation cell object is not valid because
+it would cause side effects on the internal state of OVITO.</p>
+<p>The solution is to first make a unique copy of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> object before modifying it. The programming
+interface provides a handy shortcut notation for this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="o">.</span><span class="n">pbc</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The underscore suffix appended to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.cell" title="ovito.data.DataCollection.cell"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> field signals the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>
+that you intend to modify the simulation cell object. Behind the scenes, the data collection will check whether the cell object
+is shared with multiple owners. If so, it will create an actual copy of the data object and replace the original reference in this data collection.
+Thus, it ensures that the returned <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> object is exclusively owned by your data collection only, making it safe for you to modify it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before modifying a data object that is referenced by multiple owners (i.e., that is part of more than one parent container),
+the child object must be replaced with an exclusively owned copy of the original, which is safe to modify.
+OVITO’s Python interface provides the underscore notation to perform this copy-and-replacement step if needed.
+You can consider the underscore suffix as a means to signal your intention to modify the object.</p>
+</div>
+</section>
+<section id="assigning-new-particle-properties">
+<span id="creating-new-properties"></span><h2>Assigning new particle properties<a class="headerlink" href="#assigning-new-particle-properties" title="Permalink to this heading"></a></h2>
+<p>New per-particle properties are assigned to a <a class="reference internal" href="data_model.html#particle-properties-intro"><span class="std std-ref">particle system</span></a> using the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="ovito.data.PropertyContainer.create_property"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PropertyContainer.create_property()</span></code></a>
+method. In addition to the name of the property, this method accepts an optional NumPy array as argument
+for initializing the per-particle values of the new property:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">color_values</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we used the underscore version of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.particles" title="ovito.data.DataCollection.particles"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.particles_</span></code></a>
+field here in order to request a modifiable version of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> container object.
+This is necessary because <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="ovito.data.PropertyContainer.create_property"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_property()</span></code></a> adds a new <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a>
+object to the particles container object, which may be implicitly shared by multiple data collections (see previous section).</p>
+<p>If the particle property with the given name already exists in the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> container, then its contents will be overwritten
+with the per-particle array provided in the NumPy array. For details, please see the documentation of the
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="ovito.data.PropertyContainer.create_property"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_property()</span></code></a> method.</p>
+</section>
+<section id="assigning-new-bond-properties">
+<span id="creating-new-bond-properties"></span><h2>Assigning new bond properties<a class="headerlink" href="#assigning-new-bond-properties" title="Permalink to this heading"></a></h2>
+<p>Like in the case of particles, new properties can also be assigned to bonds using the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="ovito.data.PropertyContainer.create_property"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_property()</span></code></a>
+method. Bond properties are stored in the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Bonds" title="ovito.data.Bonds"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bonds</span></code></a> container object, which is owned by the parent
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object. Thus, adding a new bond property represents a change to the nested <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Bonds" title="ovito.data.Bonds"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bonds</span></code></a>
+object as well as to the parent <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object. Therefore we need to request modifiable versions of
+both objects in this case (<code class="docutils literal notranslate"><span class="pre">particles_.bonds_.</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">bonds_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">color_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="modifying-property-values">
+<span id="modifying-properties"></span><h2>Modifying property values<a class="headerlink" href="#modifying-property-values" title="Permalink to this heading"></a></h2>
+<p>Manipulating the values of existing particle or bond properties is as easy as changing values in a NumPy array;
+just make sure you use the <a class="reference internal" href="#underscore-notation"><span class="std std-ref">underscore notation</span></a> introduced above to make the
+property array modifiable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move the first particle to new XYZ coordinates:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">positions_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+
+<span class="c1"># Displace the first particle by 2 length units along the x-axis:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">positions_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Displace all particles by 1 length unit along the z-axis:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">positions_</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also make use of NumPy’s advanced indexing capabilities to modify just a subset of the elements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Displace only selected particles, i.e. those whose &#39;Selection&#39; property is non-zero:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">positions_</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">selection</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Alternatively, modify just the z-component of each position vector:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">positions_</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">selection</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>For more information, please see also the documentation of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> class.</p>
+</section>
+<section id="adding-global-attributes">
+<span id="id2"></span><h2>Adding global attributes<a class="headerlink" href="#adding-global-attributes" title="Permalink to this heading"></a></h2>
+<p>Global attributes are primitive values (numeric values/text strings) associated with a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> as a whole,
+for instance, the simulation time of the current snapshot or the name of the input file from which the dataset was originally loaded.
+Furthermore, some analysis modifiers output their computation results
+as new global attributes and add them to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>.
+Global attributes are stored within the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">attributes</span></code></a> Python dictionary
+of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>. Thus, adding, removing, or changing attributes
+is as simple as modifying a Python dictionary, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;dislocation_density&#39;</span><span class="p">]</span> <span class="o">=</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;DislocationAnalysis.total_line_length&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">volume</span>
+</pre></div>
+</div>
+<p>This code adds the new attribute <code class="docutils literal notranslate"><span class="pre">dislocation_density</span></code> to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>, whose value is calculated from the ratio of the total dislocation
+line length in a crystal (which has previously been computed by a <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.DislocationAnalysisModifier" title="ovito.modifiers.DislocationAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">DislocationAnalysisModifier</span></code></a> in this example)
+and the simulation cell’s <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell.volume" title="ovito.data.SimulationCell.volume"><code class="xref py py-attr docutils literal notranslate"><span class="pre">volume</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When modifying the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">attributes</span></code></a> dictionary, the underscore notation is not needed,
+because the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">attributes</span></code></a> dictionary is not an object that is ever shared between more
+than one data collection.</p>
+</div>
+</section>
+<section id="modifying-the-simulation-cell">
+<span id="modifying-simulation-cell"></span><h2>Modifying the simulation cell<a class="headerlink" href="#modifying-the-simulation-cell" title="Permalink to this heading"></a></h2>
+<p>The following code demonstrates how to set the three vectors spanning the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> by modifying
+the individual columns of the 3x4 matrix cell matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Cell vector &#39;a&#39;</span>
+<span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.15</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Cell vector &#39;b&#39;</span>
+<span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.30</span><span class="p">)</span>  <span class="c1"># Cell vector &#39;c&#39;</span>
+<span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1"># Cell origin</span>
+</pre></div>
+</div>
+<p>Note that this will only change the dimensions of the simulation cell without affecting the contents of the cell, e.g., the a particle coordinates.
+If you want to rescale the cell together with the contents, consider using <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.AffineTransformationModifier" title="ovito.modifiers.AffineTransformationModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">AffineTransformationModifier</span></code></a>.</p>
+</section>
+<section id="in-place-application-of-modifiers">
+<span id="direct-modifier-application"></span><h2>In-place application of modifiers<a class="headerlink" href="#in-place-application-of-modifiers" title="Permalink to this heading"></a></h2>
+<p>The built-in modifiers from the <a class="reference internal" href="../modules/ovito_modifiers.html#module-ovito.modifiers" title="ovito.modifiers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a> module are normally employed within a <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>,
+which produces a new <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> upon calling its <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a> method.
+But it is also possible to directly apply a modifier to a trajectory snapshot and let it modify the
+data in-place. This is done by invoking the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.apply" title="ovito.data.DataCollection.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply()</span></code></a> method on a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.6</span>
+<span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ExpressionSelectionModifier</span><span class="p">(</span><span class="n">expression</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PotentialEnergy &lt; </span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">DeleteSelectedModifier</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>In this example, the two ad-hoc modifiers act on the data stored in the collection.
+This type of direct modifier application to an existing data collection can, in some situations, be easier than
+building and evaluating an entire pipeline containing the modifier(s). However, it only works for one trajectory snapshot at a time.</p>
+<p>An typical use case for the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.apply" title="ovito.data.DataCollection.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataCollection.apply()</span></code></a> method is in
+<a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">Python modifier functions</span></a>, where it allows you to invoke a built-in modifier of OVITO as
+a sub-operation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_model.html" class="btn btn-neutral float-left" title="Data model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_modifiers.html" class="btn btn-neutral float-right" title="User-defined modifiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

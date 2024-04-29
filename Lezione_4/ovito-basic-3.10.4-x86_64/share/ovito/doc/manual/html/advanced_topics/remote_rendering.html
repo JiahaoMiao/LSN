@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rendering simulation trajectories on remote computers pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/remote_rendering.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scale bar pro" href="scale_bar.html" />
+    <link rel="prev" title="Python code generator pro" href="code_generation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-remote-export">Setting up the remote export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transferring-the-bundle-directory">Transferring the bundle directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-the-render-job-on-the-remote-computer-cluster">Executing the render job on the remote computer cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-notes-and-troubleshooting">Additional notes and troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-remote-rendering">
+<span id="rendering-simulation-trajectories-on-remote-computers-ovito-pro"></span><h1>Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#usage-remote-rendering" title="Permalink to this heading"></a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.10.0.</span></p>
+</div>
+<p>While setting up a visualization can be conveniently done with OVITO on a local desktop computer,
+rendering a video of a longer simulation trajectory may be a time-consuming process – especially if
+the visualization involves costly data processing or computation steps. To speed up the
+frame rendering process, <em>OVITO Pro</em> provides an easy way to offload the work onto a parallel
+computing cluster.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure to also check out the <a class="reference internal" href="../tutorials/remote_rendering.html#tutorials-remote-rendering"><span class="std std-ref">Remote rendering tutorial</span></a>
+for an in-depth example of how to use this program feature.</p>
+</div>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/remote_render_dialog.png"><img alt="../_images/remote_render_dialog.png" class="align-right" src="../_images/remote_render_dialog.png" style="width: 50%;" /></a>
+<p>The <span class="menuselection">Render on Remote Computer</span> function of <em>OVITO Pro</em> prepares
+a file bundle for you that can be sent to a different computer, e.g. a parallel computing cluster,
+and render a simulation video on a massively parallel scale. The visualization scene you have created
+on your local computer is transferred in the form of an <a class="reference internal" href="../usage/miscellaneous.html#usage-saving-loading-scene"><span class="std std-ref">OVITO session state file</span></a>,
+which means all settings will be precisely preserved when the bundle is unpacked and run on the remote machine.</p>
+<p>The generated file bundle contains the necessary job submission scripts and Conda environment files
+to execute the rendering task on the remote computer cluster. The rendering job will be performed by a
+auto-generated Python script, which uses the OVITO Python module to load the saved session state on the cluster
+and render the animation frames one by one. The script is designed to use multiple compute nodes in parallel
+to distribute the rendering work and will combine the resulting frame sequence into a video file.</p>
+<p>A typical visualization setup includes one or more external simulation data files, which you have imported into the
+OVITO scene. Since these external data files are not part of the session state, they need to be bundled and transferred to the
+remote machine as well – unless the simulation data is already present on the computing cluster.
+In that case, <em>OVITO Pro</em> provides the option to remap the local file paths to the correct remote paths on
+the target machine.</p>
+</section>
+<section id="setting-up-the-remote-export">
+<h2>Setting up the remote export<a class="headerlink" href="#setting-up-the-remote-export" title="Permalink to this heading"></a></h2>
+<p>To prepare remote rendering follow these steps in your local <em>OVITO Pro</em> instance:</p>
+<ol class="arabic simple">
+<li><p>Build and configure your visualization scene like you would do for producing a video on your local computer. Adjust
+<a class="reference internal" href="../reference/rendering/render_settings.html#core-render-settings"><span class="std std-ref">settings</span></a> such as output video resolution, animation range, and rendering backend as usual.
+Notably, you do <em>not</em> need to specify any <span class="guilabel">render output</span> file path,
+as this will be handled automatically.</p></li>
+<li><p>Select <span class="menuselection">File ‣ Render on Remote Computer…</span> from the main menu to
+open the <span class="menuselection">Remote Render Settings</span> dialog window. In this dialog, you
+find a table listing all filesystem locations used in the current OVITO scene
+(column <em>Current path</em>). Paths starting with <code class="docutils literal notranslate"><span class="pre">sftp://</span></code> have been <a class="reference internal" href="remote_file_access.html#usage-import-remote"><span class="std std-ref">loaded from a remote server</span></a>,
+other paths point to the local filesystem. For each <em>current path</em>,
+you can either enter a new <em>remote target path</em> or check the <em>bundle data</em>
+option.</p>
+<ul class="simple">
+<li><p>Remapping paths from a <em>current</em> to a <em>remote target path</em> is useful when
+the data files referenced in the current OVITO scene are already present on
+the remote machine where rendering is going to take place. For example, if the
+imported simulation trajectory was loaded locally from <code class="docutils literal notranslate"><span class="pre">/Users/daniel/simulation_data/</span></code> and
+a copy of data is stored on the remote server under <code class="docutils literal notranslate"><span class="pre">/scratch/daniel/simulation_data/</span></code>,
+you can enter the latter path in the <em>Remote target path</em> column.</p></li>
+<li><p>Alternatively, you can select <em>Bundle data</em>. In this case, <em>OVITO Pro</em> will
+collect all data files referenced in the local scene and copy them
+into the bundle directory, which is going to be transferred to the remote machine.
+Note that, if you decide to pack files <a class="reference internal" href="remote_file_access.html#usage-import-remote"><span class="std std-ref">imported from a remote location</span></a> (<code class="docutils literal notranslate"><span class="pre">sftp://</span></code> URLs),
+they will first be downloaded to your local computer once you click <span class="guilabel">Export</span>.</p></li>
+</ul>
+</li>
+<li><p>Optionally, you can configure the number of CPU cores per render task (i.e. threads per
+MPI process) by entering a number into the <em>Cores per task</em> field. A value of 0, or leaving the field empty, will let OVITO
+utilize all available cores on each compute node to render one frame at a time on each node. On the other hand,
+on a cluster node containing 96 cores, for example, setting <em>Cores per task</em> to 8 means that each node can spawn up to 12
+independent workers, rendering 12 images concurrently.</p></li>
+<li><p>Finally, use the <span class="guilabel">Choose…</span> button to select a local output
+directory for saving the bundle. Please note that this directory must be
+empty to avoid accidentally overwriting existing files.</p></li>
+<li><p>Click on <span class="guilabel">Export</span> to start the bundling process.
+Alternatively, you can use the <span class="guilabel">Close</span> button to save all settings and close the
+<span class="menuselection">Remote Render Settings</span> dialog without performing the bundle export now.
+Your export settings will be saved <a class="reference internal" href="../usage/miscellaneous.html#usage-saving-loading-scene"><span class="std std-ref">along with the scene</span></a>
+so that you can come back later and resume the export process.</p></li>
+</ol>
+</section>
+<section id="transferring-the-bundle-directory">
+<h2>Transferring the bundle directory<a class="headerlink" href="#transferring-the-bundle-directory" title="Permalink to this heading"></a></h2>
+<p>Once the bundle has been created on your local computer, you should transfer the complete directory to the target machine
+using your favorite file transfer tool, e.g.
+<a class="reference external" href="https://linux.die.net/man/1/scp">scp</a>,
+<a class="reference external" href="https://filezilla-project.org/">FileZilla</a>,
+<a class="reference external" href="https://cyberduck.io/">Cyberduck</a> , or
+<a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We recommend copying the files to a fast scratch filesystem. Please refer to your computing center’s
+documentation for additional information.</p>
+</div>
+</section>
+<section id="executing-the-render-job-on-the-remote-computer-cluster">
+<h2>Executing the render job on the remote computer cluster<a class="headerlink" href="#executing-the-render-job-on-the-remote-computer-cluster" title="Permalink to this heading"></a></h2>
+<p>To start the rendering task on the remote computer cluster, follow these steps:</p>
+<ol class="arabic">
+<li><p>Log in to the remote computer via SSH and change into the bundle directory.</p></li>
+<li><p>Install or update the <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-environments">Conda environment</a> using the
+<code class="docutils literal notranslate"><span class="pre">remote_render_ovito.yml</span></code> file provided in the bundle directory:</p>
+<ul>
+<li><p>If you haven’t created a Conda environment named
+<code class="docutils literal notranslate"><span class="pre">remote_render_ovito</span></code> yet, you can set it up by running the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>remote_render_ovito.yml
+</pre></div>
+</div>
+</li>
+<li><p>If the environment already exists, it is recommended to update it based
+on the new <code class="docutils literal notranslate"><span class="pre">remote_render_ovito.yml</span></code> file that is part of the bundle
+to ensure that all required packages are installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>-n<span class="w"> </span>remote_render_ovito<span class="w"> </span>-f<span class="w"> </span>remote_render_ovito.yml<span class="w"> </span>--prune
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Open the file <code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code>, which is a template for a job submission script, in a text editor.</p>
+<p>Assuming you use the <a class="reference external" href="https://slurm.schedmd.com/quickstart.html">Slurm queuing manager</a> on your cluster,
+this file already contains commands to activate the Conda
+environment, set required environment variables, and execute the rendering script on the compute nodes
+(via <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">...</span></code>).</p>
+<p>However, you still need to add all the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> settings required by your HPC environment to the top of the Slurm job script.
+Additionally, you might need to include specific <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">...</span></code> directives before the
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">remote_render_ovito</span></code> command to ensure the Conda base system and Python are
+loaded.</p>
+</li>
+<li><p>Once you have filled in <code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code>, rename the file to <code class="docutils literal notranslate"><span class="pre">submit.sh</span></code>
+and submit it to your cluster’s queuing system using the appropriate command, such as
+<code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">submit.sh</span></code>.</p></li>
+<li><p>After the rendering job is complete, you can find all rendered images in the
+<code class="docutils literal notranslate"><span class="pre">frames/</span></code> subdirectory. Moreover, a video file named <code class="docutils literal notranslate"><span class="pre">video.mp4</span></code> will appear in
+the main bundle directory.</p></li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../tutorials/remote_rendering.html#tutorials-remote-rendering"><span class="std std-ref">Remote rendering tutorial</span></a></p>
+</div>
+</section>
+<section id="additional-notes-and-troubleshooting">
+<h2>Additional notes and troubleshooting<a class="headerlink" href="#additional-notes-and-troubleshooting" title="Permalink to this heading"></a></h2>
+<p>While the instructions provided above are designed to work in many HPC
+cluster environments, they may not be a perfect fit for every situation. Here
+are some common questions and answers to help you address potential issues:</p>
+<dl>
+<dt><strong>Which queuing systems are supported?</strong></dt><dd><p>The provided job submission file (<code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code>) is tailored for use with <a class="reference external" href="https://slurm.schedmd.com/quickstart.html">Slurm</a>.
+If you are using a <a class="reference external" href="https://flux-framework.org/">flux-based</a> queuing system, you should be able to directly submit the <code class="docutils literal notranslate"><span class="pre">flux</span> <span class="pre">run</span> <span class="pre">...</span></code> command found in
+<code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code> in your flux environment. For all other queuing systems, the
+<code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code> file needs to be adapted manually.</p>
+</dd>
+<dt><strong>What if the render job times out?</strong></dt><dd><p>Simply resubmit the render job from the bundle directory. The rendering script will
+automatically detect which trajectory frames have already been rendered and will
+continue from where it left off.</p>
+</dd>
+<dt><strong>Which operating systems on the target machine are supported?</strong></dt><dd><p>Remote rendering is currently only supported on Linux-based computer clusters.
+For preparing the bundle you can use <em>OVITO Pro</em> running on Linux, MacOS, and Windows machines.</p>
+</dd>
+<dt><strong>Are other conda-like package managers supported?</strong></dt><dd><p>Yes, the rendering process has also been tested with <strong class="program">micromamba`</strong> and should
+work with <strong class="program">microconda</strong> or <strong class="program">anaconda</strong> as well. Please note that if you choose to
+use a conda alternative, you will need to replace all instances of the
+<strong class="command">conda</strong> command.</p>
+</dd>
+<dt><strong>What should I do on computer clusters without internet access?</strong></dt><dd><p>If your computer cluster lacks internet access, you can consider using
+<a class="reference external" href="https://conda.github.io/conda-pack/">conda-pack</a> to relocate the required Conda
+environment to your remote machine. This approach is untested and success is not
+guaranteed.</p>
+</dd>
+<dt><strong>How can I add missing packages to the conda environment?</strong></dt><dd><p>During packaging, <em>OVITO Pro</em> attempts to identify all installed Python packages in your
+local environment – to install them also in the remote environment in case they are needed by your
+visualization setup. However, in rare cases, OS or package version
+mismatches may occur or some packages may be missed. To resolve this, manually
+edit the <code class="docutils literal notranslate"><span class="pre">remote_render_ovito.yml</span></code> file and add the missing packages. If you
+encounter this issue frequently, please contact the OVITO developers.</p>
+</dd>
+<dt><strong>Which renderer should I use?</strong></dt><dd><p>Many compute clusters do not provide the third-party libraries required for the <a class="reference external" href="../python/modules/ovito_vis.html#ovito.vis.OpenGLRenderer" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLRenderer</span></code></a>.
+Therefore, you might need to instead select one of the <a class="reference internal" href="../usage/rendering.html#usage-rendering"><span class="std std-ref">other rendering backends of OVITO</span></a>
+that work in headless system environments.</p>
+</dd>
+<dt><strong>How can I test / debug the rendering process?</strong></dt><dd><p>First, make sure you have created the Conda environment from the file <code class="docutils literal notranslate"><span class="pre">remote_render_ovito.yml</span></code> as described above.
+Then execute the following commands adopted from <code class="docutils literal notranslate"><span class="pre">submit.sh.template</span></code> on the target machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>remote_render_ovito
+<span class="nb">export</span><span class="w"> </span><span class="nv">CONDA_LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/x86_64-conda-linux-gnu/sysroot/usr/lib
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_LD_LIBRARY_PATH</span><span class="si">}${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+:</span><span class="nv">$LD_LIBRARY_PATH</span><span class="si">}</span>
+mpirun<span class="w"> </span>flux<span class="w"> </span>start<span class="w"> </span>remote_render_task.py
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">srun</span></code> has been replaced by <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> to run the process on the local node. If you encounter any errors, you can append
+<code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">-vv</span></code> to the <code class="docutils literal notranslate"><span class="pre">remote_render_task.py</span></code> script to get additional output in the <code class="docutils literal notranslate"><span class="pre">logs/</span></code>
+directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>flux<span class="w"> </span>start<span class="w"> </span>remote_render_task.py<span class="w"> </span>-vv
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="code_generation.html" class="btn btn-neutral float-left" title="Python code generator pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scale_bar.html" class="btn btn-neutral float-right" title="Scale bar pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example O1: Scale bar &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/overlays/scale_bar.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example O2: Add a data plot to rendered images" href="data_plot.html" />
+    <link rel="prev" title="Example M8: Compute trajectory average of a global attribute" href="../modifiers/custom_time_average.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example O1: Scale bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_plot.html">Example O2: Add a data plot to rendered images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="highlight_particle.html">Example O3: Highlight a particle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example O1: Scale bar</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-o1-scale-bar">
+<span id="example-scale-bar-overlay"></span><h1>Example O1: Scale bar<a class="headerlink" href="#example-o1-scale-bar" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/python_script_scale_bar_ui.png"><img alt="../../../_images/python_script_scale_bar_ui.png" class="align-right" src="../../../_images/python_script_scale_bar_ui.png" style="width: 40%;" /></a>
+<p><a class="reference internal" href="../../custom_overlays.html#writing-custom-viewport-overlays"><span class="std std-ref">Custom overlay</span></a> that renders a scale bar with a configurable length into a viewport.</p>
+<a class="reference internal image-reference" href="../../../_images/python_script_scale_bar_example.png"><img alt="../../../_images/python_script_scale_bar_example.png" src="../../../_images/python_script_scale_bar_example.png" style="width: 50%;" /></a>
+<p>The implementation makes use of the <a class="reference internal" href="../../../modules/ovito_vis.html#ovito.vis.ViewportOverlayInterface.Canvas.project_length" title="ovito.vis.ViewportOverlayInterface.Canvas.project_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Canvas.project_length()</span></code></a> method
+to compute the screen-space length corresponding to a simulation-space distance, which is given
+by a configurable user parameter of the overlay class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.vis</span> <span class="kn">import</span> <span class="n">ViewportOverlayInterface</span>
+<span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">ovito.traits</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">ovito.qt_compat</span> <span class="kn">import</span> <span class="n">QtGui</span>
+
+<span class="k">class</span> <span class="nc">ScaleBarOverlay</span><span class="p">(</span><span class="n">ViewportOverlayInterface</span><span class="p">):</span>
+
+    <span class="c1"># Adjustable user parameters:</span>
+
+    <span class="c1"># World-space length of the scale bar:</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Length (nm)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Screen-space height of the scale bar:</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Bar color:</span>
+    <span class="n">bar_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bar color&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Text color:</span>
+    <span class="n">text_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Text color&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">canvas</span><span class="p">:</span> <span class="n">ViewportOverlayInterface</span><span class="o">.</span><span class="n">Canvas</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Compute the center coordinates of the simulation cell.</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span> <span class="o">@</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+        <span class="c1"># Compute length of bar in screen space - as a fraction of the canvas height.</span>
+        <span class="n">screen_length</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">project_length</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+
+        <span class="c1"># Convert from nanometers to simulation units of length (Angstroms) and</span>
+        <span class="c1"># convert from vertical to horizontal canvas coordinates by multiplying with the h/w aspect ratio.</span>
+        <span class="n">screen_length</span> <span class="o">*=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">canvas</span><span class="o">.</span><span class="n">logical_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">canvas</span><span class="o">.</span><span class="n">logical_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Create a 1-by-1 pixel image for drawing the bar rectangle.</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">canvas</span><span class="o">.</span><span class="n">preferred_qimage_format</span><span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QColor</span><span class="o">.</span><span class="n">fromRgbF</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">bar_color</span><span class="p">))</span>
+
+        <span class="c1"># Draw the bar rectangle.</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="n">draw_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">screen_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;south west&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Draw the text label.</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="n">draw_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2"> nm&quot;</span><span class="p">,</span>
+                         <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">screen_length</span><span class="p">,</span> <span class="mf">0.01</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+                         <span class="n">font_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                         <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                         <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text_color</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../modifiers/custom_time_average.html" class="btn btn-neutral float-left" title="Example M8: Compute trajectory average of a global attribute" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_plot.html" class="btn btn-neutral float-right" title="Example O2: Add a data plot to rendered images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

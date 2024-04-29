@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSPRay renderer pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/rendering/ospray_renderer.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tachyon renderer pro" href="tachyon_renderer.html" />
+    <link rel="prev" title="OpenGL renderer" href="opengl_renderer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Rendering</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="render_settings.html">Render settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animation_settings_dialog.html">Animation settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opengl_renderer.html">OpenGL renderer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">OSPRay renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quality-settings">Quality settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#light-sources">Light sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#material">Material</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#path-tracer-backend">Path tracer backend</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tachyon_renderer.html">Tachyon renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="visrtx_renderer.html">VisRTX renderer (experimental) <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Rendering</a> &raquo;</li>
+      <li>OSPRay renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rendering-ospray-renderer">
+<span id="ospray-renderer-ovito-pro"></span><h1>OSPRay renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#rendering-ospray-renderer" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/ospray_renderer_panel.png"><img alt="../../_images/ospray_renderer_panel.png" class="align-right" src="../../_images/ospray_renderer_panel.png" style="width: 30%;" /></a>
+<p>OSPRay is a software-based ray-tracing engine, which can generate high-fidelity scene renderings including
+global illumination effects, shadows and depth of field (focal blur). The OSPRay renderer has a smaller memory footprint than
+the <a class="reference internal" href="tachyon_renderer.html#rendering-tachyon-renderer"><span class="std std-ref">Tachyon renderer</span></a>. It is thus suitable for rendering very large datasets
+with higher visual quality than the default <a class="reference internal" href="opengl_renderer.html#rendering-opengl-renderer"><span class="std std-ref">OpenGL renderer</span></a>.</p>
+<p>For more information on the capabilities of the OSPRay engine and its technical background,
+please visit the website <a class="reference external" href="https://www.ospray.org">https://www.ospray.org</a>.
+The OSPRay documentation contains more in-depth information on this rendering engine’s various parameters.</p>
+<p>The “More Options” (vertical ellipsis) button next to each nummerical parameter opens a context menu with
+the option to reset each paramter to its default value.</p>
+<section id="quality-settings">
+<h2>Quality settings<a class="headerlink" href="#quality-settings" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Refinement passes</dt><dd><p>OSPRay uses a progressive rendering method, which further refines the generated image during each rendering pass.
+This parameter controls the number of refinement passes to compute (default value: 4).</p>
+</dd>
+<dt>Samples per pixel</dt><dd><p>The number of ray-tracing samples computed per pixel of the output image (default value: 2).
+Larger values can help reduce aliasing artifacts and will yield better results if the <em>depth of field</em>
+option has been enabled.</p>
+</dd>
+<dt>Ray recursion depth</dt><dd><p>The maximum number of recursion steps taken during ray-tracing (default value: 10).
+Normally, 1 or 2 is enough, but when rendering many overlapping semi-transparent objects, a larger recursion depth may be needed.</p>
+</dd>
+<dt>Denoising filter</dt><dd><p>Applies a denoising filter to the rendered image to reduce Monte Carlo noise inherent to stochastic
+methods such as path tracing.</p>
+</dd>
+<dt>Depth of field</dt><dd><p>Only objects exactly at a distance from the camera specified by the <em>focal length</em> will appear sharp when depth-of-field rendering is active.
+Objects closer to or further from the camera will appear blurred. If you want a specific object to be in the focus, use the <span class="guilabel">Pick in viewport</span> button
+and click on that object in the viewport to be rendered. The <em>focal length</em> parameter will be automatically adjusted so that the picked location is in focus.
+The <em>aperture</em> radius controls how blurred objects will appear that are out of focus (default: 0.5).</p>
+</dd>
+</dl>
+</section>
+<section id="light-sources">
+<h2>Light sources<a class="headerlink" href="#light-sources" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Direct light</dt><dd><p>Enables a directional light source positioned behind the camera and pointing roughly along the viewing direction.
+The <em>angular diameter</em> specifies the apparent size (angle in degrees) of the light source.
+Setting the angular diameter to a value greater than zero yields soft shadows. For instance, the apparent size
+of the sun is about 0.53°.</p>
+</dd>
+<dt>Ambient light</dt><dd><p>The ambient light surrounds the entire scene and illuminates it from infinity with constant radiance.</p>
+</dd>
+<dt>Sun-sky light</dt><dd><p>The sun-sky light produces the light typically coming from the sky and the sun in an outdoor scene.
+The radiance values are calculated using the Hošek-Wilkie sky model and solar radiance function.
+The zenith of the sky as well as the sun are positioned along the positive Z axis of the scene and are independent of the camera orientation.</p>
+</dd>
+</dl>
+</section>
+<section id="material">
+<h2>Material<a class="headerlink" href="#material" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Specular brightness</dt><dd><p>Controls the specular reflectivity of the material (default value: 2%).</p>
+</dd>
+<dt>Shininess</dt><dd><p>This specular Phong exponent is usually in the range between 2.0 and 10000.0 (default value: 10.0).</p>
+</dd>
+</dl>
+</section>
+<section id="path-tracer-backend">
+<h2>Path tracer backend<a class="headerlink" href="#path-tracer-backend" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Roulette depth</dt><dd><p>Ray recursion depth at which to start Russian roulette termination (default value: 2).</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../python/modules/ovito_vis.html#ovito.vis.OSPRayRenderer" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OSPRayRenderer</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="opengl_renderer.html" class="btn btn-neutral float-left" title="OpenGL renderer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tachyon_renderer.html" class="btn btn-neutral float-right" title="Tachyon renderer pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

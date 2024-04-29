@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time averaging pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/time_averaging.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Time series pro" href="time_series.html" />
+    <link rel="prev" title="Spatial correlation function" href="correlation_function.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-time-averaging">
+<span id="time-averaging-ovito-pro"></span><h1>Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#particles-modifiers-time-averaging" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/time_averaging_panel.png"><img alt="../../../_images/time_averaging_panel.png" class="align-right" src="../../../_images/time_averaging_panel.png" style="width: 30%;" /></a>
+<p>This modifier can compute the average value of one or more input quantities, averaged over the frames of the simulation trajectory.
+Three kinds of input quantities are supported:</p>
+<dl class="simple">
+<dt>Attributes</dt><dd><p><a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">Global attributes</span></a> are scalar variables associated with the dataset,
+which may vary with time. The modifier will compute the global mean value
+of the selected input attribute and output it as a new attribute, which does not change with time.</p>
+</dd>
+<dt>Data tables</dt><dd><p>The modifier can compute the time-averaged versions of <a class="reference internal" href="../data_objects/data_table.html#scene-objects-data-table"><span class="std std-ref">data tables</span></a>.
+Data tables typically contain dynamically computed structural or statistical information such as a <a class="reference internal" href="coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">radial distribution function</span></a>
+or <a class="reference internal" href="histogram.html#particles-modifiers-histogram"><span class="std std-ref">histograms</span></a> of some particle property.
+With the help of the time averaging modifier you can average such time-varying tables over the entire trajectory.</p>
+</dd>
+<dt>Properties</dt><dd><p>Finally, the modifier supports computing time averages of properties (e.g. <a class="reference internal" href="../data_objects/particles.html#scene-objects-particles"><span class="std std-ref">particle</span></a> or <a class="reference internal" href="../data_objects/voxel_grid.html#scene-objects-voxel-grid"><span class="std std-ref">voxel grid</span></a> properties).
+The average values of the selected input property are output as a new property with the appended name suffix “Average”.
+Note that, for the computation to work, the number of data elements (e.g. particles) must not change with time.
+Thus, make sure you place the time averaging modifier in the data pipeline before any filter operations
+that dynamically remove particles from the system.</p>
+</dd>
+</dl>
+<p>Note that the modifier has to step through all frames of the simulation trajectory to compute the time average of the
+selected quantity. This can be a lengthy process depending on the extent of the trajectory and the dataset size. However, the averaging will happen
+in the background, and you can continue working with the program while the modifiers is performing the calculation.
+Once the averaging calculation is completed, you can press the button <span class="guilabel">Show in data inspector</span> button
+to reveal the computed average quantity in the <a class="reference internal" href="../../data_inspector/index.html#data-inspector"><span class="std std-ref">data inspector</span></a> of OVITO.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.TimeAveragingModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.TimeAveragingModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="correlation_function.html" class="btn btn-neutral float-left" title="Spatial correlation function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="time_series.html" class="btn btn-neutral float-right" title="Time series pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

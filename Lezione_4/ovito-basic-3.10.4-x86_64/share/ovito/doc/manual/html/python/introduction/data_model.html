@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data model &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/data_model.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manipulating data" href="data_manipulation.html" />
+    <link rel="prev" title="Data pipelines" href="pipelines.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#particles">Particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property-objects">Property objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#global-attributes">Global attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-tables">Data tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-meshes">Surface meshes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data model</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-model">
+<span id="data-model-intro"></span><h1>Data model<a class="headerlink" href="#data-model" title="Permalink to this heading"></a></h1>
+<p>OVITO organizes the information it processes into <em>data objects</em>, each representing a specific fragment of a dataset.
+For example, a dataset may be composed of a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> object holding the box dimensions and boundary conditions,
+a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object storing information associated with the particles, and a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Bonds" title="ovito.data.Bonds"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bonds</span></code></a> sub-object storing the
+list of bonds between particles. For each type of data object you will find a corresponding Python class in the <a class="reference internal" href="../modules/ovito_data.html#module-ovito.data" title="ovito.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito.data</span></code></a> module.
+All of them derive from one common base class: <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject" title="ovito.data.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataObject</span></code></a>.</p>
+<p>Data objects can contain other data objects, forming a nested structure with parent-child relationships.
+For example, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object is a container, which manages
+a number of <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> objects, each being an array of property values associated with the particles.
+Furthermore, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object can also contain a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Bonds" title="ovito.data.Bonds"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bonds</span></code></a> object,
+which in turn is a container for the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> objects storing the per-bond property values:</p>
+<a class="reference internal image-reference" href="../_images/data_objects.svg"><img alt="../_images/data_objects.svg" class="align-center" src="../_images/data_objects.svg" width="80%" /></a>
+<p>The <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> class is always at the topmost level of this nested object hierarchy.
+It is the fundamental unit representing a complete dataset that was loaded from one or more input simulation files,
+and which then gets processed by the modifier steps of a data pipeline. Modifiers may alter individual data objects within the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>,
+add new data objects to the top-level collection, or create additional sub-objects in nested container objects.</p>
+<p>When you call the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pipeline.compute()</span></code></a> method, you receive back a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>
+holding the computation results of the pipeline. The <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> class provides various property fields for accessing the different kinds
+of sub-objects it contains.</p>
+<p>It is important to note that a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> object represents just a single animation frame
+and not an entire simulation trajectory. Thus, in OVITO’s data model, a simulation trajectory is rather represented as a series of
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> instances. A data pipeline operates on and produces only a single <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a>
+at a time, i.e., it works on a frame-by-frame basis.</p>
+<section id="particles">
+<span id="particle-properties-intro"></span><h2>Particles<a class="headerlink" href="#particles" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> data object, accessible via the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.particles" title="ovito.data.DataCollection.particles"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.particles</span></code></a>
+field, holds all particle or molecule-related data. OVITO uses a property-centered representation of particles, where information is stored as a set of uniform memory
+arrays of the same length. Each array represents one particle property, such as position, type, mass, color, etc., and holds the values for all <em>N</em> particles
+in the system. A property data array is an instance of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> data object class, which is not only used by OVITO for storing
+particle properties but also bond properties, voxel grid properties, and more.</p>
+<p>Thus, a system of particles is nothing more than a loose collection of <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> objects, which are held
+together by a container, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> object, a specialization of the generic <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a>
+base class. Each particle property has a unique name that identifies the meaning
+of the property. OVITO defines a set of <a class="reference internal" href="../modules/ovito_data.html#particle-properties-list"><span class="std std-ref">standard property names</span></a>, which have a specific meaning to the program and a prescribed data format.
+The <code class="docutils literal notranslate"><span class="pre">Position</span></code> standard property, for example, holds the XYZ coordinates of all particles and is mandatory. Other standard
+properties, such as <code class="docutils literal notranslate"><span class="pre">Color</span></code> or <code class="docutils literal notranslate"><span class="pre">Mass</span></code>, are optional and may or may not be present in a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> container.
+Furthermore, <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> objects with non-standard names are supported, representing user-defined particle properties.</p>
+<a class="reference internal image-reference" href="../_images/particles_object.svg"><img alt="../_images/particles_object.svg" class="align-center" src="../_images/particles_object.svg" width="35%" /></a>
+<p>The <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> container object mimics the programming interface of a Python dictionary, which lets you look up properties by name.
+To find out which properties are present, you can query the dictionary for its keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;Particle Identifier&#39;, &#39;Particle Type&#39;, &#39;Position&#39;, &#39;Color&#39;]</span>
+</pre></div>
+</div>
+<p>Individual particle properties can be looked up by their name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">color_property</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Some standard properties can also be accessed through convenient getter fields, for example, the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles.colors" title="ovito.data.Particles.colors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Particles.colors</span></code></a> field:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">color_property</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">colors</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> class is a sub-class of the generic
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a> base class. OVITO defines several property container types, such as the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Bonds" title="ovito.data.Bonds"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bonds</span></code></a>,
+<a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataTable" title="ovito.data.DataTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataTable</span></code></a>, and <a class="reference internal" href="../modules/ovito_data.html#ovito.data.VoxelGrid" title="ovito.data.VoxelGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">VoxelGrid</span></code></a> types, which all work like the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> type.
+They all have in common that they represent an array of uniform data elements, which may be associated with an arbitrary set of properties.</p>
+</section>
+<section id="property-objects">
+<h2>Property objects<a class="headerlink" href="#property-objects" title="Permalink to this heading"></a></h2>
+<p>A <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a> manages a variable set of <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> objects, each <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> storing the
+values for one particular property of all data elements in an array. A <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> object behaves pretty much like a standard NumPy array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+<span class="go">[[ 73.24230194  -5.77583981  -0.87618297]</span>
+<span class="go"> [-49.00170135 -35.47610092 -27.92519951]</span>
+<span class="go"> [-50.36349869 -39.02569962 -25.61310005]</span>
+<span class="go"> ...,</span>
+<span class="go"> [ 42.71210098  59.44919968  38.6432991 ]</span>
+<span class="go"> [ 42.9917984   63.53770065  36.33330154]</span>
+<span class="go"> [ 44.17670059  61.49860001  37.5401001 ]]</span>
+</pre></div>
+</div>
+<p>Property arrays can be one-dimensional (in the case of scalar properties) or two-dimensional (in the case of vector properties).
+The size of the first array dimension is always equal to the number of data elements (e.g. particles) stored in the parent <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a>.
+The container reports the current number of elements via its <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer.count" title="ovito.data.PropertyContainer.count"><code class="xref py py-attr docutils literal notranslate"><span class="pre">count</span></code></a> attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span>  <span class="c1"># Number of particles</span>
+<span class="go">28655</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Mass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># 1-dim. array</span>
+<span class="go">(28655,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># 2-dim. array</span>
+<span class="go">(28655, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>  <span class="c1"># Data type of property array</span>
+<span class="go">float64</span>
+</pre></div>
+</div>
+<p>OVITO currently supports three different numeric data types for property arrays: <code class="docutils literal notranslate"><span class="pre">float64</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code>, and <code class="docutils literal notranslate"><span class="pre">int64</span></code>. For built-in <a class="reference internal" href="../modules/ovito_data.html#particle-properties-list"><span class="std std-ref">standard properties</span></a>,
+the data type and the dimensionality are prescribed by OVITO. For user-defined properties, they can be chosen by the user when
+<a class="reference internal" href="data_manipulation.html#creating-new-properties"><span class="std std-ref">creating a new property</span></a>.</p>
+</section>
+<section id="global-attributes">
+<span id="global-attributes-intro"></span><h2>Global attributes<a class="headerlink" href="#global-attributes" title="Permalink to this heading"></a></h2>
+<p>Global attributes are simple tokens of information associated with a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> as a whole,
+organized as key-value pairs in the Python dictionary <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.attributes</span></code></a>.
+File readers automatically generate certain global attributes at the source of a data pipeline to associate
+the imported dataset with relevant information, such as the current simulation timestep number or the name of the input file.
+In the graphical user interface of OVITO you can inspect the current set of global attributes by opening the
+<a class="reference external" href="../../reference/data_inspector/attributes.html#data-inspector-attributes" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">Data Inspector panel</span></a>.</p>
+<p>Modifiers in a data pipeline may associate a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> with additional attributes to
+report their computation results. For example, the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.ClusterAnalysisModifier" title="ovito.modifiers.ClusterAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClusterAnalysisModifier</span></code></a> outputs the attribute
+named <code class="docutils literal notranslate"><span class="pre">ClusterAnalysis.cluster_count</span></code>, which reflects the total number of particles clusters that have been found
+by the clustering algorithm at the current timestep. OVITO provides functions to export such attributes to an output text file,
+or to embed them in rendered images and animations as a dynamic <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.TextLabelOverlay" title="ovito.vis.TextLabelOverlay"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextLabelOverlay</span></code></a>.</p>
+<p>Please refer to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.attributes</span></code></a> documentation for more on global attributes.</p>
+</section>
+<section id="data-tables">
+<span id="data-tables-intro"></span><h2>Data tables<a class="headerlink" href="#data-tables" title="Permalink to this heading"></a></h2>
+<p>Tabulated data is represented in OVITO by <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataTable" title="ovito.data.DataTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataTable</span></code></a> objects, which are a specialized type of <a class="reference internal" href="../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a>.
+A <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataTable" title="ovito.data.DataTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataTable</span></code></a> consists of a variable number of rows and columns. Each column is an instance of the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> class.
+Data tables are typically generated dynamically by modifiers performing computations, for example, the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.HistogramModifier" title="ovito.modifiers.HistogramModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistogramModifier</span></code></a> or the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.CommonNeighborAnalysisModifier" title="ovito.modifiers.CommonNeighborAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommonNeighborAnalysisModifier</span></code></a>,
+to store their results. In the graphical user interface of OVITO, data tables are rendered as graphs or charts (line, scatter, histogram plots), found in the <a class="reference external" href="../../reference/data_inspector/data_tables.html#data-inspector-data-tables" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">data inspector panel</span></a>.</p>
+<p>In Python, all data tables generated by the modifiers in the current pipeline can be accessed from the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.tables" title="ovito.data.DataCollection.tables"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.tables</span></code></a> dictionary
+returned by the pipeline. Each table has a unique <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject.identifier" title="ovito.data.DataObject.identifier"><code class="xref py py-attr docutils literal notranslate"><span class="pre">identifier</span></code></a> string, which serves as lookup key in that dictionary.
+Furthermore, OVITO provides export functions for writing data tables to an output text file. Please see the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataTable" title="ovito.data.DataTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataTable</span></code></a> class for further details.</p>
+</section>
+<section id="surface-meshes">
+<span id="surface-meshes-intro"></span><h2>Surface meshes<a class="headerlink" href="#surface-meshes" title="Permalink to this heading"></a></h2>
+<p>OVITO can import or generate surface mesh data structures for visualization purposes and other applications. For instance,
+the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.ConstructSurfaceModifier" title="ovito.modifiers.ConstructSurfaceModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstructSurfaceModifier</span></code></a> can be inserted into a data pipeline to construct a triangulated
+surface mesh representing the spatial region filled with particles. The output of this modifier is a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SurfaceMesh" title="ovito.data.SurfaceMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">SurfaceMesh</span></code></a>
+object, which holds the vertices and faces of the mesh. See also the <a class="reference external" href="../../reference/pipelines/data_objects/surface_mesh.html#scene-objects-surface-mesh" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">corresponding section in the user manual</span></a>.</p>
+<p>In Python, surface meshes generated by the modifiers in the current pipeline can be accessed from the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection.surfaces" title="ovito.data.DataCollection.surfaces"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.surfaces</span></code></a> dictionary
+returned by the pipeline. Each surface mesh has a unique <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject.identifier" title="ovito.data.DataObject.identifier"><code class="xref py py-attr docutils literal notranslate"><span class="pre">identifier</span></code></a> string, which serves as lookup key in that dictionary.
+Please see the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SurfaceMesh" title="ovito.data.SurfaceMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">SurfaceMesh</span></code></a> class for further details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pipelines.html" class="btn btn-neutral float-left" title="Data pipelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_manipulation.html" class="btn btn-neutral float-right" title="Manipulating data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

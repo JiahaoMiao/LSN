@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voxel grids &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/data_objects/voxel_grid.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Lines" href="lines.html" />
+    <link rel="prev" title="Data tables" href="data_table.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data objects</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation_cell.html">Simulation cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_mesh.html">Surface meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_table.html">Data tables</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Voxel grids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocation lines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Data objects</a> &raquo;</li>
+      <li>Voxel grids</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scene-objects-voxel-grid">
+<span id="voxel-grids"></span><h1>Voxel grids<a class="headerlink" href="#scene-objects-voxel-grid" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/voxel_grid_example.png"><img alt="../../../_images/voxel_grid_example.png" class="align-right" src="../../../_images/voxel_grid_example.png" style="width: 30%;" /></a>
+<p>The <em>voxel grid</em> data object in OVITO is a structured grid made of uniform voxel cells, each associated with numeric values.
+A voxel grid is typically a discretized representation of a three- or two-dimensional field.</p>
+<section id="importing-or-creating-voxel-grids">
+<h2>Importing or creating voxel grids<a class="headerlink" href="#importing-or-creating-voxel-grids" title="Permalink to this heading"></a></h2>
+<p>Voxel grids can be imported into OVITO from simulation data files, for example charge density fields
+written by DFT simulation codes. See the list of <a class="reference internal" href="../../file_formats/file_formats_input.html#file-formats-input"><span class="std std-ref">supported input formats</span></a> of OVITO to find out which
+formats can contain volumetric data. Alternatively, voxel grids can be dynamically generated within OVITO from other forms of data.
+The <a class="reference internal" href="../modifiers/bin_and_reduce.html#particles-modifiers-bin-and-reduce"><span class="std std-ref">Spatial binning </span></a> modifier maps particles onto a structured grid to produce a field representation
+of particle-based values.</p>
+</section>
+<section id="voxel-grid-properties">
+<h2>Voxel grid properties<a class="headerlink" href="#voxel-grid-properties" title="Permalink to this heading"></a></h2>
+<p>Like particles and bonds the cells of a voxel grid can be associated with an arbitrary number of numeric properties.
+Each property can represent a scalar field value, e.g. the local charge density, or a more complex vectorial quantity such as the magnetic moment
+vector. New properties may be assigned to an existing voxel grid with the <a class="reference internal" href="../modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifier
+of OVITO.</p>
+</section>
+<section id="two-and-three-dimensional-domains">
+<h2>Two- and three-dimensional domains<a class="headerlink" href="#two-and-three-dimensional-domains" title="Permalink to this heading"></a></h2>
+<p>A voxel grid is always associated with a <a class="reference internal" href="simulation_cell.html#scene-objects-simulation-cell"><span class="std std-ref">simulation cell</span></a> domain, which defines the spatial
+extent of the grid in three dimensional space. OVITO supports two-dimensional and three-dimensional grids, both with and without
+periodic boundary conditions:</p>
+<figure class="align-default" id="id1" style="width: 40%">
+<img alt="../../../_images/voxel_grid_2d.svg" src="../../../_images/voxel_grid_2d.svg" /><figcaption>
+<p><span class="caption-text">A two-dimensional voxel grid made of <span class="math notranslate nohighlight">\(n_x \times n_y\)</span> cells. Note that the two vectors spanning the grid’s domain may
+be embedded in three-dimensional space.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 40%">
+<img alt="../../../_images/voxel_grid_3d.svg" src="../../../_images/voxel_grid_3d.svg" /><figcaption>
+<p><span class="caption-text">A three-dimensional voxel grid made of <span class="math notranslate nohighlight">\(n_x \times n_y \times n_z\)</span> cells. The three grid vectors
+spanning the grid’s domain can point along arbitrary directions in 3d space.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="visualization-methods">
+<h2>Visualization methods<a class="headerlink" href="#visualization-methods" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/voxel_grid_example_isosurface.png"><img alt="../../../_images/voxel_grid_example_isosurface.png" class="align-right" src="../../../_images/voxel_grid_example_isosurface.png" style="width: 30%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/voxel_grid_example_crosssection.png"><img alt="../../../_images/voxel_grid_example_crosssection.png" class="align-right" src="../../../_images/voxel_grid_example_crosssection.png" style="width: 30%;" /></a>
+<p>There are different ways of visualizing voxel grids in OVITO. The <a class="reference internal" href="../visual_elements/voxel_grid.html#visual-elements-voxel-grid"><span class="std std-ref">Voxel grid</span></a> visual element
+is the default representation automatically generated by the data pipeline to render just the outer cells of the grid (see first picture above).
+Thus, this visualization style makes only the field values on the surface of the domain visible.</p>
+<p>You can apply the <a class="reference internal" href="../modifiers/create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> modifier to compute a isosurface of the volumetric field, which is
+way of visualizing the distribution of a scalar field quantity (see first picture on the right). Another way of showing the interior
+values of a three-dimensional voxel grid is provided by the <a class="reference internal" href="../modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier. It lets you extract a planar
+cross-section along an arbitrary direction (see last picture below).</p>
+</section>
+<section id="data-export">
+<h2>Data export<a class="headerlink" href="#data-export" title="Permalink to this heading"></a></h2>
+<p>Exporting a voxel grid to an output file is is possible using OVITO’s <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export</span></a> function.
+Pick the output format <cite>VTK Voxel Grid</cite> to produce a data file that can be opened in the software <strong class="program">ParaView</strong>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.VoxelGrid" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.VoxelGrid</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_table.html" class="btn btn-neutral float-left" title="Data tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lines.html" class="btn btn-neutral float-right" title="Lines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

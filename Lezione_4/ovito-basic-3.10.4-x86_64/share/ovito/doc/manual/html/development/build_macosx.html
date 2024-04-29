@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building OVITO on macOS &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/development/build_macosx.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Licensing information" href="../licenses/index.html" />
+    <link rel="prev" title="Building OVITO on Windows" href="build_windows.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer instructions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requirements.html">Build requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_linux.html">Building OVITO on Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_windows.html">Building OVITO on Windows</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building OVITO on macOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-dependencies">Installing dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-the-source-code">Downloading the source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-ovito">Compiling OVITO</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Developer instructions</a> &raquo;</li>
+      <li>Building OVITO on macOS</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-build-macosx">
+<span id="building-ovito-on-macos"></span><h1>Building OVITO on macOS<a class="headerlink" href="#development-build-macosx" title="Permalink to this heading"></a></h1>
+<section id="installing-dependencies">
+<h2>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this heading"></a></h2>
+<p>See the <a class="reference internal" href="requirements.html#development-requirements"><span class="std std-ref">list of requirements</span></a> and install the required build tools and third-party libraries. OVITO should be compiled with
+Apple’s clang C++ compiler shipping with Xcode. It’s easiest to use <a class="reference external" href="https://www.macports.org/">MacPorts</a> for installing many of the required dependencies.</p>
+<p>After setting up MacPorts, run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo port install netcdf pzlib libssh boost cmake yasm</span>
+</pre></div>
+</div>
+<p>from the terminal to install the required dependencies of OVITO.</p>
+<p>Next, download and install <a class="reference external" href="https://www.qt.io/download/">Qt 6 for Mac</a>.</p>
+<p>Next, download the source code and build the shared version of the <a class="reference external" href="https://ffmpeg.org/">ffmpeg</a> video encoding library (optional):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -O https://ffmpeg.org/releases/ffmpeg-4.2.8.tar.gz</span>
+<span class="go">tar xzfv ffmpeg-4.2.8.tar.gz</span>
+<span class="go">cd ffmpeg-4.2.1</span>
+<span class="go">./configure \</span>
+<span class="go">  --disable-network \</span>
+<span class="go">  --disable-programs \</span>
+<span class="go">  --disable-debug \</span>
+<span class="go">  --disable-doc \</span>
+<span class="go">  --disable-static \</span>
+<span class="go">  --enable-shared \</span>
+<span class="go">  --prefix=$HOME/ffmpeg</span>
+<span class="go">make install</span>
+</pre></div>
+</div>
+</section>
+<section id="downloading-the-source-code">
+<h2>Downloading the source code<a class="headerlink" href="#downloading-the-source-code" title="Permalink to this heading"></a></h2>
+<p>To download OVITO’s source code into a new directory named <code class="file docutils literal notranslate"><span class="pre">ovito/</span></code> run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --recursive https://gitlab.com/stuko/ovito.git</span>
+</pre></div>
+</div>
+</section>
+<section id="compiling-ovito">
+<h2>Compiling OVITO<a class="headerlink" href="#compiling-ovito" title="Permalink to this heading"></a></h2>
+<p>Within the source directory, create a build sub-directory and let CMake generate the Makefile:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ovito</span>
+<span class="go">mkdir build</span>
+<span class="go">cd build</span>
+<span class="go">cmake -DCMAKE_BUILD_TYPE=Release \</span>
+<span class="go">    -DCMAKE_INSTALL_PREFIX=../install \</span>
+<span class="go">    -DCMAKE_PREFIX_PATH=`echo $HOME/Qt/6.*.*/clang_64/` \</span>
+<span class="go">    -DFFMPEG_INCLUDE_DIR=$HOME/ffmpeg/include \</span>
+<span class="go">    -DFFMPEG_LIBRARY_DIR=$HOME/ffmpeg/lib \</span>
+<span class="go">    ..</span>
+</pre></div>
+</div>
+<p>Adjust the paths in the command above as needed.
+If this step fails, or if you want to disable individual components of OVITO, you can now run <strong class="command">ccmake .</strong> to
+open the CMake configuration program and make changes to the build settings.
+Once you are done, build OVITO by running</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake --build . --parallel</span>
+</pre></div>
+</div>
+<p>If this step succeeds, you can run <strong class="command">cmake install .</strong> to generate an app bundle in the <code class="file docutils literal notranslate"><span class="pre">ovito/install/</span></code> directory.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="build_windows.html" class="btn btn-neutral float-left" title="Building OVITO on Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../licenses/index.html" class="btn btn-neutral float-right" title="Licensing information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vectors &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/visual_elements/vectors.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Simulation cell" href="simulation_cell.html" />
+    <link rel="prev" title="Bonds" href="bonds.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Visual elements</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation_cell.html">Simulation cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_mesh.html">Surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voxel_grid.html">Voxel grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Visual elements</a> &raquo;</li>
+      <li>Vectors</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="visual-elements-vectors">
+<span id="vectors"></span><h1>Vectors<a class="headerlink" href="#visual-elements-vectors" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/vectors_panel.jpg"><img alt="../../../_images/vectors_panel.jpg" class="align-right" src="../../../_images/vectors_panel.jpg" style="width: 35%;" /></a>
+<p>This <a class="reference internal" href="index.html#visual-elements"><span class="std std-ref">visual element</span></a> shows arrow glyphs to visualize a local vectorial property associated with each particle or other type of data element.
+For example, the vectors visual element for the particle property <code class="docutils literal notranslate"><span class="pre">Displacement</span></code>, which is computed by the <a class="reference internal" href="../modifiers/displacement_vectors.html#particles-modifiers-displacement-vectors"><span class="std std-ref">Displacement vectors</span></a> modifier,
+can be found under the “Visual elements” section of the <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a> (see screenshot).
+It provides controls for the appearance of the arrow glyphs.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl>
+<dt>Scaling factor</dt><dd><p>All arrow lengths get scaled by this factor. The default scaling factor is 1.0, which means the lengths of the rendered glyphs reflect the original three-dimensional vectors.</p>
+</dd>
+<dt>Arrow width</dt><dd><p>The width of the arrow glyphs (in simulation units of length).</p>
+</dd>
+<dt>Alignment</dt><dd><p>Controls how the arrow glyphs are positioned relative to the particles they belong to.</p>
+</dd>
+<dt>Reverse direction</dt><dd><p>Flips the direction of all arrows, swapping their heads and tails.</p>
+</dd>
+<dt>Flat shading</dt><dd><p>This option switches from three-dimensional (solid) arrow glyphs to two-dimensional (flat) glyphs.</p>
+</dd>
+<dt>Coloring</dt><dd><p>You can choose between uniform coloring of all arrows and pseudo-coloring of the individual arrow glyphs
+based on some scalar property associated with the particles. When you activate the <span class="guilabel">Color mapping</span> option,
+OVITO shows a separate panel letting you pick the source property for the pseudo-coloring
+and configure the color transfer function.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A third method of coloring the arrows is to assign explicit RGB color values to the <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Color</span></code> property of the particles.
+This approach gives you full control over the color of each individual arrow. You can set the <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Color</span></code> property
+using the <a class="reference internal" href="../modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> or <a class="reference internal" href="../modifiers/color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifiers, for example.</p>
+</div>
+</dd>
+<dt>Transparency</dt><dd><p>The degree of semi-transparency of the arrows.</p>
+</dd>
+<dt>Offset (XYZ)</dt><dd><p>An optional three-dimensional offset vector by which all arrow glyphs are displaced. The offset can be used to move the
+arrows fully in front of the particles and avoid undesirable occlusions.</p>
+<a class="reference internal image-reference" href="../../../_images/vector_offset_example.png"><img alt="../../../_images/vector_offset_example.png" src="../../../_images/vector_offset_example.png" style="width: 75%;" /></a>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.VectorVis" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.VectorVis</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bonds.html" class="btn btn-neutral float-left" title="Bonds" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simulation_cell.html" class="btn btn-neutral float-right" title="Simulation cell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

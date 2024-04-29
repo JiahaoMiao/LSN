@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual elements &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/visual_elements/index.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Particles" href="particles.html" />
+    <link rel="prev" title="Dislocation lines" href="../data_objects/dislocations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Visual elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vectors.html">Vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation_cell.html">Simulation cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_mesh.html">Surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voxel_grid.html">Voxel grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+      <li>Visual elements</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="visual-elements">
+<span id="id1"></span><h1>Visual elements<a class="headerlink" href="#visual-elements" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/visual_elements_panel.png"><img alt="../../../_images/visual_elements_panel.png" class="align-right" src="../../../_images/visual_elements_panel.png" style="width: 35%;" /></a>
+<p>OVITO distinguishes between the underlying data and the visual representations produced from that data.
+One typical example for this separation between <a class="reference internal" href="../data_objects/index.html#scene-objects"><span class="std std-ref">data objects</span></a>
+and their visual representation is the <code class="docutils literal notranslate"><span class="pre">Position</span></code> particle
+property, which holds the XYZ coordinates of a set of point-like particles. To visualize this data, OVITO automatically creates
+a <a class="reference internal" href="particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> <em>visual element</em>, which is responsible for rendering a
+corresponding set of spheres in the viewports, using the <code class="docutils literal notranslate"><span class="pre">Position</span></code> particle property as source data.
+The <a class="reference internal" href="particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> visual element provides several parameters that let you control
+the visual appearance of the particles, e.g. the glyph shape (spheres, discs, cubes, etc.).</p>
+<p>This separation of <em>data objects</em> and <em>visual elements</em> provides additional flexibility within OVITO.
+It becomes possible to visualize the same data in several different ways (multiple visual elements based on the same source data) and to
+<a class="reference internal" href="../../../advanced_topics/clone_pipeline.html#clone-pipeline"><span class="std std-ref">visualize multiple datasets side by side</span></a> (one visual element rendering several data objects in the same way).</p>
+<p>Visual elements are usually created automatically by OVITO’s <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">data pipeline system</span></a>
+alongside with the imported or computed data. They all appear under the <span class="guilabel">Visual elements</span> section of
+the <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a> shown in the screenshot.
+You can disable individual visual elements using the check boxes next to them in the pipeline editor.
+This will turn off the visualization of the corresponding data in the interactive viewports and in rendered images.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Visual element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a></p></td>
+<td><p>Renders a set of particles using different glyph shapes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="bonds.html#visual-elements-bonds"><span class="std std-ref">Bonds</span></a></p></td>
+<td><p>Renders the bonds between particles as cylinders</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vectors.html#visual-elements-vectors"><span class="std std-ref">Vectors</span></a></p></td>
+<td><p>Renders arrow glyphs to graphically represent a vector particle property</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="simulation_cell.html#visual-elements-simulation-cell"><span class="std std-ref">Simulation cell</span></a></p></td>
+<td><p>Renders the simulation box as a wireframe geometry</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a></p></td>
+<td><p>Renders a smooth polygonal <a class="reference internal" href="../data_objects/surface_mesh.html#scene-objects-surface-mesh"><span class="std std-ref">surface mesh</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="triangle_mesh.html#visual-elements-triangle-mesh"><span class="std std-ref">Triangle mesh</span></a></p></td>
+<td><p>Renders a <a class="reference internal" href="../data_objects/triangle_mesh.html#scene-objects-triangle-mesh"><span class="std std-ref">triangle mesh</span></a> loaded from a mesh geometry file</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="voxel_grid.html#visual-elements-voxel-grid"><span class="std std-ref">Voxel grid</span></a></p></td>
+<td><p>Renders a <a class="reference internal" href="../data_objects/voxel_grid.html#scene-objects-voxel-grid"><span class="std std-ref">voxel grid</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="lines.html#visual-elements-lines"><span class="std std-ref">Lines</span></a></p></td>
+<td><p>Renders a set of continuous lines to visualize the particle trajectories created with the <a class="reference internal" href="../modifiers/generate_trajectory_lines.html#particles-modifiers-generate-trajectory-lines"><span class="std std-ref">Generate trajectory lines</span></a> modifier or drawn using the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection.lines" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.lines.create()</span></code></a> method</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dislocations.html#visual-elements-dislocations"><span class="std std-ref">Dislocations</span></a></p></td>
+<td><p>Renders dislocation lines extracted by the <a class="reference internal" href="../modifiers/dislocation_analysis.html#particles-modifiers-dislocation-analysis"><span class="std std-ref">Dislocation analysis (DXA)</span></a> modifier</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.DataVis" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.DataVis</span></code></a> (Python API)</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../data_objects/dislocations.html" class="btn btn-neutral float-left" title="Dislocation lines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="particles.html" class="btn btn-neutral float-right" title="Particles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

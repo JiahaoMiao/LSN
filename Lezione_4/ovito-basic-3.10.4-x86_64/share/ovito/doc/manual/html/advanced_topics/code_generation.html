@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python code generator pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/code_generation.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rendering simulation trajectories on remote computers pro" href="remote_rendering.html" />
+    <link rel="prev" title="Multi-viewport layouts" href="viewport_layouts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-features">Supported features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-code-generation">
+<span id="python-code-generator-ovito-pro"></span><h1>Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#python-code-generation" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/code_generation.jpg"><img alt="../_images/code_generation.jpg" class="align-right" src="../_images/code_generation.jpg" style="width: 60%;" /></a>
+<p>OVITO Pro includes a Python code generation function, which can turn any <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">data pipeline</span></a>
+created with the graphical user interface into a corresponding sequence of Python script statements,
+which may subsequently be executed outside of OVITO to automate data post-processing or visualization
+workflows. While you interactively adjust the parameters of modifiers, the code generation function
+produces corresponding script statements for OVITO’s Python programming interface.
+The generated source code may be saved to disk, further customized if desired,
+and then run using the <a class="reference external" href="../python/introduction/installation.html#ovitos-interpreter" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">embedded Python script interpreter</span></a> <strong class="command">ovitos</strong> or any regular Python interpreter after installing the
+<code class="docutils literal notranslate"><span class="pre">ovito</span></code> Python module (see <a class="reference internal" href="../installation.html#installation"><span class="std std-ref">here</span></a>).</p>
+<blockquote>
+<div><p><strong>Video showing the Python code generator of OVITO Pro:</strong> <a class="reference external" href="https://youtu.be/sAGpCIBlWyk">https://youtu.be/sAGpCIBlWyk</a></p>
+</div></blockquote>
+<p>The Python code generator is invoked by selecting <span class="menuselection">File ‣ Generate Python Script</span> from the
+menu. The code generator window displays the dynamically generated
+source code, which gets updated in real-time while you make changes to the data pipeline or a modifier’s settings.</p>
+<p>You can activate the option <span class="guilabel">Include visualization code</span> to let OVITO additionally generate code statements that
+set up the virtual camera, render settings, and the visual appearance of the dataset exactly as you prescribed it
+in the graphical user interface.
+This option is useful if you are going to use the generated Python script for automating image and animation rendering tasks.</p>
+<section id="supported-features">
+<h2>Supported features<a class="headerlink" href="#supported-features" title="Permalink to this heading"></a></h2>
+<p>The code generator can generate Python code for the following aspects of a visualization scene:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data file import (all arguments of the <a class="reference external" href="../python/modules/ovito_io.html#ovito.io.import_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ovito.io.import_file()</span></code></a> function)</p></li>
+<li><p>Visual elements</p></li>
+<li><p>Modifiers</p></li>
+<li><p>Viewport layers</p></li>
+<li><p>Viewport camera setup</p></li>
+<li><p>Rendering engine configuration</p></li>
+<li><p>Image/animation render settings</p></li>
+<li><p>Manual modifications you make to the imported model in the GUI, e.g. changing the colors/radii of particle types</p></li>
+</ul>
+</div></blockquote>
+<p>The following aspects are <em>not</em> covered by the code generator yet:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Data export to an output file</p></li>
+<li><p>Key-frame based parameter animations</p></li>
+<li><p>Multiple pipelines in one scene or branched pipelines</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="viewport_layouts.html" class="btn btn-neutral float-left" title="Multi-viewport layouts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="remote_rendering.html" class="btn btn-neutral float-right" title="Rendering simulation trajectories on remote computers pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

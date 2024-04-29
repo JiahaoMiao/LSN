@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build requirements &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/development/requirements.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building OVITO on Linux" href="build_linux.html" />
+    <link rel="prev" title="Developer instructions" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer instructions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Build requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_linux.html">Building OVITO on Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_windows.html">Building OVITO on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_macosx.html">Building OVITO on macOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Developer instructions</a> &raquo;</li>
+      <li>Build requirements</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-requirements">
+<span id="build-requirements"></span><h1>Build requirements<a class="headerlink" href="#development-requirements" title="Permalink to this heading"></a></h1>
+<p>The prerequisites for building OVITO from source are:</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool/Package</p></th>
+<th class="head"><p>Requirement</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C++ compiler</p></td>
+<td><p>required</p></td>
+<td><p>Support for C++17 language standard is required</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://cmake.org/">CMake</a></p></td>
+<td><p>required</p></td>
+<td><p>The build system used by OVITO (CMake 3.12 or newer required)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://git-scm.com/">Git</a></p></td>
+<td><p>required</p></td>
+<td><p>The distributed version control system needed to retrieve the source code</p></td>
+</tr>
+</tbody>
+</table>
+<p>The library dependencies are:</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Library</p></th>
+<th class="head"><p>Requirement</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.qt.io/developers/">Qt</a></p></td>
+<td><p>required</p></td>
+<td><p>Used for OVITO’s graphical user interface (version 6.2 or higher)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.zlib.net/">zlib</a></p></td>
+<td><p>optional</p></td>
+<td><p>Required for reading and writing compressed files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.boost.org/">Boost</a></p></td>
+<td><p>required</p></td>
+<td><p>OVITO uses some utility classes from this C++ library.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.libssh.org/">libssh</a></p></td>
+<td><p>optional</p></td>
+<td><p>Used by OVITO’s built-in SSH client for remote data access.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://ffmpeg.org/">ffmpeg</a></p></td>
+<td><p>optional</p></td>
+<td><p>Video processing libraries used by OVITO to write movie files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.unidata.ucar.edu/software/netcdf/">libnetcdf</a></p></td>
+<td><p>optional</p></td>
+<td><p>Required by the Amber/NetCDF file reader/writer plugin</p></td>
+</tr>
+</tbody>
+</table>
+<p>The sources of the following third-party libraries are included in the OVITO source distribution
+and get compiled automatically as part of the build process:</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Library</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://beltoforion.de/article.php?a=muparser">muparser</a></p></td>
+<td><p>A math expression parser library.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://sourceforge.net/projects/qwt/">Qwt</a></p></td>
+<td><p>For plotting and data visualization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://doi.org/10.1063/1.3215722">Voro++</a></p></td>
+<td><p>Voronoi cell construction routine required by the <a class="reference internal" href="../reference/pipelines/modifiers/voronoi_analysis.html#particles-modifiers-voronoi-analysis"><span class="std std-ref">Voronoi analysis</span></a> modifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mborgerding/kissfft">KISS FFT</a></p></td>
+<td><p>Required by the <a class="reference internal" href="../reference/pipelines/modifiers/correlation_function.html#particles-modifiers-correlation-function"><span class="std std-ref">Spatial correlation function</span></a> plugin.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_linux.html" class="btn btn-neutral float-right" title="Building OVITO on Linux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

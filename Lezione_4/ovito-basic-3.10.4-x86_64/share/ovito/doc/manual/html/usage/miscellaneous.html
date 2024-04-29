@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miscellaneous &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/usage/miscellaneous.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exporting data" href="export.html" />
+    <link rel="prev" title="Rendering" href="rendering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="import.html">Data import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewports.html">Viewport windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">Pipeline concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rendering.html">Rendering</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Miscellaneous</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-saving-loading-scene">Saving the session state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-spinner-widgets">Spinner controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-data-inspector">Data inspector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-viewport-layers">Viewport layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-modifier-templates">Modifier templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-scripting">Python scripting <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="export.html">Exporting data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Basic usage</a> &raquo;</li>
+      <li>Miscellaneous</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-miscellaneous">
+<span id="miscellaneous"></span><h1>Miscellaneous<a class="headerlink" href="#usage-miscellaneous" title="Permalink to this heading"></a></h1>
+<p>The following sections briefly introduce various useful functions and features of the program in arbitrary order.</p>
+<section id="usage-saving-loading-scene">
+<span id="saving-the-session-state"></span><h2>Saving the session state<a class="headerlink" href="#usage-saving-loading-scene" title="Permalink to this heading"></a></h2>
+<p>You can save the current program session, including the data pipeline, viewports, render settings, etc., to a <code class="file docutils literal notranslate"><span class="pre">.ovito</span></code> <em>state file</em>
+(main menu: <span class="menuselection">File ‣ Save Session State</span>). This allows you
+to preserve the current visualization setup and data pipeline for future use. For instance, you can use a state file as a template to
+visualize several simulations using the same data analysis pipeline and camera setup.</p>
+</section>
+<section id="usage-spinner-widgets">
+<span id="spinner-controls"></span><h2>Spinner controls<a class="headerlink" href="#usage-spinner-widgets" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/spinner_widget.png"><img alt="../_images/spinner_widget.png" class="align-right" src="../_images/spinner_widget.png" style="width: 30%;" /></a>
+<p>A spinner widget is a user interface element used throughout the program for editing numerical parameters (see screenshot on the right).
+Here is how you use the spinner widget to vary the parameter value: (1) Click the spinner’s up arrow once to increment the value; click the down arrow to decrement the value in a stepwise manner.
+(2) Alternatively, click and hold down the mouse button to vary the value continuously. Drag the cursor upward/downward to increase/decrease the parameter value.</p>
+</section>
+<section id="usage-data-inspector">
+<span id="data-inspector"></span><h2>Data inspector<a class="headerlink" href="#usage-data-inspector" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/data_inspector.png"><img alt="../_images/data_inspector.png" class="align-right" src="../_images/data_inspector.png" style="width: 45%;" /></a>
+<p>The <a class="reference internal" href="../reference/data_inspector/index.html#data-inspector"><span class="std std-ref">Data Inspector</span></a> is a panel that is located right below the viewport area in OVITO’s main window.
+It can be opened as shown in the screenshot on the right by clicking on the tab bar.
+The data inspector consists of several tabs that show different fragments of the current dataset, e.g. the property values of
+all particles. The tool also lets you measure distances between pairs of particles.</p>
+</section>
+<section id="usage-viewport-layers">
+<span id="viewport-layers"></span><h2>Viewport layers<a class="headerlink" href="#usage-viewport-layers" title="Permalink to this heading"></a></h2>
+<p>Viewport layers are a way to superimpose additional information and graphics
+such as text labels, color legends, and coordinate tripods on top of the rendered image of the three-dimensional scene.
+OVITO offers several different layer types, which may be added to a viewport from the
+<a class="reference internal" href="../reference/viewports/layers/index.html#viewport-layers"><span class="std std-ref">Viewport Layers</span></a> tab of the command panel.</p>
+</section>
+<section id="usage-modifier-templates">
+<span id="modifier-templates"></span><h2>Modifier templates<a class="headerlink" href="#usage-modifier-templates" title="Permalink to this heading"></a></h2>
+<p>When working with OVITO on a regular basis, you may find yourself using the same modifiers again and again.
+Some modifiers are often used in the same combination to accomplish specific analysis, filter, or visualization
+tasks. To make your life easier and save you from repetitive work, OVITO allows you to define so-called <em>modifier
+templates</em>. These are preconfigured modifiers or combinations of modifiers that can be inserted into
+the data pipeline with just a single click. See <a class="reference internal" href="../reference/app_settings/modifier_templates.html#modifier-templates"><span class="std std-ref">this section</span></a> to learn
+more about this program feature.</p>
+</section>
+<section id="usage-scripting">
+<span id="python-scripting-ovito-pro"></span><h2>Python scripting <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#usage-scripting" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="../ovito_pro.html#credits-ovito-pro"><span class="std std-ref">OVITO Pro</span></a> provides a scripting interface that lets you automate analysis and visualization tasks.
+This can be useful, for example, when a large number of input files needs to be batch-processed.
+The scripting interface provides programmatic access to most program features such as simulation data input and output,
+modifiers, and rendering of images and movies.</p>
+<p>Scripts for OVITO Pro are written in the Python 3 programming language.
+The OVITO Python API is described in the <a class="reference external" href="../python/index.html#scripting-manual" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">scripting reference manual</span></a>,
+which is also accessible from the help menu of OVITO.</p>
+<p>In addition to automating workflows, the scripting interface allows you to extend the OVITO Pro desktop application.
+For example, the <a class="reference internal" href="../reference/pipelines/modifiers/python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script modifier</span></a>
+provides a mechanism for you to write your own data manipulation functions and integrate them into
+OVITO’s modification pipeline system. Furthermore, the <a class="reference internal" href="../reference/viewports/layers/python_script_layer.html#viewport-layers-python-script"><span class="std std-ref">Python script viewport layer</span></a>
+lets you write a Python function that adds arbitrary 2D graphics
+on top of rendered images and enrich the visualization with additional information
+such as a <a class="reference internal" href="../advanced_topics/scale_bar.html#howto-scale-bar"><span class="std std-ref">scale bar</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rendering.html" class="btn btn-neutral float-left" title="Rendering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="export.html" class="btn btn-neutral float-right" title="Exporting data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

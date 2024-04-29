@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surface meshes &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/data_objects/surface_mesh.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Triangle meshes" href="triangle_mesh.html" />
+    <link rel="prev" title="Simulation cell" href="simulation_cell.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data objects</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation_cell.html">Simulation cell</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Surface meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_table.html">Data tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voxel_grid.html">Voxel grids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocation lines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Data objects</a> &raquo;</li>
+      <li>Surface meshes</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scene-objects-surface-mesh">
+<span id="surface-meshes"></span><h1>Surface meshes<a class="headerlink" href="#scene-objects-surface-mesh" title="Permalink to this heading"></a></h1>
+<p>A surface mesh is a type of <a class="reference internal" href="index.html#scene-objects"><span class="std std-ref">data object</span></a> that represents two-dimensional, closed and orientable manifolds.
+Typically, surface meshes are generated within OVITO by modifiers such as <a class="reference internal" href="../modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a>,
+<a class="reference internal" href="../modifiers/create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> or <a class="reference internal" href="../modifiers/coordination_polyhedra.html#particles-modifiers-coordination-polyhedra"><span class="std std-ref">Coordination polyhedra</span></a>.</p>
+<p>The appearance of a surface mesh can be controlled through the parameter panel of the <a class="reference internal" href="../visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh visual element</span></a>,
+which is located in the topmost section of the <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a>.</p>
+<section id="surfaces-embedded-in-periodic-domains">
+<h2>Surfaces embedded in periodic domains<a class="headerlink" href="#surfaces-embedded-in-periodic-domains" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/surface_mesh_example.png"><img alt="../../../_images/surface_mesh_example.png" class="align-right" src="../../../_images/surface_mesh_example.png" style="width: 30%;" /></a>
+<p>Surface meshes may be embedded in a periodic domain, i.e. in a simulation cell with periodic boundary conditions.
+That means the triangle faces of the surface mesh can connect vertices on opposite sides of a simulation box and wrap around correctly.
+OVITO takes care of computing the intersections of the periodic mesh with the box boundaries and automatically produces a non-periodic representation of the triangle mesh
+when it comes to rendering the surface.</p>
+</section>
+<section id="interior-and-exterior-region">
+<h2>Interior and exterior region<a class="headerlink" href="#interior-and-exterior-region" title="Permalink to this heading"></a></h2>
+<p>As surface meshes are closed orientable manifolds, they define an <em>interior</em> and an <em>exterior</em> spatial region,
+which are separated by the surface manifold. For example, if the surface mesh was constructed by the <a class="reference internal" href="../modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a> modifier
+around a set of particles, then the volume enclosed by the surface represents the “filled” region and the outside region is the empty region.</p>
+<p>Sometimes there is no interior region and the exterior region is infinite and fills all space. In this case the surface mesh is degenerate and
+consists of no triangles. The opposite extreme is also possible in periodic domains: The interior region extends over the entire periodic domain
+and there is no outside region. Again, the surface mesh will consist of zero triangles in this case.</p>
+</section>
+<section id="data-export">
+<h2>Data export<a class="headerlink" href="#data-export" title="Permalink to this heading"></a></h2>
+<p>OVITO can export the surface as a triangle mesh.
+During export, a non-periodic version is produced by truncating triangles at the periodic domain boundaries and generating “cap polygons” to fill the holes that
+occur at the intersection of the interior region with the domain boundaries. To export the mesh, use OVITO’s <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export function</span></a>
+and select the output format <cite>VTK</cite>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.SurfaceMesh" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.SurfaceMesh</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulation_cell.html" class="btn btn-neutral float-left" title="Simulation cell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="triangle_mesh.html" class="btn btn-neutral float-right" title="Triangle meshes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

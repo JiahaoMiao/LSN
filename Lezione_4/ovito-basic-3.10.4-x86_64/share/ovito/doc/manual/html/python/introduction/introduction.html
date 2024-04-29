@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/introduction.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="OVITO Python Reference" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<span id="scripting-running"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>The <em>OVITO Python module</em> provides the powerful data analysis and visualization functions of <a class="reference external" href="../../introduction.html#about-ovito" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">OVITO</span></a> and makes them available in Python scripts.
+You can make use of the module’s comprehensive API either in standalone Python programs, Jupyter notebooks, or within the interactive environment of <em>OVITO Pro</em>, which is the desktop
+application that comes with a fully-integrated interpreter able to run Python code and display computation results right in the program’s interactive 3d viewports.</p>
+<p>You get access to all of OVITO’s <a class="reference external" href="../../reference/pipelines/data_objects/index.html#scene-objects" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">data structures</span></a>, <a class="reference external" href="../../reference/file_formats/file_formats_input.html#file-formats-input" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">file readers</span></a>,
+<a class="reference external" href="../../reference/pipelines/modifiers/index.html#particles-modifiers" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">data analysis algorithms</span></a>, and <a class="reference external" href="../../reference/pipelines/visual_elements/index.html#visual-elements" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">visualization</span></a> and <a class="reference external" href="../../reference/rendering/index.html#rendering" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">rendering</span></a> capabilities from within
+your Python scripts - even exclusive ones from <em>OVITO Pro</em>. This allows you to develop fully automated post-processing workflows for your simulation data and run them anywhere you want.
+The Python module is available free of charge and can be <a class="reference internal" href="installation.html#installation"><span class="std std-ref">easily installed in any Python 3 interpreter</span></a>. Furthermore, if you are an <em>OVITO Pro</em> user, the Python module is also the mechanism by
+which you can extend the desktop software with <a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">custom modifiers</span></a>, <a class="reference internal" href="custom_file_readers.html#writing-custom-file-readers"><span class="std std-ref">file readers</span></a>, and <a class="reference internal" href="custom_overlays.html#writing-custom-viewport-overlays"><span class="std std-ref">viewport layers</span></a>
+written in Python, which seamlessly integrate into the program’s graphical user interface.</p>
+<p>Let’s take a look at some to these typical use cases of the <em>OVITO Python module</em>.</p>
+<p><strong>Automation scripts</strong></p>
+<p>The OVITO Python programming interface lets you automate laborious data post-processing tasks, which you would otherwise have to perform
+by hand using the <a class="reference external" href="../../index.html#ovito-user-manual" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">OVITO Basic and Pro desktop applications</span></a>. The Python API allows you to carry
+out all actions non-interactively and process a large number of simulation datasets on a parallel computing cluster, for example.</p>
+<p>The following standalone Python program loads an atomic structure from a simulation data file, selects all hydrogen atoms, deletes them,
+and writes the results back to some output file in a different format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">import_file</span><span class="p">,</span> <span class="n">export_file</span>
+<span class="kn">from</span> <span class="nn">ovito.modifiers</span> <span class="kn">import</span> <span class="n">SelectTypeModifier</span><span class="p">,</span> <span class="n">DeleteSelectedModifier</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s1">&#39;input.data&#39;</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SelectTypeModifier</span><span class="p">(</span><span class="nb">property</span><span class="o">=</span><span class="s1">&#39;Particle Type&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;H&#39;</span><span class="p">}))</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DeleteSelectedModifier</span><span class="p">())</span>
+<span class="n">export_file</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="s1">&#39;output.xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Particle Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Position.X&#39;</span><span class="p">,</span> <span class="s1">&#39;Position.Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Position.Z&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Like in the OVITO desktop applications, the task is performed by <a class="reference external" href="../../usage/pipeline.html#usage-modification-pipeline" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">building up a data processing pipeline</span></a>,
+consisting of two <em>modifiers</em>, which are applied in sequence to the frames of a simulation trajectory. If needed, you could also make use
+of the <a class="reference internal" href="rendering.html#rendering-intro"><span class="std std-ref">image and animation rendering functions</span></a> provided by the OVITO module to generate 3d visualizations of your data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <a class="reference external" href="../../ovito_pro.html#credits-ovito-pro" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">OVITO Pro application</span></a> includes a convenient <a class="reference external" href="../../advanced_topics/code_generation.html#python-code-generation" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">Python code generation function</span></a> that can translate complex processing pipelines
+or visualization setups built with the graphical user interface into standalone Python programs, which you run non-interactively on any computer.
+This frees you from writing the Python code yourself and can save you valuable time.</p>
+</div>
+<p><strong>Extending OVITO with custom modifiers, file readers, and viewport layers</strong></p>
+<p>Since it gives you direct access to all aspects of the internal data model used by OVITO, you can also use the Python API to develop
+<a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">completely new types of processing algorithms (modifiers)</span></a> and manipulate, analyze, or visualize simulation data in ways
+not covered by any of the <a class="reference external" href="../../reference/pipelines/modifiers/index.html#particles-modifiers" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">built-in algorithms</span></a> of the software.</p>
+<p>Such <em>Python-based extensions</em> for OVITO, which can also cover more aspects such as <a class="reference internal" href="custom_file_readers.html#writing-custom-file-readers"><span class="std std-ref">file import/export</span></a> or
+<a class="reference internal" href="custom_overlays.html#writing-custom-viewport-overlays"><span class="std std-ref">visualization</span></a>, can be <a class="reference external" href="https://www.ovito.org/extensions/">distributed as installable Python packages and shared with other users</a>.
+They can use your extension function in their own programs or install them in the <em>OVITO Pro</em> desktop application, seamlessly
+integrated into the graphical user interface.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://www.ovito.org/extensions/">OVITO Extensions Directory</a></p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="OVITO Python Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

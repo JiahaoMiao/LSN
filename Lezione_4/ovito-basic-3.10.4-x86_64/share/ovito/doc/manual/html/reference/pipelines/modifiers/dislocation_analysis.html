@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dislocation analysis (DXA) &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/dislocation_analysis.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Displacement vectors" href="displacement_vectors.html" />
+    <link rel="prev" title="Delete selected" href="delete_selected_particles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Dislocation analysis (DXA)</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-dislocation-analysis">
+<span id="dislocation-analysis-dxa"></span><h1>Dislocation analysis (DXA)<a class="headerlink" href="#particles-modifiers-dislocation-analysis" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/dislocation_analysis_panel.png"><img alt="../../../_images/dislocation_analysis_panel.png" class="align-right" src="../../../_images/dislocation_analysis_panel.png" style="width: 30%;" /></a>
+<p>This analysis modifier identifies all dislocation line defects in an atomistic crystal, determines their Burgers vectors,
+and outputs a line representation of the dislocations. The modifier implements the so-called
+<em>Dislocation Extraction Algorithm</em> (DXA), a computational method developed by the author of OVITO.
+The original DXA method has been described in the paper</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="http://iopscience.iop.org/0965-0393/18/8/085001/">A. Stukowski and K. Albe</a>.</div>
+<div class="line"><a class="reference external" href="http://iopscience.iop.org/0965-0393/18/8/085001/">Modelling Simul. Mater. Sci. Eng. 18, 085001 (2010)</a></div>
+</div>
+</div></blockquote>
+<p>The current implementation in OVITO follows a newer, more general approach, which has been published in a follow-up paper:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/8/085007">A. Stukowski, V.V. Bulatov and A. Arsenlis</a>.</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/8/085007">Modelling Simul. Mater. Sci. Eng. 20, 085007 (2012)</a></div>
+</div>
+</div></blockquote>
+<p>Please cite the latter reference when publishing dislocation analysis results. A short overview on how the DXA works can be found toward the end of the page.</p>
+<p>The DXA transforms the original atomistic representation of a dislocated crystal into a line-based representation
+of the dislocation network. It determines the Burgers vector of each dislocation
+and identifies dislocation junctions. The algorithm can recognize partial dislocations and also
+certain secondary grain boundary dislocations (e.g. twinning dislocations in FCC).</p>
+<figure class="align-default" id="id1" style="width: 25%">
+<img alt="../../../_images/dislocation_analysis_example_input.png" src="../../../_images/dislocation_analysis_example_input.png" />
+<figcaption>
+<p><span class="caption-text">Input</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 25%">
+<img alt="../../../_images/dislocation_analysis_example_output.png" src="../../../_images/dislocation_analysis_example_output.png" />
+<figcaption>
+<p><span class="caption-text">Output</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Note that, even though the implementation of the DXA in OVITO is highly optimized, the algorithm is computationally
+expensive and requires sufficient working memory. <strong>The approximate memory requirement is 1 kilobyte per input atom!</strong>
+Thus, to analyze a dataset with 1 million atoms up to 1 GB of free memory is required.</p>
+<p>OVITO allows you to save the dislocation lines extracted by the modifier to a so-called <em>Crystal Analysis (CA) file</em>
+using the program’s <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export function</span></a>. This allows you to further process the
+dislocation lines outside of OVITO or to reload the dislocation data at a later time without the need to re-perform the
+computationally expensive analysis. The CA file format is specified <a class="reference internal" href="#particles-modifiers-dislocation-analysis-fileformat"><span class="std std-ref">below</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The DXA produces dislocation lines and Burgers vectors that follow the left-hand start-finish (LH/SF) convention.</p>
+</div>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl>
+<dt>Input crystal type</dt><dd><p>This parameter specifies the lattice type of the input crystal. Currently, simple crystal structures such as
+FCC, HCP, BCC, and diamond are supported. The DXA ignores the chemical atom types. Thus,
+a zincblende structure, for example, can simply be treated as a cubic diamond crystal.</p>
+<p>The selected input crystal type tells OVITO how to identify the local coordination structure of
+each atom and how to compute the local crystal orientation. The selected crystal type also determines
+how the computed Burgers vectors are represented (three-component notation for crystals with cubic symmetry,
+four-component notation for hexagonal crystals).</p>
+<p>Furthermore, for each available crystal type, OVITO defines a set of dislocation classes into which the
+extracted dislocation lines are grouped. Dislocations with a Burgers vector that does not belong to any of the
+predefined families are assigned to the category “Other”. Currently, the list of dislocation classes is hardcoded
+and cannot be changed by the user. Please contact the developer if you think that a new dislocation class should be
+added for a certain crystal type.</p>
+</dd>
+<dt>Trial circuit length</dt><dd><p>This sets the maximum length of trial Burgers circuits, which are constructed
+by the DXA to discover dislocations in the crystal. The maximum circuit length is specified
+in terms of the number of atom-to-atom steps. Dislocations whose core is too wide to be enclosed
+by a circuit of the given maximum length will not be found by the algorithm.</p>
+<p>The default value for this parameter is 14, which is sufficient to discover all typical lattice dislocations
+in the types of crystals supported by the modifier.</p>
+</dd>
+<dt>Circuit stretchability</dt><dd><p>Once the DXA has discovered a dislocation line and constructed a Burgers circuit around its dislocation core, the algorithm
+advances the circuit along the dislocation to generate a line presentation of the dislocation.
+The thickness of the core may vary along the dislocation (e.g. it becomes wider close to a dislocation junction).
+This is why the circuit has a certain amount of elasticity, which is set by the stretchability parameter.
+A value of 9 (the default), for example, allows the circuit to expand to a length that is
+nine steps longer than the limit set by the <em>trial circuit length</em> parameter above.</p>
+</dd>
+<dt>Use only selected particles</dt><dd><p>This option restricts the analysis to the subset of currently selected atoms.
+When activate, unselected atoms will be ignored (as if they did not exist) and will be
+assigned the structure type “Other”.
+This option can be useful if you want to identify dislocations in a crystal with a structure
+not supported by the modifier, but which has a sublattice that is supported
+(and you do not want to delete atoms belonging to the other sublattice(s) for some reason).</p>
+</dd>
+<dt>Output interface mesh</dt><dd><p>Tells the analysis modifier to display the so-called interface mesh, a closed manifold which separates
+the good crystal region from the bad crystal region. The interface mesh is normally not of interest and
+this option exists only for debugging purposes.</p>
+</dd>
+<dt>Generate perfect dislocations</dt><dd><p>Restricts the identification to perfect dislocations. Normally, the DXA tries to identify
+partial dislocations (in FCC, HCP and diamond lattices). This option turns the identification
+of stacking faults, partial dislocations and also twinning dislocations off. As a result, the network produced by DXA will consist of perfect
+dislocations only, and leading and trailing partials of dissociated dislocations will be output as one line instead of two.
+This option is useful in certain situations, e.g. when the extracted line network
+is going to be used as starting configuration for a discrete dislocation dynamics simulation that does not support partial dislocations.
+Make sure you set the <span class="guilabel">Trial circuit length</span> and <span class="guilabel">Circuit stretchability</span>
+to higher values when using this option, because longer Burgers circuits are required to trace perfect
+dislocations which are dissociated.</p>
+</dd>
+<dt>Line smoothing level</dt><dd><p>The raw dislocation lines generated by the DXA are typically noisy (due to the atomistic nature of the dislocation cores)
+and need to be post-processed to produce smooth dislocation curves. This parameter controls the number of
+iterations of the smoothing algorithm to perform.</p>
+</dd>
+<dt>Line point separation</dt><dd><p>The raw dislocation lines generated by the DXA consist of a very dense sequence of points.
+To produce smooth lines, the number of points is reduced in a post-processing step. This parameter controls
+the desired distance between successive points along a dislocation line. The distance is only an approximate number
+and is measured in multiples of the interatomic spacing in the underlying crystal.</p>
+</dd>
+<dt>Surface smoothing level</dt><dd><p>The raw defect mesh generated by the DXA contains atomically sharp steps and needs to be
+post-processed to produce a smooth surface. This parameter controls the number of
+iterations of the smoothing algorithm to perform.</p>
+</dd>
+</dl>
+</section>
+<section id="particles-modifiers-dislocation-analysis-outputs">
+<span id="outputs"></span><h2>Outputs<a class="headerlink" href="#particles-modifiers-dislocation-analysis-outputs" title="Permalink to this heading"></a></h2>
+<p>After analyzing the atomistic input crystal, the modifier produces several outputs:</p>
+<dl>
+<dt>Dislocation lines</dt><dd><p>The dislocations identified by the DXA are continuous curves in 3d space. Each dislocation line
+has a start and an end point assigned by the algoritm. The ordering of these points defines the orientation of the dislocation line (the <em>line sense</em>).
+Each endpoint may be part of a <em>junction</em>, where it is connected to
+other dislocations. Otherwise it is a <em>dangling</em> end, which means the dislocation ends in another kind of extended crystal defect (a free surface or
+a general grain boundary, for example).</p>
+<p>If a dislocation line is a loop, its starting point forms a 2-junction with its own endpoint, which both coincide. They will be located at an arbitrary
+position along the closed loop. Note that such topological loops are not necessarily circular loops. They can also be infinite linear dislocations that
+run through a periodic boundary of the simulation box, thus connecting back to themselves.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DXA gives no guarantees that a dislocation line will have a particular line direction.
+The orientational sense of the dislocation line, i.e. which of its two end points is considered the beginning
+of the line and which the end, can change unpredictably.</p>
+<p>The reason is that dislocations are arbitrary closed or open curves in 3-dimensional space
+whose beginning and end are generally indistinguishable - so no preferred direction exists that could be used by the algorithm
+to order the two opposite ends. Furthermore, DXA analyzes each frame of a simulation trajectory independently,
+which means results will generally vary from frame to frame.</p>
+<p>During each analysis run, the DXA algorithm randomly assigns one of the two possible directions to each identified dislocation line.
+Note that this ambiguity applies only to the line directions but not the calculated Burgers vectors. The Burgers vector is
+fixed with respect to the line sense chosen by the algorithm (so it also changes sign if the line direction is reversed).
+The DXA algorithm always outputs dislocations that follow the left-hand start-finish (LH/SF) convention!</p>
+</div>
+<p>In addition to this geometric information, each dislocation is asscicated with two additional properties: The id of the crystallite cluster
+the dislocation is embedded in (see below) and its Burgers vector. The Burgers vector computed for a dislocation is its <em>true</em> Burgers vector, i.e.
+a vector expressed in the ideal reference crystal frame.</p>
+</dd>
+<dt>Defect mesh</dt><dd><p>As part of the dislocation identification process, the DXA divides the input crystal into
+a so-called <em>good</em> and a <em>bad</em> region. Within the good crystal region the algorithm was able to
+map atoms to a perfect reference state. This part of space includes atoms that are in a perfect crystalline
+environment (which may be subject to slight elastic distortions), stacking faults, and coherent grain boundaries. The bad crystal region,
+in contrast, comprises those parts where the atomic arrangement does not resemble a perfect crystal (or any of the planar defects mentioned above).
+The cores of dislocations belong to the bad crystal region as well as other, unidentified defects, the outer surfaces, and
+voids within the crystal.</p>
+<p>The DXA constructs the dividing surface which separates the good from the bad crystal region. This <em>interface mesh</em> is a two-dimensional manifold
+that encloses the dislocation cores and all other defects in the crystal (except stacking faults and certain grain boundaries, which have been classified as
+being part of the good region). This intermediate geometric data structure allows the DXA to effectively find dislocation lines by applying the Burgers circuit
+construction. Those parts of the interface mesh which are associated with dislocations will subsequently be removed. The remaining parts, which enclose non-dislocation
+defects, form the so-called <em>defect mesh</em>. It is a triangulated mesh, which is output by the DXA analysis modifier, and which represents
+the bad crystal regions that have not been classified as dislocations.</p>
+</dd>
+<dt>Atomic structure types</dt><dd><p>As part of the DXA a structure identification is performed, in which the local environment of each atom is analyzed to identify
+atoms that form a perfect crystal lattice. This information is output by the modifier as a new particle property
+named <code class="docutils literal notranslate"><span class="pre">Structure</span> <span class="pre">type</span></code>. The atomic structure identification is based on the common neighbor analysis method,
+and the results are very similar to what you would get by applying the <a class="reference internal" href="common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common neighbor analysis</span></a>
+or the <a class="reference internal" href="identify_diamond.html#particles-modifiers-identify-diamond-structure"><span class="std std-ref">Identify diamond structure</span></a> modifier.</p>
+<p>Note that the list of structure types the algorithm looks for depends on the selected input crystal type. For example, if the selected input crystal type
+is “FCC”, then the DXA will only look for atoms in FCC and HCP arrangements. The latter form stacking faults and coherent twin boundaries and
+are therefore important for the identification of partial dislocations in the FCC lattice.</p>
+</dd>
+<dt>Atomic clusters</dt><dd><p>After the atomic structure identification step is completed, the DXA combines atoms into clusters. A cluster is a contiguous crystallite consisting of atoms
+of the same structural type (e.g. “FCC”). Atoms that are part of an FCC stacking fault, for instance, are grouped into an HCP cluster.
+Another example: An FCC bicrystal with a coherent twin boundary gets divided into three clusters: Two FCC clusters for the grains and one HCP cluster that comprises the
+atoms of the boundary core.</p>
+<p>Each cluster created by the algorithm has a unique ID (a positive integer), and the modifier outputs the assignments of atoms to clusters as
+a new particle property named <code class="docutils literal notranslate"><span class="pre">Cluster</span></code>, containing the ID of the cluster the atom belongs to.
+Atoms with an unidentified coordination structure are not part of any cluster, which is indicated by the special value 0.</p>
+</dd>
+<dt>Cluster graph</dt><dd><p>The atomic clusters form an abstract adjacency graph, which is built up by the algorithm.
+For example, a bicrystal with two grains separated by a grain boundary can be described
+in terms of a graph with three nodes (the three atomic clusters) and two edges connecting both grains with the grain boundary cluster.
+Each cluster establishes a local lattice coordinate system, and the true Burgers vector computed by the DXA for a dislocation
+embedded in a crystal cluster is expressed in this coordinate frame.
+A graph edge connecting two adjacent cluster carries information about their crystallographic orientation relationship.
+This orientation relationship, which is described in terms of a transformation matrix, can be used to rotate
+vectors from the lattice coordinate frame of one grain to other grain. Ultimately, this abstract description of a polycrystalline
+microstructure enables the identification of dislocations (which can involve Burgers circuits that cross grain boundaries and stacking faults).</p>
+<p>Even though the cluster graph is generated by the DXA modifier as an intermediate data structure, OVITO currently provides no means for the user to access
+or visualize this output data. Future versions of the program may come with a user interface that allows to inspect the generated cluster graph.</p>
+</dd>
+</dl>
+<p>Note that you can position the mouse cursor over an extracted dislocation line in the viewports to let OVITO display its properties in the status bar
+of the main window. Alternatively, you can use OVITO’s <a class="reference internal" href="../../data_inspector/dislocations.html#data-inspector-dislocations"><span class="std std-ref">data inspector</span></a> to
+see a full list of all dislocation lines found by the DXA and look at individual dislocation lines.</p>
+<p>The dislocation lines extracted by the modifier can be exported using OVITO’s <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export function</span></a>.
+Currently, a simple text-based output format is supported, which is also used by another code (<a class="reference external" href="https://gitlab.com/stuko/crystal-analysis-tool">Crystal Analysis Tool</a>) that implements the DXA.
+The CA dislocation file format is specified below. OVITO can also import CA files,
+which allows saving the results of a (possibly) expensive dislocation analysis to disk and then reloading them again later.</p>
+</section>
+<section id="technical-background">
+<h2>Technical background<a class="headerlink" href="#technical-background" title="Permalink to this heading"></a></h2>
+<p>What follows is a brief summary of the Dislocation Extraction Algorithm (DXA). If you are interested
+in more details, please have a look at <a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/8/085007">this publication</a>.</p>
+<figure class="align-right" id="id3" style="width: 50%">
+<img alt="../../../_images/burgers_circuit.png" src="../../../_images/burgers_circuit.png" />
+<figcaption>
+<p><span class="caption-text">Burgers circuit method to detect and identify a dislocation. A closed circuit around the dislocation is
+translated from (a) the dislocated crystal to (b) the perfect reference crystal. The closure failure is called
+the Burgers vector of the dislocation.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The fundamental concept underlying the DXA is the Burgers circuit construction <a class="reference external" href="http://dx.doi.org/10.1080/14786445108561310">[Frank1951]</a>, which
+is the canonical method already proposed in the 1950s to discriminate dislocations from other
+crystal defects and to determine their Burgers vectors. In the formulation employed here, a Burgers circuit <em>C</em>
+is a path in the dislocated crystal consisting of a sequence of atom-to-atom steps (line elements <span class="math notranslate nohighlight">\(\Delta \mathbf{x}\)</span>),
+as shown in the figure.</p>
+<p>We assume that there exists a mapping <span class="math notranslate nohighlight">\(\Delta \mathbf{x} \rightarrow \Delta \mathbf{x}'\)</span>
+that translates each line element of the path to a corresponding image, <span class="math notranslate nohighlight">\(\Delta \mathbf{x}'\)</span>, in a perfect crystal
+lattice. Summing these transformed line elements algebraically along the associated path, <em>C’</em>,
+gives the true Burgers vector of the dislocation enclosed by <em>C</em>:</p>
+<img alt="../../../_images/burgers_sum.png" src="../../../_images/burgers_sum.png" />
+<p>The Burgers vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is the closure failure of the path after transferring it to the perfect reference crystal.
+Notably, the resulting vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> stays the same if we change the original circuit <em>C</em>, as long as it still
+encloses the same dislocation. On the other hand, if <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{0}\)</span>, we know that the Burgers circuit
+did not enclose any defect with dislocation character (deliberately ignoring the possibility that the circuit encloses multiple dislocations whose Burgers vectors cancel).</p>
+<p>Typically the Burger circuit construction is performed by hand to analyze two-dimensional crystal images obtained from
+high-resolution microscopy or atomistic computer simulations. Human intuition and cognitive capabilities are required
+to spot irregularities in the crystal lattice which are potential dislocation defects and to map path steps in elastically
+distorted crystal regions to the ideal lattice. Automating these tasks poses a particular challenge when developing a
+dislocation identification algorithm. First of all, an efficient strategy is needed that guides the construction of
+Burgers circuits, given that there is no a priori knowledge of the dislocation positions, because it clearly is not
+feasible to enumerate all possible circuits in a crystal to find the contained dislocations.</p>
+<figure class="align-right" id="id4" style="width: 50%">
+<img alt="../../../_images/edge_dislocation_tessellation.png" src="../../../_images/edge_dislocation_tessellation.png" />
+<figcaption>
+<p><span class="caption-text">(a) Delaunay tessellation of a dislocated crystal. Defect core atoms as identified by a structural characterization
+technique are shown in a darker color. (b) Colored arrows indicate the computed mapping of tessellation edges to
+corresponding ideal lattice vectors. Bad tessellation elements, for which the mapping to the perfect reference lattice
+cannot be determined, have been marked with a gray color. (c) Color legend for the eight different ideal lattice
+vectors appearing in (b).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Within the DXA framework, this problem is addressed by using the Delaunay tessellation of the dislocated input crystal
+(figure a). The edges of this tessellation define the set of elementary atom-to-atom steps from which Burgers circuits
+will be constructed. Before generating any circuits, the algorithm first tries to map each edge of the Delaunay tessellation
+to a corresponding vector in the perfect reference crystal (figure b). This is done with the help of the Common Neighbor
+Analysis (CNA) method, which finds atoms that form a perfect (but elastically strained) crystal lattice. Delaunay edges connecting
+a crystalline atom with one of its neighbors are mapped to the corresponding ideal lattice vectors by the algorithm.</p>
+<p>Within the cores of dislocations, the atomic arrangement deviates considerably from a perfect crystal. Hence, the CNA will classify
+these core atoms as non-crystalline atoms. All tessellation edges adjacent to such atoms will be marked as “bad” by the algorithm,
+effectively excluding them from any Burgers circuits to be constructed. This corresponds to the original principle formulated by
+F. C. Frank, which states that a valid Burgers circuit must not pass through so-called bad crystal. Good crystal regions, in contrast,
+are defined as those parts where the mapping to the perfect reference crystal is non-ambiguous. In fact, the DXA also divides space into
+<em>good</em> and <em>bad</em> regions in this spirit as shown in figure (b). Those Delaunay elements (triangles in 2D,
+tetrahedra in 3D systems) that are adjacent to one or more bad edges, which could not be mapped to an ideal lattice vector, are themselves
+marked as bad elements, while all others are considered good volume elements.</p>
+<p>Now it is time to think about how to efficiently construct trial Burgers circuits to find and classify the dislocations in the crystal.
+As mentioned above, the total number of possible circuits in a three-dimensional crystal is prohibitively large, and we need to find a
+way to considerably reduce the search space. The solution is provided by the aforementioned partitioning into good and bad regions,
+which defines a boundary surface separating the two regions. In three-dimensional systems this boundary is called the <em>interface mesh</em> and
+is constituted by those triangular Delaunay facets having a good tetrahedral element on one side and a bad element on the other.</p>
+<figure class="align-right" id="id5" style="width: 60%">
+<img alt="../../../_images/dxa_interface_mesh.png" src="../../../_images/dxa_interface_mesh.png" />
+<figcaption>
+<p><span class="caption-text">Illustration of the line sweeping phase of the DXA. After constructing the interface mesh
+enclosing the defect core atoms, the algorithm uses a Burgers circuit on the interface mesh
+to sweep the dislocation line. While the Burgers circuit is being advanced in a step-wise fashion,
+triangle by triangle, a continuous line representation of the dislocation defect is produced.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The interface mesh, which is depicted in this figure, is a two-dimensional manifold that encloses all defects in the crystal (including
+non-dislocation defects and even free surfaces of the crystal). Constructing trial Burgers circuits on this triangulated surface is
+sufficient to discover all dislocations. Moreover, this approach helps to ensure that the generated Burgers circuits enclose only single
+dislocation lines. Trial circuits generated by the DXA on the interface mesh are closed sequences of tessellation edges, and their Burgers
+vectors are computed from the equation above by summing the respective ideal lattice vectors, which were determined in the
+first algorithm step. All possible trial circuits up to some prescribed maximum length (modifier parameter <span class="guilabel">Trial circuit length</span>) can be
+efficiently enumerated using a recursive search algorithm.</p>
+<p>The algorithm enumerates all possible circuits on the interface mesh in order of increasing length until one with a non-zero Burgers vector
+is encountered. This seed circuit is subsequently used to discover the rest of the dislocation line. This happens by advancing the circuit
+on the interface mesh and sweeping along the dislocation line as indicated in the figure. During this sweeping phase, a one-dimensional line
+representation of the dislocation is generated by computing the new center of mass of the circuit each time it advances along the boundary of
+the dislocation core. Here, a circuit can be pictured as a rubber band tightly wrapped around the dislocation’s core. As the circuit moves
+along the dislocation line, it may need to locally expand to sweep over wider sections of the core, e.g. kinks or jogs. To prevent the
+circuit from sweeping past dislocation junctions or interfaces, a hard limit is imposed on the maximum circuit length (modifier parameter <span class="guilabel">Circuit stretchability</span>).</p>
+</section>
+<section id="particles-modifiers-dislocation-analysis-fileformat">
+<span id="ca-file-format"></span><h2>CA file format<a class="headerlink" href="#particles-modifiers-dislocation-analysis-fileformat" title="Permalink to this heading"></a></h2>
+<p>The dislocation lines extracted by the analysis modifier can be exported to this simple text-based file format,
+which is described next.</p>
+<p>A CA file always begins with the string <code class="docutils literal notranslate"><span class="pre">CA_FILE_VERSION</span></code> followed by the file format version number.
+The current version written by OVITO is <code class="docutils literal notranslate"><span class="pre">6</span></code>.</p>
+<p>The body of the file is divided into a sequence of sections, each section starting with an all-uppercase
+keyword, e.g. <code class="docutils literal notranslate"><span class="pre">STRUCTURE_TYPES</span></code> or <code class="docutils literal notranslate"><span class="pre">DISLOCATIONS</span></code>. The order in which sections appear in the file is fixed,
+but certain sections are optional and may be missing depending on the kinds of data that were exported.
+When parsing a CA file, sections that are of no interest can be skipped by seeking to the next known keyword,
+which always appears at the beginning of a new line.</p>
+<p>The following sections can appear in a CA file:</p>
+<dl>
+<dt>CA_LIB_VERSION</dt><dd><p>Version of the original <a class="reference external" href="https://gitlab.com/stuko/crystal-analysis-tool">Crystal Analysis Tool</a> code that produced the file. Always <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code> for files written by OVITO.</p>
+</dd>
+<dt>METADATA</dt><dd><p>An optional line of additional information, e.g. the simulation timestep at which the dislocations have been extracted.</p>
+</dd>
+<dt>STRUCTURE_TYPES</dt><dd><p>The number of lattice structures which will be defined next. OVITO writes a hard-coded list of lattice structures.</p>
+<dl>
+<dt>STRUCTURE_TYPE</dt><dd><p>The unique ID of the lattice structure type.</p>
+</dd>
+<dt>NAME</dt><dd><p>The human-readable short name of the structure.</p>
+</dd>
+<dt>FULL_NAME</dt><dd><p>The human-readable long name of the structure.</p>
+</dd>
+<dt>COLOR</dt><dd><p>The RGB color that represents the lattice structure in OVITO.</p>
+</dd>
+<dt>TYPE</dt><dd><p>The kind of structure this is. OVITO only knows structures of type <code class="docutils literal notranslate"><span class="pre">LATTICE</span></code>.</p>
+</dd>
+<dt>BURGERS_VECTOR_FAMILIES</dt><dd><p>The number of special dislocation types predefined for this lattice structure, which will be specified next.</p>
+<dl class="simple">
+<dt>BURGERS_VECTOR_FAMILY</dt><dd><p>The ID of this predefined Burgers vectors family, followed by the human-readable name
+of the dislocation class, followed by the prototype Burgers vector (in Cartesian lattice coordinates), followed by the RGB color assigned
+to dislocation lines of this predefined type.</p>
+</dd>
+</dl>
+</dd>
+<dt>END_STRUCTURE_TYPE</dt><dd><p>Marks the end of the definition of the current lattice structure type in the file.</p>
+</dd>
+</dl>
+</dd>
+<dt>SIMULATION_CELL_ORIGIN</dt><dd><p>The Cartesian coordinates of the simulation cell corner.</p>
+</dd>
+<dt>SIMULATION_CELL_MATRIX</dt><dd><p>Simulation cell matrix. Columns of this 3x3 matrix are the edge vectors of the simulation box.</p>
+</dd>
+<dt>PBC_FLAGS</dt><dd><p>Periodic boundary condition flags for the three spatial directions.</p>
+</dd>
+<dt>CLUSTERS</dt><dd><p>The number of crystallite clusters the atomistic solid was divided into by the DXA. What follows is the list of of crystallite clusters.</p>
+<dl class="simple">
+<dt>CLUSTER</dt><dd><p>The unique ID of the crystallite atom cluster.</p>
+</dd>
+<dt>CLUSTER_STRUCTURE</dt><dd><p>The lattice structure type of the crystallite. This is a reference to one of the structures type IDs defined under the <code class="docutils literal notranslate"><span class="pre">STRUCTURE_TYPES</span></code> section.</p>
+</dd>
+<dt>CLUSTER_ORIENTATION</dt><dd><p>A 3x3 transformation matrix that defines the orientation of the crystallite in the simulation coordinate system.
+It transforms lattice vectors to the spatial frame and includes the rotation of the crystallite, the lattice constant,
+and possible elastic strains of the crystal (averaged over all atoms that belong to the crystallite). Given a column vector
+in the lattice coordinate system, the corresponding spatial vector is obtained by left-multiplying the transformation
+matrix to the vector.</p>
+</dd>
+<dt>CLUSTER_COLOR</dt><dd><p>A color assigned to the crystallite by OVITO.</p>
+</dd>
+<dt>CLUSTER_SIZE</dt><dd><p>The number of atoms that are part of the crystallite.</p>
+</dd>
+<dt>END_CLUSTER</dt><dd><p>Marks the end of this cluster definition in the file.</p>
+</dd>
+</dl>
+</dd>
+<dt>DISLOCATIONS</dt><dd><p>The number of dislocation lines extracted by the DXA, followed by the definition of each line.
+Each dislocation line definition consists of the following information:</p>
+<ol class="arabic simple">
+<li><p>The zero-based index of the dislocation.</p></li>
+<li><p>The Burgers vector of the dislocation in the local Cartesian lattice coordinate system of the crystallite cluster.</p></li>
+<li><p>The ID of the crystallite cluster the dislocation is embedded in. This defines how the local Burgers vector is transformed to the global simulation coordinate system.</p></li>
+<li><p>The number of vertices along the line.</p></li>
+<li><p>The list of vertex coordinates. For closes loops, the first and the lattice vertex coincide. If the line crosses a periodic boundary of the simulation cell, vertex coordinates are unwrapped</p></li>
+</ol>
+</dd>
+<dt>DISLOCATION_JUNCTIONS</dt><dd><p>Defines the connectivity between dislocation lines (i.e. dislocation junctions or nodes). This sections contains two
+text lines per dislocation defined in the <code class="docutils literal notranslate"><span class="pre">DISLOCATIONS</span></code> section. Each of the two lines
+contains two numbers. The first line defines what the <em>end</em> point (i.e. last vertex) of the dislocation is connected to,
+the second line specifies the connectivity of the <em>starting</em> point (i.e. first vertex) of the dislocation.
+The second number in each of the two text lines refers to the zero-based index of another dislocation
+the current dislocation is connected to. The first number, which can be either 0 or 1, specifies
+whether it is connected to the end (1) or the beginning (0) of that other dislocation line.</p>
+<p>This connectivity encoding is used to define dislocation nodes/junctions in terms of circular lists. For example,
+a node with three dislocation arms A, B, C is defined such that one end point of dislocation A points to
+an end point of B, which in turn points to an end point of C, which in turn points again back to A.</p>
+<p>In the output of the DXA algorithm 1-nodes, 2-nodes, and <em>n</em>-nodes (<em>n</em>&gt;2)
+are possible. A 1-node is a dangling end of a dislocation, which terminates at the surface of a crystal or
+merges into another kind of defect (e.g. a grain boundary). In this case the circular connectivity list consists only of
+one line end, which points to itself. 2-nodes occur for closed dislocation loops or infinite lines that cross a periodic boundary.
+3-nodes and higher are regular dislocation junctions.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.DislocationAnalysisModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.DislocationAnalysisModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="delete_selected_particles.html" class="btn btn-neutral float-left" title="Delete selected" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="displacement_vectors.html" class="btn btn-neutral float-right" title="Displacement vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

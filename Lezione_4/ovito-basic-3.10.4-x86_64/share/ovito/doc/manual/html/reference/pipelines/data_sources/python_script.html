@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python script pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/data_sources/python_script.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="LAMMPS script pro" href="lammps_script.html" />
+    <link rel="prev" title="glTF file exporter pro" href="../../file_formats/output/gltf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data sources</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="external_file.html">External file</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps_script.html">LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Data sources</a> &raquo;</li>
+      <li>Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-source-python-script">
+<span id="python-script-ovito-pro"></span><h1>Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#data-source-python-script" title="Permalink to this heading"></a></h1>
+<p>This type of <a class="reference internal" href="index.html#data-sources"><span class="std std-ref">data source</span></a> can be used in a processing pipeline in OVITO to run a user-defined Python function
+generating the input dataset for the pipeline. It is an alternative to the standard <a class="reference internal" href="external_file.html#scene-objects-file-source"><span class="std std-ref">file-based data source</span></a>
+of OVITO, which loads the input data from a simulation file stored on disk.</p>
+<p>You can insert a new data pipeline with a Python script data source into the scene using the <a class="reference internal" href="../../../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">pipeline selector widget</span></a>
+located in the toolbar of OVITO.</p>
+<section id="what-is-a-python-data-source">
+<h2>What is a Python data source?<a class="headerlink" href="#what-is-a-python-data-source" title="Permalink to this heading"></a></h2>
+<p>A Python-based data source consists of the definition of a Python function, which you enter into the integrated code editor window.
+Here is a simple example of such a function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">cell_matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">create_cell</span><span class="p">(</span><span class="n">cell_matrix</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This example function calls <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection.create_cell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_cell()</span></code></a> to set up a <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.SimulationCell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> object, placing it into
+the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> container provided by the system.
+The pipeline system of OVITO will run that Python function
+whenever needed in order to generate the data objects that flow down the pipeline. Any subsequent modifiers
+you insert into the pipeline will see these data objects. And eventually,
+the final pipeline output will appear in the interactive viewports of OVITO.</p>
+</section>
+<section id="capabilities">
+<h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this heading"></a></h2>
+<p>The Python data source gives you a way to generate ad-hoc contents within OVITO, for example, a molecular structure
+constructed by an algorithm you write in Python. It frees you from having to prepare these contents outside of OVITO,
+using for example a simulation code or external model building tool, and then importing them into OVITO using the regular file
+import function (creating a <a class="reference internal" href="external_file.html#scene-objects-file-source"><span class="std std-ref">file-based data source</span></a>).</p>
+<p>Within the <code class="docutils literal notranslate"><span class="pre">create()</span></code> function you define, you have a lot of freedom in building a new dataset and which
+kinds of data objects you create. You can add a simulation cell, particles, bonds, global attributes, surface meshes,
+and any other type of data object OVITO supports. Furthermore, you can define function parameters in your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function,
+which will be exposed in the user interface of OVITO (see below). You can interactively adjust the values of these parameters, and the pipeline system
+will automatically re-run your function to update the results.</p>
+</section>
+<section id="further-applications">
+<h2>Further applications<a class="headerlink" href="#further-applications" title="Permalink to this heading"></a></h2>
+<p>A Python-based data source may be used to implement a simple kind of file reader for data file formats not
+directly supported by OVITO. Then your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function is responsible for opening and parsing the
+data file using Python’s I/O facilities. The data read from the input file must be translated into corresponding
+calls to OVITO’s Python API for creating new data objects such as particles.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<p>The user-defined <code class="docutils literal notranslate"><span class="pre">create()</span></code> function must fulfill the following requirements:</p>
+<p>It must accept at least the following two parameters:</p>
+<dl class="field-list simple">
+<dt class="field-odd">frame<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An integer indicating the current animation frame (zero-based) at which the pipeline system evaluates the data source.
+By incorporating this value in your algorithm, you can implement data sources that produce time-dependent content or trajectories.</p>
+</dd>
+<dt class="field-even">data<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> object provided by the pipeline system, which should be populated with data objects by the function.</p>
+</dd>
+</dl>
+<p>The <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> passed into the function by the pipeline system will initially be empty (when the function is
+run for the first time). Your code should populate it with new data objects, typically by appending them to the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection.objects" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.objects</span></code></a> list
+or by assigning them directly to specific storage fields such as the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection.cell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell</span></code></a> field as in the example above.</p>
+<p>However, there is one important caveat to prepare for: The system may run your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function multiple times, and on subsequent invocations,
+the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> won’t be empty anymore. It will contain the data objects from a previous invocation. That’s because the pipeline system
+maintains a data cache to allow the user to directly manipulate some of the objects in the graphical user interface of OVITO,
+for example the colors and radii of particles types or the settings of <a class="reference internal" href="../visual_elements/index.html#visual-elements"><span class="std std-ref">visual elements</span></a> associated with data objects.</p>
+<p>That is an aspect your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function needs to be prepared for. It must re-use any existing data objects in the data collection instead
+of recreating them during each execution in order to preserve the adjustments the user makes to these objects in the GUI. In the code example above,
+the function first checks if the data collection already contains an existing <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.SimulationCell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> and creates a new one only if
+this is not the case. The same kind of existence check should be performed when creating particles, bonds, particle types, etc.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the Particles data object only if it does not already exist from a previous run:</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">:</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">particles</span> <span class="o">=</span> <span class="n">Particles</span><span class="p">(</span><span class="n">vis</span> <span class="o">=</span> <span class="n">ParticlesVis</span><span class="p">(</span><span class="n">scaling</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Resizing the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.Particles" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> property container or adding properties can be performed without a
+check because these operations preserve existing object instances instead of completely replacing them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">1.83</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">),(</span><span class="mf">1.79</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.88</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.11</span><span class="p">),(</span><span class="o">-</span><span class="mf">1.73</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.77</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.61</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>But make sure you do not accidentally recreate nested sub-objects, for example, the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.ParticleType" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleType</span></code></a> instances
+that are added to the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code> property. Only on the first run the <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.Property.types" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Property.types</span></code></a> list
+will be empty:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">type_property</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s1">&#39;Particle Type&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">type_property</span><span class="o">.</span><span class="n">types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">type_property</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ParticleType</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Cu&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="n">type_property</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ParticleType</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>In the GUI, you can explicitly reset the data source’s cached data collection and discard all
+cached data objects by pressing the button <span class="guilabel">Reset data collection</span>. The pipeline system will then start over
+by invoking your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function with an empty data collection, and all data objects are newly created and
+initialized. Any changes the user has made to the old data objects in the GUI will be thrown away. (Applied modifiers will
+be preserved, of course, because the reset operation only affects the source of the pipeline.)</p>
+</section>
+<section id="user-defined-function-parameters">
+<h2>User-defined function parameters<a class="headerlink" href="#user-defined-function-parameters" title="Permalink to this heading"></a></h2>
+<p>Your <code class="docutils literal notranslate"><span class="pre">create()</span></code> function may define additional keyword parameters (all require initial default values), which will be treated as user-defined
+parameters managed by the data source. The user-defined parameters automatically appear in the graphical user interface of OVITO, and their
+values (which will be passed to <code class="docutils literal notranslate"><span class="pre">create()</span></code> by the system) can be adjusted interactively by the user. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="n">SimulationCell</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">cell_</span><span class="p">[:,:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">width</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">height</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Note that the default arguments defined in the function header only specify the <em>initial</em> values of the parameters
+and their data types. In the user interface you adjust the <em>actual</em> values of these parameters, which are in effect
+when the <code class="docutils literal notranslate"><span class="pre">create()</span></code> function gets invoked by the system.</p>
+<p>The current implementation supports user-defined parameters that are from one of the following type categories:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Numeric, Boolean and string value types,</p></li>
+<li><p>Any type that can be turned into a string representation using the <code class="docutils literal notranslate"><span class="pre">repr()</span></code> function of Python
+and parsed back to a Python value with the <code class="docutils literal notranslate"><span class="pre">eval()</span></code> function (e.g. the tuple <code class="docutils literal notranslate"><span class="pre">(1.0,</span> <span class="pre">2.0,</span> <span class="pre">0.0)</span></code>),</p></li>
+<li><p>Any object type from the OVITO module such as <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.ParticleType" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleType</span></code></a> or <a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.ClusterAnalysisModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClusterAnalysisModifier</span></code></a>.</p></li>
+</ol>
+</div></blockquote>
+<p>The GUI will present special input controls for parameters from the first category, for example a check box widget for Boolean function parameters.
+Parameter values from the second category must be entered by the user as Python literal expressions.
+The native OVITO objects associated with function parameters from the third category will appear
+as extra panels in the GUI, which will let you edit the attributes of these objects directly. The <a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.VectorVis" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorVis</span></code></a>
+element shown in the following screenshot is an example of such a user-defined parameter:</p>
+<a class="reference internal image-reference" href="../../../_images/python_data_source_user_defined_parameters.jpg"><img alt="../../../_images/python_data_source_user_defined_parameters.jpg" src="../../../_images/python_data_source_user_defined_parameters.jpg" style="width: 100%;" /></a>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../python/modules/ovito_pipeline.html#ovito.pipeline.PythonSource" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.pipeline.PythonSource</span></code></a> (Python API)</p></li>
+<li><p><a class="reference external" href="../../../python/modules/ovito_pipeline.html#ovito.pipeline.PipelineSourceInterface" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.pipeline.PipelineSourceInterface</span></code></a> (Python API)</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../file_formats/output/gltf.html" class="btn btn-neutral float-left" title="glTF file exporter pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammps_script.html" class="btn btn-neutral float-right" title="LAMMPS script pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

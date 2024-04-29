@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced topics &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/advanced_topics.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code examples" href="examples.html" />
+    <link rel="prev" title="Rendering &amp; visualization" href="rendering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#saving-and-loading-pipelines">Saving and loading pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-how-many-processor-cores-ovito-uses">Controlling how many processor cores OVITO uses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-ovito-with-python-s-multiprocessing-module">Using OVITO with Python’s <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packaging-and-installation-of-user-extensions-for-ovito">Packaging and installation of user extensions for OVITO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Advanced topics</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-topics">
+<h1>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this heading"></a></h1>
+<p>This section covers several advanced topics related to OVITO’s scripting interface:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#saving-loading-pipelines"><span class="std std-ref">Saving and loading pipelines</span></a></p></li>
+<li><p><a class="reference internal" href="#multithreading-settings"><span class="std std-ref">Controlling how many processor cores OVITO uses</span></a></p></li>
+<li><p><a class="reference internal" href="#multiprocess-module-usage"><span class="std std-ref">Using OVITO with Python’s multiprocessing module</span></a></p></li>
+<li><p><a class="reference internal" href="#registering-custom-python-classes"><span class="std std-ref">Packaging and installation of user extensions for OVITO</span></a></p></li>
+</ul>
+</div></blockquote>
+<section id="saving-and-loading-pipelines">
+<span id="saving-loading-pipelines"></span><h2>Saving and loading pipelines<a class="headerlink" href="#saving-and-loading-pipelines" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="../modules/ovito_io.html#ovito.io.export_file" title="ovito.io.export_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">ovito.io.export_file()</span></code></a> function lets you save the computed output of a pipeline to disk. But how do
+you save the definition of the pipeline itself, including the modifiers and their parameters, to a file? OVITO can
+save the entire visualization <em>scene</em> to a <code class="file docutils literal notranslate"><span class="pre">.ovito</span></code> state file using the <a class="reference internal" href="../modules/ovito.html#ovito.Scene.save" title="ovito.Scene.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Scene.save()</span></code></a> method.
+Thus, in order to save a <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> you need to first make it part of the scene by calling
+its <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.add_to_scene" title="ovito.pipeline.Pipeline.add_to_scene"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_to_scene()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ovito</span>
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">import_file</span>
+<span class="kn">from</span> <span class="nn">ovito.modifiers</span> <span class="kn">import</span> <span class="n">CoordinationAnalysisModifier</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s2">&quot;input/simulation.dump&quot;</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CoordinationAnalysisModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.4</span><span class="p">))</span>
+<span class="c1"># ... </span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_to_scene</span><span class="p">()</span>
+<span class="n">ovito</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output/mypipeline.ovito&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The saved state can be restored by calling the <a class="reference internal" href="../modules/ovito.html#ovito.Scene.load" title="ovito.Scene.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Scene.load()</span></code></a> method. This function loads all
+saved data pipelines and makes them available in the <a class="reference internal" href="../modules/ovito.html#ovito.Scene.pipelines" title="ovito.Scene.pipelines"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Scene.pipelines</span></code></a> list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ovito</span>
+
+<span class="n">ovito</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;output/mypipeline.ovito&quot;</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">ovito</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">pipelines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Of course, it is also possible to open the .ovito state file with the graphical OVITO application or, conversely, to use the graphical
+application to create a data pipeline by hand and then save that pipeline to a .ovito file for future use.</p>
+<p>You can either load the state file from a script at runtime using the <a class="reference internal" href="../modules/ovito.html#ovito.Scene.load" title="ovito.Scene.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Scene.load()</span></code></a> method
+or <a class="reference internal" href="installation.html#preloading-program-state"><span class="std std-ref">preload the state file</span></a> when running the script using the <strong class="program">ovitos</strong> <a class="reference internal" href="installation.html#ovitos-interpreter"><span class="std std-ref">integrated interpreter</span></a>.
+This is done by specifying the <strong class="command">-o</strong> command line option:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">ovitos -o mypipeline.ovito script.py</span>
+</pre></div>
+</div>
+<p>The code in <code class="file docutils literal notranslate"><span class="pre">script.py</span></code> will now be executed in an environment where the <a class="reference internal" href="../modules/ovito.html#ovito.Scene" title="ovito.Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a> was already populated
+with the state loaded from the .ovito scene file. Instead of setting up a new pipeline from scratch, the script can now
+work with the existing pipeline(s) that were restored from the state file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ovito</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">ovito</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">pipelines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Replace the data file that serves as pipeline input with a different one:</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;input/second_file.dump&quot;</span><span class="p">)</span> 
+<span class="c1"># Adjust modifier parameters of the existing pipeline:</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.1</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="controlling-how-many-processor-cores-ovito-uses">
+<span id="multithreading-settings"></span><h2>Controlling how many processor cores OVITO uses<a class="headerlink" href="#controlling-how-many-processor-cores-ovito-uses" title="Permalink to this heading"></a></h2>
+<p>Many computation functions in OVITO have been parallelized in order to make use of all available processor cores.
+This includes, for example, computationally heavy analysis rountines such as
+<a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.PolyhedralTemplateMatchingModifier" title="ovito.modifiers.PolyhedralTemplateMatchingModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyhedralTemplateMatchingModifier</span></code></a>, <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.VoronoiAnalysisModifier" title="ovito.modifiers.VoronoiAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">VoronoiAnalysisModifier</span></code></a>,
+<a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.ClusterAnalysisModifier" title="ovito.modifiers.ClusterAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClusterAnalysisModifier</span></code></a>, <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.ComputePropertyModifier" title="ovito.modifiers.ComputePropertyModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComputePropertyModifier</span></code></a>, and many more.
+The software-based rendering engines <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.TachyonRenderer" title="ovito.vis.TachyonRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TachyonRenderer</span></code></a> and <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.OSPRayRenderer" title="ovito.vis.OSPRayRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OSPRayRenderer</span></code></a> also
+harness multiple cores in parallel to speed up image generation.</p>
+<p>By default, these algorithms will make use of all available cores of your CPU. This default number is determined by OVITO
+using the function <a class="reference external" href="https://doc.qt.io/qtforpython/PySide6/QtCore/QThread.html#PySide6.QtCore.PySide6.QtCore.QThread.idealThreadCount">QThread.idealThreadCount()</a>,
+which can be queried as follows in a Python program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ovito.qt_compat</span> <span class="kn">import</span> <span class="n">QtCore</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QThread</span><span class="o">.</span><span class="n">idealThreadCount</span><span class="p">())</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>Sometimes it is desirable to restrict OVITO to a single CPU core only, for example, when running multiple instances
+of OVITO in parallel on the same node. This can be acocmplished in two ways. The graphical application <strong class="program">ovito</strong> and the
+<a class="reference internal" href="installation.html#ovitos-interpreter"><span class="std std-ref">script interpreter</span></a> <strong class="program">ovitos</strong> both support the <a class="reference internal" href="installation.html#ovitos-nthreads-parameter"><span class="std std-ref">command line parameter</span></a> <strong class="command">--nthreads</strong>,
+which lets you override the number of CPU cores used by parallel algorithms:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ovitos<span class="w"> </span>--nthreads<span class="w"> </span><span class="m">1</span><span class="w"> </span>yourscript.py
+</pre></div>
+</div>
+<p>Your second option is to set the <code class="docutils literal notranslate"><span class="pre">OVITO_THREAD_COUNT</span></code> environment variable prior to invoking or importing OVITO. This approach
+always works, including for Python scripts running in an external Python interpreter and importing the <code class="docutils literal notranslate"><span class="pre">ovito</span></code> module:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OVITO_THREAD_COUNT</span><span class="o">=</span><span class="m">1</span>
+python3<span class="w"> </span>yourscript.py
+</pre></div>
+</div>
+</section>
+<section id="using-ovito-with-python-s-multiprocessing-module">
+<span id="multiprocess-module-usage"></span><h2>Using OVITO with Python’s <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module<a class="headerlink" href="#using-ovito-with-python-s-multiprocessing-module" title="Permalink to this heading"></a></h2>
+<p>In a nutshell:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Python’s <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module can be used to parallelize computations across multiple independent inputs.</p></li>
+<li><p>Because the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module spawns new interpreter processes, it cannot be used in
+the <em>OVITO Pro</em> desktop environment. But multiprocessing works in standalone Python scripts executed by an external Python interpreter.</p></li>
+<li><p>Native objects from the <a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> package do not support pickling and cannot be sent across process boundaries. So, when writing parallel
+functions, make sure they take and return only regular Python objects.</p></li>
+<li><p>Since OVITO launches background worker threads, it is not compatible with the “fork” start method of the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module.
+Is it necessary to use the safer “spawn” method on all OS platforms.</p></li>
+</ul>
+</div></blockquote>
+<p>OVITO’s data pipeline and rendering systems perform certain calculations using all available CPU cores
+(see <a class="reference internal" href="#multithreading-settings"><span class="std std-ref">previous section</span></a>). This means that such functions will automatically run faster when more
+processor cores are available – even if you call them serially in a Python script. However, some types of calculations in OVITO
+always use only a single processor core because their algorithms are inherently difficult to parallelize or are based on third-party
+libraries that lack multi-threading support. Then it can make sense to exploit a different type of parallelism.</p>
+<p>Python’s <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module allows parallelizing the execution of a Python function across multiple independent inputs.
+This approach works well if each input, for example the frames of a simulation trajectory, can be processed independently
+from each other. Take the following script for example, which calculates an output number for every frame
+of a simulation trajectory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s1">&#39;input/simulation.*.dump&#39;</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ClusterAnalysisModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">))</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="n">num_clusters</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;ClusterAnalysis.cluster_count&#39;</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num_clusters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that it does not matter here in which order we process the trajectory frames. This is an important requirement for problems
+to be parallelized with the multiprocessing approach.</p>
+<p>To parallelize the problem using the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module, we need to move the processing code
+into a callable function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;ClusterAnalysis.cluster_count&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The multiprocessing <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pool</span></code></a> class provides a method to invoke the <code class="docutils literal notranslate"><span class="pre">process_frame()</span></code> function for a range
+of trajectory frames. Depending on the number of CPU cores in the system, the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pool</span></code></a> will spawn
+multiple worker processes to process requests in parallel.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">process_frame</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The computed values for all trajectory frames are collected and returned as a list.</p>
+<p>Two important points are worth discussing:</p>
+<ol class="arabic simple">
+<li><p>Since the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module takes care of distributing the work
+across all available processor cores, we should now keep OVITO from doing the same, because this would lead to an overscription of the
+cores. As explained in <a class="reference internal" href="#multithreading-settings"><span class="std std-ref">Controlling how many processor cores OVITO uses</span></a>, we can restrict each OVITO instance to a single worker thread by setting the
+environment variable <code class="docutils literal notranslate"><span class="pre">OVITO_THREAD_COUNT=1</span></code>. Whether this step improves or hurts overall performance is problem dependent, and
+you should measure the influence of this setting on the execution time.</p></li>
+<li><p>The <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module needs to send the input parameters and the return value of our worker function
+across process boundaries. This happens via Python’s <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">pickle</span></code></a> mechanism, which is something most OVITO objects
+do not support yet. Things like a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> and its contents, or a <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>
+and its modifiers cannot be transmitted from the main program to the parallel worker function. We therefore need to restrict ourselves to
+simple Python values, objects, or NumPy arrays that can be <em>pickled</em>.</p></li>
+</ol>
+<p>The following complete program demonstrates the use of the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> approach. It provides a configuration flag that switches
+between a conventional for-based and the parallel processing mode, which allows comparing the execution times required by both approaches.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This configuration flag enables the use of the Python multiprocessing module.</span>
+<span class="c1"># Set it to false to switch back to conventional for-loop processing (included for comparison).</span>
+<span class="n">use_multiprocessing</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">use_multiprocessing</span><span class="p">:</span>
+    <span class="c1"># Disable internal parallelization of OVITO&#39;s pipeline system, which otherwise would perform certain</span>
+    <span class="c1"># computations using all available processor cores. Setting the environment variable OVITO_THREAD_COUNT=1</span>
+    <span class="c1"># must be done BEFORE importing the ovito module and will restrict OVITO to a single CPU core per process.</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OVITO_THREAD_COUNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ovito.modifiers</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Set up the OVITO data pipeline for performing some heavy computations for each trajectory frame.</span>
+<span class="c1"># Keep in mind that this initialization code gets executed by EVERY worker process in the multiprocessing pool.</span>
+<span class="c1"># So we should only prepare but not carry out any expensive operations here.</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s1">&#39;input/simulation.*.dump&#39;</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ClusterAnalysisModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">))</span>
+
+<span class="c1"># Define the worker function which gets called for every trajectory frame. It evaluates the pipeline</span>
+<span class="c1"># at the requested simulation time and returns the computed results for that frame back to the caller.</span>
+<span class="c1">#</span>
+<span class="c1"># IMPORTANT: The function may only return regular Python objects but not OVITO objects</span>
+<span class="c1"># such as DataCollection or Property. That&#39;s because OVITO objects do not currently support pickling,</span>
+<span class="c1"># which means they cannot be sent back to the main program across process boundaries.</span>
+<span class="c1">#</span>
+<span class="c1"># In this simple example, the return value is a simple scalar (a global attribute) computed per frame.</span>
+<span class="c1"># Note that it is possible to return NumPy arrays, which includes NumPy views of OVITO property arrays.</span>
+<span class="c1"># Thus, to return the cluster assignment of each atom computed by the ClusterAnalysisModifier</span>
+<span class="c1"># we could write:</span>
+<span class="c1">#</span>
+<span class="c1">#    return data.particles[&#39;Cluster&#39;][...]</span>
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;ClusterAnalysis.cluster_count&#39;</span><span class="p">]</span>
+
+<span class="c1"># Main program entry point:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Measure time for benchmarking purposes.</span>
+    <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+    <span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">use_multiprocessing</span><span class="p">:</span>
+
+        <span class="c1"># Force &quot;spawn&quot; start method on all platforms, because OVITO is not compatible with &quot;fork&quot; method.</span>
+        <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+        <span class="n">mp</span><span class="o">.</span><span class="n">set_start_method</span><span class="p">(</span><span class="s1">&#39;spawn&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Create a pool of processes which will process the trajectory frames in parallel.</span>
+        <span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">process_frame</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">)))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1"># Conventional for-loop iterating over all frames of the trajectory and processing one by one.</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">process_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">)]</span>
+
+    <span class="n">t_end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computation took </span><span class="si">{</span><span class="n">t_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="packaging-and-installation-of-user-extensions-for-ovito">
+<span id="registering-custom-python-classes"></span><h2>Packaging and installation of user extensions for OVITO<a class="headerlink" href="#packaging-and-installation-of-user-extensions-for-ovito" title="Permalink to this heading"></a></h2>
+<p>OVITO’s Python interface allows you to implement custom <a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers-advanced-interface"><span class="std std-ref">modifiers</span></a>,
+<a class="reference internal" href="custom_file_readers.html#writing-custom-file-readers"><span class="std std-ref">file readers</span></a>, and <a class="reference internal" href="custom_overlays.html#writing-custom-viewport-overlays"><span class="std std-ref">viewport overlays</span></a> that seamlessly
+extend the functionality of OVITO Pro and the standalone OVITO Python package.
+To make such extensions available to the user in the graphical user interface or in Python programs,
+they need to be properly installed and registered for the system to automatically find them at runtime.</p>
+<p>The automatic discovery of user-defined extension classes is based on Python’s
+<a class="reference external" href="https://packaging.python.org/en/latest/specifications/entry-points/">entry point specification</a>.
+This standard mechanism helps to keep the code of your extension class cleanly separated from the main OVITO software package.
+That means both may be updated or changed independently, and the standard Python packaging mechanism facilitates
+the easy deployment of your extension to other OVITO users in case you want to share your work with the community.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To aid you in the development of new extensions, we provide GitHub repository
+templates for each OVITO extension type, which include step-by-step instructions, an initial directory structure, and a <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code>
+skeleton that simplifies packaging and distribution of your extension to other users:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ovito-org/PythonModifierTemplate">Modifier template (GitHub)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ovito-org/PythonFileReaderTemplate">File reader template (GitHub)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ovito-org/PythonPipelineSourceTemplate">Pipeline source template (GitHub)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ovito-org/PythonViewportOverlayTemplate">Viewport overlay template (GitHub)</a></p></li>
+</ul>
+<p>Furthermore, the OVITO team hosts a public repository where you can publish your extensions to share them with the user community:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.ovito.org/extensions/">OVITO Extensions Directory</a>: A collection of Python extensions submitted by the community,
+maintained by their respective authors, and curated by the OVITO developers.</p>
+</div></blockquote>
+</div>
+<p>In the following, we’ll consider a <a class="reference internal" href="custom_modifiers.html#writing-custom-modifiers-advanced-interface"><span class="std std-ref">custom modifier class</span></a> written for OVITO Pro
+with the name <em>MyModifier</em>, which will serve as an example for an extension to be registered in the OVITO system.
+We start with a simple code project layout having the following directory structure:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;root-dir&gt;/
+├── pyproject.toml
+└── src/
+    └── MyModifier/
+        └── __init__.py
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">MyModifier</span></code> class is defined in <code class="file docutils literal notranslate"><span class="pre">src/MyModifier/__init__.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.pipeline</span> <span class="kn">import</span> <span class="n">ModifierInterface</span>
+
+<span class="k">class</span> <span class="nc">MyModifier</span><span class="p">(</span><span class="n">ModifierInterface</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="o">...</span>
+</pre></div>
+</div>
+<p>If you are developing a complex extension, you can also split your code into multiple <code class="file docutils literal notranslate"><span class="pre">.py</span></code> files
+or nested packages if needed.</p>
+<p>The <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> package metadata file is <a class="reference external" href="https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/">needed for the installation</a>
+of <em>MyModifier</em> and any dependencies it requires (e.g. the SciPy package) using <strong class="program">pip</strong>:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;wheel&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
+
+<span class="k">[project]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;MyModifier&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;A custom Python modifier for OVITO.&quot;</span>
+<span class="n">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ovito&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;python-file-reader&quot;</span><span class="p">]</span>
+<span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;Author Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;author@organization.org&quot;</span><span class="p">}]</span>
+<span class="n">maintainers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;Maintainer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;maintainer@organization.org&quot;</span><span class="p">}]</span>
+<span class="n">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">text</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;MIT License&quot;</span><span class="p">}</span>
+<span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.7&quot;</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">   </span><span class="s2">&quot;ovito &gt;= 3.9.1&quot;</span>
+<span class="p">]</span>
+
+<span class="k">[project.urls]</span>
+<span class="n">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/author/MyModifier&quot;</span>
+
+<span class="k">[tool.setuptools.packages.find]</span>
+<span class="n">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Thanks to this <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file, as we will see later, the code of <code class="docutils literal notranslate"><span class="pre">MyModifier</span></code> can be installed
+in any Python interpreter (including the <a class="reference internal" href="installation.html#ovitos-interpreter"><span class="std std-ref">OVITO Pro integrated interpreter</span></a>) using the <strong class="program">pip</strong> standard utility –
+just like regular Python packages. After the installation, we could call <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">MyModifier</span></code> from a Python program
+to load and use our module.</p>
+<p>However, we still have to tell OVITO Pro that the <code class="docutils literal notranslate"><span class="pre">MyModifier</span></code> package contains the definition of an OVITO <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.ModifierInterface" title="ovito.pipeline.ModifierInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModifierInterface</span></code></a>
+class (or some other kind of OVITO extension) that should be automatically loaded at runtime and made available in the graphical user interface
+of OVITO Pro. This requires the definition of an <em>entry point</em> in <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> (see the
+<a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/entry_point.html">setuptools website</a> for more details).</p>
+<p>To register our custom modifier class as an entry point in the standard group <code class="code docutils literal notranslate"><span class="pre">OVITO.Modifier</span></code>, we add
+an <em>entry-points</em> section to <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code>:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s1">&#39;OVITO.Modifier&#39;</span><span class="k">]</span>
+<span class="s2">&quot;My Modifier&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;MyModifier:MyModifier&quot;</span>
+</pre></div>
+</div>
+<p>The second line first specifies the human-readable name of our extension to be displayed in the OVITO Pro GUI.
+The part after the <code class="docutils literal notranslate"><span class="pre">=</span></code> specifies the module name and the Python class that implements the OVITO extension.
+In our case, both the module and the class are named <em>MyModifier</em>.</p>
+<p>OVITO Pro automatically loads all installed packages that did register entry points in the <code class="code docutils literal notranslate"><span class="pre">OVITO.Modifier</span></code> group
+and displays them to the user as part of the list of available modifiers. For other extension types similar entry point groups exist:</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Python extension class</p></th>
+<th class="head"><p>Entry point group</p></th>
+<th class="head"><p>Template</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.ModifierInterface" title="ovito.pipeline.ModifierInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModifierInterface</span></code></a></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">[project.entry-points.'OVITO.Modifier']</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/ovito-org/PythonModifierTemplate/blob/main/pyproject.toml">pyproject.toml</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.PipelineSourceInterface" title="ovito.pipeline.PipelineSourceInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineSourceInterface</span></code></a></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">[project.entry-points.'OVITO.PipelineSource']</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/ovito-org/PythonPipelineSourceTemplate/blob/main/pyproject.toml">pyproject.toml</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modules/ovito_io.html#ovito.io.FileReaderInterface" title="ovito.io.FileReaderInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileReaderInterface</span></code></a></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">[project.entry-points.'OVITO.FileReader']</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/ovito-org/PythonFileReaderTemplate/blob/main/pyproject.toml">pyproject.toml</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.ViewportOverlayInterface" title="ovito.vis.ViewportOverlayInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ViewportOverlayInterface</span></code></a></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">[project.entry-points.'OVITO.ViewportOverlay']</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/ovito-org/PythonViewportOverlayTemplate/blob/main/pyproject.toml">pyproject.toml</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>After preparing the <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file, you can now install your extension package locally into OVITO Pro by invoking the
+<strong class="command">pip install</strong> command via <strong class="program">ovitos</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ovitos<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--editable<span class="w"> </span>&lt;root-dir&gt;
+</pre></div>
+</div>
+<p>where <code class="file docutils literal notranslate"><span class="pre">&lt;root-dir&gt;</span></code> is the directory containing the <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file.
+The <code class="docutils literal notranslate"><span class="pre">--editable</span></code> option <a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/development_mode.html">ensures that you can still make code changes</a> without
+the need to reinstall the package. <code class="docutils literal notranslate"><span class="pre">-m</span></code> tells <strong class="program">ovitos</strong> to <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#cmdoption-m">invoke the pip module</a>
+and run its install command.</p>
+<p>If you decide to upload the code of your OVITO extension to a public Git repository, other users can
+install it directly from your online repository as explained in <a class="reference external" href="../../reference/pipelines/modifiers/python_script.html#particles-modifiers-python-script-installing-extensions" title="(in OVITO User Manual v3.10.4)"><span>Installing Python-based extensions for OVITO with pip</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rendering.html" class="btn btn-neutral float-left" title="Rendering &amp; visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Code examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

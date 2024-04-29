@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polyhedral template matching &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/polyhedral_template_matching.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python script pro" href="python_script.html" />
+    <link rel="prev" title="Manual selection" href="manual_selection.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Polyhedral template matching</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-polyhedral-template-matching">
+<span id="polyhedral-template-matching"></span><h1>Polyhedral template matching<a class="headerlink" href="#particles-modifiers-polyhedral-template-matching" title="Permalink to this heading"></a></h1>
+<p>This modifier classifies the local structural environment of particles
+using the <em>Polyhedral Template Matching</em> (PTM) method, which allows identification of the local
+crystalline structure of simple condensed phases.
+This structure identification method has been described in</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="https://dx.doi.org/10.1088/0965-0393/24/5/055007">P. M. Larsen et al.</a></div>
+<div class="line"><a class="reference external" href="https://dx.doi.org/10.1088/0965-0393/24/5/055007">Robust Structural Identification via Polyhedral Template Matching</a></div>
+<div class="line"><a class="reference external" href="https://dx.doi.org/10.1088/0965-0393/24/5/055007">Modelling Simul. Mater. Sci. Eng. 24, 055007 (2016)</a></div>
+<div class="line"><cite>doi:10.1088/0965-0393/24/5/055007</cite></div>
+</div>
+</div></blockquote>
+<p>Please cite this paper when you use this structure identification algorithm in your work. A preprint is available <a class="reference external" href="http://arxiv.org/abs/1603.05143">here</a>.</p>
+<p>The PTM approach promises greater reliability than e.g. <a class="reference internal" href="common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common Neighbor Analysis (CNA)</span></a> in the
+presence of strong thermal fluctuations and strains. Furthermore, it provides a direct calculation of the local (per-atom) crystal orientation, elastic deformation,
+strain and chemical ordering type.</p>
+<p>The modifier identifies local crystalline order by matching the local atomic neighborhood to the templates of the structural types determined by the PTM algorithm.
+The templates use a mixture of nearest neighbors, and neighbors of neighbors:</p>
+<blockquote>
+<div><p>Central atom (white), nearest neighbors (blue), and neighbors of neighbors (green):</p>
+</div></blockquote>
+<figure class="align-default" id="id1" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_fcc.png" src="../../../_images/ptm_schematic_fcc.png" />
+<figcaption>
+<p><span class="caption-text">FCC</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_hcp.png" src="../../../_images/ptm_schematic_hcp.png" />
+<figcaption>
+<p><span class="caption-text">HCP</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_bcc.png" src="../../../_images/ptm_schematic_bcc.png" />
+<figcaption>
+<p><span class="caption-text">BCC</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_ico.png" src="../../../_images/ptm_schematic_ico.png" />
+<figcaption>
+<p><span class="caption-text">Icosahedral</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_sc.png" src="../../../_images/ptm_schematic_sc.png" />
+<figcaption>
+<p><span class="caption-text">Simple Cubic</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_dcub.png" src="../../../_images/ptm_schematic_dcub.png" />
+<figcaption>
+<p><span class="caption-text">Cubic diamond</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_dhex.png" src="../../../_images/ptm_schematic_dhex.png" />
+<figcaption>
+<p><span class="caption-text">Hexagonal diamond</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8" style="width: 20%">
+<img alt="../../../_images/ptm_schematic_grp.png" src="../../../_images/ptm_schematic_grp.png" />
+<figcaption>
+<p><span class="caption-text">Graphene</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Determination of diamond and graphene structures is an extension of the published PTM method, though it follows similar principles.</p>
+<p>The modifier sets the <code class="docutils literal notranslate"><span class="pre">Structure</span> <span class="pre">Type</span></code> property for each particle, which is encoded as an integer value:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0 = Other, unknown coordination structure</p></li>
+<li><p>1 = FCC, face-centered cubic</p></li>
+<li><p>2 = HCP, hexagonal close-packed</p></li>
+<li><p>3 = BCC, body-centered cubic</p></li>
+<li><p>4 = ICO, icosahedral coordination</p></li>
+<li><p>5 = SC, simple cubic</p></li>
+<li><p>6 = Cubic diamond</p></li>
+<li><p>7 = Hexagonal diamond</p></li>
+<li><p>8 = Graphene</p></li>
+</ul>
+</div></blockquote>
+<p>By default, the modifier will try to identify only the following structure types: FCC, HCP, BCC.
+Using the tick boxes in the list, you can specify the set of structural types the modifier should look for.
+In general, you will get cleaner results by only selecting relevant structures.</p>
+<a class="reference internal image-reference" href="../../../_images/polyhedral_template_matching_panel.png"><img alt="../../../_images/polyhedral_template_matching_panel.png" class="align-right" src="../../../_images/polyhedral_template_matching_panel.png" style="width: 30%;" /></a>
+<section id="root-mean-square-deviation-rmsd">
+<h2>Root-Mean-Square Deviation (RMSD)<a class="headerlink" href="#root-mean-square-deviation-rmsd" title="Permalink to this heading"></a></h2>
+<p>For each input particle, the PTM tries to determine a mapping of the local neighborhood to each active candidate structure.
+If such a mapping exists, a RMSD value is calculated, which is a measure of the spatial deviation from the ideal structure template (the quality of the match).
+The structural type with the lowest RMSD value is finally assigned to the particle.
+A histogram of the RMSD values for all structures and all particles is shown in the side panel.</p>
+<p>The modifier allows to set a global RMSD cutoff, which limits the assignment of structural types to a range of RMSD values. Particles whose RMSD
+exceeds the threshold are assigned the <em>Other</em> structure type.
+By adjusting the RMSD cutoff, the level of robustness can be adjusted.
+A higher RMSD cutoff will lead to more identifications (and fewer “defect” atoms), though possibly at the expense of false positives.
+A lower RMSD cutoff will result in fewer structural identifications (and more ‘defect’ atoms and greater sensitivity to perturbations of the lattice),
+though possibly at the expense of false negatives. The role of the RMSD cutoff is discussed in section 5.1 of the PTM paper.</p>
+<p>A reasonable value for the RMSD cutoff parameter is 0.1, which works well for identifying defects in crystalline solids.
+Note that, for the sake of reproducibility, the chosen RMSD cutoff value should typically be reported in a publication if you use
+the PTM method to gain quantitative results (e.g. measure crystal defect densities).</p>
+</section>
+<section id="interatomic-distances">
+<h2>Interatomic distances<a class="headerlink" href="#interatomic-distances" title="Permalink to this heading"></a></h2>
+<p>The internal scale factor computed by the PTM method (see the paper) is the amount by which the atom coordinates are scaled in order to minimize the RMSD between the atom and template coordinates,
+after translation and rotation. It is proportional to the reciprocal local interatomic distance (including hydrostatic strain components).</p>
+<p>The PTM modifier provides an option to output the local interatomic distance (or nearest neighbor distance) as a new particle property, which is computed from the internal scale factor for those atoms
+that match one of the known structure types.
+Note that you can compute a local lattice constant (including hydrostatic strain) from the interatomic distance by dividing it by the
+factor <span class="math notranslate nohighlight">\(\sqrt{1/2}\)</span> (for FCC, HCP), <span class="math notranslate nohighlight">\(\sqrt{3/4}\)</span> (for BCC), or <span class="math notranslate nohighlight">\(\sqrt{3/16}\)</span> (for cubic diamond and hexagonal diamond) using, e.g., the <a class="reference internal" href="compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifier</p>
+</section>
+<section id="particles-modifiers-polyhedral-template-matching-orientations">
+<span id="local-lattice-orientations"></span><h2>Local lattice orientations<a class="headerlink" href="#particles-modifiers-polyhedral-template-matching-orientations" title="Permalink to this heading"></a></h2>
+<p>The PTM modifier provides the option to calculate a local lattice orientation for atoms that match one of the structural types. The computed orientations are
+encoded as <a class="reference external" href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">quaternions</a> and stored in the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> particle property.
+This particle property stores the (x,y,z,w) components of each quaternion, following <a class="reference external" href="http://campar.in.tum.de/twiki/pub/Chair/DwarfTutorial/quatut.pdf">the convention of Ken Shoemake</a>.</p>
+<p>To visualize the computed local lattice orientations, you can switch the <a class="reference internal" href="../visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">particle display shape</span></a> to <span class="guilabel">Cube/Box</span>
+or apply this <a class="reference external" href="../../../python/introduction/examples/modifiers/visualize_local_lattice_orientation.html#example-visualize-local-lattice-orientation" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">Python modifier script</span></a>, which maps the local orientations to RGB particle colors.
+Lattice orientations are calculated such that they lie in the fundamental zone of the symmetry group for each structural type.
+This means that two atoms with very similar orientations can have large misorientations if they lie close to the boundaries of the fundamental zone.
+For atoms not matching any of the known structure types, no local lattice orientation can be computed. These atoms are assigned the invalid quaternion vector (0,0,0,0).</p>
+<p>Orientations are calculated relative to structure-specific reference templates, which are defined in the
+<a class="reference external" href="https://gitlab.com/stuko/ovito/-/blob/master/src/3rdparty/ptm/ptm_templates.h#L15-235">source code of the PTM implementation</a> used in OVITO.
+The neighbor atom positions of each reference configuration are given in Cartesian coordinates with the central particle located at the origin.
+Furthermore, the reference templates are scaled such that the mean distance of the neighbors is 1.
+This is a slight departure from the templates in the published PTM paper, in that the central atom is no longer included in this calculation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>OVITO’s compact quaternion representation of orientations may easily be converted to other representation types.
+The <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> property array generated by the PTM modifier is a <span class="math notranslate nohighlight">\(N \times 4\)</span> array
+containing the <span class="math notranslate nohighlight">\((x,y,z,w)\)</span> components of the quaternion associated with each particle:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Orientation&#39;</span><span class="p">]</span>
+<span class="n">qx</span> <span class="o">=</span> <span class="n">q</span><span class="p">[:,</span><span class="mi">0</span><span class="p">];</span> <span class="n">qy</span> <span class="o">=</span> <span class="n">q</span><span class="p">[:,</span><span class="mi">1</span><span class="p">];</span> <span class="n">qz</span> <span class="o">=</span> <span class="n">q</span><span class="p">[:,</span><span class="mi">2</span><span class="p">];</span> <span class="n">qw</span> <span class="o">=</span> <span class="n">q</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Rotation axis and angle:</strong>
+The following Python code translates the quaternions to pairs of rotation axes and angles.
+The two output arrays will contain the three-dimensional unit axis vectors
+and the corresponding rotation angles (in radians) for each particle:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">qx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">qy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">qz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">true_divide</span><span class="p">(</span><span class="n">qx</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">axes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">scale</span><span class="o">&gt;</span><span class="mf">1e-12</span><span class="p">))</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">true_divide</span><span class="p">(</span><span class="n">qy</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">axes</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">scale</span><span class="o">&gt;</span><span class="mf">1e-12</span><span class="p">))</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">true_divide</span><span class="p">(</span><span class="n">qz</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">axes</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">scale</span><span class="o">&gt;</span><span class="mf">1e-12</span><span class="p">))</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">qw</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">angles</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">scale</span><span class="o">&gt;</span><span class="mf">1e-12</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Matrix representation:</strong>
+Alternatively, you can convert the quaternions to <span class="math notranslate nohighlight">\(3 \times 3\)</span> orientation matrices:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matrices</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">),</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qy</span><span class="o">*</span><span class="n">qy</span> <span class="o">+</span> <span class="n">qz</span><span class="o">*</span><span class="n">qz</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qy</span> <span class="o">-</span> <span class="n">qw</span><span class="o">*</span><span class="n">qz</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qz</span> <span class="o">+</span> <span class="n">qw</span><span class="o">*</span><span class="n">qy</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qy</span> <span class="o">+</span> <span class="n">qw</span><span class="o">*</span><span class="n">qz</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qx</span> <span class="o">+</span> <span class="n">qz</span><span class="o">*</span><span class="n">qz</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qy</span><span class="o">*</span><span class="n">qz</span> <span class="o">-</span> <span class="n">qw</span><span class="o">*</span><span class="n">qx</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qz</span> <span class="o">-</span> <span class="n">qw</span><span class="o">*</span><span class="n">qy</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qy</span><span class="o">*</span><span class="n">qz</span> <span class="o">+</span> <span class="n">qw</span><span class="o">*</span><span class="n">qx</span><span class="p">)</span>
+<span class="n">matrices</span><span class="p">[:,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">qx</span><span class="o">*</span><span class="n">qx</span> <span class="o">+</span> <span class="n">qy</span><span class="o">*</span><span class="n">qy</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Another option is to use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.html#scipy.spatial.transform.Rotation" title="(in SciPy v1.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.spatial.transform.Rotation</span></code></a> facility of the
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/tutorial/index.html#user-guide" title="(in SciPy v1.12.0)"><span class="xref std std-ref">SciPy</span></a> package if available. It provides conversion functions
+for various representations including the quaternion form used by OVITO.</p>
+</div>
+</section>
+<section id="elastic-deformation-gradients">
+<h2>Elastic deformation gradients<a class="headerlink" href="#elastic-deformation-gradients" title="Permalink to this heading"></a></h2>
+<p>The modifier also provides the option to compute a local elastic deformation gradient for each particle, which is calculated as the
+affine transformation of the ideal template which minimizes the sum of squared deviations from the actual neighbor vectors.
+The local elastic deformation gradient tensors are output as 3x3 matrices in the <code class="docutils literal notranslate"><span class="pre">Elastic</span> <span class="pre">Deformation</span> <span class="pre">Gradient</span></code>
+particle property.</p>
+</section>
+<section id="ordering-types">
+<h2>Ordering types<a class="headerlink" href="#ordering-types" title="Permalink to this heading"></a></h2>
+<p>The chemical types of atoms are generally ignored by the PTM when identifying the <em>structural</em> phases (e.g. FCC, BCC, etc.). However, the algorithm can additionally
+identify the local chemical ordering type by taking into account the species of atoms (given by the values of the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code> property, which must be defined).
+The binary ordering types identified by the current version of the PTM algorithm are A2 and B2 for BCC;
+A1, L1<sub>0</sub> and L1<sub>2</sub> for FCC; zincblende for cubic diamond; and wurtzite for hexagonal diamond structures.</p>
+<p>The local ordering type is output as an additional particle property named <code class="docutils literal notranslate"><span class="pre">Ordering</span> <span class="pre">Type</span></code> with the following values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0 = Other, unknown or no ordering</p></li>
+<li><p>1 = Pure (all neighbors like central atom)</p></li>
+<li><p>2 = L1<sub>0</sub></p></li>
+<li><p>3 = L1<sub>2</sub> (A-site)</p></li>
+<li><p>4 = L1<sub>2</sub> (B-site)</p></li>
+<li><p>5 = B2</p></li>
+<li><p>6 = zincblende / wurtzite</p></li>
+</ul>
+</div></blockquote>
+<p>The algorithm determines the ordering type at a lattice atom by comparing the types of its neighbors to the type of the central atom. See the paper for details.
+You can subsequently use the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a> modifier to select atoms of a
+certain structural type and a certain ordering type to give them a distinct color, for example.</p>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<p>In addition to the PTM, OVITO provides alternative structure identification tools
+like the <a class="reference internal" href="common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common neighbor analysis</span></a> modifier, the <a class="reference internal" href="identify_diamond.html#particles-modifiers-identify-diamond-structure"><span class="std std-ref">Identify diamond structure</span></a> modifier, or the <a class="reference internal" href="bond_angle_analysis.html#particles-modifiers-bond-angle-analysis"><span class="std std-ref">Ackland-Jones analysis</span></a> modifier.</p>
+<p>Note that this modifier requires access to the complete set of input particles to perform the analysis. It should therefore be placed at the
+beginning of the processing pipeline, preceding any modifiers that delete particles.</p>
+<p>The modifier option <span class="guilabel">Use only selected particles</span> restricts the analysis to the
+currently selected particles. If this option is checked, unselected particles will be ignored
+(as if they did not exist) and will be assigned the structure type <em>Other</em>.
+This option can be useful if you want to identify defects in a crystal structure that is
+not directly supported by the PTM algorithm, but which possesses a known sublattice.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.PolyhedralTemplateMatchingModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.PolyhedralTemplateMatchingModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_selection.html" class="btn btn-neutral float-left" title="Manual selection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python_script.html" class="btn btn-neutral float-right" title="Python script pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

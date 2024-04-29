@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rendering &amp; visualization &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/rendering.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced topics" href="advanced_topics.html" />
+    <link rel="prev" title="User-defined viewport layers" href="custom_overlays.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rendering &amp; visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#visual-elements">Visual elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viewports">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rendering">Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Rendering &amp; visualization</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rendering-visualization">
+<span id="rendering-intro"></span><h1>Rendering &amp; visualization<a class="headerlink" href="#rendering-visualization" title="Permalink to this heading"></a></h1>
+<section id="visual-elements">
+<span id="rendering-visual-elements"></span><h2>Visual elements<a class="headerlink" href="#visual-elements" title="Permalink to this heading"></a></h2>
+<p>In OVITO, <em>data objects</em> are separated from <em>visual elements</em> responsible for
+producing a <a class="reference external" href="../../reference/pipelines/visual_elements/index.html#visual-elements" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">visual representation</span></a> of the data objects. For example, a <a class="reference internal" href="../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a>
+is a data object storing the simulation cell vectors and the periodic boundary flags.
+The corresponding visual element,  a <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.SimulationCellVis" title="ovito.vis.SimulationCellVis"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCellVis</span></code></a>,
+takes this information to generate the actual geometry primitives to visualize the simulation
+cell in the viewports and in rendered pictures. A visual element typically has a set of parameters that
+control the visual appearance, for example, the line color of the simulation box.</p>
+<p>A visual element is attached to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject" title="ovito.data.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataObject</span></code></a> that it should visualize, and you access it through the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject.vis" title="ovito.data.DataObject.vis"><code class="xref py py-attr docutils literal notranslate"><span class="pre">vis</span></code></a>
+attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell</span>                                <span class="c1"># This is the data object</span>
+<span class="go">&lt;SimulationCell at 0x7f9a414c8060&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">vis</span>                            <span class="c1"># This is the attached visual element</span>
+<span class="go">&lt;SimulationCellVis at 0x7fc3650a1c20&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">rendering_color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Giving the simulation box a red color</span>
+</pre></div>
+</div>
+<p>All display objects are derived from the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.DataVis" title="ovito.vis.DataVis"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataVis</span></code></a> base class, which defines
+the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.DataVis.enabled" title="ovito.vis.DataVis.enabled"><code class="xref py py-attr docutils literal notranslate"><span class="pre">enabled</span></code></a> attribute turning the rendering of the data object on or off:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>         <span class="c1"># This hides the simulation cell</span>
+</pre></div>
+</div>
+<p>The visual display of particles is controlled by a <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.ParticlesVis" title="ovito.vis.ParticlesVis"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticlesVis</span></code></a> object, which
+is attached to the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> data object. For example, to display
+cubic particles:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">ParticlesVis</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">Square</span>
+</pre></div>
+</div>
+<p>Some modifiers in a data pipeline may produce new data objects, for example, as a result of a computation.
+The <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.CalculateDisplacementsModifier" title="ovito.modifiers.CalculateDisplacementsModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateDisplacementsModifier</span></code></a> generates a new particle <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a>
+that stores the computed displacement vectors. To support the visualization of displacement vectors
+as arrows, the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.CalculateDisplacementsModifier" title="ovito.modifiers.CalculateDisplacementsModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateDisplacementsModifier</span></code></a> automatically attaches a
+<a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.VectorVis" title="ovito.vis.VectorVis"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorVis</span></code></a> element to the new particle property. We can access this visual element
+in two ways: either directly through the <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.CalculateDisplacementsModifier.vis" title="ovito.modifiers.CalculateDisplacementsModifier.vis"><code class="xref py py-attr docutils literal notranslate"><span class="pre">vis</span></code></a> field of the modifier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modifier</span> <span class="o">=</span> <span class="n">CalculateDisplacementsModifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">modifier</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modifier</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1"># Enable the display of arrows</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modifier</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Give arrows a blue color</span>
+</pre></div>
+</div>
+<p>or via the <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataObject.vis" title="ovito.data.DataObject.vis"><code class="xref py py-attr docutils literal notranslate"><span class="pre">vis</span></code></a> field of the particle <a class="reference internal" href="../modules/ovito_data.html#ovito.data.Property" title="ovito.data.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">displacements</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span>     <span class="c1"># Enable the display of arrows</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">displacements</span><span class="o">.</span><span class="n">vis</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># Give arrows a blue color</span>
+</pre></div>
+</div>
+</section>
+<section id="viewports">
+<span id="rendering-viewports"></span><h2>Viewports<a class="headerlink" href="#viewports" title="Permalink to this heading"></a></h2>
+<p>A <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport" title="ovito.vis.Viewport"><code class="xref py py-class docutils literal notranslate"><span class="pre">Viewport</span></code></a> defines a view of the three-dimensional scene, in which the visual representation of the data
+of a pipeline is generated. To render a picture of the scene, you typically create a new <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport" title="ovito.vis.Viewport"><code class="xref py py-class docutils literal notranslate"><span class="pre">Viewport</span></code></a>
+object and configure it by setting the camera position and orientation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">ovito.vis</span> <span class="kn">import</span> <span class="n">Viewport</span>
+
+<span class="n">vp</span> <span class="o">=</span> <span class="n">Viewport</span><span class="p">()</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">Viewport</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">Perspective</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">camera_pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">camera_dir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">fov</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">60.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As known from the interactive OVITO program, there exist various standard viewport types such as <code class="docutils literal notranslate"><span class="pre">TOP</span></code>, <code class="docutils literal notranslate"><span class="pre">FRONT</span></code>, etc.
+The <code class="docutils literal notranslate"><span class="pre">PERSPECTIVE</span></code> and <code class="docutils literal notranslate"><span class="pre">ORTHO</span></code> viewport types allow you to freely orient the camera in space and
+are usually what you need in a Python script. Don’t forget to set the viewport type first before configuring any other camera-related parameters.
+That’s because changing the viewport type will reset the camera orientation to a default value.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PERSPECTIVE</span></code> viewport type selects a perspective projection, and you can control the vertical field of view
+by setting the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport.fov" title="ovito.vis.Viewport.fov"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fov</span></code></a> parameter to the desired angle. The <code class="docutils literal notranslate"><span class="pre">ORTHO</span></code> viewport type
+uses a parallel projection; In this case, the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport.fov" title="ovito.vis.Viewport.fov"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fov</span></code></a> parameter specifies the vertical size of the visible
+area in units of length. Optionally, you can call the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport.zoom_all" title="ovito.vis.Viewport.zoom_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Viewport.zoom_all()</span></code></a>
+method to let OVITO automatically choose a reasonable camera zoom and position such that all objects become completely visible.</p>
+</section>
+<section id="rendering">
+<h2>Rendering<a class="headerlink" href="#rendering" title="Permalink to this heading"></a></h2>
+<p>Rendering of images and movies is done using the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport.render_image" title="ovito.vis.Viewport.render_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Viewport.render_image()</span></code></a> and
+<a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.Viewport.render_anim" title="ovito.vis.Viewport.render_anim"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Viewport.render_anim()</span></code></a> methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vp</span><span class="o">.</span><span class="n">render_image</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;figure.png&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">render_anim</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;animation.avi&quot;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>OVITO provides several different <a class="reference external" href="../../reference/rendering/index.html#rendering" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">rendering engines</span></a>, which differ in terms of speed and visual quality.
+The default rendering engine is the <a class="reference internal" href="../modules/ovito_vis.html#ovito.vis.OpenGLRenderer" title="ovito.vis.OpenGLRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLRenderer</span></code></a>, which implements a fast, hardware-accelerated
+OpenGL rendering method. See the <a class="reference internal" href="../modules/ovito_vis.html#module-ovito.vis" title="ovito.vis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito.vis</span></code></a> module for the list of other available engines. To use them,
+you have to create an instance of the renderer class, configure its specific parameters, and pass the renderer to the
+viewport rendering function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tachyon</span> <span class="o">=</span> <span class="n">TachyonRenderer</span><span class="p">(</span><span class="n">shadows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">direct_light_intensity</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">vp</span><span class="o">.</span><span class="n">render_image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;figure.png&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">renderer</span><span class="o">=</span><span class="n">tachyon</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom_overlays.html" class="btn btn-neutral float-left" title="User-defined viewport layers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced_topics.html" class="btn btn-neutral float-right" title="Advanced topics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example B1: Computing Voronoi indices &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/batch_scripts/voronoi_indices.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example B2: Computing CNA bond indices" href="cna_bond_indices.html" />
+    <link rel="prev" title="Code examples" href="../../examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example B1: Computing Voronoi indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cna_bond_indices.html">Example B2: Computing CNA bond indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="creating_particles.html">Example B3: Creating particles and bonds programmatically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_viewer.html">Example B4: Standalone trajectory viewer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example B1: Computing Voronoi indices</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-b1-computing-voronoi-indices">
+<span id="example-compute-voronoi-indices"></span><h1>Example B1: Computing Voronoi indices<a class="headerlink" href="#example-b1-computing-voronoi-indices" title="Permalink to this heading"></a></h1>
+<p>This script demonstrates the use of the <a class="reference internal" href="../../../modules/ovito_modifiers.html#ovito.modifiers.VoronoiAnalysisModifier" title="ovito.modifiers.VoronoiAnalysisModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">VoronoiAnalysisModifier</span></code></a>.
+The script calculates the distribution of Voronoi coordination polyhedra in an amorphous structure.</p>
+<p>A Voronoi polyhedron is expressed in terms of the Schlaefli notation,
+which is a vector of indices (n<sub>1</sub>, n<sub>2</sub>, n<sub>3</sub>, n<sub>4</sub>, n<sub>5</sub>, n<sub>6</sub>, …),
+where n<sub>i</sub> is the number of polyhedron faces with <em>i</em> edges/vertices.</p>
+<p>The script computes the distribution of these Voronoi index vectors
+and lists the 10 most frequent polyhedron types in the dataset. In the case
+of a Cu<sub>64%</sub>-Zr<sub>36%</sub> bulk metallic glass, the most frequent polyhedron type is the icosahedron.
+It has 12 faces with five edges each. Thus, the corresponding Voronoi index
+vector is:</p>
+<blockquote>
+<div><p>(0, 0, 0, 0, 12, 0, …)</p>
+</div></blockquote>
+<p>Python script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import OVITO modules.</span>
+<span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ovito.modifiers</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Import NumPy module.</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="c1"># Load a simulation snapshot of a Cu-Zr metallic glass.</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s2">&quot;input/simulation.0.dump&quot;</span><span class="p">)</span>
+
+<span class="c1"># The LAMMPS dump file imported above contains only numeric atom type IDs but </span>
+<span class="c1"># no chemical element names or atom radius information. That&#39;s why we explicitly set the</span>
+<span class="c1"># atomic radii of Cu &amp; Zr atoms now (required for polydisperse Voronoi tessellation).</span>
+<span class="k">def</span> <span class="nf">assign_particle_radii</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">atom_types</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">particle_types_</span>
+    <span class="n">atom_types</span><span class="o">.</span><span class="n">type_by_id_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="mf">1.35</span>   <span class="c1"># Cu atomic radius assigned to atom type 1</span>
+    <span class="n">atom_types</span><span class="o">.</span><span class="n">type_by_id_</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="mf">1.55</span>   <span class="c1"># Zr atomic radius assigned to atom type 2</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assign_particle_radii</span><span class="p">)</span>
+
+<span class="c1"># Set up the Voronoi analysis modifier.</span>
+<span class="n">voro</span> <span class="o">=</span> <span class="n">VoronoiAnalysisModifier</span><span class="p">(</span>
+    <span class="n">compute_indices</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_radii</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">edge_threshold</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voro</span><span class="p">)</span>
+
+<span class="c1"># Let OVITO compute the results.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<span class="c1"># Access computed Voronoi indices.</span>
+<span class="c1"># This is an (N) x (M) array, where M is the maximum face order.</span>
+<span class="n">voro_indices</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Voronoi Index&#39;</span><span class="p">]</span>
+
+<span class="c1"># This helper function takes a two-dimensional array and computes a frequency</span>
+<span class="c1"># histogram of the data rows using some NumPy magic.</span>
+<span class="c1"># It returns two arrays (of equal length):</span>
+<span class="c1">#    1. The list of unique data rows from the input array</span>
+<span class="c1">#    2. The number of occurrences of each unique row</span>
+<span class="c1"># Both arrays are sorted in descending order such that the most frequent rows</span>
+<span class="c1"># are listed first.</span>
+<span class="k">def</span> <span class="nf">row_histogram</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">ca</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">([(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="p">)]</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">unique</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">inverse</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ca</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">inverse</span><span class="p">)</span>
+    <span class="n">sort_indices</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">counts</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">]],</span> <span class="n">counts</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">])</span>
+
+<span class="c1"># Compute frequency histogram.</span>
+<span class="n">unique_indices</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">row_histogram</span><span class="p">(</span><span class="n">voro_indices</span><span class="p">)</span>
+
+<span class="c1"># Print the ten most frequent histogram entries.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="s2">(</span><span class="si">%.1f</span><span class="s2"> </span><span class="si">%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">unique_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                                 <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                 <span class="mf">100.0</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">voro_indices</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Program output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(0, 0, 0, 0, 12, 0)     12274   (11.4 %)
+(0, 0, 0, 2, 8, 2)      7485    (6.9 %)
+(0, 0, 0, 3, 6, 4)      5637    (5.2 %)
+(0, 0, 0, 1, 10, 2)     4857    (4.5 %)
+(0, 0, 0, 3, 6, 3)      3415    (3.2 %)
+(0, 0, 0, 2, 8, 1)      2927    (2.7 %)
+(0, 0, 0, 1, 10, 5)     2900    (2.7 %)
+(0, 0, 0, 1, 10, 4)     2068    (1.9 %)
+(0, 0, 0, 2, 8, 6)      2063    (1.9 %)
+(0, 0, 0, 2, 8, 5)      1662    (1.5 %)
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../examples.html" class="btn btn-neutral float-left" title="Code examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cna_bond_indices.html" class="btn btn-neutral float-right" title="Example B2: Computing CNA bond indices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

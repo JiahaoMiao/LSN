@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XYZ file reader &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/file_formats/input/xyz.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Output file formats" href="../file_formats_output.html" />
+    <link rel="prev" title="Gromacs XTC file reader" href="xtc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../pipelines/index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../pipelines/data_sources/index.html">Data sources</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../pipelines/data_sources/external_file.html">External file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../pipelines/data_sources/python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../pipelines/data_sources/lammps_script.html">LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../../pipelines/index.html">Pipelines</a> &raquo;</li>
+          <li><a href="../../pipelines/data_sources/index.html">Data sources</a> &raquo;</li>
+          <li><a href="../../pipelines/data_sources/external_file.html">External file</a> &raquo;</li>
+          <li><a href="../file_formats_input.html">Input file formats</a> &raquo;</li>
+      <li>XYZ file reader</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-formats-input-xyz">
+<span id="xyz-file-reader"></span><h1>XYZ file reader<a class="headerlink" href="#file-formats-input-xyz" title="Permalink to this heading"></a></h1>
+<figure class="align-right" id="id1" style="width: 30%">
+<img alt="../../../_images/xyz_reader.jpg" src="../../../_images/xyz_reader.jpg" />
+<figcaption>
+<p><span class="caption-text">User interface of the XYZ reader, which appears as part of a pipeline’s <a class="reference internal" href="../../pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">file source</span></a>.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>XYZ is a simple text-based file format for storing particles or atoms and their properties.</p>
+<section id="file-formats-input-xyz-standard-format">
+<span id="basic-xyz-format"></span><h2>Basic XYZ format<a class="headerlink" href="#file-formats-input-xyz-standard-format" title="Permalink to this heading"></a></h2>
+<p>In <a class="reference external" href="https://en.wikipedia.org/wiki/XYZ_file_format">its simplest form</a>, an XYZ file consists of a short header (two lines) followed by the list of atoms:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">8</span>
+<span class="go">Cubic bulk silicon cell</span>
+<span class="go">Si        0.00000000      0.00000000      0.00000000</span>
+<span class="go">Si        1.36000000      1.36000000      1.36000000</span>
+<span class="go">Si        2.72000000      2.72000000      0.00000000</span>
+<span class="go">Si        4.08000000      4.08000000      1.36000000</span>
+<span class="go">Si        2.72000000      0.00000000      2.72000000</span>
+<span class="go">Si        4.08000000      1.36000000      4.08000000</span>
+<span class="go">Si        0.00000000      2.72000000      2.72000000</span>
+<span class="go">Si        1.36000000      4.08000000      4.08000000</span>
+</pre></div>
+</div>
+<p>The first line specifies the number of atoms and the second line is used to store an arbitrary comment text (may be an empty line).
+Each of the following atom lines consist of the species name and the atom’s Cartesian xyz coordinates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since this basic XYZ file format doesn’t contain any information about the simulation cell,
+OVITO automatically computes an ad-hoc bounding box enclosing all atoms and assumes non-periodic boundary conditions.
+This tight simulation box will typically not reflect the actual simulation cell used in the original simulation.
+If possible, use the <a class="reference internal" href="#file-formats-input-xyz-extended-format"><span class="std std-ref">extended XYZ file format</span></a> to import
+the true cell geometry into OVITO.</p>
+</div>
+<p>This reader is able to load gzipped XYZ files (“.gz” suffix).</p>
+<p>XYZ files may store simulation trajectories. Multiple frames are simply stored back-to-back in one file,
+i.e., the next two-line header directly follows after the atoms list of the preceding frame. OVITO automatically
+detects if the loaded XYZ file contains more than one frame.</p>
+</section>
+<section id="file-formats-input-xyz-auxiliary-columns">
+<span id="xyz-files-with-additional-columns"></span><h2>XYZ files with additional columns<a class="headerlink" href="#file-formats-input-xyz-auxiliary-columns" title="Permalink to this heading"></a></h2>
+<p>While the basic XYZ format consists of exactly four data columns as described above, OVITO is prepared to read
+XYZ files with an arbitrary number of columns containing auxiliary per-atom attributes.
+The file reader will display the following dialog window to let you specify the mapping of each file column
+to a corresponding <a class="reference internal" href="../../../usage/data_model.html#usage-particle-properties"><span class="std std-ref">particle property</span></a> within OVITO.</p>
+<a class="reference internal image-reference" href="../../../_images/xyz_reader_mapping_dialog.jpg"><img alt="../../../_images/xyz_reader_mapping_dialog.jpg" src="../../../_images/xyz_reader_mapping_dialog.jpg" style="width: 50%;" /></a>
+<p>OVITO normally adopts the original order of the atoms as they are listed in the XYZ file.
+However, if a file column contains unique atom IDs, and they are mapped to OVITO’s <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code>
+property, the file reader provides a user option to sort atoms by ID during import
+(<code class="docutils literal notranslate"><span class="pre">sort_particles</span></code> keyword parameter in Python, see below).</p>
+</section>
+<section id="file-formats-input-xyz-extended-format">
+<span id="extended-xyz-format"></span><h2>Extended XYZ format<a class="headerlink" href="#file-formats-input-xyz-extended-format" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference external" href="https://github.com/libAtoms/extxyz">extended XYZ format</a> is an enhanced version of the basic XYZ format, allowing extra columns to be present in the file for
+additional per-atom properties as well as standardizing the format of the comment line to include the simulation cell geometry,
+boundary conditions, and other per-frame parameters. Here is an example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">8</span>
+<span class="go">Lattice=&quot;5.44 0.0 0.0 0.0 5.44 0.0 0.0 0.0 5.44&quot; Properties=species:S:1:pos:R:3 Time=0.0</span>
+<span class="go">Si        0.00000000      0.00000000      0.00000000</span>
+<span class="go">Si        1.36000000      1.36000000      1.36000000</span>
+<span class="go">Si        2.72000000      2.72000000      0.00000000</span>
+<span class="go">Si        4.08000000      4.08000000      1.36000000</span>
+<span class="go">Si        2.72000000      0.00000000      2.72000000</span>
+<span class="go">Si        4.08000000      1.36000000      4.08000000</span>
+<span class="go">Si        0.00000000      2.72000000      2.72000000</span>
+<span class="go">Si        1.36000000      4.08000000      4.08000000</span>
+</pre></div>
+</div>
+<p>In the extended XYZ format, the comment line is replaced by a series of key/value pairs.
+The keys should be strings, and values can be integers, reals, booleans (denoted by <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> for <em>true</em> and <em>false</em>) or strings.
+Quotes are required if a value contains any spaces (like in the <code class="docutils literal notranslate"><span class="pre">Lattice</span></code> record above).</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>No whitespace is allowed in front of or after the equal sign. <code class="docutils literal notranslate"><span class="pre">Lattice=&quot;...&quot;</span></code> is correct, <code class="docutils literal notranslate"><span class="pre">Lattice</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;</span></code> is wrong.</p>
+</div>
+<p>There are two mandatory parameters that any extended XYZ file must specify: <code class="docutils literal notranslate"><span class="pre">Lattice</span></code> and <code class="docutils literal notranslate"><span class="pre">Properties</span></code>.
+Other parameters - e.g. <code class="docutils literal notranslate"><span class="pre">Time</span></code> in the example above - can be added to the parameter line as needed
+and will be imported by OVITO as <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Lattice</span></code> is a Cartesian 3x3 matrix representation of the <a class="reference internal" href="../../pipelines/data_objects/simulation_cell.html#scene-objects-simulation-cell"><span class="std std-ref">simulation cell vectors</span></a>,
+with each vector stored as a column and the 9 values listed in Fortran column-major order,
+i.e. in the form:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Lattice=&quot;&lt;ax&gt; &lt;ay&gt; &lt;az&gt; &lt;bx&gt; &lt;by&gt; &lt;bz&gt; &lt;cx&gt; &lt;cy&gt; &lt;cz&gt;&quot;</span>
+</pre></div>
+</div>
+<p>where <span class="math notranslate nohighlight">\((a_x\ a_y\ a_z)\)</span> are the Cartesian x-, y- and z-components of the first simulation cell vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>,
+<span class="math notranslate nohighlight">\((b_x\ b_y\ b_z)\)</span> those of the second simulation cell vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, and <span class="math notranslate nohighlight">\((c_x\ c_y\ c_z)\)</span> those of the third simulation cell vector <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>.
+Optionally, the Cartesian coordinates of the simulation cell origin <span class="math notranslate nohighlight">\(\mathbf{o} = (o_x\ o_y\ o_z)\)</span> can be specified as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Origin=&quot;&lt;ox&gt; &lt;oy&gt; &lt;oz&gt;&quot;</span>
+</pre></div>
+</div>
+<p>Without this field, OVITO places the cell origin at the standard position (0,0,0).</p>
+<p>The periodic boundary conditions in each cell direction may be specified as triplet of Boolean flags (F/T or 0/1), e.g.:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pbc=&quot;T T F&quot;</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">pbc</span></code> keyword is not present, OVITO assumes the simulation cell to be periodic in all three directions
+(only if it’s an <em>extended</em> XYZ files including the <code class="docutils literal notranslate"><span class="pre">Lattice</span></code> keyword!).</p>
+<p>The list of data columns in the file is described by the <code class="docutils literal notranslate"><span class="pre">Properties</span></code> parameter, which should take the form of a series of
+colon-separated triplets giving the name, format (<code class="docutils literal notranslate"><span class="pre">S</span></code> for string, <code class="docutils literal notranslate"><span class="pre">R</span></code> for real, <code class="docutils literal notranslate"><span class="pre">I</span></code> for integer) and number of columns of each property.
+For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Properties=&quot;species:S:1:pos:R:3:vel:R:3:flagged:I:1&quot;</span>
+</pre></div>
+</div>
+<p>indicates that the first file column represents atomic species, the next three columns represent atomic positions,
+the next three velocities, and the last is an single integer called <em>flagged</em>. With this columns definition, the line</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Si        4.08000000      4.08000000      1.36000000   0.00000000      0.00000000      0.00000000       1</span>
+</pre></div>
+</div>
+<p>would describe a silicon atom at position <span class="math notranslate nohighlight">\((4.08, 4.08, 1.36)\)</span> with zero velocity and the <code class="docutils literal notranslate"><span class="pre">flagged</span></code> particle property set to 1.
+In the current version of OVITO, text columns (data format <code class="docutils literal notranslate"><span class="pre">S</span></code>) are only allowed for the atom species or the molecule type.</p>
+<p>The file reader automatically maps file columns to the right <a class="reference internal" href="../../../usage/data_model.html#usage-particle-properties"><span class="std std-ref">particle properties</span></a> in OVITO if their
+name matches one of the following standard names (case-insensitive):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>XYZ column specification</p></th>
+<th class="head"><p>OVITO particle property</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">species:S:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">element:S:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atom_types:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pos:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Position</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">color:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Color</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">disp:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Displacement</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">disp_mag:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Displacement</span> <span class="pre">Magnitude</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">force:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Force</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">forces:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Force</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">velo:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Velocity</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">velo_mag:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Velocity</span> <span class="pre">Magnitude</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">radius:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Radius</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">id:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">aspherical_shape:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">orientation:R:4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Orientation</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">map_shift:I:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Periodic</span> <span class="pre">Image</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transparency:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transparency</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vector_color:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Color</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">molecule:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Molecule</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">molecule_type:S:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Molecule</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cluster:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Cluster</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_neighb:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Coordination</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">structure_type:S:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Structure</span> <span class="pre">Type</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stress:R:6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Stress</span> <span class="pre">Tensor</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">strain:R:6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Strain</span> <span class="pre">Tensor</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">deform:R:9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Deformation</span> <span class="pre">Gradient</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mass:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Mass</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">charge:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Charge</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dipoles:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Dipole</span> <span class="pre">Orientation</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dipoles_mag:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Dipole</span> <span class="pre">Magnitude</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">omega:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Angular</span> <span class="pre">Velocity</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">angular_momentum:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Angular</span> <span class="pre">Momentum</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">torque:R:3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Torque</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spin:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Spin</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">centro_symmetry:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Centrosymmetry</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">selection:I:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Selection</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">local_energy:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Potential</span> <span class="pre">Energy</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kinetic_energy:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Kinetic</span> <span class="pre">Energy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">total_energy:R:1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Total</span> <span class="pre">Energy</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>File columns having any other name will be mapped to a new user-defined particle property of the same name.</p>
+</section>
+<section id="file-formats-input-xyz-exyz-format">
+<span id="openbabel-exyz-format"></span><h2>OpenBabel exyz format<a class="headerlink" href="#file-formats-input-xyz-exyz-format" title="Permalink to this heading"></a></h2>
+<p>OVITO supports also the <a class="reference external" href="https://open-babel.readthedocs.io/en/latest/FileFormats/Extended_XYZ_cartesian_coordinates_format.html">.exyz format written by OpenBabel</a>,
+which contains a comment line starting with the token <code class="docutils literal notranslate"><span class="pre">%PBC</span></code>.
+In this variant of the XYZ format, the simulation cell geometry follows behind the atoms list as a separate section.</p>
+</section>
+<section id="file-formats-input-xyz-python">
+<span id="python-parameters"></span><h2>Python parameters<a class="headerlink" href="#file-formats-input-xyz-python" title="Permalink to this heading"></a></h2>
+<p>The XYZ file reader accepts the following optional keyword parameters in a call to the <a class="reference external" href="../../../python/modules/ovito_io.html#ovito.io.import_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> or <a class="reference external" href="../../../python/modules/ovito_pipeline.html#ovito.pipeline.FileSource.load" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load()</span></code></a> Python functions.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">import_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale_reduced_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_particles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>columns</strong> (<em>list</em><em>[</em><em>str</em><em> | </em><em>None</em><em>] </em><em>| </em><em>None</em>) – A list of OVITO particle property names, one for each data column in the xyz file. Overrides the mapping
+that otherwise gets set up automatically as described above. List entries may be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>
+to skip individual file columns during parsing.</p></li>
+<li><p><strong>rescale_reduced_coords</strong> – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, and if the XYZ file contains the dimensions of the simulation cell,
+and if all atomic coordinates are either in the range <span class="math notranslate nohighlight">\([0,1]\)</span> or the range <span class="math notranslate nohighlight">\([-0.5,+0.5]\)</span>, the file reader
+will convert the reduced coordinates to Cartesian coordinates.</p></li>
+<li><p><strong>sort_particles</strong> (<em>bool</em>) – Makes the file reader reorder the loaded particles before passing them to the pipeline.
+Sorting is based on the values of the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code> property loaded from the xyz file, if any.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.10.0: </span>New default value <code class="docutils literal notranslate"><span class="pre">rescale_reduced_coords=False</span></code>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xtc.html" class="btn btn-neutral float-left" title="Gromacs XTC file reader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../file_formats_output.html" class="btn btn-neutral float-right" title="Output file formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

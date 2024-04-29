@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/installation.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic usage" href="usage/index.html" />
+    <link rel="prev" title="Changelog" href="new_features.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-instructions">Installation instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-remote">Running on remote machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-python">Python module installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-troubleshooting-windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-troubleshooting-linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-troubleshooting-macos">macOS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>Binary program packages of <em>OVITO Basic</em> and <em>OVITO Pro</em> for Linux, Windows, and macOS can be downloaded from <a class="reference external" href="https://www.ovito.org/">www.ovito.org</a>.</p>
+<section id="installation-requirements">
+<span id="system-requirements"></span><h2>System requirements<a class="headerlink" href="#installation-requirements" title="Permalink to this heading"></a></h2>
+<p>OVITO runs on processors with x86-64 or arm64 architecture. The desktop application requires an environment that has support for the <a class="reference external" href="https://en.wikipedia.org/wiki/OpenGL">OpenGL</a> 3d graphics interface (OpenGL 2.1 or newer).
+In general, it is recommended that you install the latest graphics driver provided by your hardware vendor, as some older drivers may not fully support modern OpenGL specifications.</p>
+<p>Operating system compatibility:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>64-bit Windows 10 (21H2 or later), Windows 11 (21H2 or later) – x86_64 processor architecture</p></li>
+<li><p>Linux: CentOS Linux 8.4+, openSUSE 15.3+, Ubuntu 20.04+, SUSE Linux Enterprise Server 15+, or any compatible distributions running on x86_64 processors</p></li>
+<li><p>macOS 10.15+ – arm64 (Apple Silicon) and Intel processor architectures</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installation-instructions">
+<span id="id2"></span><h2>Installation instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt><em>Linux</em>:</dt><dd><p>Extract the downloaded <code class="file docutils literal notranslate"><span class="pre">.tar.xz</span></code> archive file using the tar utility: <strong class="command">tar xJfv ovito-3.10.4-x86_64.tar.xz</strong>.
+This will create a new sub-directory containing the program files.
+Change into that directory and start OVITO by running the executable <strong class="command">./bin/ovito</strong>.</p>
+</dd>
+<dt><em>Windows</em>:</dt><dd><p>Run the installer program <code class="file docutils literal notranslate"><span class="pre">ovito-3.10.4-win64.exe</span></code> to install OVITO in a directory of your choice.
+Note that Windows might ask whether you really want to launch the installer since it was downloaded from the web.</p>
+</dd>
+<dt><em>macOS</em>:</dt><dd><p>Double-click the downloaded <code class="file docutils literal notranslate"><span class="pre">.dmg</span></code> disk image file to open it, agree to the program license, and drag the <strong class="program">Ovito</strong> application bundle into your <code class="file docutils literal notranslate"><span class="pre">Applications</span></code> folder.
+Then start OVITO by double-clicking the application bundle.</p>
+</dd>
+</dl>
+</section>
+<section id="installation-remote">
+<span id="running-on-remote-machines"></span><h2>Running on remote machines<a class="headerlink" href="#installation-remote" title="Permalink to this heading"></a></h2>
+<p>Note that the OVITO desktop application cannot be run through an SSH connection using X11 forwarding mode, because the software requires direct
+access to the graphics hardware (OpenGL direct rendering mode). If you simply run <strong class="command">ovito</strong> in an SSH terminal, you will likely get failure messages
+during program startup or just a black application window.</p>
+<p>It is possible to run OVITO on a remote machine through an SSH connection using a VirtualGL + VNC remote desktop setup.
+For further information, please see the <a class="reference external" href="https://www.virtualgl.org/">www.virtualgl.org</a> website.
+In this mode, OVITO will make use of the graphics hardware of the remote machine, which must be set up to allow running
+applications in a desktop environment. Please contact your local computing center staff to find out whether
+this kind of remote visualization mode is supported by the HPC cluster you work on.</p>
+</section>
+<section id="installation-python">
+<span id="python-module-installation"></span><h2>Python module installation<a class="headerlink" href="#installation-python" title="Permalink to this heading"></a></h2>
+<p>The <em>OVITO Pro</em> program package includes an <a class="reference external" href="python/introduction/installation.html#ovitos-interpreter" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">integrated Python interpreter</span></a> (<strong class="command">ovitos</strong>) that gets installed alongside with the application,
+allowing you to run Python code written for OVITO and install third-party modules from the <a class="reference external" href="https://www.ovito.org/extensions/">OVITO Extensions Directory</a> for example.
+You can also install the standalone <code class="docutils literal notranslate"><span class="pre">ovito</span></code> Python module into an external Python interpreter on your system  (e.g. <strong class="program">Anaconda</strong> or the standard <strong class="program">CPython</strong> interpreter) in case you
+would like to make use of OVITO’s functionality in script-based workflows. Please refer to <a class="reference external" href="python/introduction/installation.html#installation" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">this section</span></a> for further setup instructions.</p>
+</section>
+<section id="installation-troubleshooting">
+<span id="troubleshooting"></span><h2>Troubleshooting<a class="headerlink" href="#installation-troubleshooting" title="Permalink to this heading"></a></h2>
+<p>If you run into any problems during the installation of OVITO, you can contact the developers through the <a class="reference external" href="https://matsci.org/c/ovito/">online user forum</a>.
+The OVITO team will be happy to help you. The most commonly encountered installation issues on different platforms are addressed in the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#installation-troubleshooting-windows"><span class="std std-ref">Windows</span></a></p></li>
+<li><p><a class="reference internal" href="#installation-troubleshooting-linux"><span class="std std-ref">Linux</span></a></p></li>
+<li><p><a class="reference internal" href="#installation-troubleshooting-macos"><span class="std std-ref">macOS</span></a></p></li>
+</ul>
+</div></blockquote>
+<section id="installation-troubleshooting-windows">
+<span id="windows"></span><h3>Windows<a class="headerlink" href="#installation-troubleshooting-windows" title="Permalink to this heading"></a></h3>
+<dl>
+<dt>Windows 7 no longer supported</dt><dd><div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you try to run OVITO 3.7 or later on a Windows 7 computer, it will fail with the error “<em>The procedure entry point CreateDXGIFactory2 could not be
+located in the dynamic link library dxgi.dll</em>”.</p>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p>Modern versions of OVITO are based on the Qt6 cross-platform framework, which <a class="reference external" href="https://doc.qt.io/qt-6/supported-platforms.html">requires Windows 10 or later to run</a>.
+Windows 7 has reached its end of life and is no longer supported. Please upgrade your Windows operating system.</p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="installation-troubleshooting-linux">
+<span id="linux"></span><h3>Linux<a class="headerlink" href="#installation-troubleshooting-linux" title="Permalink to this heading"></a></h3>
+<dl>
+<dt>Missing shared object files or broken links</dt><dd><div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>Starting the desktop application <strong class="command">ovito</strong> or the script interpreter <strong class="command">ovitos</strong> may fail with the following error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./ovito: error while loading shared libraries: libQt5DBus.so.5:</span>
+<span class="go">        cannot open shared object file: No such file or directory</span>
+</pre></div>
+</div>
+<p>This error is typically caused by broken symbolic links in the <code class="file docutils literal notranslate"><span class="pre">lib/ovito/</span></code> sub-directory of the OVITO installation after
+extracting the installation package for Linux on a Windows computer.</p>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p>Reinstall OVITO by extracting the <cite>.tar.xz</cite> archive on the target machine.
+Do <em>not</em> transfer the directory tree between different computers after it has been extracted,
+because this can easily break symbolic links between files.</p>
+</div>
+</dd>
+<dt>Missing XCB system libraries</dt><dd><div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>You may see the following error when running <strong class="command">ovito</strong> on a Linux machine:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">qt.qpa.plugin: Could not load the Qt platform plugin &quot;xcb&quot; in &quot;&quot; even though it was found.</span>
+<span class="go">This application failed to start because no Qt platform plugin could be initialized.</span>
+<span class="go">Reinstalling the application may fix this problem.</span>
+<span class="go">Available platform plugins are: minimal, offscreen, vnc, xcb.</span>
+</pre></div>
+</div>
+<p>In this case OVITO cannot find the required <code class="file docutils literal notranslate"><span class="pre">libxcb-*.so</span></code> set of system libraries, which might not be
+preinstalled on new Linux systems.</p>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p>Install the required system libraries using your Linux package manager:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Ubuntu/Debian systems:</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libxcb1<span class="w"> </span>libx11-xcb1<span class="w"> </span>libxcb-glx0<span class="w"> </span>libxcb-icccm4<span class="w"> </span>libxcb-image0<span class="w"> </span>libxcb-keysyms1<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>libxcb-randr0<span class="w"> </span>libxcb-render-util0<span class="w"> </span>libxcb-render0<span class="w"> </span>libxcb-shape0<span class="w"> </span>libxcb-shm0<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>libxcb-sync1<span class="w"> </span>libxcb-xfixes0<span class="w"> </span>libxcb-xinerama0<span class="w"> </span>libxcb-xinput0<span class="w"> </span>libxcb-xkb1<span class="w"> </span>libxcb-cursor0<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>libfontconfig1<span class="w"> </span>libfreetype6<span class="w"> </span>libopengl0<span class="w"> </span>libglx0<span class="w"> </span>libx11-6
+
+<span class="c1"># On CentOS/RHEL systems:</span>
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>libxcb<span class="w"> </span>xcb-util-cursor<span class="w"> </span>xcb-util-image<span class="w"> </span>xcb-util-keysyms<span class="w"> </span>xcb-util-renderutil<span class="w"> </span>xcb-util-wm
+</pre></div>
+</div>
+<p>Debian users should also pay attention to <a class="reference external" href="https://www.ovito.org/forum/topic/installation-problem/#postid-2272">this thread in the OVITO support forum</a>.</p>
+</div>
+</dd>
+<dt>Missing OpenGL system libraries</dt><dd><div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>You may see the following errors when running <strong class="command">ovito</strong> or importing the OVITO Python module on a Linux machine:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./ovito: error while loading shared libraries: libOpenGL.so.0: cannot open shared object file: No such file or directory</span>
+
+<span class="go">libEGL.so.1: cannot open shared object file: No such file or directory</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p>Install the required system libraries using your package manager:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Ubuntu/Debian systems:</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libopengl0<span class="w"> </span>libgl1-mesa-glx<span class="w"> </span>libegl1
+</pre></div>
+</div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="installation-troubleshooting-macos">
+<span id="macos"></span><h3>macOS<a class="headerlink" href="#installation-troubleshooting-macos" title="Permalink to this heading"></a></h3>
+<dl>
+<dt>OVITO Pro license activation fails</dt><dd><div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>The activation step could not be completed due to an issue with the local license information store. File path: <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/Ovito/LicenseStore.ini</span></code>.
+Please check if file access permissions are correctly set. OVITO Pro requires read/write access to this filesystem path.</p>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p>During license activation, <em>OVITO Pro</em> needs to create the directory <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/Ovito/</span></code> to store the downloaded licensing information.
+The error occurs if creating this directory or storing files in this directory is prevented by insufficient file system permissions.</p>
+<p>In many cases, the parent directory, <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/</span></code>, is the actual reason for this problem, because it is owned by the wrong macOS user account.
+<code class="file docutils literal notranslate"><span class="pre">$HOME/.config/</span></code> is the <a class="reference external" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">canonical storage location</a>  for application configuration
+data on Linux/Unix systems. On macOS, this directory is not created by the system by default, but rather it is created by individual applications
+such as OVITO when they run for the first time. As a result, the ownership and permissions of this directory can vary depending on how it was created and
+which system user ran the first process creating it.</p>
+<p>It can happen that <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/</span></code> is owned by the system administrator (“root” user), because it was the root user who first ran an application
+creating the <code class="file docutils literal notranslate"><span class="pre">.config</span></code> directory. As a result, your personal user account, which you are using to install <em>OVITO Pro</em>, can’t make further modifications to the directory, which
+lets the license activation fail. To resolve the problem, ask your system administrator to create the <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/Ovito/</span></code> subdirectory for you
+and make it writable by your personal user account – or follow <a class="reference external" href="https://apple.stackexchange.com/a/320686">these instructions</a> to correct the ownership
+of the <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/</span></code> parent directory yourself.</p>
+<p>If changing the ownership is not possible for some reason, as a last resort, you can set the standard environment variable <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> to point to some existing directory
+other than <code class="file docutils literal notranslate"><span class="pre">$HOME/.config/</span></code>. This will <a class="reference external" href="https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html">redirect OVITO Pro</a> to store its
+licensing information in a different place, i.e., in a writable filesystem path of your choice.</p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="new_features.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage/index.html" class="btn btn-neutral float-right" title="Basic usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

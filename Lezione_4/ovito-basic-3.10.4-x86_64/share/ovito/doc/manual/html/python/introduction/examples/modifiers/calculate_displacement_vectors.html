@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example M7: Displacement vectors with reference configuration &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/modifiers/calculate_displacement_vectors.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example M8: Compute trajectory average of a global attribute" href="custom_time_average.html" />
+    <link rel="prev" title="Example M6: Calculate local entropy" href="calculate_local_entropy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="msd_calculation.html">Example M1: Calculating mean square displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="order_parameter_calculation.html">Example M2: Custom order parameter calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualize_local_lattice_orientation.html">Example M3: Color mapping to visualize local lattice orientation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="select_overlapping_particles.html">Example M4: Finding overlapping particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shrink_wrap_box.html">Example M5: Shrink-wrap simulation box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculate_local_entropy.html">Example M6: Calculate local entropy</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example M7: Displacement vectors with reference configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_time_average.html">Example M8: Compute trajectory average of a global attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example M7: Displacement vectors with reference configuration</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-m7-displacement-vectors-with-reference-configuration">
+<span id="example-calculate-displacement-vectors"></span><h1>Example M7: Displacement vectors with reference configuration<a class="headerlink" href="#example-m7-displacement-vectors-with-reference-configuration" title="Permalink to this heading"></a></h1>
+<p>This <a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">Python modifier</span></a> computes each particle’s displacement vector with respect to an explicit
+reference configuration of the system, which is loaded by the modifier from a separate input file. Thus, it
+replicates some of the functionality provided by the built-in <a class="reference internal" href="../../../modules/ovito_modifiers.html#ovito.modifiers.CalculateDisplacementsModifier" title="ovito.modifiers.CalculateDisplacementsModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalculateDisplacementsModifier</span></code></a>
+of OVITO.</p>
+<p>The modifier is based on the <a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers-advanced-interface"><span class="std std-ref">advanced programming interface</span></a>, i.e., it is implemented in the form of a
+Python class inheriting from <a class="reference internal" href="../../../modules/ovito_pipeline.html#ovito.pipeline.ModifierInterface" title="ovito.pipeline.ModifierInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModifierInterface</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.pipeline</span> <span class="kn">import</span> <span class="n">ModifierInterface</span><span class="p">,</span> <span class="n">FileSource</span>
+<span class="kn">from</span> <span class="nn">ovito.traits</span> <span class="kn">import</span> <span class="n">OvitoObject</span>
+<span class="kn">from</span> <span class="nn">ovito.vis</span> <span class="kn">import</span> <span class="n">VectorVis</span>
+<span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">Int</span><span class="p">,</span> <span class="n">Bool</span>
+
+<span class="k">class</span> <span class="nc">CalculateDisplacementsWithReference</span><span class="p">(</span><span class="n">ModifierInterface</span><span class="p">):</span>
+
+    <span class="c1"># Give the modifier a second input slot for reading the reference config from a separate file:</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="n">OvitoObject</span><span class="p">(</span><span class="n">FileSource</span><span class="p">)</span>
+
+    <span class="c1"># The trajectory frame from the reference file to use as (static) reference configuration (default 0).</span>
+    <span class="n">reference_frame</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference trajectory frame&#39;</span><span class="p">)</span>
+
+    <span class="c1"># This flag controls whether the modifier tries to detect when particles have crossed a periodic boundary</span>
+    <span class="c1"># of the simulation cell. The computed displacement vectors will be corrected accordingly.</span>
+    <span class="n">minimum_image_convention</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default_value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Use minimum image convention&#39;</span><span class="p">)</span>
+
+    <span class="c1"># A VectorVis visual element managed by this modifier, which will be assigned to the &#39;Displacement&#39; output property to visualize the vectors.</span>
+    <span class="n">vector_vis</span> <span class="o">=</span> <span class="n">OvitoObject</span><span class="p">(</span><span class="n">VectorVis</span><span class="p">,</span> <span class="n">alignment</span><span class="o">=</span><span class="n">VectorVis</span><span class="o">.</span><span class="n">Alignment</span><span class="o">.</span><span class="n">Head</span><span class="p">,</span> <span class="n">flat_shading</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Displacements&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Tell the pipeline system to keep two trajectory frames in memory: the current input frame and the reference configuration.</span>
+    <span class="k">def</span> <span class="nf">input_caching_hints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;upstream&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="p">,</span>
+            <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_frame</span>
+        <span class="p">}</span>
+
+    <span class="c1"># The actual function called by the pipeline system to let the modifier do its thing.</span>
+    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">input_slots</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ModifierInterface</span><span class="o">.</span><span class="n">InputSlot</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Request the reference configuration.</span>
+        <span class="n">ref_data</span> <span class="o">=</span> <span class="n">input_slots</span><span class="p">[</span><span class="s1">&#39;reference&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span>
+
+        <span class="c1"># Get current particle positions and reference positions, making sure the ordering of the two arrays</span>
+        <span class="c1"># is the same even if the storage order of particles changes with time.</span>
+        <span class="n">current_positions</span>   <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
+        <span class="n">reference_positions</span> <span class="o">=</span> <span class="n">ref_data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">ref_data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">remap_indices</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">)]</span>
+
+        <span class="c1"># Compute particle displacement vectors. Use SimulationCell.delta_vector() method to</span>
+        <span class="c1"># correctly handle particles that have crossed a periodic boundary.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_image_convention</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="p">:</span>
+            <span class="n">displacements</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">delta_vector</span><span class="p">(</span><span class="n">reference_positions</span><span class="p">,</span> <span class="n">current_positions</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">displacements</span> <span class="o">=</span> <span class="n">current_positions</span> <span class="o">-</span> <span class="n">reference_positions</span>
+
+        <span class="c1"># Output the computed displacement vectors as a new particle property.</span>
+        <span class="c1"># Assign our visual element to the property to render the displacement vectors as arrows.</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">displacements</span><span class="p">)</span><span class="o">.</span><span class="n">vis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_vis</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers-advanced-interface-caching"><span class="std std-ref">Input data caching</span></a></p></li>
+<li><p><a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers-advanced-interface-user-params"><span class="std std-ref">User parameters</span></a></p></li>
+<li><p><a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers-advanced-interface-additional-input-slots"><span class="std std-ref">Defining additional input slots</span></a></p></li>
+<li><p><a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.Particles.remap_indices" title="ovito.data.Particles.remap_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Particles.remap_indices()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.SimulationCell.delta_vector" title="ovito.data.SimulationCell.delta_vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SimulationCell.delta_vector()</span></code></a></p></li>
+</ul>
+</div>
+<p>For the sake of completeness, we also provide a version of the modifier that does <em>not</em> load an explicit reference configuration from a separate file.
+Instead, the following version of the modifier obtains the reference particle positions from the current upstream pipeline by evaluating it
+at a given animation time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="kn">from</span> <span class="nn">ovito.pipeline</span> <span class="kn">import</span> <span class="n">ModifierInterface</span>
+<span class="kn">from</span> <span class="nn">ovito.traits</span> <span class="kn">import</span> <span class="n">OvitoObject</span>
+<span class="kn">from</span> <span class="nn">ovito.vis</span> <span class="kn">import</span> <span class="n">VectorVis</span>
+<span class="kn">from</span> <span class="nn">traits.api</span> <span class="kn">import</span> <span class="n">Int</span><span class="p">,</span> <span class="n">Bool</span>
+
+<span class="k">class</span> <span class="nc">CalculateDisplacements</span><span class="p">(</span><span class="n">ModifierInterface</span><span class="p">):</span>
+
+    <span class="c1"># The trajectory frame to use as reference configuration (default 0).</span>
+    <span class="n">reference_frame</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference trajectory frame&#39;</span><span class="p">)</span>
+
+    <span class="c1"># This flag controls whether the modifier tries to detect when particles have crossed a periodic boundary</span>
+    <span class="c1"># of the simulation cell. The computed displacement vectors will be corrected accordingly.</span>
+    <span class="n">minimum_image_convention</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default_value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Use minimum image convention&#39;</span><span class="p">)</span>
+
+    <span class="c1"># A VectorVis visual element managed by this modifier, which will be assigned to the &#39;Displacement&#39; output property to visualize the vectors.</span>
+    <span class="n">vector_vis</span> <span class="o">=</span> <span class="n">OvitoObject</span><span class="p">(</span><span class="n">VectorVis</span><span class="p">,</span> <span class="n">alignment</span><span class="o">=</span><span class="n">VectorVis</span><span class="o">.</span><span class="n">Alignment</span><span class="o">.</span><span class="n">Head</span><span class="p">,</span> <span class="n">flat_shading</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Displacements&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Tell the pipeline system to keep two trajectory frames in memory: the current input frame and the reference frame.</span>
+    <span class="k">def</span> <span class="nf">input_caching_hints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">]</span>
+
+    <span class="c1"># The actual function called by the pipeline system to let the modifier do its thing.</span>
+    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">input_slots</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ModifierInterface</span><span class="o">.</span><span class="n">InputSlot</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Request the reference configuration from the upstream pipeline.</span>
+        <span class="n">ref_data</span> <span class="o">=</span> <span class="n">input_slots</span><span class="p">[</span><span class="s1">&#39;upstream&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span>
+
+        <span class="c1"># Get current particle positions and reference positions, making sure the ordering of the two arrays</span>
+        <span class="c1"># is the same even if the storage order of particles changes with time.</span>
+        <span class="n">current_positions</span>   <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
+        <span class="n">reference_positions</span> <span class="o">=</span> <span class="n">ref_data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">ref_data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">remap_indices</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">)]</span>
+
+        <span class="c1"># Compute particle displacement vectors. Use SimulationCell.delta_vector() method to</span>
+        <span class="c1"># correctly handle particles that have crossed a periodic boundary.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_image_convention</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="p">:</span>
+            <span class="n">displacements</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">delta_vector</span><span class="p">(</span><span class="n">reference_positions</span><span class="p">,</span> <span class="n">current_positions</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">displacements</span> <span class="o">=</span> <span class="n">current_positions</span> <span class="o">-</span> <span class="n">reference_positions</span>
+
+        <span class="c1"># Output the computed displacement vectors as a new particle property.</span>
+        <span class="c1"># Assign our visual element to the property to render the displacement vectors as arrows.</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">displacements</span><span class="p">)</span><span class="o">.</span><span class="n">vis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_vis</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="calculate_local_entropy.html" class="btn btn-neutral float-left" title="Example M6: Calculate local entropy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_time_average.html" class="btn btn-neutral float-right" title="Example M8: Compute trajectory average of a global attribute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

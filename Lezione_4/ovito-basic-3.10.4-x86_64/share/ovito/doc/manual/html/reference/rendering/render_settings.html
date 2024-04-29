@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Render settings &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/rendering/render_settings.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Animation settings" href="animation_settings_dialog.html" />
+    <link rel="prev" title="Rendering" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Rendering</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Render settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="animation_settings_dialog.html">Animation settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opengl_renderer.html">OpenGL renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospray_renderer.html">OSPRay renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tachyon_renderer.html">Tachyon renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="visrtx_renderer.html">VisRTX renderer (experimental) <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Rendering</a> &raquo;</li>
+      <li>Render settings</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-render-settings">
+<span id="render-settings"></span><h1>Render settings<a class="headerlink" href="#core-render-settings" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/render_settings_panel.png"><img alt="../../_images/render_settings_panel.png" class="align-right" src="../../_images/render_settings_panel.png" style="width: 35%;" /></a>
+<p>This panel contains general settings related to <a class="reference internal" href="../../usage/rendering.html#usage-rendering"><span class="std std-ref">image and movie rendering</span></a>,
+e.g. resolution, output filename, background color, etc.
+It is found on the <span class="guilabel">Rendering</span> tab of the command panel as depicted in the screenshot.</p>
+<p>To start an image/movie rendering process, use the <span class="guilabel">Render active viewport</span>
+button located at the bottom of the panel or the button in the toolbar located above the viewports. OVITO will always render the currently
+active viewport, which is indicated by a yellow border. Right-click in a viewport to make it the active one.</p>
+<p>By default, rendered images are displayed in the so-called frame buffer window after rendering is complete, but they are not automatically saved to disk.
+That means they will be lost as soon as you close the frame buffer window or quit OVITO. To save rendered images, you can either use the <span class="guilabel">Save to file</span> function
+found in the toolbar of the frame buffer window after rendering is complete or activate the <span class="guilabel">Save to file</span> option in advance in the
+<em>Render settings</em> panel, which is described below.</p>
+<p>When rendering a movie note that the total length of the animation and the playback speed (frames per second) are set in
+the <a class="reference internal" href="animation_settings_dialog.html#animation-animation-settings-dialog"><span class="std std-ref">animation settings dialog</span></a>, which can be opened
+using the <span class="guilabel">Animation settings</span> button.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Rendering range</dt><dd><p>Selects which animation frame(s) to render.
+If you decide to render an animation, i.e. a range of frames,
+make sure you also check the <span class="guilabel">Save to file</span> option and set an output filename below.
+Otherwise, the rendered animation will not get permanently saved to disk.</p>
+</dd>
+<dt>Every Nth frame</dt><dd><p>This value determines which fraction of animation frames is actually rendered.
+Setting this parameter to 1 renders every animation frame. A value of 2 will render only every other frame, etc.
+Thus, you can use this to reduce the number of generated video frames in case of extremely long simulation sequences.</p>
+</dd>
+<dt>File number base</dt><dd><p>When saving the frames of the animation as a series of image files (rather than a single movie file),
+OVITO automatically appends the frame number to the output filename. This setting lets you specify another base file number,
+i.e. an offset. This can be useful if you want to collect the video frames from several animation sequences
+in one directory and later combine them into one contiguous movie using an external video encoding software.</p>
+</dd>
+<dt>Output image size</dt><dd><p>Sets the width and height of the rendered image or movie in pixels.
+Note that you can activate the <a class="reference internal" href="../../usage/viewports.html#usage-viewports-menu"><span class="std std-ref">preview mode</span></a> for an interactive viewport window to
+see exactly which rectangular area of the viewport will be visible in the final output image.</p>
+</dd>
+<dt>Preview visible region</dt><dd><p>This option activates preview mode for the current viewport window, which means it will display a rectangular
+frame indicating the area that will be visible in the rendered output image.
+The aspect ratio of the rectangular guide is determined by the output image width and height.</p>
+</dd>
+<dt>Render all viewports <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></dt><dd><p>Activate this option to generate a composed output image with multiple side-by-side views of your 3d scene.
+The arrangement of the views is determined by the current <a class="reference internal" href="../../advanced_topics/viewport_layouts.html#viewport-layouts"><span class="std std-ref">layout of the interactive viewport windows</span></a>.
+Note that you can modify the number, size and layout of the viewports by dragging the vertical and horizontal lines separating
+the viewport windows.</p>
+</dd>
+<dt>Save to file</dt><dd><p>This option tells OVITO to save the rendered image or movie to disk in addition to displaying it
+in the frame buffer window. Use the <span class="guilabel">Choose…</span> button to pick an output filename.
+When rendering an animation sequence, all animation frames will be written to a single movie
+file if you pick a video format such as AVI or MPEG. If you choose an image format (e.g. PNG, JPEG),
+OVITO will instead produce a sequence of image files, one per frame. In this case, the frame number will automatically
+be appended to the base filename you picked.</p>
+</dd>
+<dt>Background</dt><dd><p>You can choose between a uniform background color and a transparent background.
+In the latter case, OVITO will make those areas of the output image
+transparent that are not covered by any objects. This is useful if you intend to
+put the image in front of some other background later, for instance on a presentation slide.
+Note that transparency information (<em>alpha channel</em>) must be
+supported by the output format for this to work. Best choice is the PNG file format.</p>
+</dd>
+<dt>Switch renderer</dt><dd><p>Use this button to select a different rendering engine. OVITO Pro offers
+several rendering engines, which differ in terms of visual quality and rendering speed.
+See the <a class="reference internal" href="index.html#rendering"><span class="std std-ref">Rendering</span></a> page for a list of options.
+Each rendering engine has specific parameters and settings, which are displayed in the separate
+panel below the <em>Render settings</em> panel.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Rendering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="animation_settings_dialog.html" class="btn btn-neutral float-right" title="Animation settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

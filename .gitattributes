@@ -1,0 +1,6 @@
+*.gif filter=lfs diff=lfs merge=lfs -text
+Lezione_4/NSL_SIMULATOR/Animation/gas_60fps.gif filter=lfs diff=lfs merge=lfs -text
+Lezione_4/NSL_SIMULATOR/Animation/liquid60fps_x1.avi filter=lfs diff=lfs merge=lfs -text
+Lezione_4/NSL_SIMULATOR/Animation/liquid60fps_x2.avi filter=lfs diff=lfs merge=lfs -text
+Lezione_4/NSL_SIMULATOR/Animation/liquid_60fps.gif filter=lfs diff=lfs merge=lfs -text
+Lezione_4/NSL_SIMULATOR/Animation/solid_60fps.gif filter=lfs diff=lfs merge=lfs -text

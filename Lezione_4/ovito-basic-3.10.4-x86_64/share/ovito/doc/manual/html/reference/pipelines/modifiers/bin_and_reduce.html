@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spatial binning pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/bin_and_reduce.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Spatial correlation function" href="correlation_function.html" />
+    <link rel="prev" title="Smooth trajectory" href="smooth_trajectory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-bin-and-reduce">
+<span id="spatial-binning-ovito-pro"></span><h1>Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#particles-modifiers-bin-and-reduce" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/bin_and_reduce_panel.png"><img alt="../../../_images/bin_and_reduce_panel.png" class="align-right" src="../../../_images/bin_and_reduce_panel.png" style="width: 30%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/voxel_grid_example.png"><img alt="../../../_images/voxel_grid_example.png" class="align-right" src="../../../_images/voxel_grid_example.png" style="width: 30%;" /></a>
+<p>This modifier generates a 1-, 2- or 3-dimensional grid covering the simulation domain and assigns each particle
+into one of the uniformly sized bins. It then performs a reduction operation for a selected particle property,
+mapping the values of all particles contained in a cell to a single output value.
+This modifier can thus be used to project the per-particle data to a <a class="reference internal" href="../data_objects/voxel_grid.html#scene-objects-voxel-grid"><span class="std std-ref">structured grid</span></a>, for example to coarse-grain
+the atomistic data and generate a continuous field representation of a particle property.
+You can choose between different reduction operations, e.g. sum, average (mean), minimum or maximum.</p>
+<p>The bin grid can be one-, two- or three-dimensional, i.e. the simulation domain can be subdivided into equally
+sized bins along one, two or all three of its axes. The spatial bins are always aligned parallel to the simulation
+cell edges.</p>
+<section id="data-output-options">
+<h2>Data output options<a class="headerlink" href="#data-output-options" title="Permalink to this heading"></a></h2>
+<p>When mapping the particle values to a one-dimensional bin grid using this modifier, you can subsequently
+access the computed data table in the <a class="reference internal" href="../../data_inspector/data_tables.html#data-inspector-data-tables"><span class="std std-ref">data inspector</span></a>.
+From here you can export the bin values to a text file.</p>
+<p>When mapping the particle values to a three-dimensional <a class="reference internal" href="../data_objects/voxel_grid.html#scene-objects-voxel-grid"><span class="std std-ref">voxel grid</span></a> using this modifier, you can subsequently
+employ the <a class="reference internal" href="create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> modifier to render isosurfaces of the computed field.</p>
+<p>When creating two- or three-dimensional grids, you can also
+export the computed grid data to a text file using OVITO’s <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export</span></a> function.
+Select <cite>VTK Voxel Grid</cite> as output format.</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Input property</dt><dd><p>The source particle property the reduction operation should be applied to.
+Select <em>&lt;None&gt;</em> to take uniform 1 as input value for all particles, which can be useful for
+counting the number of particles in each bin (reduction operation: <em>sum</em>) or calculating
+the number of density of particles (reduction operation: <em>sum divided by bin volume</em>).</p>
+</dd>
+<dt>Use only selected elements</dt><dd><p>Restricts the calculation to the subset of particles that are currently selected.</p>
+</dd>
+<dt>Binning direction(s)</dt><dd><p>This option selects the axes of the simulation cell along which the bins are created. It determines the dimensionality of the generated grid.</p>
+</dd>
+<dt>Number of bins</dt><dd><p>Number of bins in each of the active binning directions.</p>
+</dd>
+<dt>Reduction operation</dt><dd><p>The type of reduction operation to be carried out. Available are <em>sum</em>, <em>mean</em>, <em>min</em>, and <em>max</em>.
+There is an additional option <em>sum divided by bin volume</em>, which sums over all particles of a bin and then divides the result
+by the volume of the bin. This operation is useful for computing pressure (or stress) within
+bins from the per-atom virial.</p>
+</dd>
+<dt>Compute first derivative</dt><dd><p>Numerically calculates the first derivative of the binned data using a finite differences
+approximation. This works only for one-dimensional bin grids. (It is useful to e.g. compute the derivative
+of a flow velocity profile to obtain the local shear rate.)</p>
+</dd>
+<dt>Fix property axis range</dt><dd><p>If selected, the plotted property range (or color scale for 2D grids) will be set to the values given
+in the <span class="guilabel">From</span> and <span class="guilabel">To</span> fields. Otherwise, the minimum and maximum data values will be used to automatically adjust the plotting range.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.SpatialBinningModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.SpatialBinningModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="smooth_trajectory.html" class="btn btn-neutral float-left" title="Smooth trajectory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="correlation_function.html" class="btn btn-neutral float-right" title="Spatial correlation function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

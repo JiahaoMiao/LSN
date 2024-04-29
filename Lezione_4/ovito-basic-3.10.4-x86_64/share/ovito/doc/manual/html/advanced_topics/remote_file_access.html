@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote file access &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/remote_file_access.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Customizing the initial program state" href="customize_init_state.html" />
+    <link rel="prev" title="Branched and cloned pipelines pro" href="clone_pipeline.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Remote file access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-import-remote-openssh-connection-method">OpenSSH client <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-import-remote-troubleshooting">Troubleshooting connection problems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Remote file access</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-import-remote">
+<span id="remote-file-access"></span><h1>Remote file access<a class="headerlink" href="#usage-import-remote" title="Permalink to this heading"></a></h1>
+<p>OVITO comes with built-in SSH and HTTP(S) clients for accessing files located on remote machines. This feature can save you from having to transfer
+files stored in remote locations, for example on an HPC cluster, to your local desktop computer first.
+To open a file located on a remote host, select <span class="menuselection">File ‣ Load Remote File</span> from the menu.</p>
+<p>The current version of OVITO does not provide a way to browse directories on remote machines. That means you need to directly specify
+the full path to the remote file as an URL of the form:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sftp://user@hostname/path/filename</span>
+</pre></div>
+</div>
+<p>Replace <strong class="command">user</strong> with your SSH login name on the remote machine, <strong class="command">hostname</strong> with the hostname of the remote machine,
+and <strong class="command">/path/filename</strong> with the full path to the simulation data file to load. Note that the use of the “~” shortcut to a user’s
+home directory is <em>not</em> supported; you have to specify an absolute directory path.</p>
+<p>You can also let OVITO download data from a web location by specifying an URL of the form:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">https://www.website.org/path/filename</span>
+</pre></div>
+</div>
+<p>When connecting to the remote machine via SSH, OVITO will ask for the login password or the passphrase for the private key to be used for authentication.
+Once established, the SSH connection is kept alive until the program session ends. OVITO creates a temporary local copy of downloaded remote files before
+loading the data into memory to speed up subsequent accesses to the same simulation frames. The local data copies are cached until you close OVITO or
+until you hit the <span class="guilabel">Reload</span> button in the <a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">External File</span></a> panel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OVITO’s built-in SSH client parses the <code class="file docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> <a class="reference external" href="https://www.ssh.com/ssh/config">configuration file</a> in your home directory if it exists to
+configure the SSH connection.</p>
+</div>
+<section id="usage-import-remote-openssh-connection-method">
+<span id="openssh-client-ovito-pro"></span><h2>OpenSSH client <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#usage-import-remote-openssh-connection-method" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/remote_file_import_dialog.png"><img alt="../_images/remote_file_import_dialog.png" class="align-right" src="../_images/remote_file_import_dialog.png" style="width: 50%;" /></a>
+<p>The integrated standard SSH client of OVITO is based on <a class="reference external" href="https://www.libssh.org">Libssh</a>, an implementation of the SSH protocol that is distinct
+from the standalone command line tools (<strong class="program">ssh</strong> &amp; <strong class="program">scp</strong>, parts of the OpenSSH system package) you are probably used to.
+Unfortunantely, Libssh does not support all authentication methods that commonly work with these OpenSSH utilities. In particular,
+smartcard-based and other two-factor authentication methods, requiring PKCS#11 extensions, won’t work with OVITO’s integrated SSH client.</p>
+<p>For these systems, OVITO Pro provides an alternative SSH connection method that is based on the external <strong class="program">sftp</strong> tool,
+which is part of the <a class="reference external" href="https://www.openssh.com">OpenSSH</a> suite and available on most systems. When this connection method is selected,
+all authentication methods and other features configured in <code class="file docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> will work as usual.</p>
+</section>
+<section id="usage-import-remote-troubleshooting">
+<span id="troubleshooting-connection-problems"></span><h2>Troubleshooting connection problems<a class="headerlink" href="#usage-import-remote-troubleshooting" title="Permalink to this heading"></a></h2>
+<p>Establishing a connection between OVITO and the SSH server may fail if the client and server cannot agree on a common authentication and encryption method.
+OVITO’s built-in SSH client is based on the <strong class="program">libssh</strong> library, which supports a specific set of SSH key exchange methods,
+public key algorithms, ciphers, and authentication methods (<a class="reference external" href="https://www.libssh.org/features/">see here</a>). During the handshaking process,
+both parties need to agree on at least one common choice from each of these categories to successfully establish an SSH connection.</p>
+<p>Which SSH connection methods the server side supports depends on the specific configuration of your SSH server. Please consult
+the documentation for your remote system or contact the administrator of your remote host if you are not sure.</p>
+<p>To diagnose possible connection problems, and to find out which set of SSH connection methods your server actually accepts, you can
+set the environment variable <code class="docutils literal notranslate"><span class="pre">OVITO_SSH_LOG=1</span></code> when you run OVITO. This will request the program to print verbose logging
+messages to the terminal during a connection attempt. The log output should tell you more about why the handshaking process
+fails.</p>
+<p>On some platforms such as Windows, output sent to the terminal is not directly visible. In such a case you should additionally set the
+environment variable <code class="docutils literal notranslate"><span class="pre">OVITO_LOG_FILE=&lt;filename&gt;</span></code> to redirect all log output of the program into a text file. On Windows, for example,
+open the command prompt (<strong class="program">cmd.exe</strong>) and start OVITO by entering the following commands:</p>
+<div class="highlight-winbatch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">OVITO_LOG_FILE</span><span class="p">=</span><span class="nv">%USERPROFILE%</span>\ovito_log.txt
+<span class="k">set</span> <span class="nv">OVITO_SSH_LOG</span><span class="p">=</span>1
+<span class="s2">&quot;C:\Program Files\OVITO Basic\ovito.exe&quot;</span>
+</pre></div>
+</div>
+<p>Try loading a remote file via SSH. If the connection fails, have a look at the file <code class="file docutils literal notranslate"><span class="pre">ovito_log.txt</span></code>, which should have been created
+in your user directory. For further help, visit the <a class="reference external" href="https://matsci.org/c/ovito/">online user forum</a> or contact
+<a class="reference external" href="https://www.ovito.org/contact/">OVITO technical support</a> directly.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clone_pipeline.html" class="btn btn-neutral float-left" title="Branched and cloned pipelines pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="customize_init_state.html" class="btn btn-neutral float-right" title="Customizing the initial program state" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

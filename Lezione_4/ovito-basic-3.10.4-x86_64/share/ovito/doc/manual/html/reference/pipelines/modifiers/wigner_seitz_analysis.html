@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wigner-Seitz defect analysis &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/wigner_seitz_analysis.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Wrap at periodic boundaries" href="wrap_at_periodic_boundaries.html" />
+    <link rel="prev" title="VoroTop analysis" href="vorotop_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Wigner-Seitz defect analysis</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-wigner-seitz-analysis">
+<span id="wigner-seitz-defect-analysis"></span><h1>Wigner-Seitz defect analysis<a class="headerlink" href="#particles-modifiers-wigner-seitz-analysis" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/wigner_seitz_analysis_panel.png"><img alt="../../../_images/wigner_seitz_analysis_panel.png" class="align-right" src="../../../_images/wigner_seitz_analysis_panel.png" style="width: 35%;" /></a>
+<p>This analysis modifier identifies point defects in crystalline structures using the so-called Wigner-Seitz cell method. It can be used to count vacancies and interstitials,
+for example, or track their motion through the lattice.</p>
+<section id="how-the-wigner-seitz-cell-method-works">
+<h2>How the Wigner-Seitz cell method works<a class="headerlink" href="#how-the-wigner-seitz-cell-method-works" title="Permalink to this heading"></a></h2>
+<p>The WS analysis method requires two configurations of the atomistic system as input: the <em>reference configuration</em> and
+the <em>displaced configuration</em>. The reference configuration defines where
+atoms would be located in a defect-free state of the crystal. Thus, typically this is a perfect crystal lattice where
+every site is occupied by exactly one atom. The displaced configuration is the one to be analyzed, which
+typically contains some point defects, such as vacancies and interstitials, that we want to identify.</p>
+<p>To describe how this identification process works, we first have to introduce an important terminology:
+In the following, atoms from the reference configuration will be denoted as <em>sites</em>,
+while atoms from the displaced configuration will simply be referred to as <em>atoms</em>.
+This distinction emphasizes that the displaced configuration is an arrangement of real atoms, while
+the reference configuration only specifies locations in space where atoms are supposed to be located.
+If an <em>atom</em> is located on or close to a <em>site</em>, we say that
+the site is occupied by the atom.</p>
+<p>The WS cell method determines which atoms occupy what sites. In the end, every atom will be assigned to exactly one site.
+Some sites may be occupied by no atom at all. We call these sites <em>vacancy sites</em>. Other sites
+may be occupied by more than one atom. We call such sites <em>interstitial sites</em> and the atoms
+occupying them <em>interstitial atoms</em>. The assignment of atoms to a site is performed using
+a spatial partitioning scheme as depicted in these figures.</p>
+<a class="reference internal image-reference" href="../../../_images/wigner_seitz_method.png"><img alt="../../../_images/wigner_seitz_method.png" src="../../../_images/wigner_seitz_method.png" style="width: 68%;" /></a>
+<p>Each atomic site of the reference configuration defines the center of a Wigner-Seitz cell (also called a <a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi cell</a>),
+which is the spatial region belonging to that site. Any atom that is located within the Wigner-Seitz cell
+of a site is said to occupy that site.</p>
+<p>How is the Wigner-Seitz (i.e. Voronoi cell) of a site defined?
+Mathematically speaking, it is the locus of points in space that are closer to the site
+than to any of the other sites. Note that points exactly on the border line between two Wigner-Seitz cells
+have exactly the same distance to the two sites at their centers.</p>
+<p>It is worth pointing out that thanks to this property, the algorithm never has to construct the
+geometric shapes of the WS cells explicitly. To determine in which cell a given atom is located, it is sufficient
+to determine what is the closest site. The algorithm thus boils down to a closest point search. Taking an atom’s location,
+the algorithm finds out what site is closest to this location and increments that
+site’s counter, the so-called <em>occupancy number</em>, by one.</p>
+<p>Note that the number of atoms in the displaced configuration and the number of sites in the reference configuration do not need to
+be the same. But in cases where they are, the number of vacancies
+and the number of interstitials found by the algorithm will exactly match. That is because, in this case, the sum over all occupancy
+numbers is equal to the number of sites in the reference configuration.</p>
+</section>
+<section id="modifier-inputs">
+<h2>Modifier inputs<a class="headerlink" href="#modifier-inputs" title="Permalink to this heading"></a></h2>
+<p>The current simulation frame in OVITO is taken as the <em>displaced configuration</em> by the modifier.
+The <em>reference configuration</em> is by default taken from frame 0 of the loaded animation sequence (option <span class="guilabel">Upstream pipeline</span>).
+Alternatively, the modifier lets you load the reference site positions from a separate data file (option <span class="guilabel">External file</span>).</p>
+</section>
+<section id="modifier-outputs">
+<h2>Modifier outputs<a class="headerlink" href="#modifier-outputs" title="Permalink to this heading"></a></h2>
+<p>The modifier lets you choose between two different output modes: <span class="guilabel">Sites</span> and <span class="guilabel">Atoms</span>.</p>
+<p>In output mode <span class="guilabel">Sites</span>, the modifier outputs the sites of the reference configuration together with their computed
+per-site occupancy numbers (as shown in the 4th image above). Each site will be associated with a particle property named <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code>,
+telling the number of atoms sitting on that site. This integer property subsequently allows you to identify vacancy and interstitial sites
+as well as antisites (e.g. using the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a> modifier).
+It is important to realize that in this output mode, the displaced configuration gets completely replaced with the reference configuration
+after performing the WS algorithm. What you see in the viewports are now the ideal site positions and the physical
+atom positions are no longer available!</p>
+<p>In output mode <span class="guilabel">Atoms</span>, in contrast, the modifier will output the atoms of the displaced configuration.
+Each atom will be assigned a property named <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code>, now counting how many atoms in total are occupying the same site as the
+atom itself. Furthermore, the modifier will assign a property named <code class="docutils literal notranslate"><span class="pre">Site</span> <span class="pre">Type</span></code>, which tells for each atom the type of reference site
+it has been assigned to by the WS algorithm. This information allows to subsequently identify antisites, for example, by comparing
+the type of an atom to the type of its site.
+Finally, the algorithm assigns two additional properties named <code class="docutils literal notranslate"><span class="pre">Site</span> <span class="pre">Index</span></code> and <code class="docutils literal notranslate"><span class="pre">Site</span> <span class="pre">Identifier</span></code>
+to each atom, specifying the index and the unique identifier (if present) of the site to which the
+atom has been assigned. This information allows you to subsequently identify atoms which have left their original sites, for example.
+Note, however, that in atoms output mode you will not be able to identify vacancy sites, because only the physical atoms
+are retained.</p>
+<p>Irrespective of the selected output mode, the modifier additionally reports two overall quantities:</p>
+<dl class="simple">
+<dt>Number of vacancies</dt><dd><p>Counts the total number of sites in the reference configuration which are not occupied by any atom
+from the displaced configuration (i.e. sites with zero occupancy).</p>
+</dd>
+<dt>Number of interstitials</dt><dd><p>Counts the total number of excess atoms, summed over all sites of the reference configuration.
+A site with <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code> equal to 2 has one excess atom. A site with <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code> equal to 3 has two excess atoms, and so forth.</p>
+</dd>
+</dl>
+<p>These two quantities are made available as <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a> named <code class="docutils literal notranslate"><span class="pre">WignerSeitz.vacancy_count</span></code>
+and <code class="docutils literal notranslate"><span class="pre">WignerSeitz.interstitial_count</span></code> by the modifier.</p>
+</section>
+<section id="typical-workflow">
+<h2>Typical workflow<a class="headerlink" href="#typical-workflow" title="Permalink to this heading"></a></h2>
+<p>When working in output mode <span class="guilabel">Sites</span>, each atomic site will be associated with a new integer property named <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code>.
+You can subsequently use the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a> modifier to select sites that
+correspond to certain types of point defects. For example, the selection expression <code class="docutils literal notranslate"><span class="pre">Occupancy</span> <span class="pre">==</span> <span class="pre">0</span></code> selects all empty sites (vacancies)
+while the expression <code class="docutils literal notranslate"><span class="pre">Occupancy</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> selects all sites containing at least one interstitial atom. Typically, you want
+to visualize just the defective sites and hide all other sites, which are occupied by exactly one atom. This can be achieved with the following modification pipeline setup:</p>
+<a class="reference internal image-reference" href="../../../_images/wigner_seitz_pipeline_example.png"><img alt="../../../_images/wigner_seitz_pipeline_example.png" src="../../../_images/wigner_seitz_pipeline_example.png" style="width: 100%;" /></a>
+</section>
+<section id="systems-with-more-than-one-atomic-species">
+<h2>Systems with more than one atomic species<a class="headerlink" href="#systems-with-more-than-one-atomic-species" title="Permalink to this heading"></a></h2>
+<p>To identify antisites and similar defects in multi-component systems, more specific information about the atom(s) that occupy a site is required.
+For this, the modifier provides the option <span class="guilabel">Output per-type occupancies</span>. If activated, the modifier breaks down the
+occupancy number of each site into type-specific counts. Thus, if the displaced configuration contains
+atoms of different types, then this allows you to determine how many atoms of each type occupy each
+site of the reference crystal. The per-type occupancy numbers are output as
+vector components of the <code class="docutils literal notranslate"><span class="pre">Occupancy</span></code> particle property. For example, the
+property component <code class="docutils literal notranslate"><span class="pre">Occupancy.1</span></code> will contain the number of atoms of type 1 occupying a site.</p>
+<p>OVITO’s particle selection tools, in particular the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a>
+modifier, can be used to select the sites that meet specific criteria, for example
+A-sites that are occupied by a B-atom (antisite). Another way of selecting this type of defect sites
+is using OVITO’s scripting interface or OVITO’s <a class="reference internal" href="python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script </span></a> modifier. You can find a detailed example in the
+documentation of the <a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.WignerSeitzAnalysisModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">WignerSeitzAnalysisModifier</span></code></a> class.</p>
+</section>
+<section id="affine-mapping-of-the-simulation-cell">
+<h2>Affine mapping of the simulation cell<a class="headerlink" href="#affine-mapping-of-the-simulation-cell" title="Permalink to this heading"></a></h2>
+<p>Note: This option applies only to systems with periodic boundary conditions. For non-periodic systems (and typically also for
+systems with mixed boundary conditions) it should remain turned off.</p>
+<p>The <span class="guilabel">Affine mapping</span> setting controls how OVITO treats situations in which the volume of the periodic simulation cell
+has changed between the reference and the current configuration. Such cell changes typically occur in simulations due to active straining
+of the cell or stress relaxations.
+If affine mapping is turned off (the default), the current and the reference particle positions are taken as is for the WS analysis.
+Any changes of the simulation cell geometry are ignored. If the particle system expands or shrinks as a whole, however,
+the associated particle displacements may lead to artifacts in the Wigner-Seitz analysis, because particles appear to have left their
+ideal reference sites.</p>
+<p>To avoid such artifacts associated with system volume changes, the option <span class="guilabel">To reference</span> performs a remapping (homogeneous rescaling) of the current particle positions to the reference simulation cell
+before performing the actual WS analysis. For that, OVITO determines the affine transformation mapping the current onto the reference
+simulation cell geometry and applies this homogeneous transformation to all particle coordinates. Now
+the particles will stay close to their original sites should the system expand or shrink as a whole.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.WignerSeitzAnalysisModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.WignerSeitzAnalysisModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vorotop_analysis.html" class="btn btn-neutral float-left" title="VoroTop analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wrap_at_periodic_boundaries.html" class="btn btn-neutral float-right" title="Wrap at periodic boundaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

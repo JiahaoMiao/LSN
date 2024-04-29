@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turntable animation of a model &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/tutorials/turntable_animation.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Remote rendering tutorial" href="remote_rendering.html" />
+    <link rel="prev" title="Motion visualization with marker particles" href="marker_particles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="marker_particles.html">Motion visualization with marker particles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Turntable animation of a model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-load-simulation-file">Step 1: Load simulation file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-extract-a-static-snapshot">Step 2: Extract a static snapshot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-adjust-center-of-rotation">Step 3: Adjust center of rotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-set-animation-length">Step 4: Set animation length</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-create-animation-keys">Step 5: Create animation keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-information">Further information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Remote rendering tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Turntable animation of a model</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials-turntable-animation">
+<span id="turntable-animation-of-a-model"></span><h1>Turntable animation of a model<a class="headerlink" href="#tutorials-turntable-animation" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/turntable.gif"><img alt="../_images/turntable.gif" class="align-right" src="../_images/turntable.gif" style="width: 36%;" /></a>
+<p>This step-by-step tutorial teaches you how to create an animated movie like the one on the right.
+It visualizes the simulated model from all sides, slowly rotating it by 360° around its center of mass.</p>
+<section id="step-1-load-simulation-file">
+<h2>Step 1: Load simulation file<a class="headerlink" href="#step-1-load-simulation-file" title="Permalink to this heading"></a></h2>
+<p>Start by downloading the simulation file
+<a class="reference external" href="https://gitlab.com/stuko/ovito/-/blob/master/tests/files/NetCDF/C60_impact.nc">C60_impact.nc</a>
+for this tutorial to your computer. The file contains a short MD trajectory of a C<sub>60</sub> molecule striking a surface. Use the <span class="menuselection">File ‣ Load File</span> function
+to open the file <code class="file docutils literal notranslate"><span class="pre">C60_impact.nc</span></code> in OVITO.</p>
+</section>
+<section id="step-2-extract-a-static-snapshot">
+<h2>Step 2: Extract a static snapshot<a class="headerlink" href="#step-2-extract-a-static-snapshot" title="Permalink to this heading"></a></h2>
+<p>The loaded trajectory file contains 12 simulation frames, indicated in the timeline of OVITO. However, the aim of this tutorial is to
+create an animation in which the only camera is moving around a single, static snapshot of the simulation. Thus, we have to first isolate
+one particular frame from the loaded trajectory.</p>
+<p>In the <a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">External file</span></a> panel, press the <cite>Playback ratio</cite> <span class="guilabel">Change…</span> button to open the
+<a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source-configure-playback"><span class="std std-ref">Configure Trajectory Playback</span></a> dialog.
+Activate the option <span class="guilabel">Extract a static frame</span> and choose the simulation timestep for which you would like to create a turntable animation.</p>
+<p>The timeline of OVITO no longer shows the original series of trajectory frames now - as if you had loaded a data file containing just a single simulation snapshot.</p>
+</section>
+<section id="step-3-adjust-center-of-rotation">
+<h2>Step 3: Adjust center of rotation<a class="headerlink" href="#step-3-adjust-center-of-rotation" title="Permalink to this heading"></a></h2>
+<p>OVITO animation capabilities only allow you to move the virtual camera on straight paths through the three-dimensional scene. Thus,
+revolving the camera in a circular orbit around an object requires a different approach. Instead of
+animating the camera itself, we are going to rotate the simulation model while keeping the camera fixed.</p>
+<p>You can adjust the rotation of the whole model, relative to the global scene coordinate system, using the <cite>Rotate</cite> tool <a class="reference internal" href="../_images/tool_rotate.png"><img alt="Rotate tool" src="../_images/tool_rotate.png" style="width: 22px;" /></a> found in the main toolbar of OVITO.
+After activating this mode, three numeric input fields appear in the status bar at the bottom of the program window, which let you
+adjust the current <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_angles">Euler angles</a> of the selected object, i.e. its rotation around the three axes of the global coordinate system.
+For a turntable animation, we will have to vary the third Euler angle (Z), which specifies the object’s rotation around the z-axis.</p>
+<figure class="align-left" id="id1">
+<a class="reference internal image-reference" href="../_images/euler_angles_input_fields.jpg"><img alt="../_images/euler_angles_input_fields.jpg" src="../_images/euler_angles_input_fields.jpg" style="width: 65%;" /></a>
+<figcaption>
+<p><span class="caption-text">Numeric input fields for the Euler angles</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<a class="reference internal image-reference" href="../_images/affine_transformation_modifier.jpg"><img alt="../_images/affine_transformation_modifier.jpg" class="align-right" src="../_images/affine_transformation_modifier.jpg" style="width: 30%;" /></a>
+<p>While playing with the value of the z-angle, you will notice, however, that the model is revolving around the wrong location in space.
+That’s because the <cite>Rotate</cite> tool always uses the object’s coordinate origin and not its center of mass as the pivot point.
+The simulation box in this example happens to be positioned such that its
+corner is at <span class="math notranslate nohighlight">\((0,0,0)\)</span>, the origin of the simulation coordinate system (you can inspect the cell info <a class="reference internal" href="../reference/pipelines/data_objects/simulation_cell.html#scene-objects-simulation-cell"><span class="std std-ref">here</span></a>).
+Thus, in order to change the effective center of rotation, we’ll first have to translate the model to center it on the coordinate system origin.
+This can be accomplished by applying the <a class="reference internal" href="../reference/pipelines/modifiers/affine_transformation.html#particles-modifiers-affine-transformation"><span class="std std-ref">Affine transformation</span></a> modifier.</p>
+<a class="reference internal image-reference" href="../_images/pivot_point_illustration.png"><img alt="../_images/pivot_point_illustration.png" src="../_images/pivot_point_illustration.png" style="width: 58%;" /></a>
+<p>Open the <span class="guilabel">Add modification…</span> drop-down list and select <cite>Affine transformation</cite> from the <cite>Modification</cite> section.
+The newly inserted modifier appears as a new item in the <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a>.
+Activate the option <span class="guilabel">In reduced cell coordinates</span> as shown in the screenshot and enter the values <span class="math notranslate nohighlight">\((-0.5, -0.5, 0)\)</span> into the
+fields for the translation vector. This shifts the simulation box including all atoms such that the pivot point <span class="math notranslate nohighlight">\((0,0,0)\)</span>
+is now located in the center.</p>
+</section>
+<section id="step-4-set-animation-length">
+<h2>Step 4: Set animation length<a class="headerlink" href="#step-4-set-animation-length" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/animation_settings_dialog1.jpg"><img alt="../_images/animation_settings_dialog1.jpg" class="align-right" src="../_images/animation_settings_dialog1.jpg" style="width: 30%;" /></a>
+<p>Rendering an animation video in OVITO requires a finite timeline, i.e. an interval of <a class="reference internal" href="../advanced_topics/animation.html#usage-animation-frames"><span class="std std-ref">animation frames</span></a>.
+In step 2 above we extracted a single snapshot from the loaded trajectory, which means the current timeline is degenerate and
+consists of one static frame only. OVITO automatically hides the time slider and disables the playback controls in such a case.</p>
+<p>Now you are going to override the length of the animation interval to explicitly define the duration of the turntable
+animation. Click <a class="reference internal" href="../_images/animation_settings.png"><img alt="Animation settings button" src="../_images/animation_settings.png" style="width: 22px;" /></a> in the animation toolbar to open the <a class="reference internal" href="../reference/rendering/animation_settings_dialog.html#animation-animation-settings-dialog"><span class="std std-ref">Animation settings dialog</span></a>.
+Check <span class="guilabel">Custom animation interval</span> and enter the value 100 into the <span class="guilabel">End frame</span> field.
+This adjusts the animation interval to range from 0 to 100 (=101 video frames), which corresponds roughly to a video duration of 4 seconds
+when played back at 25 frames per second (FPS). The dialog provides a separate control for the FPS frame rate. When done, click <span class="guilabel">Ok</span>
+to close the dialog.</p>
+</section>
+<section id="step-5-create-animation-keys">
+<h2>Step 5: Create animation keys<a class="headerlink" href="#step-5-create-animation-keys" title="Permalink to this heading"></a></h2>
+<p>Make sure the <cite>Rotate</cite> tool <a class="reference internal" href="../_images/tool_rotate.png"><img alt="Rotate tool" src="../_images/tool_rotate.png" style="width: 22px;" /></a> is still selected in the main toolbar. In the status bar at the bottom, click the little
+<span class="guilabel">A</span> button that is located right next to the input fields for the Euler angles.</p>
+<a class="reference internal image-reference" href="../_images/open_anim_key_dialog_button.jpg"><img alt="../_images/open_anim_key_dialog_button.jpg" src="../_images/open_anim_key_dialog_button.jpg" style="width: 50%;" /></a>
+<p>This opens the animation keys dialog window. OVITO’s <a class="reference internal" href="../advanced_topics/animation.html#usage-animation"><span class="std std-ref">parameter animation system</span></a> is based on so-called <em>keyframes</em>, which
+means that the user specifies the value(s) of an animated parameter, for example the dataset’s orientation, at specific
+points along the timeline. In between these keyframes the program will automatically interpolate from one key value to the next
+to create a smooth transition.</p>
+<p>For animating one complete rotation of the dataset, i.e. revolving once by 360 degrees around the z-axis, two animation keys
+are required: A first one at the start of the animation interval (frame 0) and a second one at the end of the interval (frame 100).
+The first key brings the object into its standard orientation (zero degrees), while the second key specifies a full 360° turn.
+Note that, visually, the start and end orientations are indistinguishable, but OVITO keeps track of how many revolutions an object
+has performed.</p>
+<p>Use the <span class="guilabel">+</span> button in the animation keys dialog to create the second key at the end of the animation interval
+and make sure the values in the table match the ones shown in the screenshot:</p>
+<a class="reference internal image-reference" href="../_images/animation_key_dialog.jpg"><img alt="../_images/animation_key_dialog.jpg" src="../_images/animation_key_dialog.jpg" style="width: 60%;" /></a>
+<p>Note that the orientation of the dataset in three-dimensional space is specified in each keyframe by an axis of rotation (three vector components)
+and a signed rotation angle around that axis.</p>
+</section>
+<section id="further-information">
+<h2>Further information<a class="headerlink" href="#further-information" title="Permalink to this heading"></a></h2>
+<p>Like the object rotation in this tutorial, many other parameters can be animated as well in OVITO using the same keyframe-based mechanism;
+for example, the position and orientation of a <a class="reference internal" href="../reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> plane, the iso-level parameter
+of the <a class="reference internal" href="../reference/pipelines/modifiers/create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> modifier, or the transparency parameter of the <a class="reference internal" href="../reference/pipelines/visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a>
+visual element. Animatable parameters are recognizable by the small <span class="guilabel">A</span> button next to the parameter’s input field.</p>
+<p>If you encounter any problems with this tutorial, please drop us an email at <a class="reference external" href="mailto:support&#37;&#52;&#48;ovito&#46;org">support<span>&#64;</span>ovito<span>&#46;</span>org</a> to help us improve
+the instructions.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="marker_particles.html" class="btn btn-neutral float-left" title="Motion visualization with marker particles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="remote_rendering.html" class="btn btn-neutral float-right" title="Remote rendering tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

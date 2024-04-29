@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/new_features.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="About OVITO" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">About OVITO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">What's new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-10-4-13-mar-2024">Version 3.10.4 (13-Mar-2024)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-10-3-19-feb-2024">Version 3.10.3 (19-Feb-2024)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-10-2-02-feb-2024">Version 3.10.2 (02-Feb-2024)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-10-1-09-jan-2024">Version 3.10.1 (09-Jan-2024)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-10-0-28-dec-2023">Version 3.10.0 (28-Dec-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-9-4-04-nov-2023">Version 3.9.4 (04-Nov-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-9-3-01-nov-2023">Version 3.9.3 (01-Nov-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-9-2-31-aug-2023">Version 3.9.2 (31-Aug-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-9-1-06-aug-2023">Version 3.9.1 (06-Aug-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-9-0-02-aug-2023">Version 3.9.0 (02-Aug-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-5-19-jun-2023">Version 3.8.5 (19-Jun-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-4-03-may-2023">Version 3.8.4 (03-May-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-3-16-apr-2023">Version 3.8.3 (16-Apr-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-2-04-apr-2023">Version 3.8.2 (04-Apr-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-1-27-mar-2023">Version 3.8.1 (27-Mar-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-8-0-03-mar-2023">Version 3.8.0 (03-Mar-2023)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-12-16-dec-2022">Version 3.7.12 (16-Dec-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-11-29-oct-2022">Version 3.7.11 (29-Oct-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-10-09-oct-2022">Version 3.7.10 (09-Oct-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-9-12-sep-2022">Version 3.7.9 (12-Sep-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-8-29-jul-2022">Version 3.7.8 (29-Jul-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-7-06-jul-2022">Version 3.7.7 (06-Jul-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-6-23-jun-2022">Version 3.7.6 (23-Jun-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-5-28-may-2022">Version 3.7.5 (28-May-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-4-18-apr-2022">Version 3.7.4 (18-Apr-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-3-29-mar-2022">Version 3.7.3 (29-Mar-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-2-03-mar-2022">Version 3.7.2 (03-Mar-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-1-26-feb-2022">Version 3.7.1 (26-Feb-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-7-0-15-feb-2022">Version 3.7.0 (15-Feb-2022)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-6-0-19-nov-2021">Version 3.6.0 (19-Nov-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-5-4-31-jul-2021">Version 3.5.4 (31-Jul-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-5-3-30-jun-2021">Version 3.5.3 (30-Jun-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-5-2-26-may-2021">Version 3.5.2 (26-May-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-5-1-18-may-2021">Version 3.5.1 (18-May-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-5-0-02-may-2021">Version 3.5.0 (02-May-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-4-4-12-mar-2021">Version 3.4.4 (12-Mar-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-4-3-25-feb-2021">Version 3.4.3 (25-Feb-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-4-2-15-feb-2021">Version 3.4.2 (15-Feb-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-4-1-03-feb-2021">Version 3.4.1 (03-Feb-2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-4-0-28-jan-2021">Version 3.4.0 (28-Jan-2021)</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Changelog</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="new-features">
+<span id="changelog"></span><h1>Changelog<a class="headerlink" href="#new-features" title="Permalink to this heading"></a></h1>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.10.4">Download</a></p></li>
+</ul>
+</aside>
+<section id="version-3-10-4-13-mar-2024">
+<h2>Version 3.10.4 (13-Mar-2024)<a class="headerlink" href="#version-3-10-4-13-mar-2024" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/viewports/adjust_view_dialog.html#viewports-adjust-view-dialog"><span class="std std-ref">Adjust view dialog</span></a>: Added option to numerically control the camera’s roll angle</p></li>
+<li><p>Updated third-party libraries: OpenSSL 3.0.13, libssh 0.10.6, ffmpeg 6.1.1, Python 3.11.8, VisRTX 0.8.0</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Added <a class="reference external" href="python/modules/ovito_modifiers.html#ovito.modifiers.CreateIsosurfaceModifier.smoothing_level" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CreateIsosurfaceModifier.smoothing_level</span></code></a>
+and <a class="reference external" href="python/modules/ovito_modifiers.html#ovito.modifiers.CreateIsosurfaceModifier.identify_regions" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CreateIsosurfaceModifier.identify_regions</span></code></a> options</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/pipelines/modifiers/create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> modifier: New option to identify spatial regions enclosed by the isosurface</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Improved <a class="reference internal" href="reference/file_formats/output/gltf.html#file-formats-output-gltf"><span class="std std-ref">glTF file export</span></a>: particles and bonds may now be exported as single meshes for better rendering performance (but larger file size)</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/rendering/ospray_renderer.html#rendering-ospray-renderer"><span class="std std-ref">OSPRay renderer </span></a>: Fixed picking of focal length in the interactive viewports</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/rendering/visrtx_renderer.html#rendering-visrtx-renderer"><span class="std std-ref">VisRTX renderer (experimental) </span></a>: Added mesh backface culling support, gracefully handle initialization errors</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a> modifier: Changed how the “external” spatial region is defined in open (non-periodic) systems, now having its volume reported as <code class="docutils literal notranslate"><span class="pre">inf</span></code></p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.10.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-10-3-19-feb-2024">
+<h2>Version 3.10.3 (19-Feb-2024)<a class="headerlink" href="#version-3-10-3-19-feb-2024" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: <a class="reference internal" href="reference/pipelines/visual_elements/lines.html#visual-elements-lines"><span class="std std-ref">Lines</span></a> visual element renders wrong line caps when using option “Show up to current time only”</p></li>
+<li><p>Fix: Drop-down list of available modifiers inserts wrong modifier template into pipeline after an entry was added to the list</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Fix: <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.create_jupyter_widget" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_jupyter_widget()</span></code></a> method failing (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/229">issue #229</a>)</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Fix: Issue with <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.Color" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.traits.Color</span></code></a> not accepting a NumPy array</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added parameter for ambient occlusion cutoff to <a class="reference internal" href="reference/rendering/visrtx_renderer.html#rendering-visrtx-renderer"><span class="std std-ref">VisRTX renderer</span></a></p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Warnings in <a class="reference internal" href="reference/pipelines/modifiers/render_lammps_regions.html#modifiers-render-lammps-regions"><span class="std std-ref">Render LAMMPS regions </span></a> modifier due to code line duplications</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.10.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-10-2-02-feb-2024">
+<h2>Version 3.10.2 (02-Feb-2024)<a class="headerlink" href="#version-3-10-2-02-feb-2024" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Rendering of animated GIFs with transparent background color</p></li>
+<li><p>LAMMPS data file exporter: Emit 0 atom/bond types if no types are defined and there are no particles/bonds</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/load_trajectory.html#particles-modifiers-load-trajectory"><span class="std std-ref">Load trajectory</span></a>: Drop ‘Periodic Image’ particle property from topology dataset if trajectory file does not contain dynamic image flags</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Added <a class="reference external" href="python/introduction/advanced_topics.html#multiprocess-module-usage" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">support for the Python multiprocessing module</span></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Added Python API for accessing the line connectivity information in a <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DislocationNetwork" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DislocationNetwork</span></code></a></p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fixed OSPRay image rendering on transparent background (v3.10.0 regression)</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> macOS: Fixed crash in OSPRay renderer due to missing dylib (v3.10.0 regression)</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.10.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-10-1-09-jan-2024">
+<h2>Version 3.10.1 (09-Jan-2024)<a class="headerlink" href="#version-3-10-1-09-jan-2024" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Added support for the LAMMPS <em>dump yaml</em> file format to the <a class="reference internal" href="reference/file_formats/input/lammps_dump.html#file-formats-input-lammps-dump"><span class="std std-ref">LAMMPS dump file reader</span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/show_periodic_images.html#particles-modifiers-show-periodic-images"><span class="std std-ref">Replicate</span></a> modifier: Use particle property <code class="docutils literal notranslate"><span class="pre">Periodic</span> <span class="pre">Image</span></code> if present to yield correct replicated molecule identifiers</p></li>
+<li><p>Fix: Frame 0 of LAMMPS dump, xyz and pdb trajectory files gets loaded a second time unnecessarily</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python properties <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.Pipeline.translation" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Pipeline.translation</span></code></a> and <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.Pipeline.rotation" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Pipeline.rotation</span></code></a>, which control the placement of a pipeline’s visual output in the 3d scene</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Fixed offscreen font rendering in standalone Python module on (headless) Linux platform</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.10.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-10-0-28-dec-2023">
+<h2>Version 3.10.0 (28-Dec-2023)<a class="headerlink" href="#version-3-10-0-28-dec-2023" title="Permalink to this heading"></a></h2>
+<p class="rubric">Perspective distortion for axis indicators</p>
+<p>The <a class="reference internal" href="reference/viewports/layers/coordinate_tripod_layer.html#viewport-layers-coordinate-tripod"><span class="std std-ref">Coordinate tripod layer</span></a> provides a new option to distort the displayed tripod
+according to the perspective projection. Now the axes indicators exactly align with the edges of the simulation cell:</p>
+<figure class="align-default" id="id1" style="width: 25%">
+<img alt="_images/tripod_perspective_3-9-4.png" src="_images/tripod_perspective_3-9-4.png" />
+<figcaption>
+<p><span class="caption-text">OVITO 3.9</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 25%">
+<img alt="_images/tripod_perspective_3-10-0.png" src="_images/tripod_perspective_3-10-0.png" />
+<figcaption>
+<p><span class="caption-text">OVITO 3.10</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p class="rubric">3D full-scene export to glTF format <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>The new <a class="reference internal" href="reference/file_formats/output/gltf.html#file-formats-output-gltf"><span class="std std-ref">glTF file exporter </span></a> can export OVITO models including all visual elements. This lets you export
+entire scenes to PowerPoint, Blender, or the web as movable 3d objects:</p>
+<a class="reference internal image-reference" href="_images/gltf_export_powerpoint.png"><img alt="_images/gltf_export_powerpoint.png" src="_images/gltf_export_powerpoint.png" style="width: 100%;" /></a>
+<p>Below is a <a class="reference external" href="_static/ovito_logo.glb">glTF model</a> exported from <em>OVITO Pro</em>, embedded into this HTML page. <strong>Click and drag to rotate the model.</strong>
+The 3d viewer works only in the <a class="reference external" href="https://docs.ovito.org/new_features.html#">online version of this document</a> due to web browser security restrictions.
+In the offline version of the OVITO docs, you will see only a static image of the model.
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+<model-viewer src="_static/ovito_logo.glb" camera-controls poster="_static/ovito_logo_poster.webp" shadow-intensity="0.91" exposure="0.89" shadow-softness="0.03" environment-image="legacy" camera-orbit="155.9deg 67.65deg 28.94m" field-of-view="29.33deg"> </model-viewer></p>
+<p class="rubric">New Python classes to paint arbitrary 3d lines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>The new <a class="reference external" href="python/modules/ovito_data.html#ovito.data.Lines" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.Lines</span></code></a> and <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.LinesVis" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.LinesVis</span></code></a> classes allow
+visualizing line segments in 3d space, e.g., for augmenting particle models with additional
+information.</p>
+<a class="reference internal image-reference" href="_images/lines_spirales_demo.gif"><img alt="_images/lines_spirales_demo.gif" src="_images/lines_spirales_demo.gif" style="width: 30%;" /></a>
+<p class="rubric"><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New renderer: NVIDIA VisRTX</p>
+<a class="reference internal image-reference" href="_images/Anari_logo.svg"><img alt="_images/Anari_logo.svg" class="align-right" src="_images/Anari_logo.svg" width="30%" /></a>
+<p>We’ve added the <a class="reference internal" href="reference/rendering/visrtx_renderer.html#rendering-visrtx-renderer"><span class="std std-ref">VisRTX renderer (experimental) </span></a> and a corresponding Python class <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.AnariRenderer" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.AnariRenderer</span></code></a>,
+which make use of the cross-vendor <a class="reference external" href="https://www.khronos.org/anari/">Khronos ANARI</a> API.
+The VisRTX rendering backend offers hardware-accelerated ray-tracing on NVIDIA GPUs and can generate high-fidelity scene renderings
+in a fraction of a second – even for complex datasets containing millions of objects.</p>
+<p><video width="301" height="220" controls autoplay muted loop playsinline>
+  <source src="https://www.ovito.org/download/data/visrtx_render_demo.mp4" type="video/mp4">
+</video></p>
+<p class="rubric">Remote trajectory rendering function <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>Added a function for <a class="reference internal" href="advanced_topics/remote_rendering.html#usage-remote-rendering"><span class="std std-ref">Rendering simulation trajectories on remote computers </span></a>. It lets you prepare trajectory visualizations on your local computer
+and easily render them on a parallel HPC cluster. OVITO Pro takes care of packaging all required data files
+and generating the necessary job scripts for you.</p>
+<a class="reference internal image-reference" href="_images/remote_rendering_function.png"><img alt="_images/remote_rendering_function.png" src="_images/remote_rendering_function.png" style="width: 40%;" /></a>
+<p class="rubric">Further changes in this program release:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/smooth_trajectory.html#particles-modifiers-smooth-trajectory"><span class="std std-ref">Smooth trajectory</span></a> modifier: Now supports trajectories with varying number of particles</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/smooth_trajectory.html#particles-modifiers-smooth-trajectory"><span class="std std-ref">Smooth trajectory</span></a> modifier: Fixed wrong interpolation/averaging of particle orientations</p></li>
+<li><p><a class="reference internal" href="reference/file_formats/input/lammps_data.html#file-formats-input-lammps-data"><span class="std std-ref">LAMMPS data file reader</span></a>: Tolerate more than one empty line after file section titles</p></li>
+<li><p><a class="reference internal" href="reference/file_formats/input/xyz.html#file-formats-input-xyz"><span class="std std-ref">XYZ file reader</span></a>: Automatic detection of reduced coordinates turned off by default, because extended XYZ files with reduced coordinates are very rare</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Some Python functions now return true NumPy arrays instead of Python tuples</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python function <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DislocationNetwork.Line.point_along_line" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DislocatioNetwork.Line.point_along_line()</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New parameter trait types <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.FilePath" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.traits.FilePath</span></code></a>, <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.Vector2" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector2</span></code></a>, and <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.Vector3" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Renamed existing parameter traits types <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.OvitoObject" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.traits.OvitoObject</span></code></a> and <a class="reference external" href="python/modules/ovito_traits.html#ovito.traits.Color" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.traits.Color</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Restricted <a class="reference external" href="python/modules/ovito.html#ovito.Scene.load" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.Scene.load()</span></code></a> to session state files written by <em>OVITO Pro</em> or the Python module</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Added function parameter <code class="docutils literal notranslate"><span class="pre">pipeline_node</span></code> to <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.ModifierInterface.modify" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModifierInterface.modify()</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> <a class="reference external" href="python/modules/ovito_data.html#ovito.data.SurfaceMeshTopology" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SurfaceMeshTopology</span></code></a> class now performs out-of-range checks on function parameters.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> OpenGL, OSPRay, and Tachyon renderers: Added buttons to reset numeric parameters to their default values</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference external" href="python/introduction/custom_modifiers.html#writing-custom-modifiers-advanced-interface-user-params" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">User-defined parameters</span></a> can now be grouped in the UI by means of the new <code class="docutils literal notranslate"><span class="pre">ovito_group</span></code> metadata attribute</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.9.4">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-9-4-04-nov-2023">
+<h2>Version 3.9.4 (04-Nov-2023)<a class="headerlink" href="#version-3-9-4-04-nov-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: OpenGL rendering of ellipsoidal/superquadric/box particles with wrong orientations (regression since v3.9.0)</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.9.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-9-3-01-nov-2023">
+<h2>Version 3.9.3 (01-Nov-2023)<a class="headerlink" href="#version-3-9-3-01-nov-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/expand_selection.html#particles-modifiers-expand-selection"><span class="std std-ref">Expand selection</span></a> modifier: Added new output attribute <cite>ExpandSelection.num_added</cite></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/identify_diamond.html#particles-modifiers-identify-diamond-structure"><span class="std std-ref">Identify diamond structure</span></a> modifier: Added missing output attribute <cite>IdentifyDiamond.counts.OTHER</cite></p></li>
+<li><p>Fix: Section “Modifier templates” of available modifiers list not updated correctly when adding/removing templates</p></li>
+<li><p>Fix: LAMMPS data file reader: vector vis settings of <cite>Velocity</cite> property lost after loading a state file</p></li>
+<li><p>Fix: Segfault when opening a .ovito state file with macOS Finder while OVITO is already running</p></li>
+<li><p>Fix: <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a> modifier: Option <cite>Map particles to regions</cite> may yield invalid results when used with option <cite>Use only selected input particles</cite></p></li>
+<li><p>Updated third-party components: OpenSSL 1.1.1w, Qt/PySide6 6.5.3, Python 3.11.6</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> PyPI packages for Python 3.12</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.9.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-9-2-31-aug-2023">
+<h2>Version 3.9.2 (31-Aug-2023)<a class="headerlink" href="#version-3-9-2-31-aug-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Support Ctrl+C copy to clipboard in table of distances, angles, and dislocations in the data inspector</p></li>
+<li><p>Fix: Text label viewport layer accidentally disables 3d depth test in interactive viewports if used as an underlay</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.render_image" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render_image()</span></code></a> and <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.render_anim" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render_anim()</span></code></a> now raise exceptions in case an error occurs in any of the scene pipelines (can be changed via new parameter <cite>stop_on_error</cite>)</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New flag <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.Pipeline.preliminary_updates" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Pipeline.preliminary_updates</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Corrected data column headers in XYZ, LAMMPS dump, and IMD files written via <a class="reference external" href="python/modules/ovito_io.html#ovito.io.export_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_file()</span></code></a> if a vector property was specified in the <cite>columns</cite> list</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New class-based programming interface for custom viewport overlays: <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.ViewportOverlayInterface" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.ViewportOverlayInterface</span></code></a></p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Build Conda package as monolithic binaries for improved performance of the Python interface</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Updated third-party components: OpenSSL 1.1.1v, PySide6 6.5.2, Python 3.11.5</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.9.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-9-1-06-aug-2023">
+<h2>Version 3.9.1 (06-Aug-2023)<a class="headerlink" href="#version-3-9-1-06-aug-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: Voronoi Analysis modifier crashes if simulation cell is degenerate or atom count is zero, and option <cite>Generate neighbor bonds</cite> is turned on</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python class <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.PipelineSourceInterface" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.pipeline.PipelineSourceInterface</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python method <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.ModifierInterface.compute_trajectory_length" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModifierInterface.compute_trajectory_length()</span></code></a>, which gives user-defined modifiers control over the timeline length</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python field <a class="reference external" href="python/modules/ovito_pipeline.html#ovito.pipeline.Modifier.title" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Modifier.title</span></code></a></p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fixed <strong class="command">ovitos -m pip install</strong> failure for packages that require a build step</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.9.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-9-0-02-aug-2023">
+<h2>Version 3.9.0 (02-Aug-2023)<a class="headerlink" href="#version-3-9-0-02-aug-2023" title="Permalink to this heading"></a></h2>
+<p class="rubric">Dark mode support on Windows</p>
+<p>To enable the dark UI theme on Windows, go to the <a class="reference internal" href="reference/app_settings/general_settings.html#application-settings-general"><span class="std std-ref">application settings</span></a> and switch on <span class="guilabel">Enable automatic dark mode</span>.
+OVITO will follow the Windows system color theme.</p>
+<a class="reference internal image-reference" href="_images/windows_dark_mode_support.png"><img alt="_images/windows_dark_mode_support.png" src="_images/windows_dark_mode_support.png" style="width: 60%;" /></a>
+<p class="rubric">OpenSSH client integration <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>OVITO Pro is now able to access data files on remote machines using OpenSSH’s <strong class="program">sftp</strong> utility, which fully supports smartcard authentication and other advanced
+ssh features. See <a class="reference internal" href="advanced_topics/remote_file_access.html#usage-import-remote-openssh-connection-method"><span class="std std-ref">OpenSSH client </span></a> for further information.</p>
+<p class="rubric">User-defined file format readers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>This program release introduces a <a class="reference external" href="python/introduction/custom_file_readers.html#writing-custom-file-readers" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">programming interface for user-defined file readers</span></a>, which enables
+you to develop parser functions for new file formats in Python. User-defined file readers are fully integrated into the
+GUI of OVITO Pro and work seamlessly with the <a class="reference external" href="python/modules/ovito_io.html#ovito.io.import_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> function from the OVITO Python module.</p>
+<p class="rubric">Discovery mechanism for Python extensions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>Python extensions for OVITO Pro or the OVITO Python module (i.e. user-defined modifiers and file readers) can now be <a class="reference external" href="python/introduction/advanced_topics.html#registering-custom-python-classes" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">packaged as Python modules</span></a>,
+making it easier to deploy and install them (using <strong class="command">pip install</strong>). Custom extensions you’ve developed can be put under version control in a Git repo
+and shared online with other OVITO users if desired – we have set up the new <a class="reference external" href="https://www.ovito.org/extensions/">OVITO Extensions Directory</a> for that purpose.
+After <a class="reference internal" href="reference/pipelines/modifiers/python_script.html#particles-modifiers-python-script-installing-extensions"><span class="std std-ref">easy installation on a user’s computer</span></a>, OVITO Pro automatically discovers all extensions
+and makes them available in the GUI.</p>
+<a class="reference internal image-reference" href="_images/python_extension_workflow.jpg"><img alt="_images/python_extension_workflow.jpg" class="align-center" src="_images/python_extension_workflow.jpg" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/empty.png"><img alt="_images/empty.png" class="align-center" src="_images/empty.png" style="width: 1%;" /></a>
+<a class="reference internal image-reference" href="_images/python_settings_dialog.png"><img alt="_images/python_settings_dialog.png" class="align-right" src="_images/python_settings_dialog.png" style="width: 50%;" /></a>
+<p class="rubric">New <em>Python Settings</em> dialog <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>The new <a class="reference internal" href="reference/pipelines/modifiers/python_script.html#python-settings-dialog"><span class="std std-ref">Python Settings dialog</span></a> provides access to all things related to a Python extension in OVITO Pro:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Configure the current working directory used for file I/O operations</p></li>
+<li><p>Hot reload function for imported Python modules, which streamlines development of Python code located in external source files</p></li>
+<li><p>Import the source code of installed extensions into the current program session to selectively customize functions when needed</p></li>
+<li><p>List of all installed Python packages that are available for import by user code</p></li>
+</ul>
+</div></blockquote>
+<p class="rubric">Support for more file formats</p>
+<p>OVITO can now import DCD trajectory files, which are written by the CHARMM, NAMD, and LAMMPS simulation codes.
+OVITO Pro and the OVITO Python module can additionally read <a class="reference internal" href="reference/file_formats/input/ase_trajectory.html#file-formats-input-ase-trajectory"><span class="std std-ref">ASE trajectory files</span></a>.</p>
+<p class="rubric">Further changes in this program release:</p>
+<ul class="simple">
+<li><p>Support for additional property data types (<cite>float32</cite>, <cite>int8</cite>) to reduce memory footprint of particle properties with low precision requirements (e.g. <cite>Color</cite>, <cite>Selection</cite>)</p></li>
+<li><p>OpenGL renderer: Performance optimizations, direct upload of <cite>float32</cite> and <cite>int8</cite> array values to GPU memory</p></li>
+<li><p>GSD file reader: Do not skip <code class="docutils literal notranslate"><span class="pre">log/</span></code> chunks containing <code class="docutils literal notranslate"><span class="pre">/</span></code> in their names (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/226">issue #226</a>)</p></li>
+<li><p>Fix: Color Coding modifier’s “Adjust Range” function does not follow option “Only selected”</p></li>
+<li><p>Search patterns for trajectory file series: Avoid asterisk in file extensions containing digits, e.g. <code class="file docutils literal notranslate"><span class="pre">snapshot0000.h5</span></code> → <code class="file docutils literal notranslate"><span class="pre">snapshot*.h5</span></code></p></li>
+<li><p>Data table file exporter does not require a <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataTable.y" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">y</span></code></a>-property anymore</p></li>
+<li><p>Automatic name mangling of atom attributes imported from LAMMPS dump, GSD, and XYZ files in case they do not conform to OVITO’s property naming rules</p></li>
+<li><p>The <a class="reference internal" href="reference/app_settings/viewport_settings.html#application-settings-viewports-graphics-implementation"><span class="std std-ref">Vulkan viewport renderer</span></a> has been removed</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python methods <a class="reference external" href="python/modules/ovito_data.html#ovito.data.Property.add_type_id" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Property.add_type_id</span></code></a> and <a class="reference external" href="python/modules/ovito_data.html#ovito.data.Property.add_type_name" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Property.add_type_name</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> New Python method <a class="reference external" href="python/modules/ovito_data.html#ovito.data.VoxelGrid.view" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">VoxelGrid.view</span></code></a></p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Performance optimizations for property data access from Python code</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.5">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-5-19-jun-2023">
+<h2>Version 3.8.5 (19-Jun-2023)<a class="headerlink" href="#version-3-8-5-19-jun-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/voronoi_analysis.html#particles-modifiers-voronoi-analysis"><span class="std std-ref">Voronoi analysis</span></a> modifier now outputs per-face <code class="docutils literal notranslate"><span class="pre">Area</span></code> and <code class="docutils literal notranslate"><span class="pre">Voronoi</span> <span class="pre">Order</span></code> mesh properties</p></li>
+<li><p>PDB file reader: Refined detection of cells with periodic boundary conditions</p></li>
+<li><p>GSD file reader: Support time-varying radii of spherical type shapes; display simulation step numbers in timeline</p></li>
+<li><p>LAMMPS dump file reader: Automatically <a class="reference internal" href="reference/file_formats/input/lammps_dump.html#file-formats-input-lammps-dump-property-mapping"><span class="std std-ref">map file columns to standard particle properties</span></a> if names match</p></li>
+<li><p>Bug fix: Particle selection in data inspector is lost when playing animation or moving viewport camera</p></li>
+<li><p>Workaround for macOS (Apple Silicon) OpenGL stencil buffer issue: Highlighted particles not rendered correctly</p></li>
+<li><p>Update third-party libraries: ffmpeg 6.0, OpenSSL 1.1.1u, libssh 0.10.5, Qt 6.5.1, PySide6 6.5.1.1, HDF5 1.14.1-2, NetCDF 4.9.2</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.4">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-4-03-may-2023">
+<h2>Version 3.8.4 (03-May-2023)<a class="headerlink" href="#version-3-8-4-03-may-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: ffmpeg video encoding crashes on Windows if output path contains non-ascii characters</p></li>
+<li><p>Silence console message “Numeric mode unsupported in the posix collation implementation” on Linux by enabling ICU support in Qt build</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Segfault in PySide6 package initialization on Linux when adding a Python layer to a viewport</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Fix: Interchanged xz/yz simulation box shear components in <a class="reference external" href="python/modules/ovito_io_lammps.html#ovito.io.lammps.lammps_to_ovito" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">lammps_to_ovito()</span></code></a> Python function</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-3-16-apr-2023">
+<h2>Version 3.8.3 (16-Apr-2023)<a class="headerlink" href="#version-3-8-3-16-apr-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Further improved performance of sequential loading of compressed trajectory files</p></li>
+<li><p>Fixed regression (since v3.8.0): <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.render_anim" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Viewport.render_anim()</span></code></a> renders only first animation frame</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Python exceptions raised in user-defined modifier functions are now propagated up the call chain to where the pipeline evaluation was triggered</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Included <code class="docutils literal notranslate"><span class="pre">bz2</span></code> and <cite>sqlite3</cite> standard modules, which were missing in embedded Python interpreter on Linux</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-2-04-apr-2023">
+<h2>Version 3.8.2 (04-Apr-2023)<a class="headerlink" href="#version-3-8-2-04-apr-2023" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Implemented fast access to trajectory frames in compressed (gzipped) files</p></li>
+<li><p>Fix: Segfault when using zoom function in viewport with an attached camera object</p></li>
+<li><p>Fix: Segfault in <a class="reference internal" href="reference/pipelines/modifiers/coordination_polyhedra.html#particles-modifiers-coordination-polyhedra"><span class="std std-ref">Coordination polyhedra</span></a> modifier on Linux</p></li>
+<li><p>Fix: Function ‘load/save session state’ does not follow global working directory</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-1-27-mar-2023">
+<h2>Version 3.8.1 (27-Mar-2023)<a class="headerlink" href="#version-3-8-1-27-mar-2023" title="Permalink to this heading"></a></h2>
+<p class="rubric">Identification of volumetric regions using the Gaussian density method <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>The <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a> modifier’s implementation of the <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh-gaussian-density-method"><span class="std std-ref">Gaussian density method</span></a>
+has been extended to support the <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh-regions"><span class="std std-ref">identification of volumetric regions</span></a>, e.g. pores, cavities, and filled spatial regions.
+Their respective surface areas and volumes are calculated and output by the modifier in tabulated form.</p>
+<p>To make this possible, we have developed an extension to the <a class="reference external" href="https://en.wikipedia.org/wiki/Marching_cubes">Marching Cubes algorithm</a> for isosurface construction, which provides
+the capability to identify disconnected spatial regions separated by the surface mesh and compute their enclosed volumes – of course with full support for periodic boundary conditions.</p>
+<a class="reference internal image-reference" href="_images/surface_mesh_regions_gaussian_density_example.png"><img alt="_images/surface_mesh_regions_gaussian_density_example.png" src="_images/surface_mesh_regions_gaussian_density_example.png" style="width: 25%;" /></a>
+<a class="reference internal image-reference" href="_images/construct_surface_mesh_regions_example_table.jpg"><img alt="_images/construct_surface_mesh_regions_example_table.jpg" src="_images/construct_surface_mesh_regions_example_table.jpg" style="width: 50%;" /></a>
+<p class="rubric">New efficient Python method for computing neighbor lists <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>OVITO’s Python interface now offers the new <a class="reference external" href="python/modules/ovito_data.html#ovito.data.CutoffNeighborFinder.find_all" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CutoffNeighborFinder.find_all()</span></code></a> method
+for vectorized computation of neighbor lists for many or all particles at once.</p>
+<p class="rubric">Further changes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/file_formats/input/lammps_data.html#file-formats-input-lammps-data"><span class="std std-ref">LAMMPS data file reader</span></a>: Accept ‘#’ in type names, which are referenced in data sections of the file</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.8.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-8-0-03-mar-2023">
+<h2>Version 3.8.0 (03-Mar-2023)<a class="headerlink" href="#version-3-8-0-03-mar-2023" title="Permalink to this heading"></a></h2>
+<p class="rubric">Develop custom modifiers with extended capabilities <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>A newly devised programming interface enables you to write advanced modifier functions in Python that</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>access <strong>more than one</strong> frame of a simulation trajectory,</p></li>
+<li><p>perform computations that involve data <strong>from several input files</strong>, or</p></li>
+<li><p>need control over the <strong>caching</strong> of computational results.</p></li>
+</ul>
+</div></blockquote>
+<p>Take simulation post-processing to the next level! Develop your own trajectory analysis algorithms
+in Python, which are fully integrated into OVITO’s pipeline system and the interactive interface of OVITO Pro.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CalculateIncrementalDisplacementsModifier</span><span class="p">(</span><span class="n">ModifierInterface</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">input_slots</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">next_frame</span> <span class="o">=</span> <span class="n">input_slots</span><span class="p">[</span><span class="s1">&#39;upstream&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">displacements</span> <span class="o">=</span> <span class="n">next_frame</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">positions</span>
+</pre></div>
+</div>
+<p>Have a look at our completely revised <a class="reference external" href="python/introduction/custom_modifiers.html#writing-custom-modifiers" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">introduction to user-defined modifiers</span></a>
+and check out the new <a class="reference external" href="python/introduction/custom_modifiers.html#writing-custom-modifiers-advanced-interface" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">advanced programming interface for user-defined modifiers</span></a>.</p>
+<p class="rubric">Improved color legends</p>
+<p>OVITO can now render tick marks in <a class="reference internal" href="reference/viewports/layers/color_legend_layer.html#viewport-layers-color-legend"><span class="std std-ref">color mapping legends</span></a> to label intermediate values.
+Furthermore, the legend’s title may be rotated by 90 degrees:</p>
+<a class="reference internal image-reference" href="_images/color_legend_ticks_horizontal.png"><img alt="_images/color_legend_ticks_horizontal.png" src="_images/color_legend_ticks_horizontal.png" style="width: 34%;" /></a>
+<a class="reference internal image-reference" href="_images/color_legend_ticks_vertical.png"><img alt="_images/color_legend_ticks_vertical.png" src="_images/color_legend_ticks_vertical.png" style="width: 12%;" /></a>
+<p class="rubric">File reader for ASE database files <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>Load atomic structures from database files of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation Environment (ASE)</a> into OVITO.
+The <a class="reference internal" href="reference/file_formats/input/ase_database.html#file-formats-input-ase-database"><span class="std std-ref">new file reader</span></a> lets you scroll through all structures in a database or pick specific structures
+using a query string. Metadata associated with structures is made available in OVITO as <a class="reference internal" href="usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a>.</p>
+<a class="reference internal image-reference" href="_images/ase_database_reader.gif"><img alt="_images/ase_database_reader.gif" src="_images/ase_database_reader.gif" style="width: 60%;" /></a>
+<p class="rubric">New modifier: <a class="reference internal" href="reference/pipelines/modifiers/identify_fcc_planar_faults.html#modifiers-identify-fcc-planar-faults"><span class="std std-ref">Identify fcc planar faults </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>Easily identify different planar defect types, such as <strong>stacking faults</strong> and <strong>coherent twin boundaries</strong>, in face-centered cubic (fcc) crystals.
+We have developed a powerful classification algorithm for hcp-like atoms that make up such planar defects:</p>
+<a class="reference internal image-reference" href="_images/planar_faults.jpg"><img alt="_images/planar_faults.jpg" src="_images/planar_faults.jpg" style="width: 30%;" /></a>
+<p class="rubric">New modifier: <a class="reference internal" href="reference/pipelines/modifiers/render_lammps_regions.html#modifiers-render-lammps-regions"><span class="std std-ref">Render LAMMPS regions </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>Use this new tool to generate mesh-based representations of the parametric regions defined in your <a class="reference external" href="https://docs.lammps.org/">LAMMPS</a> simulation,
+e.g., cylinders, spheres, or blocks, and visualize the boundaries of these spatial regions along with the particle model:</p>
+<a class="reference internal image-reference" href="_images/lammps_regions.png"><img alt="_images/lammps_regions.png" src="_images/lammps_regions.png" style="width: 60%;" /></a>
+<p class="rubric">Spatial binning modifier: New unity input option <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>This options offers a shortcut for calculating particle density distributions, i.e. counting the particles per grid cell.
+Previous versions required first defining an auxiliary particle property with a uniform value of 1 to calculate the number density:</p>
+<a class="reference internal image-reference" href="_images/spatial_binning.png"><img alt="_images/spatial_binning.png" src="_images/spatial_binning.png" style="width: 60%;" /></a>
+<p>See <a class="reference internal" href="reference/pipelines/modifiers/bin_and_reduce.html#particles-modifiers-bin-and-reduce"><span class="std std-ref">Spatial binning </span></a> modifier.</p>
+<p class="rubric">Support for LAMMPS dump grid files</p>
+<p>OVITO can now read and visualize the <a class="reference external" href="https://docs.lammps.org/Howto_grid.html">new volumetric grid file format written by recent LAMMPS versions</a>
+thanks to the newly added <a class="reference internal" href="reference/file_formats/input/lammps_dump_grid.html#file-formats-input-lammps-dump-grid"><span class="std std-ref">LAMMPS dump grid file reader</span></a>:</p>
+<a class="reference internal image-reference" href="_images/volumetric_grid_discrete.png"><img alt="_images/volumetric_grid_discrete.png" src="_images/volumetric_grid_discrete.png" style="width: 25%;" /></a>
+<p class="rubric">Slice modifier on voxel grids</p>
+<p>When you apply the <a class="reference internal" href="reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier to a voxel grid,
+cell values now get copied to the mesh faces and interpolated field values to the mesh vertices of the generated cross-section.
+This enables both discrete and interpolated visualizations of the field values along arbitrary planar cross-sections:</p>
+<a class="reference internal image-reference" href="_images/volumetric_grid_slice_discrete.png"><img alt="_images/volumetric_grid_slice_discrete.png" src="_images/volumetric_grid_slice_discrete.png" style="width: 25%;" /></a>
+<a class="reference internal image-reference" href="_images/volumetric_grid_slice_interpolated.png"><img alt="_images/volumetric_grid_slice_interpolated.png" src="_images/volumetric_grid_slice_interpolated.png" style="width: 25%;" /></a>
+<p>See <a class="reference internal" href="reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier and <a class="reference internal" href="reference/pipelines/data_objects/voxel_grid.html#scene-objects-voxel-grid"><span class="std std-ref">Voxel grids</span></a>.</p>
+<p class="rubric">Support for point-based volumetric grids</p>
+<p>In addition to the classical <em>cell-based</em> voxel grids, OVITO now also supports <em>point-based</em> volumetric grids,
+in which field values are associated with the grid points instead of the voxel cells. All functions in OVITO
+that operate on grids, e.g. the <a class="reference internal" href="reference/pipelines/modifiers/create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a> modifier, also support periodic and
+mixed boundary conditions.</p>
+<a class="reference internal image-reference" href="_images/voxel_grid_types.png"><img alt="_images/voxel_grid_types.png" src="_images/voxel_grid_types.png" style="width: 30%;" /></a>
+<p>See <a class="reference external" href="python/modules/ovito_data.html#ovito.data.VoxelGrid.grid_type" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ovito.data.VoxelGrid.grid_type</span></code></a> and <a class="reference internal" href="reference/file_formats/input/gaussian_cube.html#file-formats-input-cube"><span class="std std-ref">Gaussian Cube file reader</span></a>.</p>
+<p class="rubric">Load Trajectory modifier now supports removal of particles</p>
+<p>Previously, the <a class="reference internal" href="reference/pipelines/modifiers/load_trajectory.html#particles-modifiers-load-trajectory"><span class="std std-ref">Load trajectory</span></a> modifier required the trajectory file to contain coordinates for all particles
+that were initially present in the topology dataset. The improved version of the modifier can now deal with particles disappearing in later frames of a trajectory, e.g.,
+when particles get removed from the simulation over time.</p>
+<p class="rubric">Further additions and changes in this program release:</p>
+<ul class="simple">
+<li><p>Added dark mode UI support for Linux platform.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/correlation_function.html#particles-modifiers-correlation-function"><span class="std std-ref">Spatial correlation function</span></a> modifier: Added support for 2d simulations.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/wrap_at_periodic_boundaries.html#particles-modifiers-wrap-at-periodic-boundaries"><span class="std std-ref">Wrap at periodic boundaries</span></a> modifier: Added support for 2d simulations.</p></li>
+<li><p>Save and restore maximized state of main window across program sessions.</p></li>
+<li><p><a class="reference internal" href="reference/file_formats/input/lammps_data.html#file-formats-input-lammps-data"><span class="std std-ref">LAMMPS data file reader</span></a> &amp; writer: Added support for extended <em>Velocities</em> file section for when using LAMMPS atom styles <em>electron</em>, <em>ellipsoid</em>, or <em>sphere</em>.</p></li>
+<li><p>LAMMPS data file writer: Added the option to renumber all particle/bond/angle/dihedral/improper types during export. Avoids conversion problems from 0-based type IDs loaded from GSD files.</p></li>
+<li><p>New option to clip surfaces at open box boundaries (see <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.SurfaceMeshVis.clip_at_domain_boundaries" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SurfaceMeshVis.clip_at_domain_boundaries</span></code></a>).</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/cluster_analysis.html#particles-modifiers-cluster-analysis"><span class="std std-ref">Cluster analysis</span></a> modifier: Abort calculation of center of mass and radius of gyration if masses of all input particles are zero.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added user option that makes OVITO Pro import multiple files of the same kind as separate objects into the scene.</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> Accept <code class="docutils literal notranslate"><span class="pre">os.PathLike</span></code> objects in Python functions <a class="reference external" href="python/modules/ovito_io.html#ovito.io.import_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_file()</span></code></a> and <a class="reference external" href="python/modules/ovito_io.html#ovito.io.export_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_file()</span></code></a>.</p></li>
+<li><p><span class="ovito-python-tag-role"><a class="ovito-py-tag" href="https://docs.ovito.org/python/" data-tooltip="This program feature is part of the OVITO Python module." data-tooltip-position="right">py</a></span> <a class="reference external" href="python/modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PropertyContainer.create_property</span></code></a>: Accept <code class="docutils literal notranslate"><span class="pre">data</span></code> values that are broadcastable to shape of property array.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.12">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-12-16-dec-2022">
+<h2>Version 3.7.12 (16-Dec-2022)<a class="headerlink" href="#version-3-7-12-16-dec-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>GRO file reader: <a class="reference external" href="https://www.ovito.org/forum/topic/only-first-letter-of-particle-types-read-from-gro-file/">Recognize additional chemical symbols SI, FE, BR</a>.</p></li>
+<li><p>STL file reader: Tolerate leading whitespace on first line.</p></li>
+<li><p>Updated third-party libraries on Windows: Qt 6.4.1, OpenSSL 1.1.1s, ffmpeg 4.2.8, zlib 1.2.23.</p></li>
+<li><p>Fix: Voronoi cavity radius calculation is <a class="reference external" href="https://www.ovito.org/forum/topic/only-first-letter-of-particle-types-read-from-gro-file/">wrong by a factor of 2</a>.</p></li>
+<li><p>Fix: Function “Make Independent” does not work correctly for surface mesh visual elements in cloned pipelines.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Python method  <a class="reference external" href="python/modules/ovito_data.html#ovito.data.SurfaceMesh.locate_point" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.SurfaceMesh.locate_point()</span></code></a> can yield wrong results for coarse, one-sided meshes.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.11">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-11-29-oct-2022">
+<h2>Version 3.7.11 (29-Oct-2022)<a class="headerlink" href="#version-3-7-11-29-oct-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Added user option to application settings dialog for changing the working directory behavior.</p></li>
+<li><p>Fixed regression: Slice modifier does not work on voxel grids.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Vectorized all query methods of <code class="docutils literal notranslate"><span class="pre">SurfaceMeshTopology</span></code> class.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Provide PyPI package for Python 3.11.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added flat array option to method <code class="docutils literal notranslate"><span class="pre">SurfaceMesh.get_face_vertices()</span></code>.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.10">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-10-09-oct-2022">
+<h2>Version 3.7.10 (09-Oct-2022)<a class="headerlink" href="#version-3-7-10-09-oct-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Optimization of main window UI widgets to improve rapid animation playback at high frame rates.</p></li>
+<li><p>Enhancements to the pipeline editor: Brief information display for some modifiers.</p></li>
+<li><p>New right-click context menu in pipeline editor: <a class="reference internal" href="advanced_topics/clone_pipeline.html#clone-pipeline"><span class="std std-ref">Branched and cloned pipelines </span></a> Added ‘Copy to…’ function for copying modifiers within and across pipelines.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Standalone Python module: Run in headless mode by default. OVITO_GUI_MODE env variable requests <a class="reference internal" href="reference/rendering/opengl_renderer.html#rendering-opengl-renderer"><span class="std std-ref">OpenGL renderer</span></a> support.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> PyPI package on Linux: Switched back to PySide6 version 6.2.4 for better backward compatibility with older Ubuntu distros.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fixed loading of files opened via double click in case license validation dialog pops up.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Generalized the <a class="reference internal" href="reference/pipelines/visual_elements/vectors.html#visual-elements-vectors"><span class="std std-ref">Vectors</span></a> element to support visualization of vector quantities in more types of <code class="docutils literal notranslate"><span class="pre">PropertyContainers</span></code>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python function <a class="reference external" href="python/modules/ovito_modifiers.html#ovito.modifiers.PolyhedralTemplateMatchingModifier.calculate_misorientation" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.modifiers.PolyhedralTemplateMatchingModifier.calculate_misorientation()</span></code></a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Automatic conversion of NumPy array scalars to Python numbers when storing them as OVITO global <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.DataCollection</span></code></a> attributes.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.9">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-9-12-sep-2022">
+<h2>Version 3.7.9 (12-Sep-2022)<a class="headerlink" href="#version-3-7-9-12-sep-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/voronoi_analysis.html#particles-modifiers-voronoi-analysis"><span class="std std-ref">Voronoi analysis</span></a>: Added calculation of cavity radius.</p></li>
+<li><p>GSD file importer/exporter: Added support for particle attributes <a class="reference external" href="https://gsd.readthedocs.io/en/latest/schema-hoomd.html#particle-data">“angmom” and “body”</a>.</p></li>
+<li><p>Fix: <em>Affine Transformation</em> modifier not transforming particles in target-cell mode in rare situations (when called from Python).</p></li>
+<li><p>Fix: File import via drag &amp; drop not working when Vulkan viewport renderer is active.</p></li>
+<li><p>Upgraded Qt cross-platform framework to version 6.3.1.</p></li>
+<li><p>Cluster analysis modifier: Warn user if center of mass cannot be computed due to cluster’s total mass being zero.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Upgraded <a class="reference external" href="python/introduction/installation.html#ovitos-interpreter" title="(in OVITO Python Reference v3.10.4)"><span>OVITO Pro integrated interpreter</span></a> embedded interpreter to Python 3.10.6.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference external" href="python/introduction/installation.html#ovitos-install-modules" title="(in OVITO Python Reference v3.10.4)"><span>Installing third-party Python modules</span></a> Installation of PyPI packages with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> option in the embedded interpreter is now supported.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python API for creating <a class="reference external" href="python/modules/ovito_data.html#ovito.data.SurfaceMesh" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.SurfaceMesh</span></code></a> objects.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Improved operation of Python module in Jupyter environments. Interrupting long-running operations is fully supported now.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New experimental Jupyter notebook visualization widget (<a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.create_jupyter_widget" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.vis.Viewport.create_jupyter_widget()</span></code></a>).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added Python API <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.ColorLegendOverlay" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.ColorLegendOverlay</span></code></a> color_mapping_source.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Segfault during Python statement <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">ovito.scene.pipelines[:]</span></code>.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.8">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-8-29-jul-2022">
+<h2>Version 3.7.8 (29-Jul-2022)<a class="headerlink" href="#version-3-7-8-29-jul-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: Program crash when quickly skipping through a trajectory consisting of a series of files loaded via SSH (regression OVITO 3.7.0).</p></li>
+<li><p>Fix: Visual artifacts when rendering cone primitives (3d arrow heads) at small length scales due to numerical precision issue.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added conda packages for Python 3.10.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added conda packages for macOS arm64/M1 platform.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Work around a memory leak in some OpenGL graphics driver implementations when the <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.render_image" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.vis.Viewport.render_image()</span></code></a> Python function is called repeatedly.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.7">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-7-06-jul-2022">
+<h2>Version 3.7.7 (06-Jul-2022)<a class="headerlink" href="#version-3-7-7-06-jul-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Ubuntu 22.04 compatibility - Linux package of OVITO now includes a private copy of OpenSSL 1.1 libraries.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.6">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-6-23-jun-2022">
+<h2>Version 3.7.6 (23-Jun-2022)<a class="headerlink" href="#version-3-7-6-23-jun-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>PDB file reader: Added support for CP2K trajectory format.</p></li>
+<li><p>LAMMPS dump file reader: Recognize <code class="docutils literal notranslate"><span class="pre">quat{ijkw}</span></code> and <code class="docutils literal notranslate"><span class="pre">shape{xyz}</span></code> columns and automatically them to correct particle properties.</p></li>
+<li><p>Fix: Camera FOV parameter not animatable when rendering a movie.</p></li>
+<li><p>Fix: Segfault when loading .ovito state files written by OVITO 3.3 or older containing a Python script.</p></li>
+<li><p>Fix: Grain segmentation algorithm never terminates for particular inputs.</p></li>
+<li><p>PyPI package for Linux: disabled built-in SSH client to improve compatibility with Ubuntu 22.04, which doesn’t provide OpenSSL 1.1 libraries anymore.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python class <a class="reference external" href="python/modules/ovito_data.html#ovito.data.SurfaceMeshTopology" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.SurfaceMeshTopology</span></code></a>, which provides script access to the face connectivity information of surface meshes.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Conda channel now provides additional variants of the <code class="docutils literal notranslate"><span class="pre">`ovito</span></code> &lt;<a class="reference external" href="https://conda.ovito.org">https://conda.ovito.org</a>&gt;`_ package (built against <code class="docutils literal notranslate"><span class="pre">tbb</span></code> v2020 and v2021), which avoids dependency conflicts with certain third-party packages when installing them in the same environment.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.5">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-5-28-may-2022">
+<h2>Version 3.7.5 (28-May-2022)<a class="headerlink" href="#version-3-7-5-28-may-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Smooth trajectory modifier now supports varying number of particles.</p></li>
+<li><p>SSH client: Try password first before keyboard-interactive authentication for successful handshaking with some SSH servers.</p></li>
+<li><p>Performance improvements to OpenGL high-quality sphere rendering code</p></li>
+<li><p>Bug fix: Data inspector shows a 3rd text label in bar charts with 2 bars.</p></li>
+<li><p>Bug fix: Sporadic program crashes when importing CA files.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataCollection.attributes" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataCollection.attributes</span></code></a> dictionary can now store arbitrary Python objects.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python method <a class="reference external" href="python/modules/ovito_data.html#ovito.data.Particles.remap_indices" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.Particles.remap_indices()</span></code></a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python method <a class="reference external" href="python/modules/ovito_data.html#ovito.data.SurfaceMesh.to_triangle_mesh" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.SurfaceMesh.to_triangle_mesh()</span></code></a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Bumped maximum neighbor limit of <a class="reference external" href="python/modules/ovito_data.html#ovito.data.NearestNeighborFinder" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.NearestNeighborFinder</span></code></a> to 64.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Dropped support for Python 3.6, which has reached its end-of-life date.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.4">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-4-18-apr-2022">
+<h2>Version 3.7.4 (18-Apr-2022)<a class="headerlink" href="#version-3-7-4-18-apr-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/centrosymmetry.html#particles-modifiers-centrosymmetry"><span class="std std-ref">Centrosymmetry parameter</span></a> modifier: New option ‘<em>Use only selected particles</em>’.</p></li>
+<li><p><a class="reference internal" href="reference/file_formats/input/lammps_data.html#file-formats-input-lammps-data"><span class="std std-ref">LAMMPS data file reader</span></a>: Added support for <em>Ellipsoids</em> section.</p></li>
+<li><p>Fix: Program crash during file format detection when importing file from path containing CJK or other non-ANSI characters.</p></li>
+<li><p>Fix: Error “The file source path is empty or has not been set” when picking a new simulation file of different format.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a> modifer: New option ‘Map particles to regions’.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python methods <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataCollection.create_cell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.DataCollection.create_cell()</span></code></a>, <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataCollection.create_particles" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.DataCollection.create_particles()</span></code></a>, <a class="reference external" href="python/modules/ovito_data.html#ovito.data.Particles.create_bonds" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.Particles.create_bonds()</span></code></a>.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-3-29-mar-2022">
+<h2>Version 3.7.3 (29-Mar-2022)<a class="headerlink" href="#version-3-7-3-29-mar-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>DXA modifier now picks up partitioning established by <em>Grain Segmentation</em> modifier in the upstream pipeline, see <a class="reference external" href="https://www.ovito.org/forum/topic/how/">discussion in the forum</a>.</p></li>
+<li><p>Fix: XYZ file column mapping is reset when using “Pick new file” function.</p></li>
+<li><p>Fix: App closes when using the “Pick new file” function under Linux (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/216">issue #216</a>).</p></li>
+<li><p>Fix: Segfault when deleting a disabled modifier from a branched pipeline.</p></li>
+<li><p>Fix: <em>Construct surface mesh</em> modifier sometimes produces incorrect cap polygons if the alpha-shape complex contains degenerate elements (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/217">issue #217</a>).</p></li>
+<li><p>Regression: Progress bar not updated correctly during execution of <em>Construct Surface Mesh</em> and <em>DXA</em> modifiers.</p></li>
+<li><p>Regression: Program does not exit if <code class="docutils literal notranslate"><span class="pre">--help</span></code> command line option is used.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added user documentation for Python-based modifiers <a class="reference internal" href="reference/pipelines/modifiers/calculate_local_entropy.html#modifiers-calculate-local-entropy"><span class="std std-ref">Calculate local entropy </span></a> and <a class="reference internal" href="reference/pipelines/modifiers/shrink_wrap_box.html#modifiers-shrink-wrap-box"><span class="std std-ref">Shrink-wrap simulation box </span></a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added .pyi stub files to <a class="reference external" href="python/index.html#scripting-manual" title="(in OVITO Python Reference v3.10.4)"><span>OVITO Python Reference</span></a> Python package to support <a class="reference external" href="https://www.ovito.org/forum/topic/documentaton-typing-for-python-module-as-stubs-pyi-files-to-be-picked-up-by-ide-for-autocompletion-and-type-checking/">auto-completions and mouse-over documentation in Python IDEs</a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference external" href="python/modules/ovito_data.html#ovito.data.CutoffNeighborFinder" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.CutoffNeighborFinder</span></code></a> now accepts non-periodic simulation cells that are degenerate.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: <a class="reference external" href="python/modules/ovito_data.html#ovito.data.DataTable.xy" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.DataTable.xy()</span></code></a> method generates wrong x-coords array if data table interval doesn’t start at 0.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-2-03-mar-2022">
+<h2>Version 3.7.2 (03-Mar-2022)<a class="headerlink" href="#version-3-7-2-03-mar-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Improved render output window with image zoom function.</p></li>
+<li><p>Fix: Particle type colors not initialised correctly if imported LAMMPS dump file contains both ‘type’ and ‘element’ columns (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/193#note_403792737">issue #193 note 403792737</a>).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> macOS: Fixed PySide6 loading error due to wrong rpath information when importing PyPI ovito package.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Linux: Fixed sqlite3 Python package included in the embedded Python interpreter of OVITO Pro.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-1-26-feb-2022">
+<h2>Version 3.7.1 (26-Feb-2022)<a class="headerlink" href="#version-3-7-1-26-feb-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fixed regression: Segfault when loading session state file containing a viewport camera object.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python function <a class="reference external" href="python/modules/ovito_data.html#ovito.data.NearestNeighborFinder.find_all" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.NearestNeighborFinder.find_all()</span></code></a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference external" href="python/modules/ovito_data.html#ovito.data.PropertyContainer" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.PropertyContainer</span></code></a> classes support removing properties with the <code class="docutils literal notranslate"><span class="pre">del</span></code> statement.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Inform user if insufficient file access permissions let license activation fail.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.7.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-7-0-15-feb-2022">
+<h2>Version 3.7.0 (15-Feb-2022)<a class="headerlink" href="#version-3-7-0-15-feb-2022" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Visual element and particle type settings can now be preserved when picking a new input simulation file in the <a class="reference internal" href="reference/pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">External file</span></a> external file panel.</p></li>
+<li><p>Support for HTML formatted text in viewport layers <a class="reference internal" href="reference/viewports/layers/text_label_layer.html#viewport-layers-text-label"><span class="std std-ref">Text label layer</span></a>, <a class="reference internal" href="reference/viewports/layers/color_legend_layer.html#viewport-layers-color-legend"><span class="std std-ref">Color legend layer</span></a>, and <a class="reference internal" href="reference/viewports/layers/coordinate_tripod_layer.html#viewport-layers-coordinate-tripod"><span class="std std-ref">Coordinate tripod layer</span></a>.</p></li>
+<li><p>Improved color quality of animated GIFs produced by OVITO</p></li>
+<li><p>Added dark mode UI support on macOS.</p></li>
+<li><p>Availability of native arm64/M1 builds of OVITO Basic, OVITO Pro and the OVITO Python package for Apple Silicon machines.</p></li>
+<li><p>Ported OVITO code base from C++14 to C++17 language standard.</p></li>
+<li><p>Switched from old Qt 5.x to version 6.2 of the Qt cross-platform C++ framework and, correspondingly, from PySide2 to <a class="reference external" href="https://pypi.org/project/PySide6/">PySide6</a>. (Exception: Packages for Anaconda, where dependencies Qt6/PySide6 are not yet available).</p></li>
+<li><p>Completely reworked and modernized the internal asynchronous task system and the scene rendering framework of OVITO.</p></li>
+<li><p>New standard <a class="reference internal" href="reference/pipelines/data_objects/bonds.html#scene-objects-bonds"><span class="std std-ref">Bonds</span></a>  property “Width”, which allows controlling the diameter of bond cylinders on a per-bond basis.</p></li>
+<li><p>Added detailed documentation for some of the file readers of OVITO. See the <a class="reference internal" href="reference/file_formats/file_formats_input.html#file-formats-input"><span class="std std-ref">Input file formats</span></a>.</p></li>
+<li><p>LAMMPS data file reader &amp; writer: Added preliminary support for <a class="reference external" href="https://github.com/lammps/lammps/pull/2531">type labels</a>, which will be supported by a future version of LAMMPS.</p></li>
+<li><p><a class="reference internal" href="reference/file_formats/input/lammps_dump.html#file-formats-input-lammps-dump"><span class="std std-ref">LAMMPS dump file reader</span></a>: Map columns <code class="docutils literal notranslate"><span class="pre">c_diameter[...]</span></code> to particle property <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> and perform division by 2.</p></li>
+<li><p>GSD file reader &amp; writer: Added support for angles/dihedrals/impropers.</p></li>
+<li><p>User can now rename individual structure types in the UI of structure identification modifiers.</p></li>
+<li><p>Implemented new OpenGL rendering technique <a class="reference external" href="https://jcgt.org/published/0002/02/09/">*Weighted Blended Order-Independent Transparency*</a>, providing an alternative to the classical painter’s algorithm. Can be activated in the app settings dialog and gives better results if there’s a mix of several different object types (e.g. particles and surfaces) that are all semi-transparent.</p></li>
+<li><p>Detect if the triangle mesh is not closed when loading a custom particle shape. Automatically disable back-face culling for the particle type in this case.</p></li>
+<li><p>CA file reader: Compute dislocation line statistics for re-imported datasets the same way the DXA modifier does.</p></li>
+<li><p>Fix: Particles visual element does not use uniform scaling factor when rendering some non-spherical particle shapes.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.6.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-6-0-19-nov-2021">
+<h2>Version 3.6.0 (19-Nov-2021)<a class="headerlink" href="#version-3-6-0-19-nov-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/visual_elements/vectors.html#visual-elements-vectors"><span class="std std-ref">Vectors</span></a>, <a class="reference internal" href="reference/pipelines/visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a>, <a class="reference internal" href="reference/pipelines/visual_elements/voxel_grid.html#visual-elements-voxel-grid"><span class="std std-ref">Voxel grid</span></a>, <a class="reference internal" href="reference/pipelines/visual_elements/lines.html#visual-elements-lines"><span class="std std-ref">Lines</span></a> visual elements: Added direct color mapping option as a faster alternative to the <a class="reference internal" href="reference/pipelines/modifiers/color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifier.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/visual_elements/bonds.html#visual-elements-bonds"><span class="std std-ref">Bonds</span></a> visual element: Added explicit control of the coloring mode.</p></li>
+<li><p>Made number and <a class="reference internal" href="advanced_topics/viewport_layouts.html#viewport-layouts"><span class="std std-ref">Multi-viewport layouts</span></a> configurable by the user.</p></li>
+<li><p>Visibility of pipelines can be controlled on a <a class="reference internal" href="usage/viewports.html#usage-viewports-menu"><span class="std std-ref">Viewport menu</span></a> per viewport basis.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/coordination_polyhedra.html#particles-modifiers-coordination-polyhedra"><span class="std std-ref">Coordination polyhedra</span></a> modifier now makes particle properties available for the color coding as mesh region properties and mesh vertex properties.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/generate_trajectory_lines.html#particles-modifiers-generate-trajectory-lines"><span class="std std-ref">Generate trajectory lines</span></a> modifier: New capability to transfer time-dependent particle properties to the trajectory lines.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/load_trajectory.html#particles-modifiers-load-trajectory"><span class="std std-ref">Load trajectory</span></a> modifier: Support non-contiguous atom IDs in LAMMPS bond dump files</p></li>
+<li><p>Added file reader for binary STL files.</p></li>
+<li><p><a class="reference internal" href="advanced_topics/customize_init_state.html#custom-initial-session-state"><span class="std std-ref">Customizing the initial program state</span></a>: New mechanism for customizing the initial program session state.</p></li>
+<li><p>Raised limit on the number of FFT bins in <em>Spatial Correlation Modifier</em> to support finer grid resolutions.</p></li>
+<li><p>Fix: PTM modifier may crash if graphene/diamond are the only enabled structure types.</p></li>
+<li><p>Fix: Traced trajectory lines may be rendered in wrong colors.</p></li>
+<li><p>Took out code that transmits random installation ID to web server.</p></li>
+<li><p>OpenSSL shared libraries are no longer shipped with OVITO for Linux to avoid compatibility issues on some Linux distributions.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="advanced_topics/viewport_layouts.html#viewport-layouts-rendering"><span class="std std-ref">Rendering images or movies of a viewport layout </span></a>: Added capability to render multi-viewport layouts in one step.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Python code generator has been extended to generate code for all visual elements and for reenacting manual changes made by the user to data objects (e.g. particle type names, color, radii).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added the <code class="docutils literal notranslate"><span class="pre">input_format</span></code> keyword parameter to the <a class="reference external" href="python/modules/ovito_io.html#ovito.io.import_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ovito.io.import_file()</span></code></a> Python function for specifying the file format explicitly.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Upgraded OSPRay to version 2.7.1.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Renamed <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.create_qt_widget" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.vis.Viewport.create_qt_widget()</span></code></a> method and made it work in all distributions of the <code class="docutils literal notranslate"><span class="pre">ovito</span></code> Python module.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Added experimental <a class="reference external" href="python/modules/ovito_vis.html#ovito.vis.Viewport.create_jupyter_widget" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.vis.Viewport.create_jupyter_widget()</span></code></a> method for embedding OVITO viewports in Jupyter notebooks (see <a class="reference external" href="https://gitlab.com/ovito-org/ovito-binder">demo binder</a>).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Support for site-wide software licenses.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Bounding box clipping artifact when rendering rotated superquadrics particles with OSPRay or Tachyon renderers.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Warning “This plugin does not support createPlatformOpenGLContext!” when running in headless mode on Linux machines.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.5.4">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-5-4-31-jul-2021">
+<h2>Version 3.5.4 (31-Jul-2021)<a class="headerlink" href="#version-3-5-4-31-jul-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>LAMMPS data file reader and writer now support all LAMMPS atom styles, including the <code class="docutils literal notranslate"><span class="pre">hybrid</span></code> style.</p></li>
+<li><p>Fix: Construct surface mesh with region identification fails or never completes for some inputs.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Tachyon renderer crashes when triangle mesh contains a degenerate vertex normal.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.5.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-5-3-30-jun-2021">
+<h2>Version 3.5.3 (30-Jun-2021)<a class="headerlink" href="#version-3-5-3-30-jun-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Added two <a class="reference internal" href="tutorials/index.html#tutorials"><span class="std std-ref">Tutorials</span></a> to the documentation.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/visual_elements/voxel_grid.html#visual-elements-voxel-grid"><span class="std std-ref">Voxel grid</span></a> visual element now supports mouse-over data display in the status bar.</p></li>
+<li><p>Added invert function to <a class="reference internal" href="reference/pipelines/modifiers/manual_selection.html#particles-modifiers-manual-selection"><span class="std std-ref">Manual selection</span></a> modifier.</p></li>
+<li><p>Warn user if OVITO Python module was installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code> command in an Anaconda Python interpreter. Use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> instead!</p></li>
+<li><p>Fix: <em>Configure Trajectory Playback</em> dialog shows no contents.</p></li>
+<li><p>Fix: Neighbor finder facilities do not ignore PBC flag along third dimension in 2D mode.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.5.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-5-2-26-may-2021">
+<h2>Version 3.5.2 (26-May-2021)<a class="headerlink" href="#version-3-5-2-26-may-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/affine_transformation.html#particles-modifiers-affine-transformation"><span class="std std-ref">Affine transformation</span></a> modifier now allows entering the translation vector in reduced cell coordinates.</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/load_trajectory.html#particles-modifiers-load-trajectory"><span class="std std-ref">Load trajectory</span></a> modifier can now import ReaxFF bond information files written by the LAMMPS <a class="reference external" href="https://lammps.sandia.gov/doc/fix_reaxc_bonds.html">fix reax/c/bonds</a> command.</p></li>
+<li><p>GSD file reader: Fill particle property array with default values if a chunk is not present in current frame (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/206">issue #206</a>)</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Invisible simulation cell edges when rendering image with orthographic projection with OSPRay</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.5.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-5-1-18-may-2021">
+<h2>Version 3.5.1 (18-May-2021)<a class="headerlink" href="#version-3-5-1-18-may-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="reference/pipelines/modifiers/coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">Coordination analysis</span></a> modifier has gained an option ‘<em>Only selected particles</em>’, which restricts RDF calculation to a subset of particles.</p></li>
+<li><p>The ‘<em>Generate neighbor bonds</em>’ option of the <a class="reference internal" href="reference/pipelines/modifiers/voronoi_analysis.html#particles-modifiers-voronoi-analysis"><span class="std std-ref">Voronoi analysis</span></a> modifier is now able to deal with small periodic simulation cells.</p></li>
+<li><p>Fix: Wireframe line rendering issue in perspective viewports.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> The <a class="reference internal" href="reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier now accepts (<em>hkl)</em> Miller indices as input for defining the plane orientation. The plane position can be specified in terms of the interplanar spacing.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> OVITO Pro for Linux now ships with a current Python 3.9.5 interpreter.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: <a class="reference external" href="python/modules/ovito_data.html#ovito.data.PropertyContainer.create_property" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.PropertyContainer.create_property()</span></code></a> method cannot create user-defined property of data type <code class="docutils literal notranslate"><span class="pre">int64</span></code>.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.5.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-5-0-02-may-2021">
+<h2>Version 3.5.0 (02-May-2021)<a class="headerlink" href="#version-3-5-0-02-may-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Pipeline editor supports drag-and-drop operations, which allow easy rearranging of modifiers with the mouse.</p></li>
+<li><p>Modifiers can be grouped in the pipeline editor to collapse complex sequences of modifiers into a single list entry.</p></li>
+<li><p><a class="reference internal" href="reference/viewports/layers/color_legend_layer.html#viewport-layers-color-legend"><span class="std std-ref">Color legend layer</span></a> can render a legend for typed particle properties, showing the discrete colors representing the defined particle types.</p></li>
+<li><p>New implementation of the OpenGL viewport renderer. Provides better compatibility with GPU hardware, older OpenGL drivers, and virtual machine environments. OVITO now works on systems with only OpenGL 2.1 support (previous OVITO version required OpenGL 3.2).</p></li>
+<li><p>New viewport renderer based on the Vulkan graphic hardware interface as an alternative option to the OpenGL renderer. Can be activated in the application settings dialog (not available on macOS). Supports rendering in head-less mode on HPC nodes with GPU hardware.</p></li>
+<li><p>New <a class="reference internal" href="usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">Pipeline concept</span></a> pipeline selector widget in the toolbar of OVITO, which lets you manage the data pipelines in the current scene and add new pipelines.</p></li>
+<li><p>Extended the <a class="reference internal" href="reference/pipelines/modifiers/create_bonds.html#particles-modifiers-create-bonds"><span class="std std-ref">Create bonds</span></a> modifier. A new parameter-free mode allows creating bonds based on van der Waals radii of the atoms.</p></li>
+<li><p>Performance improvement: <em>Create Bonds</em> modifier can now make use of multiple processor cores.</p></li>
+<li><p><em>Affine Transformation</em> modifier can now transform triangle meshes (imported from STL, OBJ, VTK files).</p></li>
+<li><p>Several file format readers now provide the option to generate interatomic bonds during data import (relieves from having to apply the <em>Create Bonds</em> modifier).</p></li>
+<li><p>Some file format readers provide a new option to dynamically recenter the simulation cell on the coordinate origin. Useful for visualizing trajectories with varying cell shape.</p></li>
+<li><p>Gromacs, PDB, and mmCIF file readers now import atom names and residue names as particle properties.</p></li>
+<li><p>Internal chemical database of OVITO has been extended to include all elements and mass information, which will be assigned to particle types during file import.</p></li>
+<li><p>The <em>Particles</em> visual element provides a <a class="reference internal" href="reference/pipelines/visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> new parameter controlling the uniform scaling of atom radii. Useful for quickly producing a typical “balls-and-sticks” representation of a molecular structure.</p></li>
+<li><p>A bonds-only visualization of a molecular structure (with particles turned off) now adds spheres at the nodal points of the bond network to yield a typical “stick” representation.</p></li>
+<li><p>XYZ file reader now supports the exyz format variant of OpenBabel.</p></li>
+<li><p>Fix: CFG file reader loosing particle type settings during file reload.</p></li>
+<li><p>Fix: Segfault when loading certain NetCDF files with &gt;1M particles.</p></li>
+<li><p>Fix: Error when deleting some regions of a surface mesh structure.</p></li>
+<li><p>Fix: Slow performance of <em>Particles</em> visual element when some particle types use mesh-based shapes.</p></li>
+<li><p>Rearranged the <a class="reference internal" href="reference/rendering/render_settings.html#core-render-settings"><span class="std std-ref">Render settings</span></a> panel. The <em>viewport preview mode</em> can now be activated from here.</p></li>
+<li><p>Extended the Python API to support <a class="reference external" href="python/modules/ovito_data.html#ovito.data.VoxelGrid" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.VoxelGrid</span></code></a> from scripts.</p></li>
+<li><p><a class="reference external" href="https://ovito.org/docs/current/index.html">OVITO User Manual</a> uses a new layout theme and supports full-text search.</p></li>
+<li><p>Environment variable OVITO_LOG_FILE allows redirecting terminal output of OVITO to a text file (useful on Windows platform, where console output is otherwise inaccessible).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New modifier <a class="reference internal" href="reference/pipelines/modifiers/color_by_type.html#particles-modifiers-color-by-type"><span class="std std-ref">Color by type </span></a> modifier for recoloring particles based on one of their typed properties, e.g. discrete <code class="docutils literal notranslate"><span class="pre">Residue</span> <span class="pre">Type</span></code> or <code class="docutils literal notranslate"><span class="pre">Atom</span> <span class="pre">Name</span></code> property.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New pipeline data source type <a class="reference internal" href="reference/pipelines/data_sources/python_script.html#data-source-python-script"><span class="std std-ref">Python script </span></a>. Run a user-defined Python function that builds or synthesizes an input <code class="docutils literal notranslate"><span class="pre">DataCollection</span></code> for a pipeline (instead of loading a structure from disk). Can also be used to import data formats into OVITO which are not directly supported by the software.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <a class="reference internal" href="reference/pipelines/data_sources/lammps_script.html#data-source-lammps-script"><span class="std std-ref">LAMMPS script </span></a>: The new data pipeline source type <em>LAMMPS script</em> allows editing and executing LAMMPS input scripts within OVITO to generate a dataset using LAMMPS commands. Useful for prototyping LAMMPS simulation setups with immediate visual feedback in OVITO.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Updated OSPRay rendering library to version 2.5.0, offering a better denoising filter.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> <em>Spatial Binning</em> modifier can now process vector particle properties in addition to scalar properties.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Python API: Added the method <a class="reference external" href="python/modules/ovito_data.html#ovito.data.CutoffNeighborFinder.find_at" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.CutoffNeighborFinder.find_at()</span></code></a> for enumerating all particles around an arbitrary spatial position.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Python code generator: Emit valid code for visualization setups including a <code class="docutils literal notranslate"><span class="pre">PythonViewportLayer</span></code>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Python code generator: Emit call to <code class="docutils literal notranslate"><span class="pre">generate()</span></code> method of <em>Generate Trajectory Lines</em> modifier.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Made auto-crop function work for pictures rendered with OSPRay and denoising filter enabled.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: Python viewport layer does not get called with current values of user-defined parameters.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.4.4">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-4-4-12-mar-2021">
+<h2>Version 3.4.4 (12-Mar-2021)<a class="headerlink" href="#version-3-4-4-12-mar-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix: Number of data columns not correctly detected for XYZ files with 5 atoms or less.</p></li>
+<li><p>Fix: Program crash when playing back animation with less than 1 frame per second in interactive viewports.</p></li>
+<li><p>Fix: Simulation cell not visible in interactive viewports on some computer systems (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/203">issue #203)</a>.</p></li>
+<li><p>Fix: CIF file reader not automatically recognizing files written by Open Babel (<a class="reference external" href="https://gitlab.com/stuko/ovito/-/issues/204">issue #204)</a>.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Fix: OSPRay not rendering arrow glyphs correctly.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.4.3">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-4-3-25-feb-2021">
+<h2>Version 3.4.3 (25-Feb-2021)<a class="headerlink" href="#version-3-4-3-25-feb-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Added text outline option to <em>Coordinate Tripod</em> viewport layer.</p></li>
+<li><p>Fixed UI issue: Status bar resizing due to invalid unicode character in text string.</p></li>
+<li><p>Corrected camera orientation of “Bottom” viewport view type when rotation constraint is turned on.</p></li>
+<li><p>Improved automatic detection of PDB file format.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> It’s now okay to assign a simple string to the <a class="reference external" href="python/modules/ovito_modifiers.html#ovito.modifiers.ExpressionSelectionModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.ExpressionSelectionModifier</span></code></a> expression field.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.4.2">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-4-2-15-feb-2021">
+<h2>Version 3.4.2 (15-Feb-2021)<a class="headerlink" href="#version-3-4-2-15-feb-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Long text strings displayed in the status bar of OVITO now get broken into two lines in order to show more property values in the available space.</p></li>
+<li><p>Bug fix: Status bar doesn’t display latest set of particle properties while positioning the mouse cursor over a particle. This fix corrects a regression introduced with OVITO 3.4.0.</p></li>
+<li><p>Fixed a limitation of the PTM modifier not identifying diamond and graphene structures in small periodic simulation cells.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.4.1">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-4-1-03-feb-2021">
+<h2>Version 3.4.1 (03-Feb-2021)<a class="headerlink" href="#version-3-4-1-03-feb-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fixed runtime linker error when importing <code class="docutils literal notranslate"><span class="pre">ovito</span></code> Python module installed via pip on Linux.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Spatial binning modifier can now operate on vectorial particle properties.</p></li>
+</ul>
+<aside class="sidebar">
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ovito.org/download_history/#3.4.0">Download</a></p></li>
+</ul>
+</aside>
+</section>
+<section id="version-3-4-0-28-jan-2021">
+<h2>Version 3.4.0 (28-Jan-2021)<a class="headerlink" href="#version-3-4-0-28-jan-2021" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Backward incompatible .ovito state file format change: Program sessions saved with OVITO 3.4 or later cannot be opened in previous versions!</p></li>
+<li><p>Extensive redesign of OVITO’s internal C++ data object model to make it thread-safe. User experience and Python API remain largely unaffected.</p></li>
+<li><p>State files (.ovito) now store relative paths to imported data files, enabling the relocation of an entire directory tree containing the state file and the data file without breaking the reference.</p></li>
+<li><p>Rewrite of the OpenGL rendering code, making use of geometry shaders on a wider range of hardware. OVITO now requires OpenGL 3.0 or higher (previous releases required OpenGL 2.1).</p></li>
+<li><p>Color Coding modifier: Added an auto-adjust option, which dynamically adjusts the min/max interval to the current range of input values.</p></li>
+<li><p>File importers reading the <code class="docutils literal notranslate"><span class="pre">Velocity</span></code> vector particle property automatically generate the <code class="docutils literal notranslate"><span class="pre">Velocity</span> <span class="pre">Magnitude</span></code> particle property too.</p></li>
+<li><p>OVITO can now visualize particles with <a class="reference external" href="https://en.wikipedia.org/wiki/Superellipsoid">superellipsoid shapes</a>, which are controlled by the <code class="docutils literal notranslate"><span class="pre">Superquadric</span> <span class="pre">Roundness</span></code> particle property.</p></li>
+<li><p>Preliminary file reader support for ParaView VTP, VTI, VTM and PVD formats, as written by the Aspherix DEM simulation code.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> OVITO Pro gives the user the option to edit Python scripts in an external editor application or IDE (e.g. Visual Studio Code). Changes the user makes to the script code in the external editor are automatically loaded back into OVITO Pro.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> The Python script modifier displays the current working directory and lets the user control it if necessary.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> Python-based viewport layers now support user-defined parameters passed to the <code class="docutils literal notranslate"><span class="pre">render()</span></code> function.</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> OSPRay and Tachyon renderers can now render polyhedral meshes with highlighted edges (wireframe overlay).</p></li>
+<li><p><span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span> New Python method <a class="reference external" href="python/modules/ovito_data.html#ovito.data.NearestNeighborFinder.find_at" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ovito.data.NearestNeighborFinder.find_at()</span></code></a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="About OVITO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

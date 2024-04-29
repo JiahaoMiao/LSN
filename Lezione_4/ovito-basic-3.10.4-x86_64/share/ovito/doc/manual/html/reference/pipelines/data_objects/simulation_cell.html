@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation cell &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/data_objects/simulation_cell.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Surface meshes" href="surface_mesh.html" />
+    <link rel="prev" title="Bonds" href="bonds.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data objects</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Simulation cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_mesh.html">Surface meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle meshes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_table.html">Data tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voxel_grid.html">Voxel grids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocation lines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Data objects</a> &raquo;</li>
+      <li>Simulation cell</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scene-objects-simulation-cell">
+<span id="simulation-cell"></span><h1>Simulation cell<a class="headerlink" href="#scene-objects-simulation-cell" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/simulation_cell_panel.png"><img alt="../../../_images/simulation_cell_panel.png" class="align-right" src="../../../_images/simulation_cell_panel.png" style="width: 30%;" /></a>
+<p>This <a class="reference internal" href="index.html#scene-objects"><span class="std std-ref">data object</span></a> represents the geometry of the two- or three-dimensional simulation domain
+and the boundary conditions (PBC flags). You can find the cell object that was loaded from the imported simulation file in the
+<cite>Data source</cite> section of the <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a> (see screenshot).
+Note that the pipeline editor usually shows another item also called <cite>Simulation cell</cite>.
+This is the corresponding <a class="reference internal" href="../visual_elements/simulation_cell.html#visual-elements-simulation-cell"><span class="std std-ref">visual element</span></a> controlling the appearance of the simulation cell in rendered images.</p>
+<p>Some simulation file formats do not store the dimensions of the simulation cell that was used in the original simulation.
+If OVITO cannot find the cell dimensions in the imported file, it automatically generated an ad-hoc simulation box that corresponds to the axis-aligned
+bounding box of all particle coordinates.</p>
+<section id="dimensionality">
+<h2>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this heading"></a></h2>
+<p>OVITO supports 2- and 3-dimensional datasets. The <em>dimensionality</em> detected by OVITO during file import can be overridden by the user in the simulation cell panel.
+In mode <span class="guilabel">2D</span>, the z-coordinates of particles and the third simulation cell vector will be ignored by most computations performed by OVITO.</p>
+</section>
+<section id="boundary-conditions">
+<h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading"></a></h2>
+<p>The periodic boundary condition (PBC) flags of the simulation cell determine whether OVITO performs calculations within
+a periodic domain or not. If possible, OVITO tries to read or guess these flags from the imported simulation file,
+but you can manually override them here if needed.</p>
+</section>
+<section id="geometry">
+<h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this heading"></a></h2>
+<p>The shape of the three-dimensional simulation cell is defined by three vectors spanning a parallelepiped and the coordinates of
+one corner of the parallelepiped (the cell’s origin).
+The panel displays the original shape information loaded from the imported simulation file.
+To modify the simulation cell vectors, you can insert the <a class="reference internal" href="../modifiers/affine_transformation.html#particles-modifiers-affine-transformation"><span class="std std-ref">Affine transformation</span></a> modifier into the data pipeline.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.SimulationCell" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.data.SimulationCell</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bonds.html" class="btn btn-neutral float-left" title="Bonds" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="surface_mesh.html" class="btn btn-neutral float-right" title="Surface meshes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

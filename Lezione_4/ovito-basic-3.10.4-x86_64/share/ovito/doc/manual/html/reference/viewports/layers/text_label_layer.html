@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text label layer &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/viewports/layers/text_label_layer.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Adjust view dialog" href="../adjust_view_dialog.html" />
+    <link rel="prev" title="Python script viewport layer pro" href="python_script_layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Viewports</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Viewport layers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="color_legend_layer.html">Color legend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordinate_tripod_layer.html">Coordinate tripod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script_layer.html">Python script</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Text label</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust_view_dialog.html">Adjust view dialog</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Viewports</a> &raquo;</li>
+          <li><a href="index.html">Viewport layers</a> &raquo;</li>
+      <li>Text label layer</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewport-layers-text-label">
+<span id="text-label-layer"></span><h1>Text label layer<a class="headerlink" href="#viewport-layers-text-label" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/text_label_overlay_panel.png"><img alt="../../../_images/text_label_overlay_panel.png" class="align-right" src="../../../_images/text_label_overlay_panel.png" style="width: 35%;" /></a>
+<p>Add this <a class="reference internal" href="index.html#viewport-layers"><span class="std std-ref">viewport layer</span></a> to a viewport to display text or other information
+on top of the three-dimensional scene. The label’s text may contain placeholders, which get replaced with the current values
+of <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a> dynamically computed in OVITO’s data pipeline.
+This makes it possible to include dynamic data such as the current simulation time, the number of atoms,
+or numeric results in rendered images or movies.</p>
+<section id="viewport-layers-text-label-text-formatting">
+<span id="html-text-formatting"></span><h2>HTML text formatting<a class="headerlink" href="#viewport-layers-text-label-text-formatting" title="Permalink to this heading"></a></h2>
+<p>You can include HTML markup elements and Cascading Style Sheet (CSS) attributes in the text to format individual words or characters.
+OVITO supports a subset of the HTML standard, which is <a class="reference external" href="https://doc.qt.io/qt-6/richtext-html-subset.html">documented here</a>.
+The following table gives a few examples of HTML markup elements and the rendered output they produce:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Markup text</p></th>
+<th class="head"><p>Formatted output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nm<span class="raw-html"><font color="green"><b></span>&lt;sup&gt;<span class="raw-html"></b></font></span>3<span class="raw-html"><font color="green"><b></span>&lt;/sup&gt;<span class="raw-html"></b></font></span></p></td>
+<td><p>nm<sup>3</sup></p></td>
+</tr>
+<tr class="row-odd"><td><p>e<span class="raw-html"><font color="green"><b></span>&lt;sub&gt;<span class="raw-html"></b></font></span>z<span class="raw-html"><font color="green"><b></span>&lt;/sub&gt;<span class="raw-html"></b></font></span></p></td>
+<td><p>e<sub>z</sub></p></td>
+</tr>
+<tr class="row-even"><td><p>First line<span class="raw-html"><font color="green"><b></span>&lt;br&gt;<span class="raw-html"></b></font></span>Second line</p></td>
+<td><p>First line <br/> Second line</p></td>
+</tr>
+<tr class="row-odd"><td><p>Some <span class="raw-html"><font color="green"><b></span>&lt;i&gt;<span class="raw-html"></b></font></span>italic<span class="raw-html"><font color="green"><b></span>&lt;/i&gt;<span class="raw-html"></b></font></span> text</p></td>
+<td><p>Some <em>italic</em> text</p></td>
+</tr>
+<tr class="row-even"><td><p>Some <span class="raw-html"><font color="green"><b></span>&lt;span style=&quot;text-decoration: underline&quot;&gt;<span class="raw-html"></b></font></span>underlined<span class="raw-html"><font color="green"><b></span>&lt;/span&gt;<span class="raw-html"></b></font></span> text</p></td>
+<td><p>Some <span style="text-decoration: underline">underlined</span> text</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1<span class="raw-html"><font color="green"><b></span>&lt;span style=&quot;text-decoration: overline&quot;&gt;<span class="raw-html"></b></font></span>1<span class="raw-html"><font color="green"><b></span>&lt;/span&gt;<span class="raw-html"></b></font></span>2]</p></td>
+<td><p><span class="math notranslate nohighlight">\([1\bar{1}2]\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="including-computed-values-in-the-text">
+<h2>Including computed values in the text<a class="headerlink" href="#including-computed-values-in-the-text" title="Permalink to this heading"></a></h2>
+<p>The text label has access to the list of <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a> provided by the
+selected pipeline. Attributes are variables containing numeric values or text strings
+loaded from the simulation file or dynamically computed by modifiers in the data pipeline.
+You can incorporate attribute values in the label’s text by inserting placeholders of the form <code class="docutils literal notranslate"><span class="pre">[attribute_name]</span></code>.</p>
+<p>Whenever a placeholder references an attribute with a numeric value, the floating-point value
+gets formatted according to the specified <span class="guilabel">Value format string</span>. You have the choice between decimal notation (<code class="docutils literal notranslate"><span class="pre">%f</span></code>), exponential notation (<code class="docutils literal notranslate"><span class="pre">%e</span></code>),
+and an automatic mode (<code class="docutils literal notranslate"><span class="pre">%g</span></code>). Furthermore, the format string gives you control of the output precision, i.e., the number of decimal places that
+appear after the decimal point. Use <code class="docutils literal notranslate"><span class="pre">%.2f</span></code>, for example, to always show two digits after the decimal point.
+The format string must follow the standard convention of the <a class="reference external" href="https://en.cppreference.com/w/cpp/io/c/fprintf">printf() C function</a>.</p>
+</section>
+<section id="defining-new-attributes">
+<h2>Defining new attributes<a class="headerlink" href="#defining-new-attributes" title="Permalink to this heading"></a></h2>
+<p>Attributes computed by the data pipeline may not always have the desired
+format, units, or normalization for using them directly in a text label. For instance,
+the <code class="docutils literal notranslate"><span class="pre">CommonNeighborAnalysis.counts.BCC</span></code> attribute calculated by the
+<a class="reference internal" href="../../pipelines/modifiers/common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common neighbor analysis</span></a> modifier
+counts the total number of bcc atoms in the system. But what if you would rather
+like to print the <em>fraction</em> of bcc atoms, not the absolute count?
+In such situations, some kind of conversion and/or transformation of the attribute’s value is required,
+and you will have to define a new attribute that derives its value from the original attribute.</p>
+<p>This can be accomplished by inserting a <a class="reference internal" href="../../pipelines/modifiers/python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script</span></a> modifier
+into the data pipeline. This modifier executes a simple, user-defined Python function that computes the value of our
+new attribute based on the existing attributes(s):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">bcc_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;CommonNeighborAnalysis.counts.BCC&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;bcc_fraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bcc_count</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+</div>
+<p>In this example, we access the existing attribute <code class="docutils literal notranslate"><span class="pre">CommonNeighborAnalysis.counts.BCC</span></code> (the atom count) and
+convert it into a fraction by dividing by the total number of atoms. The new value is output
+as a new attribute named <code class="docutils literal notranslate"><span class="pre">bcc_fraction</span></code>, making it available for inclusion in the text label layer.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.TextLabelOverlay" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.TextLabelOverlay</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_script_layer.html" class="btn btn-neutral float-left" title="Python script viewport layer pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../adjust_view_dialog.html" class="btn btn-neutral float-right" title="Adjust view dialog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

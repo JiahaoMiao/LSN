@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>glTF file exporter pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/file_formats/output/gltf.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python script pro" href="../../pipelines/data_sources/python_script.html" />
+    <link rel="prev" title="Output file formats" href="../file_formats_output.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../pipelines/index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../pipelines/data_sources/index.html">Data sources</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../pipelines/data_sources/external_file.html">External file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../pipelines/data_sources/python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../pipelines/data_sources/lammps_script.html">LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pipelines/modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../../pipelines/index.html">Pipelines</a> &raquo;</li>
+          <li><a href="../../pipelines/data_sources/index.html">Data sources</a> &raquo;</li>
+          <li><a href="../../pipelines/data_sources/external_file.html">External file</a> &raquo;</li>
+          <li><a href="../file_formats_output.html">Output file formats</a> &raquo;</li>
+      <li>glTF file exporter <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-formats-output-gltf">
+<span id="gltf-file-exporter-ovito-pro"></span><h1>glTF file exporter <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#file-formats-output-gltf" title="Permalink to this heading"></a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.10.0.</span></p>
+</div>
+<p>This file writer exports the entire visualization scene from OVITO to the <a class="reference external" href="https://www.khronos.org/gltf/">glTF</a> format, which
+is a universal file format for 3d models. It can be imported in other applications such as <em>Blender</em> or <em>PowerPoint</em>,
+or it can be embedded into web pages.</p>
+<a class="reference internal image-reference" href="../../../_images/gltf_export_powerpoint.png"><img alt="../../../_images/gltf_export_powerpoint.png" src="../../../_images/gltf_export_powerpoint.png" style="width: 100%;" /></a>
+<p><em>glTF</em> is a triangle mesh-based format, which means round objects in OVITO, such as particle spheres and bond cylinders, must be
+converted to triangle meshes before they can be exported. The parameter  <span class="guilabel">Mesh resolution level</span> controls the number of triangles
+used to approximate the surface of round geometries. The higher the resolution, the more triangles are generated and the smoother the surface will look.
+The default value of 3 is usually sufficient for most applications.</p>
+<p>Keep in mind that applications such as <em>PowerPoint</em> are not designed to handle complex 3d models with many objects
+and they do not employ optimized rendering techniques for particle-based models like OVITO does.
+That’s why they may be unable to display scenes containing more than a few tens of thousands of particles or bonds.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The OVITO file exporter produces <em>binary</em> glTF files with the <code class="docutils literal notranslate"><span class="pre">.glb</span></code> file extension.
+This is the recommended format for glTF files, because it is more compact than the <em>text-based</em> <code class="docutils literal notranslate"><span class="pre">.gltf</span></code> format.</p>
+</div>
+<section id="file-formats-output-gltf-webpages">
+<span id="publishing-gltf-models-on-the-web"></span><h2>Publishing glTF models on the web<a class="headerlink" href="#file-formats-output-gltf-webpages" title="Permalink to this heading"></a></h2>
+<p>You can use the <a class="reference external" href="https://modelviewer.dev/">&lt;model-viewer&gt;</a> web component or other, similar tools to embed glTF 3d models into web pages.
+Here is an example of how to embed the OVITO logo model into a web page: <em>Click and drag to rotate the model.</em>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+<model-viewer src="../../../_static/ovito_logo.glb" camera-controls poster="../../../_static/ovito_logo_poster.webp" shadow-intensity="0.91" exposure="0.89" shadow-softness="0.03" environment-image="legacy" camera-orbit="155.9deg 67.65deg 28.94m" field-of-view="29.33deg"> </model-viewer></p>
+<p>Note that the 3d viewer component works only in the <a class="reference external" href="https://docs.ovito.org/reference/file_formats/output/gltf.html">online version of this document</a> due to web browser security restrictions.
+In the offline version of the OVITO docs, you will see only a static image of the model.</p>
+</section>
+<section id="file-formats-output-gltf-python">
+<span id="python-parameters"></span><h2>Python parameters<a class="headerlink" href="#file-formats-output-gltf-python" title="Permalink to this heading"></a></h2>
+<p>If you export a scene to the glTF file format with the <a class="reference external" href="../../../python/modules/ovito_io.html#ovito.io.export_file" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_file()</span></code></a> Python function, the following specific keyword parameter is available:</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">export_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&quot;gltf&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_resolution</span> <span class="pre">=</span> <span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_size</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh_resolution</strong> (<em>int</em>) – A numeric value in the range 1-5, which controls the number of triangles used to approximate the surface of round geometries.
+The higher the resolution, the more triangles are generated and the smoother the surface will look.</p></li>
+<li><p><strong>optimize_size</strong> (<em>bool</em>) – <p>If set to true, the exporter will attempt to reduce the size of the glTF file by reusing particle meshes (object instancing).
+However, this typically leads to slower rendering speeds, because most rendering applications are optimized for a few
+large meshes and not a large number of small objects.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.10.4.</span></p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../file_formats_output.html" class="btn btn-neutral float-left" title="Output file formats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../pipelines/data_sources/python_script.html" class="btn btn-neutral float-right" title="Python script pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

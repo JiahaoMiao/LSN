@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Non-spherical particle shapes &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/aspherical_particles.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parameter and camera animations" href="animation.html" />
+    <link rel="prev" title="Semi-transparent particles" href="transparent_particles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Non-spherical particle shapes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-orientation">Size and orientation of particles are controlled by properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-spheres">Spheres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-ellipsoids">Ellipsoids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-superquadrics">Superquadrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-boxes">Boxes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-cylinders">Cylinders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-capsules">Spherocylinders (capsules)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-circles-and-squares">Circles and squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#howto-aspherical-particles-user-shapes">User-defined shapes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Non-spherical particle shapes</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="howto-aspherical-particles">
+<span id="non-spherical-particle-shapes"></span><h1>Non-spherical particle shapes<a class="headerlink" href="#howto-aspherical-particles" title="Permalink to this heading"></a></h1>
+<figure class="align-right" id="id1" style="width: 25%">
+<img alt="../_images/ellipsoid_particles_example1.png" src="../_images/ellipsoid_particles_example1.png" />
+<figcaption>
+<p><span class="caption-text">Ellipsoidal particles</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id2" style="width: 25%">
+<img alt="../_images/particles_usershape_example.jpg" src="../_images/particles_usershape_example.jpg" />
+<figcaption>
+<p><span class="caption-text">User-defined particle shapes</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>OVITO has built-in support for a range of different particle shapes aside from the standard spherical shape.
+Furthermore, it supports user-defined particle shapes, which are specified in terms of polyhedral meshes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>spheres</p></li>
+<li><p>ellipsoids</p></li>
+<li><p>superquadrics</p></li>
+<li><p>cubes, boxes</p></li>
+<li><p>cylinders</p></li>
+<li><p>spherocylinders (capsules)</p></li>
+<li><p>circles (discs that follow the view direction)</p></li>
+<li><p>squares (billboards that follow the view direction)</p></li>
+<li><p>user-defined polygonal meshes</p></li>
+</ul>
+</div></blockquote>
+<p>You can set the display shape of particles globally for the <a class="reference internal" href="../reference/pipelines/visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> visual element
+or on a per particle type basis in the <a class="reference internal" href="../reference/pipelines/data_objects/particles.html#scene-objects-particle-types"><span class="std std-ref">Particle types</span></a> panel.</p>
+<section id="howto-aspherical-particles-orientation">
+<span id="size-and-orientation-of-particles-are-controlled-by-properties"></span><h2>Size and orientation of particles are controlled by properties<a class="headerlink" href="#howto-aspherical-particles-orientation" title="Permalink to this heading"></a></h2>
+<p>By assigning values to the following particle properties in OVITO, you can control the orientation and the dimensions or size of
+each particle individually:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Radius</span></code> (scalar)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> (X, Y, Z)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Orientation</span></code> (X, Y, Z, W)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Superquadric</span> <span class="pre">Roundness</span></code> (Phi, Theta)</p></li>
+</ul>
+</div></blockquote>
+<p>The property assignment can happen directly during import of your data file into OVITO by mapping values from corresponding
+file columns to the right target properties in OVITO. Furthermore, you can subsequently assign values to these properties as needed by inserting
+the <a class="reference internal" href="../reference/pipelines/modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifier into the data pipeline.</p>
+<p>The orientation of non-spherical particles is controlled by the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> particle property,
+which consists of four components <span class="math notranslate nohighlight">\(\mathrm{q} = (x, y, z, w)\)</span> forming a <a class="reference external" href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">quaternion</a>.
+A quaternion is a mathematical representation of an arbitrary rotation in three-dimensional space, similar to (but more compact than)
+a rotation matrix.</p>
+<p>Note that OVITO employs a notation for quaternions that follows the <a class="reference external" href="https://www.ljll.math.upmc.fr/~frey/papers/scientific%20visualisation/Shoemake%20K.,%20Quaternions.pdf">work of Ken Shoemake</a>.
+This convention may slightly differ from other notations you find in the literature (e.g. on <a class="reference external" href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">Wikipedia</a>).
+The four quaternion components <span class="math notranslate nohighlight">\((x, y, z, w)\)</span> are sometimes interchanged and written as <span class="math notranslate nohighlight">\((q_r,q_i,q_j,q_k) = (w',x',y',z')\)</span> instead.
+Thus, during import of orientational data into OVITO, you may have to remap the four input components of the quaternions to the right target components.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> and <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> particle properties are typically loaded from data files written by some simulation code. The LAMMPS simulation code, for example,
+allows you to output this per-particle information to a dump file using the following LAMMPS script commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">compute orient all property/atom quatw quati quatj quatk</span>
+<span class="go">compute diameter all property/atom shapex shapey shapez</span>
+<span class="go">dump 1 all custom 100 ellipsoid.dump id type x y z &amp;</span>
+<span class="go">                                     c_q[1] c_q[2] c_q[3] c_q[4] &amp;</span>
+<span class="go">                                     c_diameter[1] c_diameter[2] c_diameter[3]</span>
+</pre></div>
+</div>
+<p>During import of the dump file in OVITO, you should map the <code class="docutils literal notranslate"><span class="pre">quati</span></code>, <code class="docutils literal notranslate"><span class="pre">quatj</span></code>, <code class="docutils literal notranslate"><span class="pre">quatj</span></code>, and <code class="docutils literal notranslate"><span class="pre">quatw</span></code> atom attributes from LAMMPS
+to the <code class="docutils literal notranslate"><span class="pre">Orientation.X</span></code>, <code class="docutils literal notranslate"><span class="pre">Orientation.Y</span></code>, <code class="docutils literal notranslate"><span class="pre">Orientation.Z</span></code>, and <code class="docutils literal notranslate"><span class="pre">Orientation.W</span></code> particle properties in OVITO (in this exact order).
+This mapping will be established automatically if you <a class="reference external" href="https://docs.lammps.org/dump_modify.html">assign the right names to the columns</a>
+when writing the dump file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dump_modify 1 colname c_q[1] quatw colname c_q[2] quati colname c_q[3] quatj colname c_q[4] quatk</span>
+<span class="go">dump_modify 1 colname c_diameter[1] shapex colname c_diameter[2] shapey colname c_diameter[3] shapez</span>
+</pre></div>
+</div>
+<p>Similarly, the <code class="docutils literal notranslate"><span class="pre">shapex</span></code>, <code class="docutils literal notranslate"><span class="pre">shapey</span></code>, and <code class="docutils literal notranslate"><span class="pre">shapez</span></code> columns will be mapped to the properties <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape.X</span></code>, <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape.Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape.Z</span></code>
+within OVITO, which controls the principal semi-axes of non-spherical particles as described below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The correct mapping can be set up automatically by OVITO only if you name the dump file columns as specified
+<a class="reference internal" href="../reference/file_formats/input/lammps_dump.html#file-formats-input-lammps-dump-property-mapping"><span class="std std-ref">here</span></a>. Otherwise, you may have to adjust the mapping by hand in the <span class="guilabel">Edit column mapping</span> dialog,
+which is accessible from the <a class="reference internal" href="../reference/file_formats/input/lammps_dump.html#file-formats-input-lammps-dump"><span class="std std-ref">file import panel</span></a> after opening the dump or xyz file.</p>
+</div>
+</section>
+<section id="howto-aspherical-particles-spheres">
+<span id="spheres"></span><h2>Spheres<a class="headerlink" href="#howto-aspherical-particles-spheres" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/spherical_particles.jpg"><img alt="../_images/spherical_particles.jpg" class="align-right" src="../_images/spherical_particles.jpg" style="width: 25%;" /></a>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Sphere">sphere</a> particle shape is defined by the mathematical equation</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\({\displaystyle {\frac {x^2 + y^2 + z^2}{r^2}} = 1}\)</span>.</p>
+</div></blockquote>
+<p>The sphere radius <span class="math notranslate nohighlight">\(r\)</span> is controlled by the per-particle property <code class="docutils literal notranslate"><span class="pre">Radius</span></code>. If not present, the radius is determined by the
+<a class="reference internal" href="../reference/pipelines/data_objects/particles.html#scene-objects-particle-types"><span class="std std-ref">particle type</span></a> or, globally, by the <a class="reference internal" href="../reference/pipelines/visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> visual element.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Position</span></code> particle property specifies an additional translation of the spherical equation above away from coordinate system origin, of course.</p>
+</section>
+<section id="howto-aspherical-particles-ellipsoids">
+<span id="ellipsoids"></span><h2>Ellipsoids<a class="headerlink" href="#howto-aspherical-particles-ellipsoids" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/ellipsoid_particles_example1.png"><img alt="../_images/ellipsoid_particles_example1.png" class="align-right" src="../_images/ellipsoid_particles_example1.png" style="width: 25%;" /></a>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Ellipsoid">ellipsoid</a> particle shape is defined by the equation</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\({\displaystyle {\frac {x^2}{a^2}}+{\frac {y^2}{b^2}}+{\frac {z^2}{c^2}} = 1}\)</span>.</p>
+</div></blockquote>
+<p>The length of the principal semi-axes <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> of the ellipsoid are controlled by the per-particle property <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code>,
+which has three components <cite>X</cite>, <cite>Y</cite>, and <cite>Z</cite> (all positive). If all three components of the property are zero for a particle,
+OVITO falls back to <span class="math notranslate nohighlight">\(a=b=c=r\)</span>, with <span class="math notranslate nohighlight">\(r\)</span> being the spherical radius of the particle as defined above.</p>
+</section>
+<section id="howto-aspherical-particles-superquadrics">
+<span id="superquadrics"></span><h2>Superquadrics<a class="headerlink" href="#howto-aspherical-particles-superquadrics" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/superquadrics.jpg"><img alt="../_images/superquadrics.jpg" class="align-right" src="../_images/superquadrics.jpg" style="width: 25%;" /></a>
+<p>The shape of <a class="reference external" href="https://en.wikipedia.org/wiki/Superquadrics">superquadric</a> particles is defined by the equation</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\({\displaystyle \left( {\left| \frac{x}{a} \right| ^{(2/\phi)}} + {\left| \frac{y}{b} \right| ^{(2/\phi)}} \right) ^{(\phi/\theta)} + {\left| \frac{z}{c} \right| ^{(2/\theta)}} = 1}\)</span>.</p>
+</div></blockquote>
+<p>Like ellipsoidal particles, the superquadric shape has three semi-axes <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, which are specified by
+the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> particle property. The two parameters <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> are called <em>east-west</em> and <em>north-south</em> exponents and determine
+the blockiness/roundness of the superquadric ellipsoid. Both must be strictly positive. The normal sphere (or ellipsoid) is reproduced by setting <span class="math notranslate nohighlight">\(\phi = \theta = 1\)</span>.
+In OVITO, the values of <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> are specified by the <code class="docutils literal notranslate"><span class="pre">Superquadric</span> <span class="pre">Roundness</span></code> property, which is a vector particle property having two components.</p>
+</section>
+<section id="howto-aspherical-particles-boxes">
+<span id="boxes"></span><h2>Boxes<a class="headerlink" href="#howto-aspherical-particles-boxes" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/box_particles_example1.png"><img alt="../_images/box_particles_example1.png" class="align-right" src="../_images/box_particles_example1.png" style="width: 25%;" /></a>
+<p>The size of box-shaped particles is given by the semi-axes <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, which are multiplied by a factor of two to yield the edge lengths of the box along the
+Cartesian coordinate axes. In OVITO the semi-axes are determined by the particle property <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code>, which has three components.
+If not present, or if the components of <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> are zero for a particle, OVITO falls back to using the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> particle property and renders a cube.</p>
+</section>
+<section id="howto-aspherical-particles-cylinders">
+<span id="cylinders"></span><h2>Cylinders<a class="headerlink" href="#howto-aspherical-particles-cylinders" title="Permalink to this heading"></a></h2>
+<p>The cylindrical shape is given by the radius <span class="math notranslate nohighlight">\(r\)</span> and the height <span class="math notranslate nohighlight">\(h\)</span> (in the local coordinate system of the cylinder). The natural orientation of the cylinder is along the positive z-axis,
+with an optional rotation specified by the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> particle property. <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(h\)</span> are determined by the particle property components <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape.X</span></code> and <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape.Z</span></code>.
+The second vector component (<cite>Y</cite>) is ignored. If <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> is not defined, OVITO will fall back to <span class="math notranslate nohighlight">\(h = 2 r\)</span>, with <span class="math notranslate nohighlight">\(r\)</span> taken from the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> property instead.</p>
+</section>
+<section id="howto-aspherical-particles-capsules">
+<span id="spherocylinders-capsules"></span><h2>Spherocylinders (capsules)<a class="headerlink" href="#howto-aspherical-particles-capsules" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/spherocylinder_particles_example1.png"><img alt="../_images/spherocylinder_particles_example1.png" class="align-right" src="../_images/spherocylinder_particles_example1.png" style="width: 25%;" /></a>
+<p>The size of spherocylindrical particles is controlled in the same way as cylindrical particles. OVITO additionally renders two hemispheres at each end of the cylinder extending its height.</p>
+</section>
+<section id="howto-aspherical-particles-circles-and-squares">
+<span id="circles-and-squares"></span><h2>Circles and squares<a class="headerlink" href="#howto-aspherical-particles-circles-and-squares" title="Permalink to this heading"></a></h2>
+<p>Circles and squares are two-dimensional, i.e. flat, shapes, whose size is controlled by the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> particle property. The orientation
+of each particle in three-dimensional space is determined automatically such that it exactly faces the viewer. Thus, their orientations are view-dependent,
+and the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> particle property, if present, is ignored. In other words, you don’t have the possibility to control their orientations explicitly
+(use a mesh-based shape instead if you need control).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rendering of flat circles and squares is only possible with the <a class="reference internal" href="../reference/rendering/opengl_renderer.html#rendering-opengl-renderer"><span class="std std-ref">OpenGL renderer</span></a> of OVITO. The <a class="reference internal" href="../reference/rendering/tachyon_renderer.html#rendering-tachyon-renderer"><span class="std std-ref">Tachyon</span></a> and <a class="reference internal" href="../reference/rendering/ospray_renderer.html#rendering-ospray-renderer"><span class="std std-ref">OSPRay</span></a> rendering engines
+do not support this kind of particle shape.</p>
+</div>
+</section>
+<section id="howto-aspherical-particles-user-shapes">
+<span id="user-defined-shapes"></span><h2>User-defined shapes<a class="headerlink" href="#howto-aspherical-particles-user-shapes" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/particles_usershape_example.jpg"><img alt="../_images/particles_usershape_example.jpg" class="align-right" src="../_images/particles_usershape_example.jpg" style="width: 25%;" /></a>
+<p>On the level of individual particle types, you can assign custom particle shapes imported from external geometry files.
+OVITO supports loading general polyhedral meshes, which can serve as user-defined particle shapes, from various <a class="reference internal" href="../reference/file_formats/file_formats_input.html#file-formats-input"><span class="std std-ref">file input formats</span></a>
+such as STL, OBJ, or VTK/VTP.</p>
+<p>Some simulation formats such as HOOMD/GSD can embed information on particle shapes directly in the simulation output file, which will be <a class="reference internal" href="../reference/file_formats/input/gsd.html#file-formats-input-gsd"><span class="std std-ref">picked up by OVITO automatically</span></a>.
+In most cases, however, you’ll have to load the user-defined particle shape by hand for each particle type in the <a class="reference internal" href="../reference/pipelines/data_objects/particles.html#scene-objects-particle-types"><span class="std std-ref">Particle types</span></a> panel.
+Set the particle type’s <span class="guilabel">Shape</span> to <cite>Mesh/User-defined</cite> and import the shape geometry from a file that you have prepared outside of OVITO.</p>
+<p>The vertex coordinates of the loaded polyhedral mesh get scaled by the value of the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> property of each particle (if present)
+and rotated by the quaternion stored in the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code> property (if present). Alternatively, you can set the
+<span class="guilabel">Display radius</span> parameter of the type to scale all particles of that type or adjust the <span class="guilabel">Radius scaling factor</span>
+in the <a class="reference internal" href="../reference/pipelines/visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> visual element to scale all particles uniformly.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transparent_particles.html" class="btn btn-neutral float-left" title="Semi-transparent particles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="animation.html" class="btn btn-neutral float-right" title="Parameter and camera animations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

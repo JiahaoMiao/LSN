@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construct surface mesh &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/construct_surface_mesh.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Coordination analysis" href="coordination_analysis.html" />
+    <link rel="prev" title="Compute property" href="compute_property.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Construct surface mesh</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-construct-surface-mesh">
+<span id="construct-surface-mesh"></span><h1>Construct surface mesh<a class="headerlink" href="#particles-modifiers-construct-surface-mesh" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_panel.png"><img alt="../../../_images/construct_surface_mesh_panel.png" class="align-right" src="../../../_images/construct_surface_mesh_panel.png" style="width: 30%;" /></a>
+<p>This modifier constructs a surface manifold made of vertices and faces representing the three-dimensional morphology of a group of particles.
+In other words, it generates a geometric <a class="reference internal" href="../data_objects/surface_mesh.html#scene-objects-surface-mesh"><span class="std std-ref">mesh</span></a> describing the outer and inner boundaries of an atomistic
+structure.</p>
+<p>Such a surface mesh representation is useful not only for visualization purposes but also for measuring the surface area, solid volume, and
+porosity of an atomistic structure.</p>
+<figure class="align-default" id="id2" style="width: 25%">
+<img alt="../../../_images/construct_surface_example_input.png" src="../../../_images/construct_surface_example_input.png" />
+<figcaption>
+<p><span class="caption-text">Input</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3" style="width: 25%">
+<img alt="../../../_images/construct_surface_example_output.png" src="../../../_images/construct_surface_example_output.png" />
+<figcaption>
+<p><span class="caption-text">Output</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="particles-modifiers-construct-surface-mesh-algorithms">
+<span id="supported-surface-algorithms"></span><h2>Supported surface algorithms<a class="headerlink" href="#particles-modifiers-construct-surface-mesh-algorithms" title="Permalink to this heading"></a></h2>
+<p>The modifier offers two alternative methods for constructing a surface mesh: the <strong>alpha-shape method</strong> and the <strong>Gaussian
+density method</strong>, which will be described in subsequent sections in more detail. Both approaches have specific advantages and limitations
+and should be employed <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-method-comparison"><span class="std std-ref">depending on the type of input model</span></a>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference internal" href="#particles-modifiers-construct-surface-mesh-alpha-shape-method"><span class="std std-ref">Alpha-shape method</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="#particles-modifiers-construct-surface-mesh-gaussian-density-method"><span class="std std-ref">Gaussian density method</span></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li><p>Is based on the Delaunay tessellation</p></li>
+<li><p>Resulting surface goes through atomic centers</p></li>
+<li><p>Can identify surface atoms</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Is based on an isosurface of the atomic density field</p></li>
+<li><p>The size of the atomic spheres is accounted for (approximately)</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-alpha-shape-method"><span class="std std-ref">alpha-shape method</span></a> assumes that the particles themselves are all point-like, i.e.,
+their radii are ignored. Instead the concept of a virtual probe sphere is introduced to define which regions of space are accessible and which are not – without
+the probe sphere touching any of the atomic sites. The interface manifold constructed by the algorithm separates these different regions of space.
+The algorithm provides the capability to <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-regions"><span class="std std-ref">measure filled and empty region volumes and to analyze the porosity of a structure</span></a>. Furthermore, it
+determines which particles are located exactly on the boundary, making it a well-defined criterion to discern surface atoms from interior bulk atoms in a structure.</p>
+<p>The <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-gaussian-density-method"><span class="std std-ref">second method</span></a> is based on a smeared-out representation of the finite-sized
+particle spheres in terms of <em>overlapping Gaussian distribution functions</em> centered at each particle. The resulting density field,
+which is computed on a discrete grid, has local maximums at each particle site and decays to zero away from the particles.
+The constructed surface boundary represents an isosurface of the Gaussian density field, with the iso-level chosen such that the
+resulting surface roughly matches the finite diameters of the original particle spheres. This approach thus provides the advantage
+of accounting for the finite extent of the atomic spheres, which can be important in case of small molecules
+that do not form a bulk structure, i.e. where most of the atoms are located at the surface.
+Since OVITO Pro 3.8, this method also provides the capability to <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-regions"><span class="std std-ref">quantify filled and empty volumes and to identify individual pores in a structure</span></a>, for example.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#particles-modifiers-construct-surface-mesh-method-comparison"><span class="std std-ref">Comparison of alpha-shape and Gaussian density methods</span></a></p>
+</div>
+</section>
+<section id="general-options">
+<h2>General options<a class="headerlink" href="#general-options" title="Permalink to this heading"></a></h2>
+<p>This option lets you exclude some parts of the system from the surface construction if needed, for example, all <em>solute atoms</em>
+which are not part of the structure of interest.</p>
+<p>The total surface area of the constructed manifold is displayed by the modifier in the status area and
+is output as a <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attribute</span></a> named <code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.surface_area</span></code>.
+Note that the surface area is always given in units of squared length of the simulation model.</p>
+<p>OVITO provides the capability to locally associate quantities with the surface mesh and adopted them from nearby particles during the surface construction process.
+If the option <span class="guilabel">Transfer particle properties to surface</span> is turned on, existing attributes of the input particles located at the surface,
+for example their <code class="docutils literal notranslate"><span class="pre">Color</span></code> property, will be copied over to the vertices of the constructed
+<a class="reference internal" href="../data_objects/surface_mesh.html#scene-objects-surface-mesh"><span class="std std-ref">surface mesh</span></a>. That means the input particle attributes will be available as
+vertex properties of the output mesh, and you can subsequently use the color mapping mode of the <a class="reference internal" href="../visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a> visual element to
+visualize the variation of some quantity of interest across the surface.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the the <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-gaussian-density-method"><span class="std std-ref">Gaussian density method</span></a>
+only continuous particle properties of data type <code class="docutils literal notranslate"><span class="pre">Float</span></code> will get transferred
+over to the surface. Discrete integer properties will not because the algorithm has to blend the property values from several particles
+to compute the resulting field value at each mesh vertex. In case of the alpha-shape method, there exists a one-to-one mapping
+between particles and mesh vertices and no blending is needed. Therefore all types of properties will be transferred to the mesh.</p>
+</div>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_distance_calculation.png" id="particles-modifiers-construct-surface-mesh-distance-field"><img alt="../../../_images/construct_surface_mesh_distance_calculation.png" class="align-right" id="particles-modifiers-construct-surface-mesh-distance-field" src="../../../_images/construct_surface_mesh_distance_calculation.png" style="width: 40%;" /></a>
+<p>Upon request, the modifier can compute the distance of each particle to the closest point on the constructed surface.
+The computed distances are stored as a new particle property named <code class="docutils literal notranslate"><span class="pre">Surface</span> <span class="pre">Distance</span></code>, which
+may subsequently be used to select particles within a certain range from the surface, e.g. using the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a> modifier.
+Note, however, that the distance calculation is a very expensive operation, which can take a long time for systems with many particles or a complex surface.
+If you just want to select particles located <em>exactly on</em> the surface, then the
+option <span class="guilabel">Select particles on the surface</span> should be used instead. It is only available for the alpha-shape method and lets the modifier
+directly select particles that are part of the surface mesh, i.e. which are touched by the virtual probe sphere.</p>
+</section>
+<section id="periodic-systems-and-cap-polygons">
+<h2>Periodic systems and cap polygons<a class="headerlink" href="#periodic-systems-and-cap-polygons" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/surface_mesh_example.png"><img alt="../../../_images/surface_mesh_example.png" class="align-right" src="../../../_images/surface_mesh_example.png" style="width: 30%;" /></a>
+<p>OVITO correctly handles systems with periodic boundary conditions (including mixed open and periodic conditions).
+The simulation box here constitutes a periodic domain where the surface manifold is embedded in. The constructed surface may wrap around
+at the box boundaries and even reconnect to itself to form an infinite manifold.
+Furthermore, there are two particular situations where the surface will turn out degenerate (i.e. a mesh with no faces): (i) A
+simulation box containing no particles or without particles forming any solid region, and (ii) a periodic simulation box densely and completely filled with particles.
+In case (i) there will be single space-filling empty region and in case (ii) a single space-filling solid region.
+OVITO differentiates between the two degenerate cases when it comes to visualization of cap polygons.</p>
+<p>For visualization a surface cut by a periodic simulation box boundary is wrapped around and reenters on the opposite side of the
+box. For the sake of clarity, the <a class="reference internal" href="../visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a> visual element of OVITO provides the option to render
+so-called <em>cap polygons</em> to close the holes in the surface that occur due to these cuts at the box boundaries.
+Cap polygons make it easier for an observer to discern solid regions from empty regions.</p>
+</section>
+<section id="particles-modifiers-construct-surface-mesh-alpha-shape-method">
+<span id="how-the-alpha-shape-algorithm-works"></span><h2>How the alpha-shape algorithm works<a class="headerlink" href="#particles-modifiers-construct-surface-mesh-alpha-shape-method" title="Permalink to this heading"></a></h2>
+<p>The procedure for surface reconstruction from a set of point-like particles or atoms is described in</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1007/s11837-013-0827-5">A. Stukowski</a>:</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1007/s11837-013-0827-5">Computational Analysis Methods in Atomistic Modeling of Crystals</a></div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1007/s11837-013-0827-5">JOM: Vol. 66, Issue 3 (2014), 399-407</a></div>
+</div>
+</div></blockquote>
+<p>which is also the reference you should cite when publishing quantitative results obtained with this
+analysis tool. The method makes use of a Delaunay tessellation constructed on the basis
+of the input particle coordinates. It tessellates space into tetrahedral simplices, which are
+subsequently classified as either belonging to a filled spatial region or an empty spatial region.
+Finally, the surface manifold is constructed as the separating boundary between the empty and the filled
+regions of space.</p>
+<figure class="align-right" id="id4" style="width: 45%">
+<img alt="../../../_images/construct_surface_mesh_alphashape.png" src="../../../_images/construct_surface_mesh_alphashape.png" />
+<figcaption>
+<p><span class="caption-text">(a) The Delaunay tessellation calculated from the input point set. (b) The circumscribed spheres of two exemplary tessellation elements are highlighted.
+One element’s circumsphere is larger than the probe sphere while the other one is smaller.
+Consequently, the elements are classified as open and solid, respectively. (c) The union of all
+solid Delaunay elements defines the geometric shape of the atomistic solid (bold line).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The concept of a probe sphere with a prescribed radius (alpha parameter) is employed to assign each tetrahedral Delaunay
+element to either the empty or the filled region. Generally, the empty region is defined
+as the union of all locations in space that are accessible to the virtual probe sphere without touching any of the input particle centers.
+Note that this includes any cavities inside the solid too as long as they can accommodate the virtual sphere without it overlapping
+with any particles. The radius of the probe sphere is a length scale parameter that determines how much detail
+and small features (e.g. pores) of the geometric shape will be captured by the method.</p>
+<figure class="align-right" id="id5" style="width: 45%">
+<img alt="../../../_images/construct_surface_mesh_particle.png" src="../../../_images/construct_surface_mesh_particle.png" />
+<figcaption>
+<p><span class="caption-text">(a) Atomistic model of a carbon nanoparticle with an inset showing the corresponding
+<a class="reference internal" href="coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">pair distribution function</span></a>.
+The position of the first peak is used as probe sphere radius (<span class="math notranslate nohighlight">\(R_{\alpha}=2.5\,\text{Å}\)</span>)
+for the alpha-shape construction. (b) The resulting triangulated surface mesh.
+(c) Final surface model after six iterations of the smoothing algorithm were applied.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The alpha-shape method, originally introduced by Edelsbrunner and
+Mücke [ACM Trans. Graph. 13:43–72, 1994], compares the circumscribed spheres of the tetrahedral Delaunay elements (figure b)
+to the probe sphere to efficiently decide which regions of space can accommodate the probe sphere without any overlap
+and which thus become part of the empty spatial region. The remaining tetrahedra form the filled (solid)
+region. Finally, the closed surface mesh can be constructed, which consists of all triangular faces of the three-dimensional
+Delaunay tessellation that separate solid from open tetrahedra (figure (c)).</p>
+<p>The resulting surface mesh still reflects the atomic steps that are typically present on the surfaces of an atomistic object.
+The contribution of surface steps may lead to an overestimation of the macroscopic surface area. Therefore one can subsequently
+apply a fairing procedure [Taubin, SIGGRAPH 95 Conf. Proc., pp. 351-358, 1995] to the surface mesh to smoothen out the steps.</p>
+<p>It should be emphasized that the results of the described surface reconstruction method will generally depend on the selected probe
+sphere radius parameter <span class="math notranslate nohighlight">\(R_{\alpha}\)</span>. A rule of thumb for choosing <span class="math notranslate nohighlight">\(R_{\alpha}\)</span> is to use the nearest neighbor atom
+separation distance in the material at hand as demonstrated in figure (a) on the right. OVITO allows you determine the first peak of the radial pair distribution
+function <span class="math notranslate nohighlight">\(g(r)\)</span> with the <a class="reference internal" href="coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">Coordination analysis</span></a> modifier if needed.
+Generally, you should report the value of <span class="math notranslate nohighlight">\(R_{\alpha}\)</span> in your publications when measuring surface area, solid volumes, or porosities.</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl>
+<dt>Probe sphere radius</dt><dd><p>This parameter controls the radius of the probe sphere used in the surface construction algorithm (<span class="math notranslate nohighlight">\(R_{\alpha}\)</span>), which
+determines the level of surface details captured. A larger sphere radius leads to
+a surface with less details, which reflects only coarser features of the surface topology.
+A small sphere radius, on the other hand, will resolve finer surface features and small voids inside a solid.
+However, the sphere radius should not be smaller than half of the typical interatomic
+distance. Otherwise artificial holes will appear in the constructed surface.</p>
+<p>A rule of thumb is to choose this parameter equal to the nearest neighbor atom separation in the material at
+hand. You can use the <a class="reference internal" href="coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">Coordination analysis</span></a> modifier to determine the nearest neighbor separation, which is the
+position of the first peak in the radial pair distribution function.</p>
+</dd>
+<dt>Smoothing level</dt><dd><p>After the triangulated surface mesh has been constructed, it is further refined
+by applying a smoothing and fairing algorithm to remove atomically sharp surface steps.
+This parameter controls how many iterations of the smoothing algorithm are performed.</p>
+</dd>
+<dt>Select particles on the surface</dt><dd><p>This option makes the modifier create a new particle selection that includes all input particles that are located right on the surface mesh.</p>
+</dd>
+</dl>
+</section>
+<section id="particles-modifiers-construct-surface-mesh-gaussian-density-method">
+<span id="how-the-gaussian-density-method-works"></span><h2>How the Gaussian density method works<a class="headerlink" href="#particles-modifiers-construct-surface-mesh-gaussian-density-method" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_gaussian_method.jpg"><img alt="../../../_images/construct_surface_mesh_gaussian_method.jpg" class="align-right" src="../../../_images/construct_surface_mesh_gaussian_method.jpg" style="width: 35%;" /></a>
+<p>This approach generate an isosurface of a volumetric density field computed from the superposition of 3d Gaussian functions placed
+at each particle site [<a class="reference external" href="https://dx.doi.org/10.2312/PE/EuroVisShort/EuroVisShort2012/067-071">Krone et al., 2012</a>].
+The density map generation algorithm accumulates Gaussian densities on a uniformly-spaced 3d lattice within a
+bounding box large enough to contain all particles; sufficient padding at the edges of the volume ensures that the extracted surface does not get clipped off.</p>
+<p>The method provides several parameters controlling the morphology and fidelity of the isosurface:</p>
+</section>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Resolution</dt><dd><p>The number of grid cells along the longest dimension of the system. This determines
+the grid spacing of the discretized density field and the resolution/smoothness of the resulting
+surface mesh.</p>
+</dd>
+<dt>Radius scaling</dt><dd><p>The width of each Gaussian function is controlled by the visible radius of the corresponding particle multiplied by
+this scaling factor. Thus, the scaling factor allows you to broaden the apparent size of the particles
+if needed. The standard scaling factor is 100%, which means the unmodified particle radii will be used as
+standard deviations of the local Gaussian density functions.</p>
+</dd>
+<dt>Iso value</dt><dd><p>The positive threshold value for constructing the isosurface from the combined density field. This too has an influence
+on how far away from the particle centers the generated contour surface will be located. The standard value is 0.6.</p>
+</dd>
+</dl>
+</section>
+<section id="particles-modifiers-construct-surface-mesh-regions">
+<span id="identification-of-volumetric-regions-ovito-pro"></span><h2>Identification of volumetric regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#particles-modifiers-construct-surface-mesh-regions" title="Permalink to this heading"></a></h2>
+<figure class="align-right" id="id6" style="width: 40%">
+<img alt="../../../_images/construct_surface_mesh_regions.png" src="../../../_images/construct_surface_mesh_regions.png" />
+<figcaption>
+<p><span class="caption-text">A periodic 2d structure consisting of two empty regions (pores) and two filled regions.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In OVITO Pro, the modifier provides the option to individually identify spatial regions bounded by the
+surface and to compute the volumes and surface areas of these disconnected regions (empty voids/cavities and filled regions).</p>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_regions_example_atoms.png"><img alt="../../../_images/construct_surface_mesh_regions_example_atoms.png" src="../../../_images/construct_surface_mesh_regions_example_atoms.png" style="width: 25%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_regions_example_surface.png"><img alt="../../../_images/construct_surface_mesh_regions_example_surface.png" src="../../../_images/construct_surface_mesh_regions_example_surface.png" style="width: 25%;" /></a>
+<p>The modifier outputs the computed information as a set of <em>region properties</em>, which are associated with the <a class="reference internal" href="../data_objects/surface_mesh.html#scene-objects-surface-mesh"><span class="std std-ref">surface mesh</span></a> object.
+You can access the list of identified regions in the data inspector panel of OVITO – the <span class="guilabel">List of identified regions</span> button provides a shortcut
+to the corresponding <a class="reference internal" href="../../data_inspector/index.html#data-inspector"><span class="std std-ref">data inspector page</span></a>:</p>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_regions_example_table.jpg"><img alt="../../../_images/construct_surface_mesh_regions_example_table.jpg" src="../../../_images/construct_surface_mesh_regions_example_table.jpg" style="width: 50%;" /></a>
+<p>The region properties have the following meaning:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><cite>Volume</cite></p></td>
+<td><p>The enclosed volume of this spatial region, in units of cubic length of the simulation model.</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>Surface Area</cite></p></td>
+<td><p>The total area of the surface bounding this region, in units of length squared of the simulation model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>Filled</cite></p></td>
+<td><p>Indicates whether the spatial region is filled with particles (1) or is empty (0).</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>Exterior</cite></p></td>
+<td><p>For an empty spatial region a property value of 1 indicates that this region is adjacent to an open boundary
+of the simulation box. In other words, such a region does <em>not</em> represent an internal cavity fully enclosed by the particle structure.
+Note that, for 3d periodic systems which do not have any open boundaries, the distinction between internal and external
+empty regions cannot be made. Empty regions will never be marked as exterior in 3d periodic models.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Furthermore, the faces of the surface mesh get associated with the two adjacent spatial regions
+via their local <em>face property</em> <code class="docutils literal notranslate"><span class="pre">Region</span></code>. You can use the pseudo-color
+mapping option of the <a class="reference internal" href="../visual_elements/surface_mesh.html#visual-elements-surface-mesh"><span class="std std-ref">Surface mesh</span></a> visual element to render
+surface parts belonging to different spatial regions with different colors as in the example image above.
+Note, that initially each surface mesh region will have the color corresponding to the region on its inside assigned to it.
+For example, if region ID 1 has the color red, the outside of the surface mesh enclosing region 1 will be rendered in red. Meanwhile,
+the inside of this this mesh will have the color of the surrounding region, e.g., blue. Toggling the <code class="docutils literal notranslate"><span class="pre">Flip</span> <span class="pre">surface</span> <span class="pre">orientation</span></code> setting of the
+surface mesh will flip these colorings. Thereby, rendering the red color of region ID 1 on the side, while the outside of the mesh will get a blue color.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>For simulation cells with one or more non-periodic boundaries, the volume of exterior regions is not
+well defined. Therefore, OVITO will report the volumes of theses regions as infinity (<em>inf</em>). Global attributes
+derived from these volumes will also be reported as either infinty or not a number (<em>nan</em>).</p>
+</div>
+<p>The modifier outputs the following <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">global attributes</span></a>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Global attribute name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.surface_area</span></code></p></td>
+<td><p>The total area of the entire surface – in simulation units of length squared.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.cell_volume</span></code></p></td>
+<td><p>The volume of the current <a class="reference internal" href="../data_objects/simulation_cell.html#scene-objects-simulation-cell"><span class="std std-ref">simulation box</span></a> – in cubic simulation units of length.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.specific_surface_area</span></code></p></td>
+<td><p><cite>surface_area</cite> divided by <cite>cell_volume</cite> – in simulation units of 1/length.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.filled_volume</span></code></p></td>
+<td><p>Sum of volume of all regions containing particles – in cubic simulation units of length.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.filled_fraction</span></code></p></td>
+<td><p><cite>filled_volume</cite> divided by <cite>cell_volume</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.filled_region_count</span></code></p></td>
+<td><p>Number of disconnected regions that are filled with particles.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.empty_volume</span></code></p></td>
+<td><p>Sum of volume of all empty regions, including the exterior space up to the simulation cell boundaries – in cubic simulation units of length.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.empty_fraction</span></code></p></td>
+<td><p><cite>empty_volume</cite> divided by <cite>cell_volume</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.empty_region_count</span></code></p></td>
+<td><p>Number of disconnected regions which are not filled with any particles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.void_volume</span></code></p></td>
+<td><p>Sum of volume of all empty regions which are fully enclosed by filled regions or periodic simulation cell boundaries – in cubic simulation units of length.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConstructSurfaceMesh.void_region_count</span></code></p></td>
+<td><p>Number of disconnected empty regions which have <em>not</em> been counted as exterior space.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Map particles to regions</p>
+<p>This option lets the modifier determine for each input particle which spatial region it is located in.
+It is only available in the <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-alpha-shape-method"><span class="std std-ref">alpha-shape method</span></a>.</p>
+<p>The assignment of particles to spatial regions is output by the modifier in the form of the <code class="docutils literal notranslate"><span class="pre">Region</span></code> particle property, which stores a
+zero-based region index for each particle.
+Note that the modifier will assign <em>every</em> particle of the input model to some region -
+including unselected particles if the option <span class="guilabel">Use only selected input particles</span> is active. Particles that are located right on a surface manifold,
+i.e. which are adjacent to a filled <em>and</em> an empty region, will be attributed to the filled region. Note that the assignment of particles to regions
+happens <em>before</em> the surface smoothing step of the alpha-shape algorithm, which slightly displaces the mesh vertices. Thus, particles may end up slightly
+outside the spatial region they belong to.</p>
+</section>
+<section id="particles-modifiers-construct-surface-mesh-method-comparison">
+<span id="comparison-of-alpha-shape-and-gaussian-density-methods"></span><h2>Comparison of alpha-shape and Gaussian density methods<a class="headerlink" href="#particles-modifiers-construct-surface-mesh-method-comparison" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_spherical_void_sample.png"><img alt="../../../_images/construct_surface_mesh_spherical_void_sample.png" src="../../../_images/construct_surface_mesh_spherical_void_sample.png" style="width: 26%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_spherical_void_sample_gaussian_density.png"><img alt="../../../_images/construct_surface_mesh_spherical_void_sample_gaussian_density.png" src="../../../_images/construct_surface_mesh_spherical_void_sample_gaussian_density.png" style="width: 26%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_spherical_void_sample_alpha_shape.png"><img alt="../../../_images/construct_surface_mesh_spherical_void_sample_alpha_shape.png" src="../../../_images/construct_surface_mesh_spherical_void_sample_alpha_shape.png" style="width: 26%;" /></a>
+<p>The <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-alpha-shape-method"><span class="std std-ref">alpha-shape algorithm</span></a> and the <a class="reference internal" href="#particles-modifiers-construct-surface-mesh-gaussian-density-method"><span class="std std-ref">Gaussian density method</span></a>
+lead to comparable surfaces meshes for dense atomic systems. This can be seen in the images above, where a spherical cavity inside a dense block
+of atoms was identified using both methods. Both methods create a roughly spherical surface with its radius governed by the probe sphere radius
+or the iso-value parameter, respectively.</p>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_molecules_sample.png"><img alt="../../../_images/construct_surface_mesh_molecules_sample.png" src="../../../_images/construct_surface_mesh_molecules_sample.png" style="width: 26%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_molecules_sample_gaussian_density.png"><img alt="../../../_images/construct_surface_mesh_molecules_sample_gaussian_density.png" src="../../../_images/construct_surface_mesh_molecules_sample_gaussian_density.png" style="width: 26%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/construct_surface_mesh_molecules_sample_alpha_shape.png"><img alt="../../../_images/construct_surface_mesh_molecules_sample_alpha_shape.png" src="../../../_images/construct_surface_mesh_molecules_sample_alpha_shape.png" style="width: 26%;" /></a>
+<p>For non-dense systems, like the floating molecules shown above, the two methods can lead to substantially different results.
+In this example, the alpha-shape method yields surfaces that are strictly inside the convex hull of each molecule, which is formed by the atomic centers.
+The Gaussian density method, on the other hand, constructs surfaces meshes that extend beyond the atomic centers, because it explicitly takes into account
+the finite size of atoms. Decreasing the iso-value increases the volume taken up by each atom, i.e., it leads to an expansion of the surface.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.ConstructSurfaceModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.ConstructSurfaceModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="compute_property.html" class="btn btn-neutral float-left" title="Compute property" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coordination_analysis.html" class="btn btn-neutral float-right" title="Coordination analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

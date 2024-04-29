@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elastic strain calculation &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/elastic_strain.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Expand selection" href="expand_selection.html" />
+    <link rel="prev" title="Displacement vectors" href="displacement_vectors.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Elastic strain calculation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-elastic-strain">
+<span id="elastic-strain-calculation"></span><h1>Elastic strain calculation<a class="headerlink" href="#particles-modifiers-elastic-strain" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/elastic_strain_panel.png"><img alt="../../../_images/elastic_strain_panel.png" class="align-right" src="../../../_images/elastic_strain_panel.png" style="width: 30%;" /></a>
+<p>This modifier computes the atomic-level elastic strain and deformation gradient tensors in crystalline systems.
+It can be used to analyze elastic distortions in a crystal lattice. Furthermore, it allows to determine the local
+crystal orientation in polycrystalline systems.</p>
+<figure class="align-default" id="id1" style="width: 50%">
+<img alt="../../../_images/elastic_strain_example.png" src="../../../_images/elastic_strain_example.png" />
+<figcaption>
+<p><span class="caption-text">Elastic lattice strain distribution around a prismatic dislocation dipole in CdTe computed with the modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The elastic deformation gradient tensor, <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span>, is related to
+the gradient of the elastic displacements, i.e. <span class="math notranslate nohighlight">\(\mathbf{F}^e = \nabla \mathbf{u}^e + \mathbf{I}\)</span>.
+It transforms vectors from an imaginary, ideal, strain-free and stress-free crystal state to the
+physical configuration of the crystal (i.e. the simulation snapshot to be analyzed) in the following way:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Delta \mathbf{x} = \mathbf{F}^e \cdot \Delta \mathbf{X}\)</span></p>
+</div></blockquote>
+<p>Here, <span class="math notranslate nohighlight">\(\Delta \mathbf{X}\)</span> is a (column) vector in the ideal crystal lattice (sometimes called the <em>material frame</em>)
+and <span class="math notranslate nohighlight">\(\Delta \mathbf{x}\)</span> is the corresponding vector in the elastically strained crystal
+(the <em>spatial frame</em>). The vector <span class="math notranslate nohighlight">\(\Delta \mathbf{X}\)</span> is expressed
+in the coordinate system aligned with the lattice Bravais cell, whereas <span class="math notranslate nohighlight">\(\Delta \mathbf{x}\)</span> is
+given in the global simulation coordinate system. Thus, the transformation tensor <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span> carries information
+about the crystal orientation in addition to the elastic stretch deformation.</p>
+<p>In fact, the elastic deformation gradient tensor can be thought of as being composed of two parts,
+<span class="math notranslate nohighlight">\(\mathbf{F}^e = \mathbf{R} \cdot \mathbf{U}^e\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> is an orthogonal rotation-reflection matrix that describes the local lattice orientation within the simulation coordinate system
+and <span class="math notranslate nohighlight">\(\mathbf{U}^e\)</span> is a positive definite stretch tensor that describes the elastic distortion of the crystal.
+Note, however, that in the current program version only <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span> is computed,
+not its polar decomposition into <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{U}^e\)</span>.
+That is something you currently have to do outside of OVITO if you need it.</p>
+<p>Note that OVITO also provides the <a class="reference internal" href="atomic_strain.html#particles-modifiers-atomic-strain"><span class="std std-ref">Atomic strain</span></a> modifier,
+which determines the <em>total</em> deformation at each atom from the relative displacements
+of its neighbors. Computing the total displacements (which don’t have to be purely elastic) requires two simulation snapshots
+of the system: the reference configuration, which specifies the initial atomic coordinates, and the deformed configuration. The elastic strain calculation,
+in contrast, does not require an explicit reference configuration. The user only has to specify
+the ideal unit cell of the crystal, which serves as the basis for constructing an
+<em>ad hoc</em> reference configuration locally at each atomic site. The elastic lattice deformation is
+computed by comparing the current atomic positions to this virtual reference structure.</p>
+<p>OVITO computes the tensor <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span> locally at each atom in the system
+by taking into account the positions of atoms in the local neighborhood. How many neighbors are taken into account depends on the
+selected crystal type. For close-packed structures (FCC, HCP) only the 12 nearest neighbors of a central atom are used to
+compute the elastic deformation gradient tensor at that central atom. For other crystal structures, neighbors up to the
+second neighbor shell are taken into account. Note that <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span> is computed
+in a least-squares sense, because the elastic deformation in the local neighborhood of an atom may in general be
+non-affine (inhomogeneous).</p>
+<p>The atomic-level elastic deformation gradient tensor can only be computed for atoms for which the local mapping
+of their neighbors to the ideal crystal lattice is determinable. In practice this is only the case for atoms
+that are located in a structural environment that resembles the perfect crystal sufficiently well.
+OVITO identifies such atoms in an internal preprocessing step
+using the common neighbor analysis method (see the <a class="reference internal" href="common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common neighbor analysis</span></a> and
+<a class="reference internal" href="identify_diamond.html#particles-modifiers-identify-diamond-structure"><span class="std std-ref">Identify diamond structure</span></a> modifiers for more information).
+<span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span> will only be calculated for atoms that
+have been successfully identified as crystalline atoms. Atoms in highly distorted environments, in contrast,
+for example in crystal defects such as surfaces or general grain boundaries, are excluded from the computation.
+The algorithm will assign a null tensor to these atoms, for which the local elastic deformation is undefined.</p>
+<p>Atoms that are part of stacking fault and coherent twin boundary defects are treated specially. Here, <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span>
+is computed even though the local atomic structure deviates far from the perfect lattice structure.
+Basically, the calculation method implemented in OVITO performs a decomposition into plastic and elastic deformation
+in these defects and outputs the elastic component. More information on this topic can be found in the paper</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/3/035012">A. Stukowski and A. Arsenlis</a>.</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/3/035012">On the elastic-plastic decomposition of crystal deformation at the atomic scale</a></div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/10.1088/0965-0393/20/3/035012">Modelling Simul. Mater. Sci. Eng. 20, 035012 (2012)</a></div>
+</div>
+</div></blockquote>
+<p>Attention must be paid to the symmetries of the crystal structure. For example, in crystals with cubic symmetry there are
+48 equivalent lattice orientations, which will lead to different values of the elastic deformation gradient tensor.
+Given this fundamental ambiguity, which arises from the crystal symmetry, the algorithm will arbitrarily choose one orientation at random for each
+crystallite (i.e. grain) in the system. In particular, there is no guarantee that the same orientation
+will be picked when performing the analysis on different simulation timesteps.</p>
+<p>Based on the computed per-atom deformation gradient tensor <span class="math notranslate nohighlight">\(\mathbf{F}^e\)</span>,
+a corresponding elastic strain tensor can be calculated by the analysis modifier. Two options are available:</p>
+<dl>
+<dt>Strain tensor in spatial frame</dt><dd><p>In this case the elastic <em>Eulerian-Almansi finite strain tensor</em> is computed as</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\mathbf{e} = 1/2 (\mathbf{I} - (\mathbf{F}^e)^{-\mathrm{T}} (\mathbf{F}^e)^{-1})\)</span>.</p>
+</div></blockquote>
+<p>This symmetric strain tensor describes the local elastic deformation in the simulation coordinate system.
+For example, the component <span class="math notranslate nohighlight">\(\mathbf{e}_\mathrm{xx}\)</span>
+describes the axial strain along the X-axis of the simulation coordinate system. This strain tensor has
+the advantage that it is not affected by the lattice symmetry ambiguity problem described
+above.</p>
+</dd>
+<dt>Strain tensor in lattice frame</dt><dd><p>In this case the elastic <em>Green-Lagrangian strain tensor</em> is computed as</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\mathbf{E} = 1/2 ((\mathbf{F}^e)^{\mathrm{T}} \mathbf{F}^e - \mathbf{I})\)</span>.</p>
+</div></blockquote>
+<p>This symmetric strain tensor describes the elastic deformation in the local lattice coordinate frame.
+For example, in a cubic crystal the component <span class="math notranslate nohighlight">\(\mathbf{E}_\mathrm{xx}\)</span>
+describes the axial strain along the [100] lattice direction of the crystal. However, it is not clear
+what the local [100] direction is, because in cubic crystals the [100], [010], and [001] lattice directions are
+interchangeable. This strain tensor is therefore affected by the symmetry ambiguity problem described
+above.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.ElasticStrainModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.ElasticStrainModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="displacement_vectors.html" class="btn btn-neutral float-left" title="Displacement vectors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="expand_selection.html" class="btn btn-neutral float-right" title="Expand selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

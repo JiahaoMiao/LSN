@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-viewport layouts &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/viewport_layouts.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python code generator pro" href="code_generation.html" />
+    <link rel="prev" title="Customizing the initial program state" href="customize_init_state.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Multi-viewport layouts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-what-is-shown-in-the-viewports">Controlling what is shown in the viewports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewport-layouts-rendering">Rendering images or movies of a viewport layout <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Multi-viewport layouts</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewport-layouts">
+<span id="multi-viewport-layouts"></span><h1>Multi-viewport layouts<a class="headerlink" href="#viewport-layouts" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/multi_viewport_layout.jpg"><img alt="../_images/multi_viewport_layout.jpg" class="align-right" src="../_images/multi_viewport_layout.jpg" style="width: 60%;" /></a>
+<p>OVITO lets you change the standard 2-by-2 layout of the <a class="reference internal" href="../usage/viewports.html#usage-viewports"><span class="std std-ref">interactive viewport windows</span></a>
+to tailor the arrangement and number of viewports to your specific needs. Furthermore, it’s possible to import
+<a class="reference internal" href="../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">multiple simulation datasets into the scene</span></a> or use <a class="reference internal" href="clone_pipeline.html#clone-pipeline"><span class="std std-ref">branched data pipelines</span></a> to
+visualize different datasets or analysis results side by side or in different viewports.</p>
+<p>The layout of the viewport windows consists of nested boxes, each split either horizontally or vertically. A layout box can be subdivided one or more times, and each sub-cell can either contain a nested layout box or an actual viewport window.
+The cells are separated by divider lines, which you can move with the mouse to adjust the relative size of the viewport windows in the layout:</p>
+<a class="reference internal image-reference" href="../_images/viewport_layout_schematic.svg"><img alt="../_images/viewport_layout_schematic.svg" src="../_images/viewport_layout_schematic.svg" width="35%" /></a>
+<p>Note that the multi-viewport layout is only visible if none of the viewport windows is currently maximized, which is indicated by the state of the maximize button in the <a class="reference internal" href="../usage/viewports.html#usage-viewports-toolbar"><span class="std std-ref">viewport toolbar</span></a>.
+If necessary, press the maximize button a second time to return to the full layout view.</p>
+<p>Right-click on any of the blue divider lines to open the context menu depicted in the following screenshot, which provides functions for introducing further subdivisions, removing entire layout cells, or resetting the relative size of the cells.
+Additionally, you can left-click on a window’s caption text to open the <a class="reference internal" href="../usage/viewports.html#usage-viewports-menu"><span class="std std-ref">viewport menu</span></a>. Here you have
+access to further layout manipulation functions, e.g. for splitting a viewport window into two halves:</p>
+<figure class="align-default" id="id1" style="width: 40%">
+<img alt="../_images/viewport_layout_splitter_menu.jpg" src="../_images/viewport_layout_splitter_menu.jpg" />
+<figcaption>
+<p><span class="caption-text">Right-click on a divider line</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 40%">
+<img alt="../_images/viewport_layout_viewport_menu.jpg" src="../_images/viewport_layout_viewport_menu.jpg" />
+<figcaption>
+<p><span class="caption-text">Left-click on a viewport caption</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Any changes you make to the viewport layout can be undone if needed using the <span class="menuselection">Edit ‣ Undo</span> function as usual.</p>
+<section id="controlling-what-is-shown-in-the-viewports">
+<h2>Controlling what is shown in the viewports<a class="headerlink" href="#controlling-what-is-shown-in-the-viewports" title="Permalink to this heading"></a></h2>
+<p>By default, all viewports in the layout depict the same three-dimensional scene, just from different camera angles.
+If you add multiple datasets or pipelines to the scene, they will be visible in every viewport. However, using
+the <span class="menuselection">Pipeline Visibility</span> function found in the viewport menu (see right screenshot above), you
+can turn the visibility of individual pipelines on or off on a per-viewport basis. This gives you the possibility to display different
+objects or models in different viewport windows of the layout.</p>
+<p>Read the introduction on <a class="reference internal" href="clone_pipeline.html#clone-pipeline"><span class="std std-ref">pipeline cloning</span></a> to learn how to duplicate an existing pipeline
+in OVITO and change the visualization style or input dataset for the cloned pipeline.</p>
+</section>
+<section id="viewport-layouts-rendering">
+<span id="rendering-images-or-movies-of-a-viewport-layout-ovito-pro"></span><h2>Rendering images or movies of a viewport layout <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#viewport-layouts-rendering" title="Permalink to this heading"></a></h2>
+<p>In the <a class="reference internal" href="../reference/rendering/render_settings.html#core-render-settings"><span class="std std-ref">render settings panel</span></a> of OVITO Pro you can turn on the option <span class="guilabel">Render all viewports</span>
+to include all panels of the current layout in the rendered output image or movie:</p>
+<a class="reference internal image-reference" href="../_images/viewport_layout_rendering.jpg"><img alt="../_images/viewport_layout_rendering.jpg" src="../_images/viewport_layout_rendering.jpg" style="width: 100%;" /></a>
+<p>Additionally, switch on the option <span class="guilabel">Preview visible region</span> to display guides in all interactive viewport windows
+indicating the visible portions that will be part of the final output layout.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to permanently replace the standard 2-by-2 viewport layout of OVITO with your own layout,
+you can do it via <a class="reference internal" href="customize_init_state.html#custom-initial-session-state"><span class="std std-ref">this customization mechanism</span></a>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="customize_init_state.html" class="btn btn-neutral float-left" title="Customizing the initial program state" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="code_generation.html" class="btn btn-neutral float-right" title="Python code generator pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

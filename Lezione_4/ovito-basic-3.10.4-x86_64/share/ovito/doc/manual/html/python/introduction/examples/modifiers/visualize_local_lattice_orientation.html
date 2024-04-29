@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example M3: Color mapping to visualize local lattice orientation &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/modifiers/visualize_local_lattice_orientation.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example M4: Finding overlapping particles" href="select_overlapping_particles.html" />
+    <link rel="prev" title="Example M2: Custom order parameter calculation" href="order_parameter_calculation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="msd_calculation.html">Example M1: Calculating mean square displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="order_parameter_calculation.html">Example M2: Custom order parameter calculation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example M3: Color mapping to visualize local lattice orientation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="select_overlapping_particles.html">Example M4: Finding overlapping particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shrink_wrap_box.html">Example M5: Shrink-wrap simulation box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculate_local_entropy.html">Example M6: Calculate local entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculate_displacement_vectors.html">Example M7: Displacement vectors with reference configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_time_average.html">Example M8: Compute trajectory average of a global attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example M3: Color mapping to visualize local lattice orientation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-m3-color-mapping-to-visualize-local-lattice-orientation">
+<span id="example-visualize-local-lattice-orientation"></span><h1>Example M3: Color mapping to visualize local lattice orientation<a class="headerlink" href="#example-m3-color-mapping-to-visualize-local-lattice-orientation" title="Permalink to this heading"></a></h1>
+<p>The <a class="reference external" href="../../../../reference/pipelines/modifiers/polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">Polyhedredral Template Matching (PTM)</span></a> function of OVITO allows
+computing the local lattice orientation for each atom in a (poly)crystal. The modifier stores the
+<a class="reference external" href="../../../../reference/pipelines/modifiers/polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching-orientations" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">computed local orientations as quaternions</span></a>, i.e., rotations within the fundamental zone, in the particle property named <code class="docutils literal notranslate"><span class="pre">Orientation</span></code>.
+Each per-particle quaternion can be translated into an RGB color to visualize the local lattice orientation.
+This can be achieved by inserting a <a class="reference internal" href="../../custom_modifiers.html#writing-custom-modifiers"><span class="std std-ref">custom Python modifier</span></a> into the pipeline, which translates the output of the PTM modifier
+into RGB values and stores them in the <code class="docutils literal notranslate"><span class="pre">Color</span></code> particle property.</p>
+<p>In the graphical OVITO version, simply insert a new Python modifier and copy/paste the following script into the source code window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">quaternions_to_colors</span><span class="p">(</span><span class="n">qs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Takes a list of quaternions (Nx4 array) and returns a list of</span>
+<span class="sd">        corresponding RGB colors (Nx3 array) &quot;&quot;&quot;</span>
+ 
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;qs must be a 2-dimensional array&quot;</span><span class="p">)</span>
+ 
+    <span class="k">if</span> <span class="n">qs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;qs must be a n x 4 dimensional array&quot;</span><span class="p">)</span>
+ 
+    <span class="c1"># Project quaternions into Rodrigues space: rs = (qs.X/qs.W, qs.Y/qs.W, qs.Z/qs.W)</span>
+    <span class="c1"># Note that the qs.W may be zero for particles for which no lattice orientation</span>
+    <span class="c1"># could be computed by the PTM modifier.</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">qs</span><span class="p">[:,:</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">out</span><span class="o">=</span><span class="n">rs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">out</span><span class="o">=</span><span class="n">rs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">out</span><span class="o">=</span><span class="n">rs</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="n">qs</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Compute vector lengths rr = norm(rs)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="mf">1e-9</span><span class="p">)</span> <span class="c1"># hack</span>
+ 
+    <span class="c1"># Normalize Rodrigues vectors.</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="n">rr</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="n">rr</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">/=</span> <span class="n">rr</span>
+ 
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">theta</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">theta</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="n">theta</span>
+    
+    <span class="c1"># Normalize values.</span>
+    <span class="n">rs</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">62.8</span><span class="p">)</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">62.8</span><span class="p">)</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">62.8</span><span class="p">)</span>
+    <span class="n">rs</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">62.8</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">rs</span>
+    
+<span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; The user-defined modifier function &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Input:</span>
+    <span class="n">orientations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="s1">&#39;Orientation&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Output:</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">quaternions_to_colors</span><span class="p">(</span><span class="n">orientations</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="order_parameter_calculation.html" class="btn btn-neutral float-left" title="Example M2: Custom order parameter calculation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="select_overlapping_particles.html" class="btn btn-neutral float-right" title="Example M4: Finding overlapping particles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

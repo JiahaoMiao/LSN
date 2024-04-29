@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motion visualization with marker particles &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/tutorials/marker_particles.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Turntable animation of a model" href="turntable_animation.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motion visualization with marker particles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-load-simulation-trajectory">Step 1: Load simulation trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-adjust-animation-speed">Step 2: Adjust animation speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-create-particle-selection">Step 3: Create particle selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-color-the-marker-particles">Step 4: Color the marker particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-freeze-the-particle-colors">Step 5: Freeze the particle colors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-6-render-a-movie">Step 6: Render a movie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-tutorial-solution">Download tutorial solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="turntable_animation.html">Turntable animation of a model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Remote rendering tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Motion visualization with marker particles</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="howto-marker-particles">
+<span id="motion-visualization-with-marker-particles"></span><span id="tutorials-marker-particles"></span><h1>Motion visualization with marker particles<a class="headerlink" href="#howto-marker-particles" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/shear_marker.gif"><img alt="../_images/shear_marker.gif" class="align-right" src="../_images/shear_marker.gif" style="width: 40%;" /></a>
+<p>In this step-by-step tutorial, you will create an animation from an MD simulation of a simple shearing experiment
+as shown on the right. You will learn how to highlight a group of atoms,
+initially located in a narrow region, with a marker color to visualize the atomic motion
+in the interior of the crystal during the course of the simulation.</p>
+<p>In particular, you will learn more about the purpose of the <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier in OVITO,
+which helps you preserve the initial selection state of a group of particles.</p>
+<section id="step-1-load-simulation-trajectory">
+<h2>Step 1: Load simulation trajectory<a class="headerlink" href="#step-1-load-simulation-trajectory" title="Permalink to this heading"></a></h2>
+<p>Start by downloading the simulation trajectory file
+<a class="reference external" href="https://gitlab.com/stuko/ovito/-/blob/master/examples/data/shear.dump">shear.dump</a>
+for this tutorial to your computer. It was generated from the <code class="docutils literal notranslate"><span class="pre">shear</span></code> simulation script
+found in the <a class="reference external" href="https://docs.lammps.org/Examples.html">LAMMPS examples folder</a>. Use the <span class="menuselection">File ‣ Load File</span> function
+to open the file <code class="file docutils literal notranslate"><span class="pre">shear.dump</span></code> in OVITO.</p>
+</section>
+<section id="step-2-adjust-animation-speed">
+<h2>Step 2: Adjust animation speed<a class="headerlink" href="#step-2-adjust-animation-speed" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/animation_settings_dialog.jpg"><img alt="../_images/animation_settings_dialog.jpg" class="align-right" src="../_images/animation_settings_dialog.jpg" style="width: 26%;" /></a>
+<p>The simulation trajectory comprises 41 frames as indicated by the numbers in the timeline of
+OVITO located below the viewports. Drag the time slider with the mouse to skip through the
+frames of the trajectory, or press the <span class="guilabel">Play</span> <a class="reference internal" href="../_images/play_animation.png"><img alt="Play button" src="../_images/play_animation.png" style="width: 22px;" /></a> button in the animation toolbar to play back
+the animation in the interactive viewports in a loop.</p>
+<p>The playback speed, i.e. the number of animation frames per second, can be adjusted in the
+<a class="reference internal" href="../reference/rendering/animation_settings_dialog.html#animation-animation-settings-dialog"><span class="std std-ref">Animation settings dialog</span></a>. Open the dialog using
+the <a class="reference internal" href="../_images/animation_settings.png"><img alt="Animation settings button" src="../_images/animation_settings.png" style="width: 22px;" /></a> button in the animation toolbar and make sure the <span class="guilabel">Frames per second</span> value is set to <strong>15</strong>.
+This parameter not only affects the playback in the interactive viewports of OVITO but also
+the frame rate of movie files written by the program.</p>
+</section>
+<section id="step-3-create-particle-selection">
+<h2>Step 3: Create particle selection<a class="headerlink" href="#step-3-create-particle-selection" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/slice_modifier_panel.jpg"><img alt="../_images/slice_modifier_panel.jpg" class="align-right" src="../_images/slice_modifier_panel.jpg" style="width: 26%;" /></a>
+<p>We now insert the <a class="reference internal" href="../reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier into the <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">pipeline</span></a> to select all particles within a
+narrow slab of the crystal. Open the <span class="guilabel">Add modification…</span> drop-down list and select <cite>Slice</cite> from the <cite>Modification</cite> section.
+The newly inserted modifier appears as a new item in the <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a>.</p>
+<p>While the <a class="reference internal" href="../reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier’s normal operation is to actually delete all particles on one side of the slicing plane,
+we can tell the modifier to only select the particles by activating the option <span class="guilabel">Create selection (do not delete)</span>.
+Furthermore, set the <span class="guilabel">Slab width</span> to <strong>5.0</strong> to make the slab five angstroms wide and check <span class="guilabel">Reverse orientation</span> to select the particles
+located <em>in between</em> the two parallel planes.</p>
+</section>
+<section id="step-4-color-the-marker-particles">
+<h2>Step 4: Color the marker particles<a class="headerlink" href="#step-4-color-the-marker-particles" title="Permalink to this heading"></a></h2>
+<p>OVITO highlights the selected particles using a bright red color. However, the actual color of these particles did not change
+yet. The red color is only visible in the interactive viewports of the program to indicate which particles are currently selected,
+but if you would render an output image or a movie of the system now (see step 6), these particles would still appear
+in their original gray color like the rest of the crystal.</p>
+<p>You have to actively change the color of the selected particles by inserting another modifier into the pipeline.
+Open again the <span class="guilabel">Add modification…</span> drop-down list and select <cite>Assign color</cite> from the <cite>Coloring</cite> section.
+The <a class="reference internal" href="../reference/pipelines/modifiers/assign_color.html#particles-modifiers-assign-color"><span class="std std-ref">Assign color</span></a> modifier assigns a new uniform color of your choice to the currently selected particles. Let’s use a green color:</p>
+<a class="reference internal image-reference" href="../_images/intermediate_frame0.jpg"><img alt="../_images/intermediate_frame0.jpg" src="../_images/intermediate_frame0.jpg" style="width: 28%;" /></a>
+<a class="reference internal image-reference" href="../_images/intermediate_frame20.jpg"><img alt="../_images/intermediate_frame20.jpg" src="../_images/intermediate_frame20.jpg" style="width: 28%;" /></a>
+<a class="reference internal image-reference" href="../_images/intermediate_frame40.jpg"><img alt="../_images/intermediate_frame40.jpg" src="../_images/intermediate_frame40.jpg" style="width: 28%;" /></a>
+</section>
+<section id="step-5-freeze-the-particle-colors">
+<h2>Step 5: Freeze the particle colors<a class="headerlink" href="#step-5-freeze-the-particle-colors" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/freeze_property_color.jpg"><img alt="../_images/freeze_property_color.jpg" class="align-right" src="../_images/freeze_property_color.jpg" style="width: 26%;" /></a>
+<p>When looking at the time sequence above, you will notice that the set of green marker particles is not quite right yet: The green slab remains exactly straight even though
+the crystal is deforming. Different particles turn green as they enter the selection region and, after leaving the region,
+they become white again.</p>
+<p>The reason for this is that the <cite>Slice</cite> and <cite>Assign color</cite> operations are (re-)performed dynamically on each frame of the simulation trajectory.
+OVITO updates the results of these modifiers automatically whenever their input state changes, i.e., when particles move during
+the course of the simulation.</p>
+<p>Often times this is exactly the behavior one needs, but here in this tutorial it is not: We’d rather like to create a static set of green marker
+particles, which remains unaffected by the particle motion. In other words, once the particle selection has been defined at the beginning of the simulation, it needs to be <em>frozen</em>
+to preserve it across the entire timeline. For this purpose, OVITO provides the <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier.</p>
+<p>Add this modifier to the pipeline as usual and change the <span class="guilabel">Property to freeze</span> to <code class="docutils literal notranslate"><span class="pre">Color</span></code>. This tells the modifier to
+take the original colors of the particles from animation frame 0 and override the current colors with them in all other frames of the trajectory.
+Thus, the effectively assigned particle colors will now remain static, replacing the otherwise dynamic coloring produced by the combination of modifiers <cite>Slice</cite> and <cite>Assign color</cite>:</p>
+<a class="reference internal image-reference" href="../_images/final_frame0.jpg"><img alt="../_images/final_frame0.jpg" src="../_images/final_frame0.jpg" style="width: 28%;" /></a>
+<a class="reference internal image-reference" href="../_images/final_frame20.jpg"><img alt="../_images/final_frame20.jpg" src="../_images/final_frame20.jpg" style="width: 28%;" /></a>
+<a class="reference internal image-reference" href="../_images/final_frame40.jpg"><img alt="../_images/final_frame40.jpg" src="../_images/final_frame40.jpg" style="width: 28%;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we have placed the <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier at the top of the modifier stack in the pipeline editor, which means
+it will be executed last - after the two other modifiers have performed their actions. This ordering is important for two reasons: The <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier
+is only able to preserve the particle state produced by modifiers preceding it in the pipeline. The effect of subsequent modifiers, in contrast, will not be visible to <cite>Freeze property</cite>.
+Furthermore, we want the <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier to be the last one changing the colors of the particles. Placing additional modifiers
+behind it in the pipeline, which introduce again some dynamic coloring, might undo the step of freezing the particle colors.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/freeze_property_selection.jpg"><img alt="../_images/freeze_property_selection.jpg" class="align-right" src="../_images/freeze_property_selection.jpg" style="width: 26%;" /></a>
+<p>An alternative approach, leading to virtually the same results, is to let the <a class="reference internal" href="../reference/pipelines/modifiers/freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a> modifier freeze the <em>selection</em> state of the particles instead of their <em>color</em> state.
+To do this, reorder the modifier sequence as shown in the second screenshot and change the <span class="guilabel">Property to freeze</span> to <code class="docutils literal notranslate"><span class="pre">Selection</span></code>.
+Now <cite>Freeze property</cite> will preserve the particle selection created by <cite>Slice</cite> in frame 0 of the trajectory, and <cite>Assign color</cite> will use that frozen
+selection state as input to always color the same set of particles.</p>
+</section>
+<section id="step-6-render-a-movie">
+<h2>Step 6: Render a movie<a class="headerlink" href="#step-6-render-a-movie" title="Permalink to this heading"></a></h2>
+<p>To complete this tutorial you will now render a movie of the simulation and save it as a video file.</p>
+<p>Switch to the <cite>Render</cite> tab of the command panel and set the rendering range to <span class="guilabel">Complete animation</span>.
+Click <span class="guilabel">Choose…</span> and specify the name and format of the video file to be written by OVITO, e.g. <code class="file docutils literal notranslate"><span class="pre">shear_marker.mp4</span></code>.
+The option <span class="guilabel">Save to file</span> should now automatically be turned on.</p>
+<a class="reference internal image-reference" href="../_images/render_settings.jpg"><img alt="../_images/render_settings.jpg" src="../_images/render_settings.jpg" style="width: 26%;" /></a>
+<p>Make sure the <cite>Top</cite> viewport is currently active. If there is no <cite>Top</cite> viewport, switch the current viewport
+to top view using the <a class="reference internal" href="../usage/viewports.html#usage-viewports-menu"><span class="std std-ref">viewport menu</span></a>. A <cite>Top</cite> viewport shows the current scene
+from above, along the negative z-axis, using a parallel projection.</p>
+<p>Finally, press the button <span class="guilabel">Render active viewport</span> to start the rendering process.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To further refine the visualization you may want to perform a few additional actions:</p>
+<ul class="simple">
+<li><p>Turn off the display of the <a class="reference internal" href="../reference/pipelines/visual_elements/simulation_cell.html#visual-elements-simulation-cell"><span class="std std-ref">Simulation cell</span></a> visual element in the pipeline editor.</p></li>
+<li><p>Adjust the display radius of the particles in the <a class="reference internal" href="../reference/pipelines/visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">Particles</span></a> visual element to a value of <strong>1.0</strong>.</p></li>
+<li><p>Activate <span class="menuselection">Preview Mode</span> in the <a class="reference internal" href="../usage/viewports.html#usage-viewports-menu"><span class="std std-ref">viewport menu</span></a> to check the visible viewport region before rendering the video.</p></li>
+</ul>
+</div>
+</section>
+<section id="download-tutorial-solution">
+<h2>Download tutorial solution<a class="headerlink" href="#download-tutorial-solution" title="Permalink to this heading"></a></h2>
+<p>In case you would like to skip right to the end of this tutorial or verify your own solution, an OVITO session state file is available.
+Download the state file <a class="reference external" href="https://gitlab.com/stuko/ovito/-/blob/master/examples/data/shear.ovito">shear.ovito</a>
+and save it in the same folder as the trajectory file <code class="file docutils literal notranslate"><span class="pre">shear.dump</span></code>. Use the <span class="menuselection">File ‣ Load Session State</span>
+menu function to load it in OVITO.</p>
+<p>If you encounter any problems with this tutorial, please drop us an email at <a class="reference external" href="mailto:support&#37;&#52;&#48;ovito&#46;org">support<span>&#64;</span>ovito<span>&#46;</span>org</a> to help us improve
+the instructions.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="turntable_animation.html" class="btn btn-neutral float-right" title="Turntable animation of a model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

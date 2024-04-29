@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipeline concept &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/usage/pipeline.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rendering" href="rendering.html" />
+    <link rel="prev" title="Data model" href="data_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="import.html">Data import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewports.html">Viewport windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pipeline concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-modification-pipeline-pipeline-listbox">Pipeline editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-modification-pipeline-display">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-modification-particle-selection">Transient pipeline states and particle selection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rendering.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html">Exporting data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Basic usage</a> &raquo;</li>
+      <li>Pipeline concept</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-modification-pipeline">
+<span id="pipeline-concept"></span><h1>Pipeline concept<a class="headerlink" href="#usage-modification-pipeline" title="Permalink to this heading"></a></h1>
+<p>The workflow in OVITO is based on a <em>data pipeline</em> concept. What it means is that you define a sequence of operations
+(called <cite>modifiers</cite>) in OVITO that get applied to the imported simulation dataset one after the other.
+The output of this processing pipeline is displayed on the screen by the program:</p>
+<a class="reference internal image-reference" href="../_images/pipeline_example.svg"><img alt="../_images/pipeline_example.svg" src="../_images/pipeline_example.svg" width="100%" /></a>
+<p>OVITO offers an extensive set of modifier functions to choose from (see <a class="reference internal" href="../reference/pipelines/modifiers/index.html#particles-modifiers"><span class="std std-ref">reference section</span></a>),
+each performing a specific task like selecting, coloring, analyzing, or filtering particle structures.
+By combining these basic building blocks and arranging them in a pipeline sequence, you can visualize or analyze the simulation
+dataset in exactly the way you need it.</p>
+<p>A key advantage of this approach is that the data pipeline lets you retroactively change, delete or amend the
+applied operations if needed. No modifications you make to the dataset are permanent. You always have the possibility to
+subsequently adjust individual operations, remove them again from the pipeline, or insert additional operations.</p>
+<p>The program keeps around an unmodified copy of the pipeline’s input data in memory, and whenever you
+change the pipeline in some way, OVITO recomputes the output of the pipeline and updates the display to reflect
+your changes. This happens automatically and almost in real-time.</p>
+<p>Similar types of “non-destructive” workflow concepts can be found in modern photo editing and 3D modeling programs, for example.
+In OVITO this approach provides you with a great deal of flexibility while designing and exploring new data analysis and
+visualization setups. And the pipeline architecture offers another important advantage: Once you have figured out the right
+modification steps to solve your specific analysis problem, you can apply the same processing pipeline to any number of other input
+datasets and batch-process a whole range of simulation trajectories.</p>
+<section id="usage-modification-pipeline-pipeline-listbox">
+<span id="pipeline-editor"></span><h2>Pipeline editor<a class="headerlink" href="#usage-modification-pipeline-pipeline-listbox" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/pipeline_editor.svg"><img alt="../_images/pipeline_editor.svg" class="align-right" src="../_images/pipeline_editor.svg" width="40%" /></a>
+<p>The pipeline editor, shown in the screenshot on the right, is the central place in OVITO’s user interface where you perform
+most operations. It displays the current data pipeline and lets you insert new modifiers into the pipeline,
+reorder them and edit their parameters. The editor is divided into three sections:</p>
+<dl class="simple">
+<dt>Visual elements</dt><dd><p>The graphical elements produced by the data pipeline</p>
+</dd>
+<dt>Modifications</dt><dd><p>The current sequence of modifiers that are part of the pipeline</p>
+</dd>
+<dt>Data source</dt><dd><p>The input data for the pipeline (typically an external data file)</p>
+</dd>
+</dl>
+<p>Note that, right after importing a new simulation file into OVITO,
+the pipeline contains no modifiers yet and the “Modifications” section won’t be visible.
+Selecting an element in the pipeline editor opens a corresponding parameters panel below the editor,
+which allows you to change its parameters.</p>
+<p>The drop-down list labeled <span class="guilabel">Add modification…</span> at the top of the pipeline editor offers the
+<a class="reference internal" href="../reference/pipelines/modifiers/index.html#particles-modifiers"><span class="std std-ref">available modifiers</span></a> that may be applied to the data.
+Picking an entry from that box newly inserts the modifier into the pipeline, right above the currently selected pipeline
+item. Note that the data pipeline is presented in bottom-up order: The leading modifier of the pipeline, acting first on the input data,
+appears at the bottom. The pipeline depicted in the screenshot, for example, would first compute the displacement vectors,
+then assign a color coding to the particles and finally slice the dataset.</p>
+<p>You can temporarily disable modifiers in the pipeline by unchecking the box next to them.
+To permanently remove a modifier from the pipeline, use the <em>Delete Modifier</em> button found in
+the toolbar on the right. And since the order in which actions are performed sometimes matters,
+you can rearrange the modifiers within the pipeline using drag-and-drop operations or the
+up/down arrow buttons in the toolbar.</p>
+</section>
+<section id="usage-modification-pipeline-display">
+<span id="visual-elements"></span><h2>Visual elements<a class="headerlink" href="#usage-modification-pipeline-display" title="Permalink to this heading"></a></h2>
+<p>The dataset fed into the pipeline is usually a collection of several different
+data fragments, for instance, the particle positions, bond topology, and simulation cell geometry. Modifiers in the pipeline
+may dynamically add further pieces of information to that, e.g. displacement vectors calculated from
+the trajectories of particles. From all these different kinds of data leaving the pipeline, a visual representation
+must be produced in the viewports. This is the responsibility of so-called <em>visual elements</em>.</p>
+<p><a class="reference internal" href="../reference/pipelines/visual_elements/index.html#visual-elements"><span class="std std-ref">Visual elements</span></a> are automatically generated by the pipeline system and they all
+appear in the corresponding top section of the pipeline editor. Each element provides settings that control the
+appearance of the data visualization, which can be edited in the corresponding parameter panel.
+The visibility of individual elements in the viewports and in rendered images can be changed by checking/unchecking the
+corresponding box in the pipeline editor.</p>
+</section>
+<section id="usage-modification-particle-selection">
+<span id="transient-pipeline-states-and-particle-selection"></span><h2>Transient pipeline states and particle selection<a class="headerlink" href="#usage-modification-particle-selection" title="Permalink to this heading"></a></h2>
+<p>Some modifier functions in OVITO, for example the <a class="reference internal" href="../reference/pipelines/modifiers/delete_selected_particles.html#particles-modifiers-delete-selected-particles"><span class="std std-ref">Delete selected</span></a> modifier,
+act only on the currently selected subset of particles or bonds. What elements are currently selected, is determined by the value of their
+<code class="docutils literal notranslate"><span class="pre">Selection</span></code> property as explained in the <a class="reference internal" href="data_model.html#usage-particle-properties"><span class="std std-ref">previous section</span></a>.
+The program provides several modifiers for selecting particles based on different criteria.
+It is important to understand that the selection happens dynamically as a processing step within the
+data pipeline: First, one modifier selects some of the particles and then a subsequent modifier operates on that selected subset.
+Within the pipeline, the selection will stay the same up to the point where another modifier further down the
+pipeline replaces it again.</p>
+<p>This system allows you to apply different operations to different groups of particles in a successive fashion. For example,
+you could use a <a class="reference internal" href="../reference/pipelines/modifiers/select_particle_type.html#particles-modifiers-select-particle-type"><span class="std std-ref">Select type</span></a> modifier to first select particles
+of one chemical or structural type and then apply an <a class="reference internal" href="../reference/pipelines/modifiers/assign_color.html#particles-modifiers-assign-color"><span class="std std-ref">Assign color</span></a> modifier
+to give them a particular color. Next, you could insert another instance of the <a class="reference internal" href="../reference/pipelines/modifiers/select_particle_type.html#particles-modifiers-select-particle-type"><span class="std std-ref">Select type</span></a> modifier to
+select another group of particles and subsequently assign them a different color using another <a class="reference internal" href="../reference/pipelines/modifiers/assign_color.html#particles-modifiers-assign-color"><span class="std std-ref">Assign color</span></a> modifier instance.</p>
+<p>Note that data visualization always happens only for the final results leaving the pipeline. That means in the viewports you will only observe the final
+selection state of the particles (OVITO highlights them with red color). If you would like to inspect a transient state of the data at some intermediate point along the pipeline,
+you have to temporarily disable the subsequent modifiers in the pipeline editor.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_model.html" class="btn btn-neutral float-left" title="Data model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rendering.html" class="btn btn-neutral float-right" title="Rendering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

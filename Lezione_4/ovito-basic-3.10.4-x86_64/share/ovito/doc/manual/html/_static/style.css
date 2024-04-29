@@ -1,0 +1,204 @@
+/*
+  This is customization stylesheet file for the Read-the-Docs Sphinx theme
+*/
+
+/* Increase the width of the RTD main content area from 800px. */
+.wy-nav-content {
+    max-width: 950px !important;
+}
+
+/* Remove padding of the sidebar and slightly reduce its width. */
+.rst-content .sidebar {
+    padding: 0px;
+    width: 33%;
+    border: 0px none;
+}
+
+/* Adjust title bar of the sidebar panel to the zero padding style. */
+.rst-content .sidebar .sidebar-title {
+    margin: 0px 0px 4px;
+}
+
+/* Make sure two figures in the side bar do not appear side by side. */
+.rst-content .align-right {
+    clear: both;
+}
+
+/* Let several default-aligned figures appear side by side. */
+.rst-content figure.align-default {
+    display: inline-block;
+}
+.rst-content figcaption p {
+    display: table;
+    margin: 0px;
+}
+
+/* Formatting of menu items */
+.rst-content .menuselection {
+    border: 1px solid #b6c7d3;
+    background: #f0f0f0;
+    font-size: 80%;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 2.4px 6px;
+    margin: auto 2px;
+}
+
+/* Avoids the "Pro" tooltip being cut off at the table borders. */
+.wy-table-responsive {
+    overflow: visible;
+}
+
+/* Break lines within table cells. */
+.wy-table-responsive table td {
+    white-space: normal;
+}
+
+/* Define the look of the "pro" tag, which is used to mark exclusive program features in the manual. */
+.ovito-pro-tag {
+	background-color: rgb(230,200,170);
+	color: rgb(64, 64, 64) !important;
+    line-height: 1;
+    text-decoration: none;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 80%;
+	font-weight: normal;
+	font-style: normal;
+    font-family: Lato,proxima-nova,Helvetica Neue,Arial,sans-serif;
+	vertical-align: baseline;
+	border-radius: 0.25rem;
+	padding: 2px 3px !important;
+	/*margin-left: 0.2rem;*/
+}
+/* Do no show the "pro" tag in the TOC menu.  */
+.wy-menu-vertical .ovito-pro-tag {
+    display: none !important;
+}
+/* Remove extra line spacing when pro tag appears in content lists. */
+.rst-content .section ol li > a.ovito-pro-tag, .rst-content .section ul li > a.ovito-pro-tag, div.toctree-wrapper ul > li > a.ovito-pro-tag {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Define the look of the "py" tag, which is used to mark program features in the manual that are part of the Python module. */
+.ovito-py-tag {
+	background-color: rgb(233, 155, 155);
+	color: rgb(64, 64, 64) !important;
+    line-height: 1;
+    text-decoration: none;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 80%;
+	font-weight: normal;
+	font-style: normal;
+    font-family: Lato,proxima-nova,Helvetica Neue,Arial,sans-serif;
+	vertical-align: baseline;
+	border-radius: 0.25rem;
+	padding: 2px 3px !important;
+	/*margin-left: 0.2rem;*/
+}
+
+[data-tooltip] {
+    display: inline-block;
+    position: relative;
+/*    cursor: help;*/
+    padding: 4px;
+}
+/* Tooltip styling */
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    background: #000;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+}
+/* Dynamic horizontal centering */
+[data-tooltip-position="top"]:before,
+[data-tooltip-position="bottom"]:before {
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+/* Dynamic vertical centering */
+[data-tooltip-position="right"]:before,
+[data-tooltip-position="left"]:before {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+[data-tooltip-position="top"]:before {
+    bottom: 100%;
+    margin-bottom: 6px;
+}
+[data-tooltip-position="right"]:before {
+    left: 100%;
+    margin-left: 6px;
+}
+[data-tooltip-position="bottom"]:before {
+    top: 100%;
+    margin-top: 6px;
+}
+[data-tooltip-position="left"]:before {
+    right: 100%;
+    margin-right: 6px;
+}
+
+/* Tooltip arrow styling/placement */
+[data-tooltip]:after {
+    content: '';
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+/* Dynamic horizontal centering for the tooltip */
+[data-tooltip-position="top"]:after,
+[data-tooltip-position="bottom"]:after {
+    left: 50%;
+    margin-left: -6px;
+}
+/* Dynamic vertical centering for the tooltip */
+[data-tooltip-position="right"]:after,
+[data-tooltip-position="left"]:after {
+    top: 50%;
+    margin-top: -6px;
+}
+[data-tooltip-position="top"]:after {
+    bottom: 100%;
+    border-width: 6px 6px 0;
+    border-top-color: #000;
+}
+[data-tooltip-position="right"]:after {
+    left: 100%;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #000;
+}
+[data-tooltip-position="bottom"]:after {
+    top: 100%;
+    border-width: 0 6px 6px;
+    border-bottom-color: #000;
+}
+[data-tooltip-position="left"]:after {
+    right: 100%;
+    border-width: 6px 0 6px 6px;
+    border-left-color: #000;
+}
+/* Show the tooltip when hovering */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    display: block;
+    z-index: 50;
+}

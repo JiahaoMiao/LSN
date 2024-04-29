@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building OVITO on Linux &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/development/build_linux.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building OVITO on Windows" href="build_windows.html" />
+    <link rel="prev" title="Build requirements" href="requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer instructions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requirements.html">Build requirements</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building OVITO on Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-dependencies">Installing dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-the-source-code">Getting the source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-ovito">Compiling OVITO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="build_windows.html">Building OVITO on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_macosx.html">Building OVITO on macOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Developer instructions</a> &raquo;</li>
+      <li>Building OVITO on Linux</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-build-linux">
+<span id="building-ovito-on-linux"></span><h1>Building OVITO on Linux<a class="headerlink" href="#development-build-linux" title="Permalink to this heading"></a></h1>
+<p>The following instructions have been written for Ubuntu Linux 22.04 and compatible distributions.</p>
+<section id="installing-dependencies">
+<h2>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this heading"></a></h2>
+<p>First, install the required <a class="reference internal" href="requirements.html#development-requirements"><span class="std std-ref">build tools and third-party libraries</span></a>
+as follows:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OVITO requires the Qt cross-platform framework (version 6.2 or higher). We recommend using the newest release of the Qt
+framework, which is available as a download from <a class="reference external" href="https://www.qt.io/download">https://www.qt.io/download</a>. Alternatively,
+you can use the Qt6 development files provided by the package manager of your Linux distro.</p>
+</div>
+<dl>
+<dt>Ubuntu / Debian:</dt><dd><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>git<span class="w"> </span>cmake-curses-gui<span class="w"> </span>qt6-base-dev<span class="w"> </span>libqt6svg6-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>libboost-dev<span class="w"> </span>libavcodec-dev<span class="w"> </span>libavdevice-dev<span class="w"> </span>libavfilter-dev<span class="w"> </span>libavformat-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>libavutil-dev<span class="w"> </span>libswscale-dev<span class="w"> </span>libnetcdf-dev<span class="w"> </span>libhdf5-dev<span class="w"> </span>libhdf5-serial-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>libglu1-mesa-dev<span class="w"> </span>libvulkan-dev<span class="w"> </span>ninja-build<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>libssh-dev<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-sphinx-rtd-theme
+</pre></div>
+</div>
+</dd>
+<dt>openSUSE:</dt><dd><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>gcc-c++<span class="w"> </span>qt6-concurrent-devel<span class="w"> </span>qt6-core-devel<span class="w"> </span>qt6-gui-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>qt6-network-devel<span class="w"> </span>qt6-dbus-devel<span class="w"> </span>qt6-opengl-devel<span class="w"> </span>qt6-printsupport-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>qt6-widgets-devel<span class="w"> </span>qt6-xml-devel<span class="w"> </span>qt6-svg-devel<span class="w"> </span>libavutil-devel<span class="w"> </span>libavresample-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>libavfilter-devel<span class="w"> </span>libavcodec-devel<span class="w"> </span>libavdevice-devel<span class="w"> </span>netcdf-devel<span class="w"> </span>libssh-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>boost-devel<span class="w"> </span>hdf5-devel<span class="w"> </span>libswscale-devel<span class="w"> </span>ninja
+</pre></div>
+</div>
+</dd>
+<dt>Fedora:</dt><dd><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the RPMfusion repository providing the ffmpeg package (optional):</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-<span class="k">$(</span>rpm<span class="w"> </span>-E<span class="w"> </span>%fedora<span class="k">)</span>.noarch.rpm<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-<span class="k">$(</span>rpm<span class="w"> </span>-E<span class="w"> </span>%fedora<span class="k">)</span>.noarch.rpm
+
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>g++<span class="w"> </span>qt6-qtbase-devel<span class="w"> </span>qt6-qtsvg-devel<span class="w"> </span>boost-devel<span class="w"> </span>zlib-devel<span class="w"> </span>ninja-build<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ffmpeg-devel<span class="w"> </span>netcdf-devel<span class="w"> </span>libssh-devel<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-sphinx_rtd_theme
+</pre></div>
+</div>
+</dd>
+<dt>RHEL / CentOS:</dt><dd><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>epel-release
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>gcc<span class="w"> </span>gcc-c++<span class="w"> </span>cmake<span class="w"> </span>qt6-qtbase-devel<span class="w"> </span>qt6-qtsvg-devel<span class="w"> </span>qt6-qttools-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">                     </span>boost-devel<span class="w"> </span>netcdf-devel<span class="w"> </span>hdf5-devel<span class="w"> </span>libssh-devel
+</pre></div>
+</div>
+<p>These RHEL/CentOS packages allow building only a basic version of OVITO without video encoding support and documentation.
+In order to build a complete version, other <a class="reference internal" href="requirements.html#development-requirements"><span class="std std-ref">dependencies</span></a> must be installed manually.</p>
+</dd>
+</dl>
+</section>
+<section id="getting-the-source-code">
+<h2>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Permalink to this heading"></a></h2>
+<p>Download the source repository of OVITO into a new subdirectory named <code class="file docutils literal notranslate"><span class="pre">ovito/</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --recursive https://gitlab.com/stuko/ovito.git</span>
+</pre></div>
+</div>
+</section>
+<section id="compiling-ovito">
+<h2>Compiling OVITO<a class="headerlink" href="#compiling-ovito" title="Permalink to this heading"></a></h2>
+<p>Create a build directory and let <a class="reference external" href="https://www.cmake.org/">CMake</a> generate a Makefile:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ovito</span>
+<span class="go">mkdir build</span>
+<span class="go">cd build</span>
+<span class="go">cmake -G Ninja -DCMAKE_BUILD_TYPE=Release ..</span>
+</pre></div>
+</div>
+<p>If this step fails, you can now run <strong class="command">ccmake .</strong> to start up the
+<a class="reference external" href="https://www.cmake.org/">CMake</a> configuration program and adjust the build options as needed.</p>
+<p>To build OVITO run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake --build . --parallel</span>
+</pre></div>
+</div>
+<p>If this step is successful, the <strong class="program">ovito</strong> executable can be found in the directory <code class="file docutils literal notranslate"><span class="pre">ovito/build/bin/</span></code>.
+The command <strong class="command">cmake --build . --target documentation</strong> builds the HTML pages of the user manual (requires Sphinx Python package and Sphinx RTD theme).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="requirements.html" class="btn btn-neutral float-left" title="Build requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_windows.html" class="btn btn-neutral float-right" title="Building OVITO on Windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

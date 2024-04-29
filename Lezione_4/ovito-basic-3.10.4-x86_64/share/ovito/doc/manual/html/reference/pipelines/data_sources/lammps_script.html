@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAMMPS script pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/data_sources/lammps_script.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data objects" href="../data_objects/index.html" />
+    <link rel="prev" title="Python script pro" href="python_script.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data sources</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="external_file.html">External file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Data sources</a> &raquo;</li>
+      <li>LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-source-lammps-script">
+<span id="lammps-script-ovito-pro"></span><h1>LAMMPS script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#data-source-lammps-script" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/lammps_data_source_screenshot.jpg"><img alt="../../../_images/lammps_data_source_screenshot.jpg" class="align-right" src="../../../_images/lammps_data_source_screenshot.jpg" style="width: 60%;" /></a>
+<p>This type of pipeline <a class="reference internal" href="index.html#data-sources"><span class="std std-ref">data source</span></a> runs a user-defined <a class="reference external" href="https://docs.lammps.org/Commands_input.html">LAMMPS input script</a> within OVITO
+to dynamically generate an atomistic model serving as input of the data pipeline. This source type provides an alternative
+to the standard <a class="reference internal" href="external_file.html#scene-objects-file-source"><span class="std std-ref">file-based source</span></a>, which imports saved datasets from disk into OVITO.</p>
+<p>This program feature can prove very useful during the development and prototyping of new LAMMPS scripts,
+because it gives you quick visual feedback within OVITO and lets you examine the results of LAMMPS model building
+commands while you write your input script.</p>
+<p>You can insert a data pipeline with a new LAMMPS script source into the current scene
+using the <a class="reference internal" href="../../../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">pipeline selector widget</span></a> located in the main toolbar of OVITO.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p>Click <span class="menuselection">Create pipeline with data source ‣ LAMMPS script</span> in the <a class="reference internal" href="../../../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">pipeline selector widget</span></a> to insert a new
+LAMMPS data source into the current visualization scene. The new source will be initialized with a demo input script, which shows
+how to set up a simulation box and fill it with some atoms using LAMMPS model construction commands.</p>
+<p>The built-in code editor of OVITO Pro (use the <span class="guilabel">Edit script</span> button to open it) lets you edit the LAMMPS script and replace
+the demo code with your own sequence of commands. Note that OVITO Pro also gives you the option to edit the script code in an external
+application such as <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, which provides more advanced editing capabilities
+than the built-in script editor.</p>
+<p>Once you are done editing the LAMMPS script, hit the button <em>Commit and run script</em> (the ‘<cite>play</cite>’ icon) to let the pipeline source
+execute the LAMMPS input script. The final state of the LAMMPS model will automatically be translated into OVITO’s internal data representation
+and displayed in the program’s interactive viewports. As usual, you have the option
+to subsequently insert modifiers into the pipeline in order to manipulate or further process the model.
+Editing the LAMMPS script and re-running it is possible at any time.</p>
+<p>OVITO executes the LAMMPS script in the context of a <em>working directory</em>, which can be configured
+in the user interface of the LAMMPS data source. All file paths referenced in your LAMMPS script, for example
+to potential parameter files or LAMMPS data files, will be resolved relative to that working directory.
+Note that a LAMMPS pipeline source may also be used for the purpose of importing models from LAMMPS restart files,
+which otherwise cannot be read directly by OVITO. By including a <code class="docutils literal notranslate"><span class="pre">read_restart</span></code> command in the input script, you can
+have LAMMPS read the restart file, and the loaded model gets handed over to OVITO’s data pipeline system.</p>
+</section>
+<section id="setting-up-lammps">
+<h2>Setting up LAMMPS<a class="headerlink" href="#setting-up-lammps" title="Permalink to this heading"></a></h2>
+<p>To run the LAMMPS script, OVITO Pro requires a working installation of the LAMMPS simulation code on your computer. OVITO makes use of the
+<a class="reference external" href="https://docs.lammps.org/Library.html">LAMMPS Library Interface</a> to execute the script commands within the running OVITO process.
+LAMMPS must have been <a class="reference external" href="https://docs.lammps.org/Build_basics.html#build-the-lammps-executable-and-library">built as a shared library</a>
+and with <a class="reference external" href="https://docs.lammps.org/Build_settings.html#exception-handling-when-using-lammps-as-a-library">C++ exceptions enabled</a> for this coupling between the two programs to work.</p>
+<p>OVITO needs to locate the LAMMPS shared library on your computer in order to load it into the process at runtime. The library file is named <code class="file docutils literal notranslate"><span class="pre">liblammps.so</span></code>
+on Linux systems, <code class="file docutils literal notranslate"><span class="pre">liblammps.dll</span></code> on Windows, and <code class="file docutils literal notranslate"><span class="pre">liblammps.dylib</span></code> on macOS. If that library is in the standard system search path,
+OVITO Pro should find it automatically. Otherwise, you may have to enter its complete path into the input field labeled <span class="guilabel">LAMMPS library</span>.
+The precompiled LAMMPS version for Windows, provided by the LAMMPS developers, fulfills the requirements described above and should work with OVITO out of the box.</p>
+<p>Note that this feature requires a recent LAMMPS version (at least <cite>29-Oct-2020</cite>) supporting the required library interface.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_script.html" class="btn btn-neutral float-left" title="Python script pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../data_objects/index.html" class="btn btn-neutral float-right" title="Data objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

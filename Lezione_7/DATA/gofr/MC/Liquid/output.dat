@@ -1,0 +1,63 @@
+LJ LIQUID SIMULATION
+LJ MONTE CARLO (NVT) SIMULATION
+TEMPERATURE= 1.1
+NPART= 108
+SIDE=      5.12993     5.12993     5.12993
+R_CUT= 2.5
+DELTA= 0.1
+NBLOCKS= 50
+NSTEPS= 2000
+Reading input completed!
+System initialized!
+Reading properties completed!
+Block completed: 1
+Block completed: 2
+Block completed: 3
+Block completed: 4
+Block completed: 5
+Block completed: 6
+Block completed: 7
+Block completed: 8
+Block completed: 9
+Block completed: 10
+Block completed: 11
+Block completed: 12
+Block completed: 13
+Block completed: 14
+Block completed: 15
+Block completed: 16
+Block completed: 17
+Block completed: 18
+Block completed: 19
+Block completed: 20
+Block completed: 21
+Block completed: 22
+Block completed: 23
+Block completed: 24
+Block completed: 25
+Block completed: 26
+Block completed: 27
+Block completed: 28
+Block completed: 29
+Block completed: 30
+Block completed: 31
+Block completed: 32
+Block completed: 33
+Block completed: 34
+Block completed: 35
+Block completed: 36
+Block completed: 37
+Block completed: 38
+Block completed: 39
+Block completed: 40
+Block completed: 41
+Block completed: 42
+Block completed: 43
+Block completed: 44
+Block completed: 45
+Block completed: 46
+Block completed: 47
+Block completed: 48
+Block completed: 49
+Block completed: 50
+Simulation completed!

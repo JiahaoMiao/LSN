@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/installation.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High-level API overview" href="overview.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-pip">Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-conda">Using conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ovito-pro-integrated-interpreter">OVITO Pro integrated interpreter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preloading-session-state">Preloading session state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graphical-mode">Graphical mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#number-of-cpu-cores">Number of CPU cores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-third-party-python-modules">Installing third-party Python modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are an <a class="reference external" href="../../ovito_pro.html#credits-ovito-pro" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">OVITO Pro</span></a> user, there usually is no need for you to install the <a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> Python module.
+See <a class="reference internal" href="#ovitos-interpreter"><span class="std std-ref">OVITO Pro integrated interpreter</span></a>.</p>
+</div>
+<section id="using-pip">
+<span id="use-ovito-with-system-interpreter"></span><h2>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this heading"></a></h2>
+<p>If you are using a regular Python interpreter (not <em>Anaconda</em>, <a class="reference internal" href="#installation-anaconda"><span class="std std-ref">see below</span></a>), you can install the OVITO Python module
+from the <a class="reference external" href="https://pypi.org/project/ovito/">PyPI repository</a> with the <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> command:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -U ovito</span>
+</pre></div>
+</div>
+<p>For further information, please refer to <a class="reference external" href="https://pypi.org/project/ovito/">https://pypi.org/project/ovito/</a>.</p>
+</section>
+<section id="using-conda">
+<span id="installation-anaconda"></span><h2>Using conda<a class="headerlink" href="#using-conda" title="Permalink to this heading"></a></h2>
+<p>If you work with an <em>Anaconda</em> or <em>Miniconda</em> environment, you should use the following <strong class="command">conda install</strong> command line:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">conda install --strict-channel-priority -c https://conda.ovito.org -c conda-forge ovito=3.10.4</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ovito</span></code> conda package includes both the <a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> Python module and the graphical desktop application <em>OVITO Pro</em>. The latter
+requires <a class="reference external" href="https://www.ovito.org/#proFeatures">a paid license</a> if you want to use it.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ovito</span></code> conda package is hosted in our conda channel <em>https://conda.ovito.org</em>. It can easily be confused with
+the <a class="reference external" href="https://anaconda.org/conda-forge/ovito">ovito package</a> found in the popular <em>conda-forge</em> channel.
+The latter includes only <em>OVITO Basic</em> but not the Python module. To make sure you’ve installed the right package version,
+run <strong class="command">conda list</strong> and check if the source channel of the installed package is <em>https://conda.ovito.org</em> and not <em>conda-forge</em>.</p>
+</div>
+</section>
+<section id="ovito-pro-integrated-interpreter">
+<span id="ovitos-interpreter"></span><h2>OVITO Pro integrated interpreter<a class="headerlink" href="#ovito-pro-integrated-interpreter" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference external" href="../../ovito_pro.html#credits-ovito-pro" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">OVITO Pro</span></a> program package includes a preconfigured Python interpreter (commonly referred to as “<em>ovitos</em>”).
+This interpreter comes pre-equipped with the <code class="docutils literal notranslate"><span class="pre">ovito</span></code> <a class="reference internal" href="../index.html#scripting-manual"><span class="std std-ref">Python module</span></a> and all other things necessary to execute Python code within the OVITO Pro
+desktop application. The <strong class="program">ovitos</strong> interpreter may also be invoked externally, from a system terminal, to run standalone Python scripts
+on the command line:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">ovitos [-o &lt;file.ovito&gt;] [-g] [&lt;script.py&gt;] [args...]</span>
+</pre></div>
+</div>
+<p>The <strong class="program">ovitos</strong> executable is located in the <code class="file docutils literal notranslate"><span class="pre">bin/</span></code> subdirectory of <em>OVITO Pro for Linux</em>, the
+<code class="file docutils literal notranslate"><span class="pre">Ovito.app/Contents/MacOS/</span></code> directory of <em>OVITO Pro for macOS</em>, and the main application directory
+of <em>OVITO Pro for Windows</em>. It should not be confused with <strong class="program">ovito</strong>, which is the executable that launches
+the graphical desktop application. Both programs access the same integrated Python engine and <strong class="program">ovitos</strong>
+serves as a stand-in for the <strong class="program">python</strong> executable, which allows running Python scripts from the command line
+in OVITO Pro’s integrated interpreter.</p>
+<p>Let’s say you’ve written a simple Python script file named <code class="file docutils literal notranslate"><span class="pre">hello.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ovito</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world, this is OVITO </span><span class="si">%i</span><span class="s2">.</span><span class="si">%i</span><span class="s2">.</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ovito</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can execute the script from a system terminal as follows:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">user@linux:~/ovito-pro-3.10.4-x86_64/bin$ </span>./ovitos<span class="w"> </span>hello.py
+<span class="go">Hello, this is OVITO 3.10.4</span>
+</pre></div>
+</div>
+<p><strong class="program">ovitos</strong> is a console program that behaves almost like a regular <strong class="command">python</strong> interpreter.
+It lets you easily run scripts on remote machines or computing clusters that don’t possess a graphical display.
+Any command line arguments following the script name will be passed to your Python program via <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.argv" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">sys.argv</span></code></a>.
+Invoking <strong class="program">ovitos</strong> without a script filename starts an interactive interpreter session.</p>
+<p>While you can also use any other Python interpreter to execute Python programs that import the <a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> module
+(after <a class="reference internal" href="#installation"><span class="std std-ref">installing the module in that interpreter</span></a>), <strong class="program">ovitos</strong> relieves you from installing
+the <a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> module and provides a few extra capabilities, which are described in the following sections.</p>
+<section id="preloading-session-state">
+<span id="preloading-program-state"></span><h3>Preloading session state<a class="headerlink" href="#preloading-session-state" title="Permalink to this heading"></a></h3>
+<p>The <strong class="command">-o</strong> command line option tells <strong class="program">ovitos</strong> to load an <code class="file docutils literal notranslate"><span class="pre">.ovito</span></code> <a class="reference internal" href="advanced_topics.html#saving-loading-pipelines"><span class="std std-ref">session state file</span></a> before executing your
+script. This allows you to preload an existing data pipeline or visualization setup that you have
+previously prepared using the <em>OVITO Pro</em> desktop application. All script actions will subsequently be performed in the context of this preloaded session.
+This approach can save you programming work because things like modifiers and the camera setup already get loaded from the state file, and
+you don’t need to set everything up programmatically in your script anymore.</p>
+</section>
+<section id="graphical-mode">
+<h3>Graphical mode<a class="headerlink" href="#graphical-mode" title="Permalink to this heading"></a></h3>
+<p>The <strong class="command">-g</strong> command line option of <strong class="program">ovitos</strong> starts a graphical program session of OVITO Pro, and the script
+will be run in the context of this GUI session. This lets you directly observe your script’s actions as they are being
+executed. This function is useful for debugging purposes if you want to visually check the outcome of your script’s actions during the
+development phase. Keep in mind that the viewports will only show pipelines that have been inserted into the current scene
+via <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.add_to_scene" title="ovito.pipeline.Pipeline.add_to_scene"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pipeline.add_to_scene()</span></code></a>.</p>
+</section>
+<section id="number-of-cpu-cores">
+<span id="ovitos-nthreads-parameter"></span><h3>Number of CPU cores<a class="headerlink" href="#number-of-cpu-cores" title="Permalink to this heading"></a></h3>
+<p>OVITO uses all available processor cores by default to perform certain computations. To explicitly restrict the program
+to a smaller number of parallel threads, use the <strong class="command">--nthreads</strong> command line parameter, e.g. <strong class="command">ovitos --nthreads 1 myscript.py</strong>.
+See <a class="reference internal" href="advanced_topics.html#multithreading-settings"><span class="std std-ref">Controlling how many processor cores OVITO uses</span></a>.</p>
+</section>
+<section id="installing-third-party-python-modules">
+<span id="ovitos-install-modules"></span><h3>Installing third-party Python modules<a class="headerlink" href="#installing-third-party-python-modules" title="Permalink to this heading"></a></h3>
+<p><strong class="program">ovitos</strong> is a preconfigured <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a> interpreter with the
+<a class="reference internal" href="../modules/ovito.html#module-ovito" title="ovito"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito</span></code></a> Python package already built in. This makes it possible to run scripts both within the <em>OVITO Pro</em> desktop application as well as through the <strong class="program">ovitos</strong>
+command line tool. However, <em>OVITO Pro’s</em> embedded Python interpreter only ships with very few third-party packages, namely <a class="reference external" href="http://www.numpy.org/">NumPy</a> and <a class="reference external" href="http://matplotlib.org/">matplotlib</a>.</p>
+<p>If you want to call other third-party Python packages from your script, you can install them in the
+<strong class="program">ovitos</strong> interpreter using the usual <strong class="command">pip install</strong> mechanism. Simply run</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="go">ovitos -m pip install --user &lt;package_name&gt;</span>
+</pre></div>
+</div>
+<p>from a system terminal to install any package from the <a class="reference external" href="https://pypi.org">PyPI</a> repository. This will make the package also available to scripts running in the context of a graphical
+<em>OVITO Pro</em> session.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The described approach only applies to <em>OVITO Pro</em> installed via installers from <em>www.ovito.org</em>. If you work with
+the <a class="reference internal" href="#installation-anaconda"><span class="std std-ref">Anaconda version of OVITO Pro</span></a>, use the <strong class="command">conda install</strong> command
+to add additional packages to the Python interpreter shared by <em>OVITO Pro</em> and your Anaconda environment.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Installing a Python extension via <strong class="command">pip</strong> that includes native code may fail if it is not compatible
+with the build-time configuration of the <strong class="program">ovitos</strong> interpreter. In such a case, using the
+<a class="reference internal" href="#installation-anaconda"><span class="std std-ref">Anaconda version of OVITO Pro</span></a> is recommended, which makes installing third-party packages straightforward.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="High-level API overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

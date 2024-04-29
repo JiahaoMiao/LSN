@@ -1,0 +1,14 @@
+10000
+1
+1.5
+30
+50
+1
+1
+  ReadInput >> nblk;    // ideale 100
+  ReadInput >> nstep;   // ideale 10000
+  ReadInput >> L;       // step of the uniform transition prob / sigma of the gaussian prob, ideale 1.5
+  ReadInput >> r[0];    // x iniziale per GS, ideale intorno a 2
+  ReadInput >> re[0];   // x iniziale per ExSt, ideale intorno a 5
+  ReadInput >> Gauss;   // se =1 scelgo gauss distr invece che uniforme
+  ReadInput >> mod;     // salva su file ogni mod valori

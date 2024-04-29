@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compute property &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/compute_property.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Construct surface mesh" href="construct_surface_mesh.html" />
+    <link rel="prev" title="Common neighbor analysis" href="common_neighbor_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Compute property</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-compute-property">
+<span id="compute-property"></span><h1>Compute property<a class="headerlink" href="#particles-modifiers-compute-property" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/compute_property_panel.png"><img alt="../../../_images/compute_property_panel.png" class="align-right" src="../../../_images/compute_property_panel.png" style="width: 30%;" /></a>
+<p>This modifier assigns new values to a per-particle or per-bond property by computing them according to a user-defined mathematical formula.
+The modifier may also be used to create new <a class="reference internal" href="../../../usage/data_model.html#usage-particle-properties"><span class="std std-ref">particle or bond properties</span></a>.</p>
+<p>The user-defined formula for computing the property values can include references to existing per-particle or per-bond data as well as
+global parameters such as the simulation box dimensions or the current animation time. You can find a list of
+all available input variables in the user interface of the modifier. Furthermore, the <em>Compute property</em> modifier
+supports performing computations that involve neighboring particles within a spherical volume around each particle.</p>
+<section id="output-property">
+<h2>Output property<a class="headerlink" href="#output-property" title="Permalink to this heading"></a></h2>
+<p>As described in the <a class="reference internal" href="../../../usage/data_model.html#usage-particle-properties"><span class="std std-ref">introduction on particle properties</span></a>, certain properties
+such as <code class="docutils literal notranslate"><span class="pre">Color</span></code> or <code class="docutils literal notranslate"><span class="pre">Radius</span></code> have a special meaning to the program as their values control the visual appearance of particles and bonds.
+Thus, if you use the <em>Compute property</em> modifier to set or modify such properties, it will affect the visualization directly.
+For instance, you can use the modifier to change the values of the <code class="docutils literal notranslate"><span class="pre">Position</span></code>
+particle property and move particles around or set the <code class="docutils literal notranslate"><span class="pre">Color</span></code> property to give particles newly computed colors.
+When setting the <code class="docutils literal notranslate"><span class="pre">Selection</span></code> property, the <em>Compute property</em> modifier acts like a more powerful
+version of the <a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a> modifier.</p>
+<p>You can also use the <em>Compute property</em> modifier to assign new kinds of properties to particles or bonds and use this information in
+subsequent operations in the data pipeline or export it to an output file.
+Simply enter a name of your choice for the new property into the input field <span class="guilabel">Output property</span>.
+Note that property names in OVITO are always case-sensitive. All standard property names defined by the program are found in the
+drop-down list box.</p>
+</section>
+<section id="vector-properties">
+<h2>Vector properties<a class="headerlink" href="#vector-properties" title="Permalink to this heading"></a></h2>
+<p>Some particle properties in OVITO such as <code class="docutils literal notranslate"><span class="pre">Position</span></code> or <code class="docutils literal notranslate"><span class="pre">Color</span></code> possess multiple components per particle.
+In such cases, you’ll have to enter a separate math expression for each vector component of the output property.
+Note that, in the current program version, the modifier does not allow you to create user-defined vector properties.
+You can only create scalar user-defined properties.</p>
+</section>
+<section id="selective-and-conditional-property-assignment">
+<h2>Selective and conditional property assignment<a class="headerlink" href="#selective-and-conditional-property-assignment" title="Permalink to this heading"></a></h2>
+<p>If the selected output property already exists, then the old values of the property will be overwritten with the new ones
+computed by the modifier. The option <span class="guilabel">Compute only for selected elements</span>, however, lets you restrict the
+assignment to a subset of the particles or bonds and thus preserve the existing property values for some of the elements.</p>
+<p>The ternary operator <code class="docutils literal notranslate"><span class="pre">?:</span></code> (described in the operator table below) allows you to use simple <em>if-else</em> conditions as part of the calculation.
+For example, to make all particles in the upper half of the simulation box semi-transparent and the particles in the lower half fully opaque,
+one could use the following conditional expression to set the values of the <code class="docutils literal notranslate"><span class="pre">Transparency</span></code> particle property:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ReducedPosition</span><span class="p">.</span><span class="n">Z</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> ? <span class="mf">0.7</span> <span class="p">:</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>For more complex computations, which cannot be accomplished with static expressions like in this example, please
+consider using the <a class="reference internal" href="python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script </span></a> modifier instead,
+which lets you write custom modification functions in a real programming language.</p>
+</section>
+<section id="including-neighbor-particles-in-the-calculation">
+<h2>Including neighbor particles in the calculation<a class="headerlink" href="#including-neighbor-particles-in-the-calculation" title="Permalink to this heading"></a></h2>
+<p>In the standard case, the expression for computing the output value for a particle depends only on the values of existing properties
+of the particle as well as global quantities such as the current simulation time. Optionally, the modifier allows you to specify
+a formula that includes terms referring to the properties of neighboring particles within a certain range around
+the central particle for which the output property value is being calculated.</p>
+<p>Formally speaking, the modifier supports formulas of the following general form</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(i) = F(i) + \sum_{j \in \mathcal{N}_i}{G(j)}\)</span>,</p>
+<p>with</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{N}_i = {j: |\mathbf{r}_i - \mathbf{r}_j| &lt; R_c}\)</span>,</p>
+</div></blockquote>
+<p>for computing the output property value <span class="math notranslate nohighlight">\(P(i)\)</span> for some particle <span class="math notranslate nohighlight">\(i\)</span>.
+The first term, <span class="math notranslate nohighlight">\(F(i)\)</span>, refers to the base expression, which only depends on the properties of central particle <span class="math notranslate nohighlight">\(i\)</span> itself.
+The second term consists of contributions from all neighboring particles within a spherical region of radius <span class="math notranslate nohighlight">\(R_c\)</span>
+centered around particle <span class="math notranslate nohighlight">\(i\)</span>. These neighbor contributions to the final output value are computed according to a second
+user-defined expression, <span class="math notranslate nohighlight">\(G(j)\)</span>, which is evaluated for every neighbor particle <span class="math notranslate nohighlight">\(j\)</span>. This formula for the user-defined function <span class="math notranslate nohighlight">\(G(j)\)</span>
+must be entered into the input field <span class="guilabel">Neighbor expression</span>, and it can depend on property values
+of the current neighbor particle <span class="math notranslate nohighlight">\(j\)</span>, property values of the central particle <span class="math notranslate nohighlight">\(i\)</span>, and the vector connecting the two particles.</p>
+<p>The neighbor term allows you to perform advanced computations that involve the local neighborhood of particles. For example, you can use this feature
+to average an existing particle property (e.g. named <code class="docutils literal notranslate"><span class="pre">InputProperty</span></code>) over a spherical volume around each particle by using the following expressions:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:=</span> <span class="n">InputProperty</span> <span class="o">/</span> <span class="p">(</span><span class="n">NumNeighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">G</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">:=</span> <span class="n">InputProperty</span> <span class="o">/</span> <span class="p">(</span><span class="n">NumNeighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">NumNeighbors</span></code> is a dynamic variable that represents the number of neighbors within the selected cutoff radius,
+which is used in this example to normalize the resulting mean property value.
+We can even weight the contributions from different neighbors according to their distance from the central particle by incorporating the <code class="docutils literal notranslate"><span class="pre">Distance</span></code>
+dynamic variable in the expression for <span class="math notranslate nohighlight">\(G(j)\)</span>. To give another example, the following pair of expressions computes the potential energy of each particle according to a Lennard-Jones function:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:=</span> <span class="mi">0</span>
+<span class="n">G</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">:=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">Distance</span>^<span class="o">-</span><span class="mi">12</span> <span class="o">-</span> <span class="n">Distance</span>^<span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, the central particle makes no contribution to the final output value, only its neighbor particles do.</p>
+<p>Within the neighbor expression term, <span class="math notranslate nohighlight">\(G(j)\)</span>, it is possible to refer to properties of
+the central particle <span class="math notranslate nohighlight">\(i\)</span> by prepending the property name with an &#64;-symbol.
+For example, we can use this feature to count the neighbors around a particle whose types are
+different from the type of the central particle:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:=</span> <span class="mi">0</span>
+<span class="n">G</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">:=</span> <span class="n">ParticleType</span> <span class="o">!=</span> <span class="p">@</span><span class="n">ParticleType</span>
+</pre></div>
+</div>
+<p>Here, the negative comparison operator <code class="docutils literal notranslate"><span class="pre">!=</span></code> will evaluate to 1 if the type of particle <span class="math notranslate nohighlight">\(j\)</span> is
+not equal to the type of particle <span class="math notranslate nohighlight">\(i\)</span>; and 0 otherwise.</p>
+</section>
+<section id="computations-on-bonds">
+<h2>Computations on bonds<a class="headerlink" href="#computations-on-bonds" title="Permalink to this heading"></a></h2>
+<p>In addition to particle properties, the modifier also allows you to compute and assign new bond properties.
+In bond-based mode, regular expression variables refer to existing properties of the current bond. Additionally, you can incorporate
+the properties of the two adjacent particles connected by the current bond into the expression. When referring to a particle
+property, you need to prepend <code class="docutils literal notranslate"><span class="pre">&#64;1.</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;2.</span></code> to the property name.
+For example, we can use the following expression to set the <code class="docutils literal notranslate"><span class="pre">Selection</span></code> property
+of bonds and thus select all bonds which connect two particles of different type and whose length exceeds a
+threshold value of 2.8:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="mf">1.</span><span class="n">ParticleType</span> <span class="o">!=</span> <span class="p">@</span><span class="mf">2.</span><span class="n">ParticleType</span> <span class="o">&amp;&amp;</span> <span class="n">BondLength</span> <span class="o">&gt;</span> <span class="mf">2.8</span>
+</pre></div>
+</div>
+<p>Note that, in general, the orientation of bonds is arbitrary. Thus, a bond can point from particle A to particle
+B or vice versa, and accordingly <code class="docutils literal notranslate"><span class="pre">&#64;1.</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;2.</span></code> alike can refer to either one of the
+two particles connected by the bond. This means, in some cases more complex expressions are necessary to account
+for the two possibilities. For example, to select all bonds that connect pairs of particles of
+type 1 and 2:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="p">(@</span><span class="mf">1.</span><span class="n">ParticleType</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="p">@</span><span class="mf">2.</span><span class="n">ParticleType</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(@</span><span class="mf">1.</span><span class="n">ParticleType</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="p">@</span><span class="mf">2.</span><span class="n">ParticleType</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="expression-syntax">
+<h2>Expression syntax<a class="headerlink" href="#expression-syntax" title="Permalink to this heading"></a></h2>
+<p>The expression syntax supported by the modifier is very similar to the one of the C programming language. Variable names and function names are case-sensitive.
+Variable names are restricted to alphanumeric characters and underscores. OVITO automatically replaces invalid characters in input property names with an
+underscore to generate valid variable names that can be referenced in expressions.
+Arithmetic expressions can be composed from constant values, input variables and math functions using the following operators in the given order of precedence:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(...)</span></code></p></td>
+<td><p>expressions in parentheses are evaluated first</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">A^B</span></code></p></td>
+<td><p>exponentiation (A raised to the power B)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A*B</span></code>, <code class="docutils literal notranslate"><span class="pre">A/B</span></code></p></td>
+<td><p>multiplication and division</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">A+B</span></code>, <code class="docutils literal notranslate"><span class="pre">A-B</span></code></p></td>
+<td><p>addition and subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A==B</span></code>, <code class="docutils literal notranslate"><span class="pre">A!=B</span></code>, <code class="docutils literal notranslate"><span class="pre">A&lt;B</span></code>, <code class="docutils literal notranslate"><span class="pre">A&lt;=B</span></code>, <code class="docutils literal notranslate"><span class="pre">A&gt;B</span></code>, <code class="docutils literal notranslate"><span class="pre">A&gt;=B</span></code></p></td>
+<td><p>comparison between A and B (result is either 0 or 1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&amp;&amp;</span> <span class="pre">B</span></code></p></td>
+<td><p>logical AND operator: result is 1 if A and B differ from 0, else 0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">||</span> <span class="pre">B</span></code></p></td>
+<td><p>logical OR operator: result is 1 if A or B differ from 0, else 0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">?</span> <span class="pre">B</span> <span class="pre">:</span> <span class="pre">C</span></code></p></td>
+<td><p>if A differs from 0 (i.e. is true), the resulting value of this expression is B, else C</p></td>
+</tr>
+</tbody>
+</table>
+<p>The expression parser supports the following functions:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abs(A)</span></code></p></td>
+<td><p>Absolute value of A. If A is negative, returns -A otherwise returns A.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">acos(A)</span></code></p></td>
+<td><p>Arc-cosine of A. Returns the angle, measured in radians, whose cosine is A.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">acosh(A)</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">acos()</span></code> but for hyperbolic cosine.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asin(A)</span></code></p></td>
+<td><p>Arc-sine of A. Returns the angle, measured in radians, whose sine is A.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">asinh(A)</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">asin()</span></code> but for hyperbolic sine.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atan(A)</span></code></p></td>
+<td><p>Arc-tangent of A. Returns the angle, measured in radians, whose tangent is A.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atan2(Y,X)</span></code></p></td>
+<td><p>Two argument variant of the arctangent function. Returns the angle, measured in radians. see <a class="reference external" href="http://en.wikipedia.org/wiki/Atan2">here</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atanh(A)</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">atan()</span></code> but for hyperbolic tangent.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">avg(A,B,...)</span></code></p></td>
+<td><p>Returns the average of all arguments.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cos(A)</span></code></p></td>
+<td><p>Cosine of A. Returns the cosine of the angle A, where A is measured in radians.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cosh(A)</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">cos()</span></code> but for hyperbolic cosine.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">exp(A)</span></code></p></td>
+<td><p>Exponential of A. Returns the value of e raised to the power A where e is the base of the natural logarithm, i.e. the non-repeating value approximately equal to 2.71828182846.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fmod(A,B)</span></code></p></td>
+<td><p>Returns the floating-point remainder of A/B (rounded towards zero).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rint(A)</span></code></p></td>
+<td><p>Rounds A to the closest integer. 0.5 is rounded to 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ln(A)</span></code></p></td>
+<td><p>Natural (base e) logarithm of A.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">log10(A)</span></code></p></td>
+<td><p>Base 10 logarithm of A.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">log2(A)</span></code></p></td>
+<td><p>Base 2 logarithm of A.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max(A,B,...)</span></code></p></td>
+<td><p>Returns the maximum of all values.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">min(A,B,...)</span></code></p></td>
+<td><p>Returns the minimum of all values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sign(A)</span></code></p></td>
+<td><p>Returns: 1 if A is positive; -1 if A is negative; 0 if A is zero.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sin(A)</span></code></p></td>
+<td><p>Sine of A. Returns the sine of the angle A, where A is measured in radians.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sinh(A)</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">sin()</span></code> but for hyperbolic sine.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sqrt(A)</span></code></p></td>
+<td><p>Square root of a value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sum(A,B,...)</span></code></p></td>
+<td><p>Returns the sum of all parameter values.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tan(A)</span></code></p></td>
+<td><p>Tangent of A. Returns the tangent of the angle A, where A is measured in radians.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="additional-example-1">
+<h2>Additional example 1<a class="headerlink" href="#additional-example-1" title="Permalink to this heading"></a></h2>
+<p>Our aim is to compute the linear velocity of each particle based on the components <span class="math notranslate nohighlight">\(v_x\)</span>, <span class="math notranslate nohighlight">\(v_y\)</span>, and <span class="math notranslate nohighlight">\(v_z\)</span> of its velocity
+vector. For this, we create a new user-defined property with the name <code class="docutils literal notranslate"><span class="pre">Speed</span></code>, which is computed
+according to the following expression:</p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">sqrt</span><span class="p">(</span><span class="n">Velocity</span><span class="p">.</span><span class="n">X</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">Velocity</span><span class="p">.</span><span class="n">Y</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">Velocity</span><span class="p">.</span><span class="n">Z</span>^<span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that this expressions contains references to the X, Y, and Z components of the standard
+<code class="docutils literal notranslate"><span class="pre">Velocity</span></code> particle property, which must be present in the input dataset for this to work.
+The computed linear velocity values, stored in the new particle property <code class="docutils literal notranslate"><span class="pre">Speed</span></code>, can subsequently be used to color particles with the
+<a class="reference internal" href="color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifier, for instance.</p>
+</section>
+<section id="additional-example-2">
+<h2>Additional example 2<a class="headerlink" href="#additional-example-2" title="Permalink to this heading"></a></h2>
+<p>The <em>Compute property</em> modifier can also be used to set
+particle properties which are not modifiable by other means. One such example is
+the per-particle radius: Let us assume you have already selected a subset of particles
+and want to give these particles a different size.
+You can use the <em>Compute property</em> modifier to set
+the value of the particle property <code class="docutils literal notranslate"><span class="pre">Radius</span></code>, which determines the
+per-particle display radii (see <a class="reference internal" href="../visual_elements/particles.html#visual-elements-particles"><span class="std std-ref">here</span></a>).</p>
+<p>The selection state of particles is determined by the current value of their
+<code class="docutils literal notranslate"><span class="pre">Selection</span></code> property (non-zero means selected). The conditional
+formula <code class="docutils literal notranslate"><span class="pre">Selection</span> <span class="pre">?</span> <span class="pre">1.5</span> <span class="pre">:</span> <span class="pre">0.75</span></code> sets a radius that depends on a particle’s selection state.
+The above expression will evaluate to 1.5 for selected particles, and to 0.75 for unselected particles.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.ComputePropertyModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.ComputePropertyModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="common_neighbor_analysis.html" class="btn btn-neutral float-left" title="Common neighbor analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="construct_surface_mesh.html" class="btn btn-neutral float-right" title="Construct surface mesh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

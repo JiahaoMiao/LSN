@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example FR2: Optimizing the performance of Example FR1 &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/file_readers/example_file_format_reader_optimization.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ovito" href="../../../modules/ovito.html" />
+    <link rel="prev" title="Example FR1: Custom file reader loading particle properties and the simulation cell" href="example_file_format_reader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example_file_format_reader.html">Example FR1: Custom file reader loading particle properties and the simulation cell</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example FR2: Optimizing the performance of Example FR1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#seeking-to-the-requested-frame">Seeking to the requested frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#minimizing-ovito-python-data-exchange">Minimizing OVITO / Python data exchange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example FR2: Optimizing the performance of Example FR1</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-fr2-optimizing-the-performance-of-example-fr1">
+<span id="example-custom-file-reader-fr2"></span><h1>Example FR2: Optimizing the performance of Example FR1<a class="headerlink" href="#example-fr2-optimizing-the-performance-of-example-fr1" title="Permalink to this heading"></a></h1>
+<p>This examples is based on <a class="reference internal" href="example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">Example FR1: Custom file reader loading particle properties and the simulation cell</span></a>, before continuing please make sure
+that your are familiar with the code in that example.</p>
+<p>In this example we will address the two performance critical issues found in that file reader:</p>
+<ol class="arabic simple">
+<li><p>For long trajectories, seeking to a requested frame by reading all lines preceding that frame will become slower and slower for later frames.</p></li>
+<li><p>For simulations containing many atoms, performing many property assignments such as <code class="docutils literal notranslate"><span class="pre">type_property[i]</span> <span class="pre">=</span> <span class="pre">...</span></code> can become a bottleneck.</p></li>
+</ol>
+<section id="seeking-to-the-requested-frame">
+<h2>Seeking to the requested frame<a class="headerlink" href="#seeking-to-the-requested-frame" title="Permalink to this heading"></a></h2>
+<p>As a first optimization we save the byte offset to the start of each frame instead of the line number.
+This allows the file reader to jump directly to the correct position inside the file instead of
+sequentially stepping through it line by line until the requested frame is found.</p>
+<p>This requires two changes. First, the <code class="docutils literal notranslate"><span class="pre">scan</span></code> method needs to store byte offsets instead of line
+numbers. The current byte offset (from the start of the file) of the reading head can be obtained
+using the <code class="docutils literal notranslate"><span class="pre">.tell()</span></code> method. However, this method is deactivated in a <code class="code docutils literal notranslate"><span class="pre">for</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">f:</span> <span class="pre">...</span></code>
+loop. Therefore, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop has to be replaced by a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop and the <code class="code docutils literal notranslate"><span class="pre">readline</span></code>
+method needs to be called manually. This leads to the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">line</span> <span class="o">:=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Timestep &quot;</span><span class="p">):</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+                <span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">yield</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">:=</span></code> requires at least Python 3.8 to work. Unfortunately, the <code class="docutils literal notranslate"><span class="pre">.tell()</span></code> method itself is
+not too fast. Therefore, it is only call once a line starting a new frame, i.e., starting with
+the word <em>Timestep</em> has been identfied. We need to shift the byte offset reported by the <code class="docutils literal notranslate"><span class="pre">tell</span></code>
+method by the (byte) length of the current line, as this line has already been read and therefore
+has advanced the file pointer. The stored by offset will point at the being of the <em>Timestep</em> line.</p>
+<p>Once we have implemented the new <code class="docutils literal notranslate"><span class="pre">scan</span></code> method we can benchmark it against the one from
+<a class="reference internal" href="example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">Example FR1: Custom file reader loading particle properties and the simulation cell</span></a>. Quick benchmarks show that the new scan method is
+about 1.5 - 2 times slower than the old one, however the speedup in the <code class="docutils literal notranslate"><span class="pre">parse</span></code> method
+will make up for this small difference.</p>
+<p>Secondly, the <code class="docutils literal notranslate"><span class="pre">parse</span></code> method needs to be updated to handle the byte offset instead of a line
+number. To do so, the</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seek to the beginning of the requested trajectory frame</span>
+<span class="n">starting_line_number</span> <span class="o">=</span> <span class="n">frame_info</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">starting_line_number</span><span class="p">):</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>loop needs to be replaced by a simple file <code class="docutils literal notranslate"><span class="pre">seek</span></code> instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seek to the beginning of the requested trajectory frame</span>
+<span class="n">starting_byte_offset</span> <span class="o">=</span> <span class="n">frame_info</span>
+<span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">starting_byte_offset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the initial <code class="docutils literal notranslate"><span class="pre">seek</span></code> all remaining code can be left unchanged.</p>
+<p>To benchmark these code changes we measured the total time to step through a trajectory file
+containing 30,000 frames of ~20 atoms per frame. Here we can see that the optimized version of the
+file reader takes about 14 seconds to open all 30,000 frames, while the old, unoptimized version,
+takes about 32 minutes.</p>
+<a class="reference internal image-reference" href="../../../_images/custom_file_reader_benchmark_frames.png"><img alt="../../../_images/custom_file_reader_benchmark_frames.png" src="../../../_images/custom_file_reader_benchmark_frames.png" style="width: 600px;" /></a>
+</section>
+<section id="minimizing-ovito-python-data-exchange">
+<h2>Minimizing OVITO / Python data exchange<a class="headerlink" href="#minimizing-ovito-python-data-exchange" title="Permalink to this heading"></a></h2>
+<p>In a next step we want to optimize the the assignment of particle properties. Recall that the old
+version of the file reader developed in <a class="reference internal" href="example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">Example FR1: Custom file reader loading particle properties and the simulation cell</span></a> copies both the
+positions and particle types for each particle individually from Python into OVITO memory. This
+takes time and can be optimized by collecting all data in Python / <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and copying it into OVITO
+in one go.</p>
+<p>This approach allows for an optimization of the conversion betwenn reduced
+and cartesion coordiantes. While the original implementation transformed the coordinates for each
+particle individually, the usage of <code class="docutils literal notranslate"><span class="pre">numpy.einsum</span></code> now allow for vectorization and therefore
+acceleration of this calculation.</p>
+<p>Be aware, that this optimization increases the memory requirements of the
+file reader.</p>
+<p>We updated the <code class="docutils literal notranslate"><span class="pre">parse</span></code> method in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="o">...</span>
+<span class="linenos"> 3</span>    <span class="n">particle_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos"> 4</span>    <span class="n">particles</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">create_particles</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">particle_count</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="n">type_property</span> <span class="o">=</span> <span class="n">particles</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Particle Type&quot;</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">position_property</span> <span class="o">=</span> <span class="n">particles</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Position&quot;</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="c1"># updated code:</span>
+<span class="linenos">10</span>    <span class="n">types</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">particle_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">positions</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">particle_count</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="linenos">12</span>    <span class="n">positions</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos">13</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">particle_count</span><span class="p">):</span>
+<span class="linenos">14</span>        <span class="n">tokens</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="linenos">15</span>        <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_property</span><span class="o">.</span><span class="n">add_type_name</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">particles</span><span class="p">)</span><span class="o">.</span><span class="n">id</span>
+<span class="linenos">16</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="linenos">17</span>            <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">18</span>        <span class="k">yield</span> <span class="n">i</span><span class="o">/</span><span class="n">particle_count</span>
+<span class="linenos">19</span>    <span class="n">type_property</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">types</span>
+<span class="linenos">20</span>    <span class="n">position_property</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ij,kj -&gt; ki&#39;</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">positions</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="o">...</span>
+</pre></div>
+</div>
+<p>First, we pre-allocate numpy arrays for both the type and the position property. Here we prepare 4
+vector components for the position, as the conversion
+from reduced to cartesian coordiantes requires the matrix multiplication of the simulation cell
+matrix <span class="math notranslate nohighlight">\(M\)</span> and the point <span class="math notranslate nohighlight">\(p = (x_\mathrm{r}, y_\mathrm{r}, z_\mathrm{r}, 1)\)</span>, where
+subscript <span class="math notranslate nohighlight">\(r\)</span> denotes the reduced coordiantes.</p>
+<p>Afterwards we use a similar loop over all particles as already seen in
+<a class="reference internal" href="example_file_format_reader.html#example-custom-file-reader-fr1"><span class="std std-ref">Example FR1: Custom file reader loading particle properties and the simulation cell</span></a> to extract the data from the actual file. Note, how that the
+data is written in the numpy arrays instead of the particle properties and that the coordinates are
+kept in reduced form.</p>
+<p>Once we have loaded all particle data, the type array is copied into the corresponding OVITO
+particle property. The particle positions are also copied, however, the <code class="docutils literal notranslate"><span class="pre">numpy.einsum</span></code> function is
+used to perform bulk matrix multiplication to convert all particles from reduced to cartesian
+coordinates at once.</p>
+<p>To benchmark these code changes we measured the total time to load a single frames containing 10 to
+10,000,000 atoms. Here we can see that the optimized version of the file reader
+takes about 37 seconds to open the largest file, while the old, unoptimized version, takes about
+142 seconds.</p>
+<a class="reference internal image-reference" href="../../../_images/custom_file_reader_benchmark_atoms.png"><img alt="../../../_images/custom_file_reader_benchmark_atoms.png" src="../../../_images/custom_file_reader_benchmark_atoms.png" style="width: 600px;" /></a>
+</section>
+<section id="final-thoughts">
+<h2>Final thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this heading"></a></h2>
+<p>In this example we showed two common optimization that can be implemented for a
+custom file reader. We saw that optimizing the <code class="docutils literal notranslate"><span class="pre">seek</span></code> behavior is really
+important for long trajectories, while the optimized data transfer becomes most relevant for
+trajectories containing a large number of atoms.
+Each project comes with its own challenges and only repeated measurements and optimizations
+can help you to build a fast and reliable file reader.</p>
+<p>Note, that these optimizations are tested in OVITO Pro 3.9.0 on Windows. Benchmark results and best
+practices may change in future releases.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_file_format_reader.html" class="btn btn-neutral float-left" title="Example FR1: Custom file reader loading particle properties and the simulation cell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../modules/ovito.html" class="btn btn-neutral float-right" title="ovito" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

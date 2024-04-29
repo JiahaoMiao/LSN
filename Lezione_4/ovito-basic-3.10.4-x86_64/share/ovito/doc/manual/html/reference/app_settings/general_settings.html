@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General settings &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/app_settings/general_settings.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Viewport settings" href="viewport_settings.html" />
+    <link rel="prev" title="Application settings" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Application settings</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">General settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-interface-options">User interface options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-import-options">Data import options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-updates">Program updates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="viewport_settings.html">Viewport settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modifier_templates.html">Modifier templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particle_settings.html">Particle-related settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#application-settings-storage-location">Where does OVITO store its settings?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Application settings</a> &raquo;</li>
+      <li>General settings</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="application-settings-general">
+<span id="general-settings"></span><h1>General settings<a class="headerlink" href="#application-settings-general" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/general_settings.png"><img alt="../../_images/general_settings.png" class="align-right" src="../../_images/general_settings.png" style="width: 45%;" /></a>
+<p>On this tab of the <a class="reference internal" href="index.html#application-settings"><span class="std std-ref">application settings dialog</span></a>, you can adjust global options affecting the program’s user interface and graphics system.</p>
+<section id="user-interface-options">
+<h2>User interface options<a class="headerlink" href="#user-interface-options" title="Permalink to this heading"></a></h2>
+<dl>
+<dt>Enable automatic dark mode</dt><dd><p>Lets OVITO use a UI color scheme that matches the current light/dark mode settings of the operating system.
+This option is permanently active on Linux and macOS platforms. Note that the <a class="reference internal" href="viewport_settings.html#application-settings-viewports"><span class="std std-ref">color of the viewport windows</span></a>
+is controlled by a separate option.</p>
+</dd>
+<dt>Use seperate working directories for data import/export and session states</dt><dd><p>If this is turned on, OVITO remembers across program sessions the most recently used folders
+for different file I/O operations, e.g., data file import &amp; export,
+session state loading &amp; saving, or image output.</p>
+<p>When off, the global working directory is used as initial choice in all file selection dialogs.
+It typically depends on where OVITO was launched from (on the command line).</p>
+</dd>
+<dt>Sort list of available modifiers by category</dt><dd><p>If turned on, the <a class="reference internal" href="../pipelines/modifiers/index.html#particles-modifiers"><span class="std std-ref">list of available modifiers</span></a> displayed by OVITO
+is sub-divided into functional groups. If turned off, modifiers are offered in the form of a single, alphabetically
+ordered list.</p>
+</dd>
+</dl>
+</section>
+<section id="data-import-options">
+<h2>Data import options<a class="headerlink" href="#data-import-options" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Import multiple files of the same type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></dt><dd><p>This option controls what should happen when you import multiple files of the same
+file format. By default, OVITO loads the selected files as frames of a trajectory sequence, which can be played
+back as an animation. Alternatively, you can choose to import each file as a separate
+data pipeline and show all datasets side by side.
+The latter option requires OVITO Pro, because only this edition supports adding more than
+one pipeline to the visualization scene.</p>
+</dd>
+</dl>
+</section>
+<section id="program-updates">
+<h2>Program updates<a class="headerlink" href="#program-updates" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Periodically check ovito.org website for program updates</dt><dd><p>If activated, the program checks for new software updates upon program start by contacting
+the server <cite>www.ovito.org</cite>. In case a new program release is available for download, a corresponding notice
+is displayed in the command panel of the program. No personal information or usage data is transmitted to or logged by the
+software vendor.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Application settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viewport_settings.html" class="btn btn-neutral float-right" title="Viewport settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

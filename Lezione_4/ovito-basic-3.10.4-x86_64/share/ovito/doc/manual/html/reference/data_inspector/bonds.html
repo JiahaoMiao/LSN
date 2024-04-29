@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonds &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/data_inspector/bonds.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Attributes" href="attributes.html" />
+    <link rel="prev" title="Particles" href="particles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Data inspector</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bonds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attributes.html">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_tables.html">Data tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="voxel_grids.html">Voxel grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dislocations.html">Dislocations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Data inspector</a> &raquo;</li>
+      <li>Bonds</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-inspector-bonds">
+<span id="bonds"></span><h1>Bonds<a class="headerlink" href="#data-inspector-bonds" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/bonds_page.png"><img alt="../../_images/bonds_page.png" class="align-right" src="../../_images/bonds_page.png" style="width: 50%;" /></a>
+<p>This page of the <a class="reference internal" href="index.html#data-inspector"><span class="std std-ref">data inspector</span></a> shows all <a class="reference internal" href="../pipelines/data_objects/bonds.html#scene-objects-bonds"><span class="std std-ref">bonds</span></a> and their property values
+as a data table. The page appears only if the current dataset contains bonds.</p>
+<p>You can dynamically filter the displayed list of bonds by entering a Boolean expression in the input field at the top of the table.
+Consider, for example, the table shown in the screenshot: Here, the <a class="reference internal" href="../pipelines/modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifier
+had been used to compute and assign the <code class="docutils literal notranslate"><span class="pre">Length</span></code> property to each bond (last table column).
+To selectively list only very long bonds, let’s say longer than 1.5 Angstroms,
+we can enter the expression <code class="docutils literal notranslate"><span class="pre">Length</span> <span class="pre">&gt;</span> <span class="pre">1.5</span></code> into the filter field.
+Multiple criteria can be combined using logical AND and OR operators. For a detailed description of the expression syntax,
+see the <a class="reference internal" href="../pipelines/modifiers/expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression Selection</span></a> modifier.
+Use the <span class="guilabel">X</span> button to reset the filter and show the full list of bonds again.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Topology</span></code> bond property contains the indices of the two particles connected by a bond.
+This information may be used to select the bonds connected to a particular particle. For example, to select all bonds adjacent to
+the first particle (particle index 0), we could use the following filter expression:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Topology.A==0 || Topology.B==0</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="particles.html" class="btn btn-neutral float-left" title="Particles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="attributes.html" class="btn btn-neutral float-right" title="Attributes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

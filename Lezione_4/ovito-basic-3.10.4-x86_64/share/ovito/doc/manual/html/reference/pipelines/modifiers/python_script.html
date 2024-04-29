@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python script pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/python_script.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Render LAMMPS regions pro" href="render_lammps_regions.html" />
+    <link rel="prev" title="Polyhedral template matching" href="polyhedral_template_matching.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-python-script">
+<span id="python-script-ovito-pro"></span><h1>Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#particles-modifiers-python-script" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/python_script_panel.png"><img alt="../../../_images/python_script_panel.png" class="align-right" src="../../../_images/python_script_panel.png" style="width: 35%;" /></a>
+<p>This type of <a class="reference internal" href="index.html#particles-modifiers"><span class="std std-ref">modifier</span></a> lets you write your own user-defined modifier function in the Python language.
+Your Python function will run as part of the data pipeline within the OVITO Pro graphical user interface just like OVITO’s built-in modifiers and can
+manipulate, analyze, or amend the simulation data in any way you need it. Writing user-defined modifier functions is useful whenever the toolset
+of <a class="reference internal" href="index.html#particles-modifiers"><span class="std std-ref">built-in modifiers</span></a> of OVITO is insufficient for solving your specific problem at hand.</p>
+<section id="what-is-a-python-script-modifier">
+<h2>What is a Python script modifier?<a class="headerlink" href="#what-is-a-python-script-modifier" title="Permalink to this heading"></a></h2>
+<p>After you have inserted an instance of the Python script modifier into your pipeline, you have to define a Python function by entering
+some code into the integrated code editor window of OVITO Pro. For instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of particles:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span> <span class="o">*</span> <span class="n">frame</span>
+</pre></div>
+</div>
+<p>This function prints the current number of particles to the log window and additionally generates a new dynamic <a class="reference internal" href="../../../usage/export.html#usage-global-attributes"><span class="std std-ref">attribute</span></a> named <code class="docutils literal notranslate"><span class="pre">Time</span></code>.
+The attribute’s value is simply computed from the current trajectory frame number. OVITO Pro takes care of executing your Python function at the right times, for example,
+whenever you drag the animation time slider and the results of the <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">data pipeline</span></a> must be recomputed.</p>
+<p>When invoked by the pipeline system, your modifier function receives the data to operate on as input argument <code class="docutils literal notranslate"><span class="pre">data</span></code>. This is a <a class="reference external" href="../../../python/modules/ovito_data.html#ovito.data.DataCollection" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> produced by the
+upstream pipeline, i.e., a particles dataset loaded from disk, which may already have undergone changes by other modifiers preceding your function in the pipeline.</p>
+<p>Within the Python function, you can then implement your own data processing algorithms. Use OVITO’s comprehensive <a class="reference external" href="../../../python/index.html#scripting-manual" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">Python API</span></a> to access different parts of the
+dataset or dynamically add new data objects to it, which will then become visible in OVITO’s interactive viewports.</p>
+<p>For a more detailed introduction, please read <a class="reference external" href="../../../python/introduction/custom_modifiers.html#writing-custom-modifiers" title="(in OVITO Python Reference v3.10.4)"><span>User-defined modifiers</span></a> in the OVITO Python documentation.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/python_script_code_editor.png"><img alt="../../../_images/python_script_code_editor.png" class="align-right" src="../../../_images/python_script_code_editor.png" style="width: 50%;" /></a>
+<p>After you have inserted a new Python script modifier into the pipeline in OVITO Pro, you can open an integrated code editor by clicking the
+<span class="guilabel">Edit code…</span> button. The editor window lets you enter the source code for the user-defined modifier function,
+which initially consists of some example code. Replace it with your own code to perform the computations or tasks that are needed to solve your
+specific problem at hand.</p>
+<p>Make sure you read the section <a class="reference external" href="../../../python/introduction/custom_modifiers.html#writing-custom-modifiers" title="(in OVITO Python Reference v3.10.4)"><span>User-defined modifiers</span></a> to learn how to write user-defined modifier functions.
+Once you are done writing the code of your user-defined modifier function, click the <em>Commit and run script</em> button (with the “play” icon)
+in the code editor’s toolbar. This will compile your source code by executing all top-level Python statements and then
+triggers an update of the data pipeline. As part of the subsequent pipeline rerun, your <code class="docutils literal notranslate"><span class="pre">modify()</span></code> function will get invoked by the system
+for the first time.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The pipeline system is going to run your <code class="docutils literal notranslate"><span class="pre">modify()</span></code> function repeatedly,
+for example when stepping through a simulation trajectory to process each frame. That means you should always write your <code class="docutils literal notranslate"><span class="pre">modify()</span></code> function
+in <a class="reference external" href="../../../python/introduction/custom_modifiers.html#writing-custom-modifiers-well-behaved" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">such a way that it doesn’t have any side effects</span></a> on the global program state.
+The function should be “pure” and stateless in the sense that it only touches the data collection provided by the pipeline system and nothing else.
+The pipeline system may decide to cache the results of your modifier function, but it may also call your function
+repeatedly if necessary, for example, whenever the user changes the upstream pipeline in some way.</p>
+<p>In case you want to perform an action via Python script that changes the program state (including the structure of the pipeline itself), e.g.,
+importing another dataset into the scene, adding another modifier to the current pipeline, or performing some data export or image rendering operation,
+you can do that instead using the <span class="menuselection">File ‣ Run Python Script</span> menu function.</p>
+</div>
+</section>
+<section id="particles-modifiers-python-script-save-as-template">
+<span id="turn-a-custom-modifier-function-into-a-modifier-template-in-ovito"></span><h2>Turn a custom modifier function into a modifier template in OVITO<a class="headerlink" href="#particles-modifiers-python-script-save-as-template" title="Permalink to this heading"></a></h2>
+<p>First, give your modifier a meaningful name to make it easier for you to identify the modifier
+in the data pipeline. The <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a> of
+OVITO lets you change the modifier’s title from the generic name “Python script” to a more descriptive name
+that better summarizes the specific purpose of your Python function. In order to rename the modifier in the
+pipeline editor, make sure it is selected and then click the list item a second time to start editing its name.</p>
+<p>Next, you can save the entire modifier, including the code of your <code class="docutils literal notranslate"><span class="pre">modify()</span></code> function, as a <a class="reference internal" href="../../app_settings/modifier_templates.html#modifier-templates"><span class="std std-ref">modifier template</span></a>.
+Modifier templates you’ve created appear as additional entries in the drop-down list of available modifiers, which allows you to easily
+access your user-defined modifier function in future program sessions and insert it into other data pipelines.</p>
+</section>
+<section id="particles-modifiers-python-script-installing-extensions">
+<span id="installing-python-based-extensions-for-ovito-with-pip"></span><h2>Installing Python-based extensions for OVITO with <cite>pip</cite><a class="headerlink" href="#particles-modifiers-python-script-installing-extensions" title="Permalink to this heading"></a></h2>
+<p>This section describes how you can make a modifier function you wrote permanently and/or publicly available as a re-usable tool within OVITO Pro.
+It also explains how to install Python modifier functions in OVITO Pro that have been authored and published by someone else and are
+available online. Use this method if you would like to maintain the code of your modifier function outside of OVITO Pro
+and host it in a version-controlled Git repository, for example.</p>
+<p>Extension scripts for OVITO Pro should be packaged and installed with the <code class="docutils literal notranslate"><span class="pre">pip</span></code> utility program. The process is explained
+in more detail in the <a class="reference external" href="../../../python/introduction/advanced_topics.html#registering-custom-python-classes" title="(in OVITO Python Reference v3.10.4)"><span>Packaging and installation of user extensions for OVITO</span></a> section of the OVITO Python scripting manual.
+After the extension author has completed these steps, and the Python extension has been uploaded on
+GitHub or the PyPI package repository, the extension can be installed in your environment using the command line interface.</p>
+<p>To make an extension package available within OVITO Pro, it must be installed in the <a class="reference external" href="../../../python/introduction/installation.html#ovitos-interpreter" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">integrated Python interpreter of OVITO Pro</span></a>
+by running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> via <strong class="program">ovitos</strong> on the command line. Here we assume your extension package is hosted online in a Git repository
+publicly accessible via <em>https</em> protocol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ovitos</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">repository_url</span><span class="o">&gt;/&lt;</span><span class="n">branch</span><span class="o">&gt;/</span><span class="n">archive</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>After installing the extension package, the custom Python modifier will be automatically discovered by OVITO Pro and added to the
+modifiers dropdown menu once you restart the program.</p>
+<p>If you are working in a Conda environment or are using an external Python interpreter,
+you can run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command directly to install the extension package in that interpreter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">repository_url</span><span class="o">&gt;/&lt;</span><span class="n">branch</span><span class="o">&gt;/</span><span class="n">archive</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>Note that, in your Python program using the OVITO Python module, you need to import the modifier class or modifier function directly from the installed
+extension module in order to insert it into a <a class="reference external" href="../../../python/modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>. The extension class will not appear as part of the <a class="reference external" href="../../../python/modules/ovito_modifiers.html#module-ovito.modifiers" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a>
+module, which only contains OVITO’s standard modifier classes.</p>
+</section>
+<section id="making-modifier-functions-locally-available-deprecated-method">
+<h2>Making modifier functions locally available (deprecated method)<a class="headerlink" href="#making-modifier-functions-locally-available-deprecated-method" title="Permalink to this heading"></a></h2>
+<p>Another option is to simply save the Python code containing your <code class="docutils literal notranslate"><span class="pre">modify()</span></code> function as a <code class="file docutils literal notranslate"><span class="pre">.py</span></code> source file in one of the following paths on your computer.
+OVITO Pro automatically scans these directories at program startup and displays all <code class="file docutils literal notranslate"><span class="pre">*.py</span></code> scripts it finds in the list of available modifiers:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Storage location for user-defined modifier scripts</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">~/.config/Ovito/scripts/modifiers/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">~/AppData/Local/Ovito/scripts/modifiers/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>macOS</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">~/Library/Preferences/Ovito/scripts/modifiers/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>These directories are not automatically created by OVITO. You have to create them by hand in case they don’t exist yet.
+On Linux, note that the standard configuration path <code class="file docutils literal notranslate"><span class="pre">~/.config/</span></code> may be overridden by the environment variable <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> on your system.
+On Windows, the <code class="file docutils literal notranslate"><span class="pre">~/AppData/</span></code> directory is hidden by default. To access it, you may have to enable the option <em>Show hidden files, folders, and drives</em> in
+the Windows Explorer settings.</p>
+</section>
+<section id="code-examples">
+<h2>Code examples<a class="headerlink" href="#code-examples" title="Permalink to this heading"></a></h2>
+<p>The OVITO Python manual contains several <a class="reference external" href="../../../python/introduction/examples.html#modifier-script-examples" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">examples</span></a> that demonstrate how to write modifiers in Python:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="../../../python/introduction/examples/modifiers/msd_calculation.html#example-msd-calculation" title="(in OVITO Python Reference v3.10.4)"><span>Example M1: Calculating mean square displacement</span></a></p></li>
+<li><p><a class="reference external" href="../../../python/introduction/examples/modifiers/order_parameter_calculation.html#example-order-parameter-calculation" title="(in OVITO Python Reference v3.10.4)"><span>Example M2: Custom order parameter calculation</span></a></p></li>
+<li><p><a class="reference external" href="../../../python/introduction/examples/modifiers/visualize_local_lattice_orientation.html#example-visualize-local-lattice-orientation" title="(in OVITO Python Reference v3.10.4)"><span>Example M3: Color mapping to visualize local lattice orientation</span></a></p></li>
+<li><p><a class="reference external" href="../../../python/introduction/examples/modifiers/select_overlapping_particles.html#example-select-overlapping-particles" title="(in OVITO Python Reference v3.10.4)"><span>Example M4: Finding overlapping particles</span></a></p></li>
+<li><p><a class="reference external" href="../../../python/introduction/examples/modifiers/shrink_wrap_box.html#example-shrink-wrap-box" title="(in OVITO Python Reference v3.10.4)"><span>Example M5: Shrink-wrap simulation box</span></a></p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.PythonModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.PythonModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+<section id="python-settings-dialog">
+<span id="id1"></span><h2>Python Settings dialog<a class="headerlink" href="#python-settings-dialog" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../_images/python_settings_dialog1.png"><img alt="../../../_images/python_settings_dialog1.png" class="align-right" src="../../../_images/python_settings_dialog1.png" style="width: 45%;" /></a>
+<p>This dialog window lets you inspect and configure several aspects of a Python-based extension that you are working with in OVITO Pro, for
+example, <a class="reference internal" href="#particles-modifiers-python-script"><span class="std std-ref">Python modifiers</span></a>, <a class="reference internal" href="../../viewports/layers/python_script_layer.html#viewport-layers-python-script"><span class="std std-ref">Python viewport layers</span></a>, <a class="reference internal" href="../data_sources/python_script.html#data-source-python-script"><span class="std std-ref">Python pipeline sources</span></a>,
+or <a class="reference external" href="../../../python/introduction/custom_file_readers.html#writing-custom-file-readers" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">Python-based file readers</span></a>.</p>
+<p><span class="guilabel">Working directory</span> specifies the file system location on your computer that should be used as the current working directory while executing
+the Python script. This setting is optional and only plays a role if your script performs I/O operations using relative file paths, which will be resolved with respect to
+the current working directory.</p>
+<p>The panel <span class="guilabel">Python extension</span> displays information about the Python code object for the current extension and whether
+it is defined in embedded source code or in an installed extension module.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OVITO Pro distinguishes between <em>embedded</em> extensions and <em>imported</em> extensions.</p>
+<p>Embedded extensions are written by you during a program session and may be lost when you close OVITO Pro – unless you save them as part of a <a class="reference internal" href="../../../usage/miscellaneous.html#usage-saving-loading-scene"><span class="std std-ref">session state file</span></a> or
+a modifier template as <a class="reference internal" href="#particles-modifiers-python-script-save-as-template"><span class="std std-ref">described above</span></a>. They are typically simple, ad-hoc Python functions.</p>
+<p>Imported extensions, on the other hand, may be more complex and live in <code class="file docutils literal notranslate"><span class="pre">.py</span></code> code files in Python modules – installed in the Python interpreter that is being used by OVITO Pro.
+Such extensions always remain available, even across program sessions. OVITO Pro already includes several such extensions, e.g., <a class="reference internal" href="index.html#particles-modifiers-pythonbased"><span class="std std-ref">its Python-based modifiers</span></a>,
+which are part of the OVITO Python module. Additionally, you can install <a class="reference internal" href="#particles-modifiers-python-script-installing-extensions"><span class="std std-ref">user extension modules</span></a> that were
+developed by you or others, and which seamlessly integrate into the OVITO Pro GUI.</p>
+<p>See also <a class="reference external" href="../../../python/introduction/advanced_topics.html#registering-custom-python-classes" title="(in OVITO Python Reference v3.10.4)"><span>Packaging and installation of user extensions for OVITO</span></a> and the <a class="reference external" href="https://www.ovito.org/extensions/">OVITO Extensions Directory</a>.</p>
+</div>
+<p>The option <span class="guilabel">Edit embedded code with</span> only applies to embedded extension code developed within OVITO Pro and not imported from an external Python module.
+The option selects what the button <span class="guilabel">Edit code…</span> should do: OVITO Pro can open a simple integrated code editor, or you can
+let OVITO Pro start up an external text editor or Python IDE (e.g. <em>Visual Studio Code</em>), which provides a better coding experience. OVITO Pro will automatically
+re-run your source code whenever you save it in the external application and switch back to the OVITO Pro window.</p>
+<p>The bottom panel of the dialog window lists all Python packages that are currently installed in the OVITO Pro environment and which may be imported
+and used by your Python extension scripts. Note that regular installations of OVITO Pro use <a class="reference external" href="../../../python/introduction/installation.html#ovitos-interpreter" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">an embedded Python interpreter</span></a>, which
+manages its own set of Python packages independent from your system’s Python interpreter. Thus, <a class="reference external" href="../../../python/introduction/installation.html#ovitos-install-modules" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">installing additional packages from the PyPI repository</span></a> requires a
+special <strong class="command">pip</strong> command, which is displayed below the package list for your convenience. If you are working with the <a class="reference external" href="../../../python/introduction/installation.html#installation-anaconda" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">Conda version of OVITO Pro</span></a>, the program
+uses Conda’s Python interpreter and you can make additional Python packages available simply by installing them in the same Conda environment as OVITO Pro.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polyhedral_template_matching.html" class="btn btn-neutral float-left" title="Polyhedral template matching" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="render_lammps_regions.html" class="btn btn-neutral float-right" title="Render LAMMPS regions pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

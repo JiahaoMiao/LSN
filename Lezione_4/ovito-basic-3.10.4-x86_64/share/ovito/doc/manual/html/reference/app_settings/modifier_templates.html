@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifier templates &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/app_settings/modifier_templates.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Particle-related settings" href="particle_settings.html" />
+    <link rel="prev" title="Viewport settings" href="viewport_settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Application settings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="general_settings.html">General settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewport_settings.html">Viewport settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifier templates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transferring-templates-to-a-different-computer">Transferring templates to a different computer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="particle_settings.html">Particle-related settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#application-settings-storage-location">Where does OVITO store its settings?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Application settings</a> &raquo;</li>
+      <li>Modifier templates</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modifier-templates">
+<span id="id1"></span><h1>Modifier templates<a class="headerlink" href="#modifier-templates" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/modifier_templates.png"><img alt="../../_images/modifier_templates.png" class="align-right" src="../../_images/modifier_templates.png" style="width: 45%;" /></a>
+<p>Modifier templates are a way for you to define modifiers with preconfigured settings for quick access.
+This is useful in situations where you need to apply the same modifier(s) with the exact same settings
+to different datasets repeatedly. The modifier templates you define are preserved across program sessions
+and can even be transferred between computers. Furthermore, a modifier template can consist of several modifiers, allowing
+you to insert often-used sequences or combinations of modifiers into the data pipeline with a single click.</p>
+<p>Modifier templates are managed in the <a class="reference internal" href="index.html#application-settings"><span class="std std-ref">application settings dialog</span></a>.
+Note that the <a class="reference internal" href="../../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a> contains a button to quickly open that dialog. All modifier templates
+you define are available application-wide, and OVITO will remember them across program sessions.</p>
+<a class="reference internal image-reference" href="../../_images/modifier_templates_shortcut.png"><img alt="../../_images/modifier_templates_shortcut.png" class="align-right" src="../../_images/modifier_templates_shortcut.png" style="width: 30%;" /></a>
+<p>New templates are defined based on existing modifiers in the active data pipeline.
+That means you basically “save” one or more modifiers, including their current settings, to make them available
+for future use. Once defined, modifier templates appear in the drop-down list of available modifiers behind the standard modifiers.
+From here, they can be quickly applied to new datasets. This feature is useful if you need to use the same modifier(s)
+with the exact same settings over and over again.</p>
+<p>Another typical use case for modifier templates are user-defined script modifiers. The
+<a class="reference internal" href="../pipelines/modifiers/python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script</span></a> modifier allows you to write a script function that performs user-defined data operations.
+After having developed a new script function, you can save it as a modifier template to make it available
+in future program sessions, just like the standard modifiers of OVITO. Since the script code will be part of the
+stored template, it relieves you from saving the script code to an external source file and again loading it into OVITO by hand.</p>
+<section id="transferring-templates-to-a-different-computer">
+<h2>Transferring templates to a different computer<a class="headerlink" href="#transferring-templates-to-a-different-computer" title="Permalink to this heading"></a></h2>
+<p>Note that OVITO stores the definition of all modifier templates in the application’s settings file in a proprietary format.
+If needed, they can be exported to a special modifier template file in order to transfer them to another computer
+and import them into another OVITO installation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="viewport_settings.html" class="btn btn-neutral float-left" title="Viewport settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="particle_settings.html" class="btn btn-neutral float-right" title="Particle-related settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

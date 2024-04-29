@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameter and camera animations &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/animation.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Branched and cloned pipelines pro" href="clone_pipeline.html" />
+    <link rel="prev" title="Non-spherical particle shapes" href="aspherical_particles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parameter and camera animations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-animation-frames">Animation frames vs. simulation frames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playback-speed">Playback speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#animating-by-means-of-time-dependent-formulas">Animating by means of time-dependent formulas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#animation-via-keyframes">Animation via keyframes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-key-mode">Auto-key mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-keys-using-the-animation-track-bar">Editing keys using the animation track bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-animation-camera">Animating the camera</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clone_pipeline.html">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Parameter and camera animations</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-animation">
+<span id="parameter-and-camera-animations"></span><h1>Parameter and camera animations<a class="headerlink" href="#usage-animation" title="Permalink to this heading"></a></h1>
+<p>In addition to simply visualizing a simulation trajectory, OVITO provides powerful animation capabilities,
+which let you animate the virtual camera, modifiers, or visual parameters. The following sections explain OVITO’s
+animation system in more detail.</p>
+<a class="reference internal image-reference" href="../_images/file_source_animation_panel.png"><img alt="../_images/file_source_animation_panel.png" class="align-right" src="../_images/file_source_animation_panel.png" style="width: 45%;" /></a>
+<section id="usage-animation-frames">
+<span id="animation-frames-vs-simulation-frames"></span><h2>Animation frames vs. simulation frames<a class="headerlink" href="#usage-animation-frames" title="Permalink to this heading"></a></h2>
+<p>After loading a simulation sequence into OVITO, the timeline below the viewport area indicates
+the length of the current animation interval. Animation frame numbers start at zero in OVITO. Thus, an animation
+ending at frame 100, for example, consists of 101 video frames.</p>
+<p>It is important to point out the semantic difference between <em>simulation frames</em>
+(i.e. the imported simulation snapshots) and <em>animation frames</em>, which are
+the time units used by OVITO’s animation timeline.
+Normally there is a one-to-one mapping between the two, i.e., the number of animation frames in OVITO’s timeline is
+automatically adjusted to match the number of frames of the loaded simulation trajectory.
+This default behavior can be overridden in the <a class="reference internal" href="../reference/rendering/animation_settings_dialog.html#animation-animation-settings-dialog"><span class="std std-ref">Animation settings</span></a> dialog.
+Then you will be in control of the animation length. If you extend the animation interval beyond the
+number of imported simulation frames, you will get additional static video frames at the end of the rendered animation.</p>
+<p>Furthermore, the <a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source-configure-playback"><span class="std std-ref">Configure trajectory playback</span></a> dialog,
+which is accessible from the <a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">External file</span></a> panel (see screenshot),
+provides control of how the frames of the simulation trajectory
+get mapped to animation frames. The <span class="guilabel">Playback rate</span>
+setting allows you to specify a mapping that is not one-to-one. For example, a playback rate of
+1/2 stretches the simulation sequence to extend over twice as many animation frames. Each snapshot
+of the simulation will then be visible for two consecutive video frames. A playback rate of
+2/1, in contrast, compresses the playback of the simulation sequence to half of the animation frames.
+Then, every other simulation frame gets skipped in the rendered animation.</p>
+<p>The <span class="guilabel">Starting at animation frame</span> setting specifies where on OVITO’s timeline the
+playback of the simulation trajectory begins. By default, it starts immediately at animation frame 0, but you can
+change this number, e.g. to insert static frames at the beginning of a movie.</p>
+<p>Note that OVITO provides the possibility to insert several simulation datasets into one scene to show them
+simultaneously side-by-side or on top of each other. By default, OVITO adjusts the length of the timeline
+to fully accommodate all loaded trajectories.</p>
+<a class="reference internal image-reference" href="../_images/animation_settings_dialog.png"><img alt="../_images/animation_settings_dialog.png" class="align-right" src="../_images/animation_settings_dialog.png" style="width: 35%;" /></a>
+</section>
+<section id="playback-speed">
+<h2>Playback speed<a class="headerlink" href="#playback-speed" title="Permalink to this heading"></a></h2>
+<p>In the <a class="reference internal" href="../reference/rendering/animation_settings_dialog.html#animation-animation-settings-dialog"><span class="std std-ref">Animation settings dialog</span></a>,
+you set the playback speed (frames per second) of the current animation. This number determines the frame rate of
+video files produced by OVITO (e.g. AVI or MPEG). It also affects the playback within OVITO’s viewports, which, however, typically
+occurs at a lower effective rate because loading the next simulation snapshot from disk can easily take too long to reach the
+real-time frame rate.</p>
+</section>
+<section id="animating-by-means-of-time-dependent-formulas">
+<h2>Animating by means of time-dependent formulas<a class="headerlink" href="#animating-by-means-of-time-dependent-formulas" title="Permalink to this heading"></a></h2>
+<p>Simple animation effects can be readily achieved by using the <a class="reference internal" href="../reference/pipelines/modifiers/expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a>
+and <a class="reference internal" href="../reference/pipelines/modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifiers. These modifiers
+allow you to enter mathematical formulas or Boolean expressions to select subsets of
+particles or to manipulate certain particle properties (e.g. position, color, transparency, etc.).</p>
+<p>Within such math expressions, you can incorporate the special variable <cite>Frame</cite>, which evaluates
+to the current animation frame number. Thus, whenever you reference this variable in an expression, the formula becomes
+time-dependent and OVITO will recompute the results on every animation frame.</p>
+<a class="reference internal image-reference" href="../_images/slice_modifier_animatable_parameter.png" id="usage-animation-keyframes"><img alt="../_images/slice_modifier_animatable_parameter.png" class="align-right" id="usage-animation-keyframes" src="../_images/slice_modifier_animatable_parameter.png" style="width: 25%;" /></a>
+</section>
+<section id="animation-via-keyframes">
+<h2>Animation via keyframes<a class="headerlink" href="#animation-via-keyframes" title="Permalink to this heading"></a></h2>
+<p>OVITO also provides a key-based animation framework. It lets you specify the value of an animatable parameter
+at certain animation times (for example at the beginning and at the end of the animation). In between these
+keyframes, the value of the parameter is then determined using smooth interpolation (typically linear).</p>
+<a class="reference internal image-reference" href="../_images/keyframe_dialog.png"><img alt="../_images/keyframe_dialog.png" class="align-right" src="../_images/keyframe_dialog.png" style="width: 25%;" /></a>
+<p>The screenshot on the right shows the parameter panel of the <a class="reference internal" href="../reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a>
+modifier as an example. Animatable parameters are indicated by an <span class="guilabel">A</span> button next to the input field.
+This button opens the animation key dialog for that parameter, which allows you to define
+new animation keys. Animation keys are time-value pairs.</p>
+<p>In the next screenshot on the right, two animation keys have been defined for the <em>Distance</em> parameter of the slicing plane,
+one at frame 0 and the other at frame 50. Thus, the parameter will have a value of 20.0
+at the beginning of the animation and reach 80.0 at the second animation keyframe.</p>
+<p>Note that an animatable parameter always has at least one animation key.
+As long as there is only that single key, it defines the constant value of the parameter.
+Once you add another key OVITO will interpolate between the key values and the
+parameter actually becomes animated.</p>
+</section>
+<section id="auto-key-mode">
+<h2>Auto-key mode<a class="headerlink" href="#auto-key-mode" title="Permalink to this heading"></a></h2>
+<p>The animation toolbar at the bottom of the main window contains a button with a key icon, which activates
+the so-called <em>Auto-key mode</em>:</p>
+<a class="reference internal image-reference" href="../_images/key_mode_button.png"><img alt="../_images/key_mode_button.png" src="../_images/key_mode_button.png" style="width: 12%;" /></a>
+<p>While this mode is active, the time slider background is highlighted red and any change made to an animatable
+parameter in the program will automatically generate a new animation key at the current animation time.
+For example, after activating <em>Auto-key mode</em>, you can jump to animation frame 0
+using the time slider and set the <em>Distance</em> parameter of the Slice modifier to a value of 20.
+You then go to the last frame of the animation and change the parameter value to 80.
+Each of these two parameter changes results in the creation of a new animation key at the corresponding animation time.</p>
+<p>Don’t forget to deactivate <em>Auto-key mode</em> after you are done creating the desired
+animation keys. Otherwise, you might inadvertently define more keys for other parameters which you don’t
+want to animate. The <em>Auto-key mode</em> provides a convenient alternative for creating
+new animation keys, which can be faster than using the animation key dialog introduced in the previous section.</p>
+</section>
+<section id="editing-keys-using-the-animation-track-bar">
+<h2>Editing keys using the animation track bar<a class="headerlink" href="#editing-keys-using-the-animation-track-bar" title="Permalink to this heading"></a></h2>
+<p>The <em>track bar</em> is located right below the time slider and displays the created animation keys
+for the currently selected scene object and its parameters:</p>
+<a class="reference internal image-reference" href="../_images/track_bar.png"><img alt="../_images/track_bar.png" src="../_images/track_bar.png" style="width: 55%;" /></a>
+<p>Each key is represented by a small marker at the corresponding position of the timeline. Positioning the
+mouse cursor over a marker will show the key’s information in a small tooltip window.
+You can use the mouse to drag animation keys to a different position on the timeline.
+Right-clicking on a key opens a context menu that allows you to delete the key.</p>
+<p>Note that the track bar will only display the animation keys of parameters that are actually animated,
+i.e., which have at least two keys defined. Thus, as soon as only one key is left, it
+will automatically disappear from the track bar.</p>
+</section>
+<section id="usage-animation-camera">
+<span id="animating-the-camera"></span><h2>Animating the camera<a class="headerlink" href="#usage-animation-camera" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/create_camera_function.png"><img alt="../_images/create_camera_function.png" class="align-right" src="../_images/create_camera_function.png" style="width: 25%;" /></a>
+<p>To animate the camera, you first have to create a <em>camera object</em>. This is done
+from a viewport’s <a class="reference internal" href="../usage/viewports.html#usage-viewports-menu"><span class="std std-ref">context menu</span></a> as shown by the screenshot on the right. The new camera object will be
+placed in the three-dimensional scene at the current viewpoint.
+Furthermore, the active viewport will be linked to the new camera object so that when the camera is moved,
+the viewport will be updated to show the scene as seen through the new camera position. Conversely, if you use
+the zoom, pan, or orbit functions to adjust the viewport’s view, the camera object in the scene will
+be moved accordingly.</p>
+<a class="reference internal image-reference" href="../_images/viewports_with_camera.png"><img alt="../_images/viewports_with_camera.png" class="align-right" src="../_images/viewports_with_camera.png" style="width: 35%;" /></a>
+<p>The newly created camera object is visible in the other three viewports. You might have to zoom out to see it.
+Click on the camera object in the viewports to select it
+and show its parameters in the command panel. Alternatively, you can select the camera object using the
+object selector box located in the top right corner of the main window, which lists all objects in the
+current scene:</p>
+<a class="reference internal image-reference" href="../_images/object_selection_box.png"><img alt="../_images/object_selection_box.png" src="../_images/object_selection_box.png" style="width: 25%;" /></a>
+<p>The camera object can be moved around in space using the <span class="guilabel">Move</span> tool and
+the <span class="guilabel">Rotate</span> tool in the main toolbar:</p>
+<a class="reference internal image-reference" href="../_images/move_and_rotate_tool.png"><img alt="../_images/move_and_rotate_tool.png" src="../_images/move_and_rotate_tool.png" style="width: 25%;" /></a>
+<p>While one of these modes is active, you can drag the camera object with the mouse; or use
+the numeric input fields that appear in the status bar area, which let you enter the position coordinates and
+Euler orientation angles of the selected object:</p>
+<a class="reference internal image-reference" href="../_images/numeric_move_tool.png"><img alt="../_images/numeric_move_tool.png" src="../_images/numeric_move_tool.png" style="width: 35%;" /></a>
+<p>Similar to other parameters, the position and the orientation of the camera object can be animated
+using the keyframing approach. To create animation keys for the camera position or rotation,
+you first have to activate the <em>Auto-key mode</em> as described above.
+If you now change the camera’s position at different animation times, animation keys will automatically be created
+and the camera will move on an interpolated path between the keyframe positions. The created animation keys are also shown in
+the <em>track bar</em> while the camera is selected.</p>
+<p>By the way, instead of animating the camera’s position, you can also animate the simulation box
+and let it rotate, for example. This is done in an analogous way by selecting the simulation box
+and using the <span class="guilabel">Rotate</span> tool while <em>Auto-key</em> mode is active.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aspherical_particles.html" class="btn btn-neutral float-left" title="Non-spherical particle shapes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clone_pipeline.html" class="btn btn-neutral float-right" title="Branched and cloned pipelines pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

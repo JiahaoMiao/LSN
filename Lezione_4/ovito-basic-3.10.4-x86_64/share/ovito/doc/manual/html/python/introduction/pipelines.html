@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data pipelines &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/pipelines.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data model" href="data_model.html" />
+    <link rel="prev" title="File I/O" href="file_io.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_io.html">File I/O</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data pipelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#processing-simulation-trajectories">Processing simulation trajectories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data pipelines</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-pipelines">
+<span id="modifiers-overview"></span><h1>Data pipelines<a class="headerlink" href="#data-pipelines" title="Permalink to this heading"></a></h1>
+<p>Modifiers are composable function objects arranged in a sequence to form a <a class="reference external" href="../../usage/pipeline.html#usage-modification-pipeline" title="(in OVITO User Manual v3.10.4)"><span class="xref std std-ref">data processing pipeline</span></a>.
+They dynamically modify, filter, analyze or extend the data that flows down the pipeline. Here, with <em>data</em> we mean
+any form of information that OVITO can process, e.g., particles and their properties, bonds, the simulation cell,
+triangles meshes, voxel data, etc. The main purpose of the pipeline concept is to enable non-destructive and repeatable workflows, i.e.,
+once a modification pipeline has been set up, it can be re-used repeatedly on multiple input datasets.</p>
+<p>A processing pipeline is represented by an instance of the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> class in OVITO.
+Initially, a pipeline contains no modifiers. That means its output will be identical to its input. A pipeline’s input data
+is provided by a separate source object that is attached to the pipeline.
+Typically, this <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.source" title="ovito.pipeline.Pipeline.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> object is an instance of the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.FileSource" title="ovito.pipeline.FileSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileSource</span></code></a> class, which reads the input data
+from an external data file.</p>
+<p>You can insert a modifier into a <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> by creating a new
+instance of the corresponding modifier type (see the <a class="reference internal" href="../modules/ovito_modifiers.html#module-ovito.modifiers" title="ovito.modifiers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a> module for all available modifier types) and then
+adding it to the pipeline’s <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.modifiers" title="ovito.pipeline.Pipeline.modifiers"><code class="xref py py-attr docutils literal notranslate"><span class="pre">modifiers</span></code></a> list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.modifiers</span> <span class="kn">import</span> <span class="n">AssignColorModifier</span>
+
+<span class="n">modifier</span> <span class="o">=</span> <span class="n">AssignColorModifier</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">modifier</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The modifiers in the <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.modifiers" title="ovito.pipeline.Pipeline.modifiers"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Pipeline.modifiers</span></code></a> list are executed in sequential order:
+Appending a modifier to the end of the list makes it the last one to process
+the data that flows down the pipeline. In other words, it will only see data that has already been processed and modified by the preceding modifiers in the list.</p>
+<a class="reference internal image-reference" href="../_images/Pipeline.svg"><img alt="../_images/Pipeline.svg" class="align-center" src="../_images/Pipeline.svg" width="50%" /></a>
+<p>Note that inserting a new modifier into the pipeline does not
+immediately trigger a new computation of the pipeline results.
+This happens only when pipeline results are requested, either by you or the system.
+For example, evaluation of the pipeline may be triggered implicitly when</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>rendering an image or movie,</p></li>
+<li><p>updating the interactive viewports in OVITO’s graphical user interface,</p></li>
+<li><p>or exporting data using the <a class="reference internal" href="../modules/ovito_io.html#ovito.io.export_file" title="ovito.io.export_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">ovito.io.export_file()</span></code></a> function.</p></li>
+</ul>
+</div></blockquote>
+<p>You can explicitly request an evaluation of a pipeline by calling its <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a> method.
+This method returns a new <a class="reference internal" href="../modules/ovito_data.html#ovito.data.DataCollection" title="ovito.data.DataCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataCollection</span></code></a> object holding the data that has left the pipeline
+after all modifiers currently in the pipeline have processed the input data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="data_model.html#data-model-intro"><span class="std std-ref">Data model</span></a> section will take a closer look at the data structure returned by this function.</p>
+<p>Note that it is possible to change an existing pipeline and the parameters of its modifiers at any time. Such changes do not
+immediately trigger a recomputation of the pipeline results (unlike in the graphical user interface, where changing a modifier’s parameters
+lets OVITO immediately recompute the results and update the interactive viewports). In a Python script, we have to
+call the pipeline’s <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a> method again to request a new evaluation of the modifiers
+in the pipeline after making a change to the pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a new pipeline containing one modifier:</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s2">&quot;simulation.dump&quot;</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AssignColorModifier</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)))</span>
+
+<span class="c1"># Evaluate the current pipeline a first time:</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<span class="c1"># Now altering the pipeline by e.g. changing parameters or appending modifiers:</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CoordinationAnalysisModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">))</span>
+
+<span class="c1"># Evaluate the pipeline a second time, now yielding new results:</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="processing-simulation-trajectories">
+<h2>Processing simulation trajectories<a class="headerlink" href="#processing-simulation-trajectories" title="Permalink to this heading"></a></h2>
+<p>As mentioned in the <a class="reference internal" href="file_io.html#file-io-overview"><span class="std std-ref">File I/O</span></a> section, importing a simulation trajectory consisting of a sequence of frames is possible.
+A pipeline typically processes one frame at a time of the sequence. You can request the pipeline results for a specific simulation frame by
+passing the frame number to the pipeline’s <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a> method, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">import_file</span><span class="p">(</span><span class="s2">&quot;trajectory_*.dump&quot;</span><span class="p">)</span>
+<span class="n">data_frame0</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data_frame1</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data_frame2</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The numbering of animation frames starts at 0 in OVITO. Typically, a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop of the following form is used to iterate over all frames of a simulation sequence:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.PipelineNode.num_frames" title="ovito.pipeline.PipelineNode.num_frames"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_frames</span></code></a> property of the pipeline source tells you how many frames the input trajectory contains.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using a <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline" title="ovito.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> in a loop to process a sequence of simulation frames, make sure you
+do not populate the pipeline with modifiers inside the loop. Repeatedly adding modifiers to the pipeline as part of a for-loop is
+usually wrong:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRONG!!!</span>
+<span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">):</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AtomicStrainModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.2</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Since the loop body gets executed multiple times, this code keeps appending additional modifiers to the pipeline,
+making it longer and longer with every iteration.
+As a result, several <a class="reference internal" href="../modules/ovito_modifiers.html#ovito.modifiers.AtomicStrainModifier" title="ovito.modifiers.AtomicStrainModifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtomicStrainModifier</span></code></a> instances end up in the pipeline, each performing the same
+computation over and over again when <a class="reference internal" href="../modules/ovito_pipeline.html#ovito.pipeline.Pipeline.compute" title="ovito.pipeline.Pipeline.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a> is called.
+Instead, you should completely set up the pipeline just once <em>before</em> entering the loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># CORRECT:</span>
+<span class="c1"># Step I: Populate the pipeline with modifiers:</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">modifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AtomicStrainModifier</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">3.2</span><span class="p">))</span>
+
+<span class="c1"># Step II: Evaluate the pipeline in a loop over all frames:</span>
+<span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">num_frames</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Note that it is sometimes necessary (and valid) to update parameters of existing modifiers inside the for-loop.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_io.html" class="btn btn-neutral float-left" title="File I/O" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_model.html" class="btn btn-neutral float-right" title="Data model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

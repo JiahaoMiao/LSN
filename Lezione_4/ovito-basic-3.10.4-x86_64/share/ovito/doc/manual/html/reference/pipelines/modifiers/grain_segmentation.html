@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grain segmentation &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/grain_segmentation.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Histogram" href="histogram.html" />
+    <link rel="prev" title="Generate trajectory lines" href="generate_trajectory_lines.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Grain segmentation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-grain-segmentation">
+<span id="grain-segmentation"></span><h1>Grain segmentation<a class="headerlink" href="#particles-modifiers-grain-segmentation" title="Permalink to this heading"></a></h1>
+<p>This modifier identifies the individual grains in a polycrystalline microstructure by grouping atoms
+in crystal regions having similar local lattice orientations. The algorithm works in three steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The local structural environment and orientation of each atom is determined using the <a class="reference internal" href="polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching"><span class="std std-ref">Polyhedral template matching</span></a> modifier.</p></li>
+<li><p>A graph representation of the input structure is created using the neighbors of each atom, where each atom is a graph node and each neighbor bond is a graph edge.</p></li>
+<li><p>Grains are formed by hierarchical clustering of the graph.</p></li>
+</ol>
+</div></blockquote>
+<p>The modifier assigns a new property named <code class="docutils literal notranslate"><span class="pre">Grain</span></code> to each atom indicating which grain the atom belongs to
+(grain numeric identifier). The special grain identifier 0 is assigned to atoms that do not belong to any grain.
+The modifier furthermore computes a mean lattice orientation for each identified grain and outputs a list of
+the grains as a <a class="reference internal" href="../data_objects/data_table.html#scene-objects-data-table"><span class="std std-ref">data table</span></a> with the following per-grain information:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Numeric grain identifier</p></li>
+<li><p>Grain size (in terms of the number of atoms belonging to the grain; whether grain boundary atoms are included depends on the <span class="guilabel">Adopt orphan atoms</span> option)</p></li>
+<li><p>Display color (see option <span class="guilabel">Color particles by grain</span> below)</p></li>
+<li><p>Crystal phase of the grain (see <a class="reference internal" href="polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching"><span class="std std-ref">PTM structure types</span></a>)</p></li>
+<li><p>Mean lattice orientation (expressed as 4-component quaternion similar to the <a class="reference internal" href="polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching-orientations"><span class="std std-ref">per-atom lattice orientations computed by the PTM modifier</span></a>)</p></li>
+</ol>
+</div></blockquote>
+<p>The list of grains is ordered by size, starting with the largest grain (in terms of the number of atoms).</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The grain segmentation algorithm is still considered experimental and has not been tested yet on many real-world microstructures. Please use
+this function with caution and help us improve the algorithm by reporting any issues you may observe when applying it to your simulations.</p>
+</div>
+<p>The grain segmentation algorithm is illustrated in the figures below. The local structural environment is determined for every atom using PTM (left). PTM also determines the local orientations (colored, middle) but does not explicitly
+group atoms into grains. Hierarchical clustering is used to identify grains (right).</p>
+<figure class="align-default" id="id1" style="width: 30%">
+<img alt="../../../_images/grain_segmentation_ptm.png" src="../../../_images/grain_segmentation_ptm.png" />
+<figcaption>
+<p><span class="caption-text">Structure</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 30%">
+<img alt="../../../_images/grain_segmentation_orientations.png" src="../../../_images/grain_segmentation_orientations.png" />
+<figcaption>
+<p><span class="caption-text">Lattice orientation</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3" style="width: 30%">
+<img alt="../../../_images/grain_segmentation_segmented.png" src="../../../_images/grain_segmentation_segmented.png" />
+<figcaption>
+<p><span class="caption-text">Segmented grains</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<a class="reference internal image-reference" href="../../../_images/grain_segmentation_panel.png"><img alt="../../../_images/grain_segmentation_panel.png" class="align-right" src="../../../_images/grain_segmentation_panel.png" style="width: 30%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/grain_segmentation_table.png"><img alt="../../../_images/grain_segmentation_table.png" class="align-right" src="../../../_images/grain_segmentation_table.png" style="width: 50%;" /></a>
+<section id="algorithm-selection">
+<h2>Algorithm selection<a class="headerlink" href="#algorithm-selection" title="Permalink to this heading"></a></h2>
+<p>The modifier creates grains by performing hierarchical clustering on the nearest-neighbor atom graph.
+Two types of hierarchical clustering algorithms are implemented:</p>
+<dl>
+<dt>Graph Clustering (automatic / manual)</dt><dd><p>Graph edge weights are initialized as <span class="math notranslate nohighlight">\(\exp(-d^2/3)\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the misorientation
+in degrees between two neighboring atoms. Grains are built up by contracting edges using the <em>Node Pair Sampling</em> method
+of <a class="reference external" href="https://arxiv.org/abs/1806.01664">Bonald et al.</a>.</p>
+<p>This algorithm produces good segmentations in a range of microstructure types. It performs well on low-angle grain boundaries and can discriminate between grains and sub-grains.
+A drawback is that the merge distance threshold parameter does not have an intuitive physical meaning.</p>
+<p>The automatic mode alleviates this problem by choosing a good merge threshold automatically for you using a statistical
+analysis of the sequence of graph merging steps, stopping the merging of crystallite clusters as soon as a
+deviation from the regular exponential behavior is observed.</p>
+</dd>
+<dt>Minimum Spanning Tree</dt><dd><p>In this algorithm the graph gets replaced by its <a class="reference external" href="https://en.wikipedia.org/wiki/Minimum_spanning_tree">minimum spanning tree</a>.
+The edge weights are the misorientation angles between neighboring atoms.
+Grains are built up by contracting edges in sorted order (by misorientation, low to high).
+The distance of a contraction (or merge) is simply the edge misorientation.</p>
+<p>This is a fast algorithm which has lower memory usage. The merge distance has a simple interpretation (misorientation between neighboring atoms or crystal clusters) and is scale invariant.
+Drawbacks are that it can produce poor results in microstructures containing low-angle grain boundaries, and it performs poorly in the presence of local perturbations due to, e.g., thermal atomic displacements or elastic lattice distortions.
+This method is best suited for low-temperature simulations.</p>
+<p>This approach is similar to that of <a class="reference external" href="https://doi.org/10.1007/s11837-013-0831-9">Panzarino and Rupert</a>. The key differences are the use of PTM (more robust structural determination),
+a faster algorithm (minutes instead of days), and the formulation as a hierarchical clustering problem (effects of cutoff choices are visible).</p>
+</dd>
+</dl>
+</section>
+<section id="parameters-and-options">
+<h2>Parameters and options<a class="headerlink" href="#parameters-and-options" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Log merge threshold</dt><dd><p>Specifies the maximum graph edge contraction distance and determines the resulting number and sizes of grains. A lower threshold produces more (and smaller) grains; a larger threshold produces fewer (and larger) grains.
+The scatter plot (“Log merge distance” vs “Merge size”) can be used to select an appropriate merge threshold value.
+If the grains are well-separated, the scatter plot will contain a dense cluster at low distances, and a few isolated points at higher distances. An ideal threshold lies after the dense cluster, but before the isolated points (see screenshot).
+Note that this threshold parameter can be set to a negative value, because it is specified on a logarithmic distance scale.</p>
+</dd>
+<dt>Minimum grain size</dt><dd><p>Grains below this minimum number of atoms are dissolved. Atoms in sub-critical grains, which get dissolved, will become orphan atoms (see option <span class="guilabel">Adopt orphan atoms</span>).</p>
+</dd>
+<dt>Adopt orphan atoms</dt><dd><p>After clustering has been performed by the algorithm, some atoms might not be assigned to a grain, so-called “orphan” atoms (according to <a class="reference external" href="https://doi.org/10.1016/j.commatsci.2016.11.027">Hoffrogge and Barrales-Mora</a>).
+This includes atoms that are part of grain boundaries. This option lets the modifier assign these orphan atoms to the nearest grain.</p>
+</dd>
+<dt>Handle coherent interfaces/stacking faults</dt><dd><p>This option lets the algorithm merge atoms having hexagonal crystal structures (e.g. HCP) with atoms having cubic
+structures (e.g. FCC) at stacking faults or other types of coherent crystal interfaces.
+Thus, stacking faults will become part of the surrounding grain if this option is enabled.
+Furthermore, atoms belonging to the cores of coherent twin boundaries will be attributed to one of the two adjacent grains.</p>
+</dd>
+<dt>Color particles by grain</dt><dd><p>This option assigns each grain a unique color for easier visualization of the grain structure.</p>
+</dd>
+<dt>Output bonds</dt><dd><p>Whether to visualize the edges of the initial neighbor graph as bonds between atoms.
+Local lattice disorientations are output as a bond property named <code class="docutils literal notranslate"><span class="pre">Disorientation</span></code>,
+which may be visualized using the <a class="reference internal" href="color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifier of OVITO.
+This output option is mainly meant for debugging purposes and has large memory requirements.
+It is not recommended for large datasets.</p>
+</dd>
+</dl>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>The panel below illustrates the effect of varying the merge threshold in a <a class="reference external" href="https://gitlab.com/stuko/ovito/-/blob/master/tests/files/POSCAR/Voronoi1.POSCAR.gz">polycrystalline graphene sample</a>, using the <em>Graph Clustering</em> algorithm.
+A good segmentation into 6 grains is achieved using a merge threshold of 14 (left).
+Reducing the threshold to 13.5 reveals a subgrain structure in the largest grain (middle). A further reduction of the threshold to 12.5 splits the largest grain into three subgrains (right).</p>
+<p>Note that the difference between subgrains and grains is not well defined. It is therefore up to the user to decide upon the best threshold value.</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>6 grains</p></th>
+<th class="head"><p>7 grains</p></th>
+<th class="head"><p>8 grains</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><img alt="../../../_images/grains_graphene_panel1.png" src="../../../_images/grains_graphene_panel1.png" />
+</td>
+<td><img alt="../../../_images/grains_graphene_panel2.png" src="../../../_images/grains_graphene_panel2.png" />
+</td>
+<td><img alt="../../../_images/grains_graphene_panel3.png" src="../../../_images/grains_graphene_panel3.png" />
+</td>
+</tr>
+<tr class="row-odd"><td><img alt="../../../_images/grains_graphene_1.png" src="../../../_images/grains_graphene_1.png" />
+</td>
+<td><img alt="../../../_images/grains_graphene_2.png" src="../../../_images/grains_graphene_2.png" />
+</td>
+<td><img alt="../../../_images/grains_graphene_3.png" src="../../../_images/grains_graphene_3.png" />
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.GrainSegmentationModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.GrainSegmentationModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="generate_trajectory_lines.html" class="btn btn-neutral float-left" title="Generate trajectory lines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histogram.html" class="btn btn-neutral float-right" title="Histogram" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

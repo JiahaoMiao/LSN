@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branched and cloned pipelines pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/advanced_topics/clone_pipeline.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Remote file access" href="remote_file_access.html" />
+    <link rel="prev" title="Parameter and camera animations" href="animation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transparent_particles.html">Semi-transparent particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aspherical_particles.html">Non-spherical particle shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="animation.html">Parameter and camera animations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-pipeline-how-it-works">How pipeline cloning works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-options">Further options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#after-cloning-a-pipeline">After cloning a pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-pipeline-copy-pipeline-items-dialog">Copying modifiers between pipelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="remote_file_access.html">Remote file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize_init_state.html">Customizing the initial program state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewport_layouts.html">Multi-viewport layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_generation.html">Python code generator <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_rendering.html">Rendering simulation trajectories on remote computers <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale_bar.html">Scale bar <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_plot.html">Adding a data plot to a viewport <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced topics</a> &raquo;</li>
+      <li>Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="clone-pipeline">
+<span id="branched-and-cloned-pipelines-ovito-pro"></span><h1>Branched and cloned pipelines <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#clone-pipeline" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/clone_pipeline_menu_item.png"><img alt="../_images/clone_pipeline_menu_item.png" class="align-right" src="../_images/clone_pipeline_menu_item.png" style="width: 35%;" /></a>
+<p>The <span class="guilabel">Clone Pipeline</span> function of OVITO Pro lets you duplicate the current <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">data pipeline</span></a>
+in order to visualize multiple datasets side by side or to visualize the same dataset in several different ways in one picture.
+The function can be invoked from the <a class="reference internal" href="../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">pipeline selector</span></a> widget depicted on the right,
+which is located in OVITO’s main toolbar.</p>
+<p>The <cite>Clone Pipeline</cite> dialog will be displayed, letting you configure the cloning operation.
+Once you close the dialog by pressing <span class="guilabel">Ok</span>, the cloning operation is executed according
+to the settings you have made in the dialog.</p>
+<p>After the pipeline has been cloned, both the new copy and the existing data pipeline will be part of the
+current visualization scene and you will now see two objects in the viewports.
+The <a class="reference internal" href="../usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">pipeline selector</span></a> widget in the main toolbar
+indicates which pipeline is the currently selected one and allows you to switch
+between the different pipelines of the scene. The currently selected pipeline is the one shown in the
+<a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a>.
+You can also click on an object in the interactive viewports in order to select the pipeline associated with that object.</p>
+<section id="clone-pipeline-how-it-works">
+<span id="how-pipeline-cloning-works"></span><h2>How pipeline cloning works<a class="headerlink" href="#clone-pipeline-how-it-works" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/clone_pipeline_dialog.png"><img alt="../_images/clone_pipeline_dialog.png" class="align-right" src="../_images/clone_pipeline_dialog.png" style="width: 50%;" /></a>
+<p>A <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">pipeline</span></a> in OVITO consists of a <a class="reference internal" href="../reference/pipelines/data_sources/index.html#data-sources"><span class="std std-ref">data source</span></a> (typically an external data file to feed the pipeline with input)
+and a linear sequence of <a class="reference internal" href="../reference/pipelines/modifiers/index.html#particles-modifiers"><span class="std std-ref">modifiers</span></a> that have been inserted into the pipeline. In the user interface of OVITO,
+the modifiers are typically laid out in a bottom-up fashion, with the data source at the bottom and the last modifier of the sequence at the top.
+The data source delivers an <em>input dataset</em> (e.g. particles or other kinds of <a class="reference internal" href="../reference/pipelines/data_objects/index.html#scene-objects"><span class="std std-ref">data objects</span></a>), which is then processed by the modifiers one after the other.
+The final result data leaving the pipeline is what gets displayed in the 3d viewports of OVITO.</p>
+<p>When cloning a pipeline, the data source and/or the modifiers of the original pipeline typically get copied over to the new pipeline.
+However, for each of these parts, you can configure individually whether they should be duplicated or rather shared by the original
+and the cloned pipeline. This gives you a great deal of flexibility:
+If you decide, for example, that the two pipelines should share the same data source, then both pipelines will always be fed with the
+same input dataset. If you subsequently pick a different input file for any one of the pipelines, this change will affect the other pipeline as well.
+This synchronized mode can be useful, for example, to visualize the same input data in several different ways, typically by employing different modifiers
+in the two pipelines that share the same data source.</p>
+<p>Another common use-case for OVITO’s pipeline cloning function is visualizing different input datasets side by side, always making sure that
+all modifier operations get applied in exactly the same way to both input datasets. In this case, you would choose to duplicate the
+data source during the cloning operation and let the two pipelines share the modifiers instead. Then the pipelines will get fed with different input datasets,
+but it is ensured that each dataset will pass through the exact same sequence of modification steps.</p>
+<p>For any data source or modifier of the existing pipeline, you can choose between four different cloning modes in the <cite>Clone Pipeline</cite> dialog:</p>
+<dl class="simple">
+<dt>Copy</dt><dd><p>This will create an independent copy of the original object. Changing the object’s parameters in either the original
+pipeline or the cloned pipeline will not affect the other pipeline.</p>
+</dd>
+<dt>Join</dt><dd><p>The object will not be duplicated and the new pipeline will share the same object with the original pipeline.
+In fact, choosing this option results in a <em>branched</em> pipeline that starts at a single data source.
+Data flowing through the pipeline will be unique up to the branching point, i.e. the last modifier that
+was cloned using mode <cite>Join</cite>. Beyond the branching point, the two pipeline branches will be
+independent and can modify the data in different ways.</p>
+</dd>
+<dt>Share</dt><dd><p>This cloning mode is only available for modifiers, not for the data source. It is a special variant of the
+<cite>Join</cite> mode providing some additional flexibility. The shared modifier becomes part of
+both pipelines and subsequently changing the modifier’s parameter will affect both pipelines
+in the same way. However, the shared modifier can act on different data in the two pipelines, because
+unlike in a branched pipeline setup, which is always restricted to a single unique data source,
+the two pipelines can have different sources and/or modifiers preceding the shared modifier.</p>
+</dd>
+<dt>Skip</dt><dd><p>This option simply leaves a modifier out in the cloned pipeline.</p>
+</dd>
+</dl>
+</section>
+<section id="further-options">
+<h2>Further options<a class="headerlink" href="#further-options" title="Permalink to this heading"></a></h2>
+<p>The location where the output data appears in the three-dimensional scene can be controlled independently
+for each pipeline. Typically you don’t want the data of the cloned pipeline to appear in the same
+spatial location as the data of the original pipeline. This is why the <cite>Clone Pipeline</cite> dialog
+provides the option to displace the copied pipeline along the x, y, or z-axis
+so that the copy appears side by side with the original pipeline in the scene.</p>
+<p>Note that you can change the positioning of a pipeline object at any time using the <span class="guilabel">Move</span> and
+<span class="guilabel">Rotate</span> tools found in OVITO’s main toolbar. Using these tools you can
+still adjust the exact positioning of either the original or the cloned pipeline later on
+(see <a class="reference internal" href="../usage/import.html#usage-import-positioning-objects"><span class="std std-ref">here</span></a> for more information).</p>
+<p>By default OVITO names each pipeline after the filename that serves as input for the pipeline.
+The two input fields at the bottom of the <cite>Clone Pipeline</cite> dialog allow you to override this default naming scheme and assign custom names
+to the original and/or the cloned pipeline, which can be very helpful to differentiate the two pipelines in the user interface,
+in particular, if they share the same input file.</p>
+</section>
+<section id="after-cloning-a-pipeline">
+<h2>After cloning a pipeline<a class="headerlink" href="#after-cloning-a-pipeline" title="Permalink to this heading"></a></h2>
+<p>After cloning a pipeline, some modifiers or the data source may be shared between the original and the cloned pipeline.
+OVITO will indicate this in the user interface as we will see below.</p>
+<p>For the following discussion, let us consider an example pipeline containing four modifiers, which are being cloned
+according to the following schematic picture:</p>
+<a class="reference internal image-reference" href="../_images/cloned_pipeline_example.png"><img alt="../_images/cloned_pipeline_example.png" class="align-center" src="../_images/cloned_pipeline_example.png" style="width: 70%;" /></a>
+<p>The pipeline’s data source and the first modifier (<cite>Cluster analysis</cite>) are reused in the cloned
+pipeline according to the selected mode <cite>Join</cite>. Thus, the two resulting pipelines will share the
+same upstream part. The <cite>Slice</cite> modifier is the first item for which a clone mode other than <cite>Join</cite> is selected.
+Thus, the cloned pipeline branches off before this modifier, which is being skipped in the cloned
+pipeline. Mode <cite>Copy</cite> has been selected for the <cite>Expression selection</cite> modifier.
+Accordingly, an independent copy of this modifier will be created and inserted into the cloned pipeline. This will enable you to
+change the selection expression in the second pipeline and select a different set of particles, for example.
+Finally, the <cite>Assign color</cite> modifier gets shared by both pipelines. That means the selected particles
+in both pipelines will always get assigned the same color.</p>
+<a class="reference internal image-reference" href="../_images/cloned_pipeline_editor.png"><img alt="../_images/cloned_pipeline_editor.png" class="align-right" src="../_images/cloned_pipeline_editor.png" style="width: 38%;" /></a>
+<p>After the cloning operation has been executed, you will see the newly created pipeline
+in the <a class="reference internal" href="../usage/pipeline.html#usage-modification-pipeline-pipeline-listbox"><span class="std std-ref">pipeline editor</span></a>.</p>
+<p>The horizontal line labeled <span class="guilabel">Pipeline branch</span> indicates that the part below
+is shared by the current pipeline and other pipelines in the same scene.
+Inserting, removing, or changing modifiers below this line is thus going to affect these other pipelines as well.</p>
+<p>Some of the items in the pipeline editor are rendered in italic font. With that, OVITO indicates that
+two or more pipelines share this entry. The <cite>Assign color</cite> modifier, for instance, was cloned
+using mode <cite>Share</cite>. It is now part of the original pipeline <em>and</em> the cloned pipeline simultaneously.
+Changing a parameter of this modifier would trigger a recomputation of both pipelines.</p>
+<p>Let’s say you later realize that sharing the <cite>Assign color</cite> modifier was not the right idea.
+For instance, you may decide to assign different colors to the particles in the two pipelines.
+For “un-sharing” the modifier, OVITO provides the function <span class="guilabel">Make Independent</span>,
+which is accessible via the item’s context menu shown in the screenshot. This function replaces the shared <cite>Assign color</cite> modifier
+with an independent copy in the current pipeline. Subsequently, changing the modifier’s parameters will no longer
+implicitly affect other pipelines. You now get the possibility to use different parameter values in different pipelines.</p>
+<p>Notice that the <a class="reference internal" href="../reference/pipelines/visual_elements/index.html#visual-elements"><span class="std std-ref">visual elements</span></a> in the pipeline editor are also displayed using italic font.
+That’s because these visual elements are produced by the file data source in the upstream pipeline, i.e. in the branch
+common to both pipelines. While the underlying simulation data gets implicitly duplicated at pipeline branches (to enable different
+computational outputs of the two pipelines), the visual elements do not. A single set of visual elements remains responsible
+for rendering the outputs of the two pipelines.</p>
+<p>Because these visual elements are shared objects, changing their parameters or turning them on or off affects the rendering of
+both datasets produced by the two pipelines. If this is not what you want, again you can use the function <span class="guilabel">Make Independent</span>
+to duplicate the visual elements. Subsequently, you can control the visual appearance of particles and bonds for the
+original and the cloned pipeline individually.</p>
+</section>
+<section id="clone-pipeline-copy-pipeline-items-dialog">
+<span id="copying-modifiers-between-pipelines"></span><h2>Copying modifiers between pipelines<a class="headerlink" href="#clone-pipeline-copy-pipeline-items-dialog" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/copy_pipeline_item_menu.png"><img alt="../_images/copy_pipeline_item_menu.png" class="align-right" src="../_images/copy_pipeline_item_menu.png" style="width: 35%;" /></a>
+<a class="reference internal image-reference" href="../_images/copy_pipeline_items_dialog.png"><img alt="../_images/copy_pipeline_items_dialog.png" class="align-right" src="../_images/copy_pipeline_items_dialog.png" style="width: 35%;" /></a>
+<p>Select <span class="guilabel">Copy to…</span> from the context menu of a modifier to copy it
+from one pipeline to another pipeline in the same scene. OVITO displays a dialog box (see screenshot below),
+which lets you select the destination of the copy operation and the copying mode.
+Turn on the option <span class="guilabel">Share with source pipeline</span> to insert a reference to the original
+modifier into the other pipeline. Subsequently, both pipelines will share the same modifier, and
+changing the modifier’s parameters will affect the results of both pipelines. Turn off the option to perform
+a regular duplication, which produces an independent copy of the original modifier.</p>
+<p>The <span class="guilabel">Copy to…</span> function may also be used to copy one or more modifiers <em>within</em> the same pipeline.
+This can be useful if you need to perform the same processing steps multiple times as part of a single pipeline (see also
+<a class="reference internal" href="../reference/app_settings/modifier_templates.html#modifier-templates"><span class="std std-ref">Modifier templates</span></a> as an alternative approach).</p>
+<p>In addition to modifiers, you can also copy the <a class="reference internal" href="../reference/pipelines/data_sources/external_file.html#scene-objects-file-source"><span class="std std-ref">file source</span></a> of the current pipeline
+to another pipeline in the scene, replacing the original data source in the destination pipeline.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="animation.html" class="btn btn-neutral float-left" title="Parameter and camera animations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="remote_file_access.html" class="btn btn-neutral float-right" title="Remote file access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

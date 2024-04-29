@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Particles &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/visual_elements/particles.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Bonds" href="bonds.html" />
+    <link rel="prev" title="Visual elements" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Visual elements</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bonds.html">Bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vectors.html">Vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation_cell.html">Simulation cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_mesh.html">Surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangle_mesh.html">Triangle mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voxel_grid.html">Voxel grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocations.html">Dislocations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Visual elements</a> &raquo;</li>
+      <li>Particles</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="visual-elements-particles">
+<span id="particles"></span><h1>Particles<a class="headerlink" href="#visual-elements-particles" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/particles_panel.png"><img alt="../../../_images/particles_panel.png" class="align-right" src="../../../_images/particles_panel.png" style="width: 24%;" /></a>
+<p>This <a class="reference internal" href="index.html#visual-elements"><span class="std std-ref">visual element</span></a> is responsible for rendering particles in the viewports.
+Typically, particles are visualized as simple spheres, but you can switch to other, more complex geometric shapes
+if desired.</p>
+<p>The <em>Particles</em> visual element provides a set of parameters controlling the
+visual representation of the particles, which will be described in the section below.
+Additionally, the visualization is affected by certain properties of the particles themselves, listed in the following table.
+By setting the values of these particle properties, for example using the <a class="reference internal" href="../modifiers/compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a> modifier,
+you can fully control the visualization on a per-particle basis.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Particle property</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Color</span></code></p></td>
+<td><p>Real (R,G,B)</p></td>
+<td><p>Controls the display color of individual particles. Red, green and blue components must be in the range [0,1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Radius</span></code></p></td>
+<td><p>Real</p></td>
+<td><p>Controls the display size on a per-particle basis.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code></p></td>
+<td><p>Integer</p></td>
+<td><p>Used to determine size and color if the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> or <code class="docutils literal notranslate"><span class="pre">Color</span></code> particle properties are not present.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Transparency</span></code></p></td>
+<td><p>Real</p></td>
+<td><p>Controls the transparency of individual particles. Must be in the range [0,1].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code></p></td>
+<td><p>Real (X,Y,Z)</p></td>
+<td><p>Controls the size of particles with a non-symmetric shape. The exact interpretation of this property depends on the selected <span class="guilabel">Standard shape</span>, see below.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Orientation</span></code></p></td>
+<td><p>Real (X,Y,Z,W)</p></td>
+<td><p>Specifies the orientation of particles with non-symmetric shapes.
+The rotation of each particle is specified in terms of a <a class="reference external" href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">quaternion</a>.
+See <a class="reference internal" href="../../../advanced_topics/aspherical_particles.html#howto-aspherical-particles"><span class="std std-ref">this section</span></a> for further information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl>
+<dt>Standard shape</dt><dd><p>Selects the display shape of particles for which the shape is not already specified on a per-type basis.
+The current program version offers the choice between the following shapes:</p>
+<dl class="simple">
+<dt>Sphere/Ellipsoid</dt><dd><p>Particles are visualized as 3d spheres. Unless the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> particle property
+has been defined; then they are rendered as <a class="reference internal" href="../../../advanced_topics/aspherical_particles.html#howto-aspherical-particles"><span class="std std-ref">ellipsoidal particles</span></a>.
+In this case, the three components of the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> vector property control the
+half lengths of the principal axes of each ellipsoid and the scalar <code class="docutils literal notranslate"><span class="pre">Radius</span></code> property is ignored.</p>
+</dd>
+<dt>Circle</dt><dd><p>Particles are visualized as flat-shaded circles facing the viewer.
+Note that some <a class="reference internal" href="../../rendering/index.html#rendering"><span class="std std-ref">rendering engines</span></a> do not support this mode.</p>
+</dd>
+<dt>Cube/Box</dt><dd><p>Particles are visualized as cubes if the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> particle property
+is not present. The <code class="docutils literal notranslate"><span class="pre">Radius</span></code> property controls the edge half-length of the cubes in this case.
+If the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> particle property is present, particles are rendered as non-cubic boxes
+with the given half-lengths along the three edges.</p>
+</dd>
+<dt>Square</dt><dd><p>Particles are visualized as flat-shaded squares facing the viewer.
+Note that some <a class="reference internal" href="../../rendering/index.html#rendering"><span class="std std-ref">rendering engines</span></a> do not support this mode.</p>
+</dd>
+<dt>Cylinder</dt><dd><p>Particles are visualized as cylinders.
+The X-component of the <code class="docutils literal notranslate"><span class="pre">Aspherical</span> <span class="pre">Shape</span></code> vector property controls the cylinder radius
+of particles in this mode, and the Z-component controls the length of the cylindrical particles.
+By default, cylinders are aligned along the z-axis. If present, the <code class="docutils literal notranslate"><span class="pre">Orientation</span></code>
+particle property rotates the cylinders.</p>
+</dd>
+<dt>Spherocylinder</dt><dd><p>Particles are visualized as cylinders with round caps at each end (capsules). The behavior is the
+same as for mode <cite>Cylinder</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Standard radius</dt><dd><p>Specifies the fallback size to be used for particles for which the display size is not already specified
+on a per-type or per-particle basis.
+In other words, this value is only used for particles for which <em>none</em> of the following applies:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Radius</span></code> particle property has a non-zero value.</p></li>
+<li><p>The particle’s type, as specified by the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code> property, has a non-zero radius.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Radius scaling factor</dt><dd><p>This global scaling factor is applied to all particles in the system at rendering time.
+It is applied in addition to any other factors controlling the size of particles (per-type radius, per-particle radius, standard radius).
+By setting it to a value below 100%, the scaling factor provides a convenient way of generating a balls-and-stick visualization of a molecular system,
+with reduced atomic spheres that are connected by cylindrical bonds.</p>
+</dd>
+<dt>Rendering quality</dt><dd><p>This parameter controls the method used for rendering the particles in the interactive viewports. The following modes are available and affect only the rendering of spherical particles:</p>
+<dl class="simple">
+<dt>Low</dt><dd><p>Particles are rendered as texture-mapped imposters facing the viewer. Particles do not have depth in this mode,
+and intersections between spherical particles may not be displayed correctly. This mode is the fastest.</p>
+</dd>
+<dt>Medium</dt><dd><p>Particles are rendered as texture-mapped imposters facing the viewer. An OpenGL fragment shader is used
+to compute depth information for each rendered pixel to produce reasonable looking sphere-sphere intersections for overlapping particles.</p>
+</dd>
+<dt>High</dt><dd><p>Particles are rendered as true spheres using an OpenGL fragment shader, which computes the ray-sphere intersection for every rendered pixel.</p>
+</dd>
+<dt>Automatic</dt><dd><p>OVITO automatically switches between the three quality levels above depending on the number of particles to render in the interactive viewports. For
+less than 4,000 particles, the high-quality method is used. For more than 400,000 particles, the lowest quality mode is used. Irrespective of the
+particle number, high-quality mode is always used to produce a final output image.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_vis.html#ovito.vis.ParticlesVis" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.vis.ParticlesVis</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Visual elements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bonds.html" class="btn btn-neutral float-right" title="Bonds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

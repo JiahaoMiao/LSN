@@ -1,0 +1,13 @@
+SIMULATION_TYPE        0
+RESTART                0
+TEMP                   1.9864
+NPART                  108
+RHO                    0.8
+R_CUT                  2.5
+DELTA                  0.0005
+NBLOCKS                10
+NSTEPS                 1000
+
+ENDINPUT
+
+Equilibration Temperature : Gas 0.955 -> 1.2 Liquid 1.9864 -> 1.1 Solid 1.542 -> 0.8

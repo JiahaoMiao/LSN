@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example M2: Custom order parameter calculation &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/modifiers/order_parameter_calculation.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example M3: Color mapping to visualize local lattice orientation" href="visualize_local_lattice_orientation.html" />
+    <link rel="prev" title="Example M1: Calculating mean square displacement" href="msd_calculation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="msd_calculation.html">Example M1: Calculating mean square displacement</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example M2: Custom order parameter calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualize_local_lattice_orientation.html">Example M3: Color mapping to visualize local lattice orientation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="select_overlapping_particles.html">Example M4: Finding overlapping particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shrink_wrap_box.html">Example M5: Shrink-wrap simulation box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculate_local_entropy.html">Example M6: Calculate local entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calculate_displacement_vectors.html">Example M7: Displacement vectors with reference configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_time_average.html">Example M8: Compute trajectory average of a global attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example M2: Custom order parameter calculation</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-m2-custom-order-parameter-calculation">
+<span id="example-order-parameter-calculation"></span><h1>Example M2: Custom order parameter calculation<a class="headerlink" href="#example-m2-custom-order-parameter-calculation" title="Permalink to this heading"></a></h1>
+<p>In the paper <a class="reference external" href="https://doi.org/10.1103/PhysRevLett.86.5530">[Phys. Rev. Lett. 86, 5530]</a> an order parameter is specified as a means
+of labeling an atom in the simulation as belonging to either the liquid or solid fcc crystal phase. In the following, we will
+develop a custom analysis modifier for OVITO, which calculates this per-atom order parameter.</p>
+<p>The order parameter is defined as follows (see the paper for details): For any of the 12 nearest neighbors of a given atom, one can compute the distance the neighbor
+makes from the ideal fcc positions of the crystal in the given orientation (denoted by vector <strong>r</strong><sub>fcc</sub>). The sum of the distances over the 12 neighbors,
+phi = 1/12*sum(| <strong>r</strong><sub>i</sub> - <strong>r</strong><sub>fcc</sub> |), acts as an “order parameter” for the central atom.</p>
+<p>Calculating this parameter involves finding the 12 nearest neighbors of each atom and, for each of these neighbors, determining the
+closest ideal lattice vector. To find the neighbors, OVITO provides the <a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.NearestNeighborFinder" title="ovito.data.NearestNeighborFinder"><code class="xref py py-class docutils literal notranslate"><span class="pre">NearestNeighborFinder</span></code></a> utility class.
+It directly provides the vectors from the central atom to its nearest neighbors.</p>
+<p>Let us start by defining some inputs for the order parameter calculation at the global scope:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">NearestNeighborFinder</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># The lattice constant of the FCC crystal:</span>
+<span class="n">lattice_parameter</span> <span class="o">=</span> <span class="mf">3.6</span> 
+
+<span class="c1"># The list of &lt;110&gt; ideal neighbor vectors of the reference lattice (FCC):</span>
+<span class="n">reference_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="c1"># Rescale ideal lattice vectors with lattice constant.</span>
+<span class="n">reference_vectors</span> <span class="o">*=</span> <span class="n">lattice_parameter</span>
+
+<span class="c1"># The number of neighbors to take into account per atom:</span>
+<span class="n">num_neighbors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reference_vectors</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The actual modifier function needs to create an output particle property, which will store the calculated
+order parameter of each atom. Two nested loops run over all input atoms and their 12 nearest neighbors, respectively.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+
+    <span class="c1"># Show a status text in the status bar:</span>
+    <span class="k">yield</span> <span class="s1">&#39;Calculating order parameters&#39;</span>
+
+    <span class="c1"># Create output particle property.</span>
+    <span class="n">order_params</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">particles_</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span>
+        <span class="s1">&#39;Order Parameter&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Prepare neighbor lists.</span>
+    <span class="n">neigh_finder</span> <span class="o">=</span> <span class="n">NearestNeighborFinder</span><span class="p">(</span><span class="n">num_neighbors</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    
+    <span class="c1"># Request write access to the output property array.</span>
+    <span class="k">with</span> <span class="n">order_params</span><span class="p">:</span>
+
+        <span class="c1"># Loop over all particles.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span><span class="p">):</span>
+            
+            <span class="c1"># Update progress indicator in the status bar</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+            
+            <span class="c1"># Stores the order parameter of the current atom</span>
+            <span class="n">oparam</span> <span class="o">=</span> <span class="mf">0.0</span>    
+            
+            <span class="c1"># Loop over neighbors of current atom.</span>
+            <span class="k">for</span> <span class="n">neigh</span> <span class="ow">in</span> <span class="n">neigh_finder</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                
+                <span class="c1"># Compute squared deviation of neighbor vector from every </span>
+                <span class="c1"># reference vector.</span>
+                <span class="n">squared_deviations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                    <span class="n">reference_vectors</span> <span class="o">-</span> <span class="n">neigh</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                
+                <span class="c1"># Sum up the contribution from the best-matching vector.</span>
+                <span class="n">oparam</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">squared_deviations</span><span class="p">)</span>
+
+            <span class="c1"># Store result in output array.</span>
+            <span class="n">order_params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">oparam</span> <span class="o">/</span> <span class="n">num_neighbors</span>        
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">yield</span></code> statements in the modifier function above are only needed to support progress feedback in the
+graphical version of OVITO and to give the pipeline system the possibility to interrupt the long-running calculation when needed.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="msd_calculation.html" class="btn btn-neutral float-left" title="Example M1: Calculating mean square displacement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualize_local_lattice_orientation.html" class="btn btn-neutral float-right" title="Example M3: Color mapping to visualize local lattice orientation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

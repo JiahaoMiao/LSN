@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Displacement vectors &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/displacement_vectors.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Elastic strain calculation" href="elastic_strain.html" />
+    <link rel="prev" title="Dislocation analysis (DXA)" href="dislocation_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Displacement vectors</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-displacement-vectors">
+<span id="displacement-vectors"></span><h1>Displacement vectors<a class="headerlink" href="#particles-modifiers-displacement-vectors" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/displacement_vectors_panel.png"><img alt="../../../_images/displacement_vectors_panel.png" class="align-right" src="../../../_images/displacement_vectors_panel.png" style="width: 35%;" /></a>
+<p>This modifier calculates the displacement vectors of particles from two
+snapshots of the system: a <em>reference</em> (or initial) configuration and a <em>current</em> configuration.
+The displacement vector of a particle is computed by subtracting its reference
+position from its current position.</p>
+<p>The modifier considers the currently present particle positions as the current configuration.
+The reference particle positions are by default taken from frame 0 of the loaded animation sequence (option <span class="guilabel">Upstream pipeline</span>).
+Alternatively, the modifier supports loading the reference particle positions from a separate data file (option <span class="guilabel">External file</span>).</p>
+<section id="modifier-outputs">
+<h2>Modifier outputs<a class="headerlink" href="#modifier-outputs" title="Permalink to this heading"></a></h2>
+<p>The modifier outputs the calculated displacement vectors as a new particle property named <code class="docutils literal notranslate"><span class="pre">Displacement</span></code> (XYZ).
+This particle property supports visualization of the vectors using arrow glyphs.
+To show the arrows in the viewports, you need to turn on the associated <a class="reference internal" href="../visual_elements/vectors.html#visual-elements-vectors"><span class="std std-ref">vector display</span></a>.
+Alternatively, you can add a <a class="reference internal" href="color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifier to the pipeline to
+visualize the displacements by means of varying particle colors. The modifier
+additionally outputs the <code class="docutils literal notranslate"><span class="pre">Displacement</span> <span class="pre">Magnitude</span></code> particle property for this purpose, which describes the
+displacements in terms of scalar values.</p>
+</section>
+<section id="reference-positions">
+<h2>Reference positions<a class="headerlink" href="#reference-positions" title="Permalink to this heading"></a></h2>
+<p>By default, the modifier obtains the reference particle positions from the currently loaded
+simulation trajectory by evaluating the data pipeline at animation timestep 0. This default mode
+is denoted as <span class="guilabel">Constant reference configuration</span> in the user interface.
+If desired, OVITO allows you to pick an animation frame other than 0 as reference.</p>
+<p>Alternatively, you can let OVITO calculate incremental displacements using
+the option <span class="guilabel">Relative to current frame</span>. In this mode, a sliding reference
+configuration is used, based on a relative time offset with respect to the current configuration.
+Negative offsets correspond to a reference configuration preceding the current configuration
+in time. An offset of -1, for example, lets OVITO use the animation frame immediately preceding
+the current frame as reference. Note that, in this case, displacement calculation fails at
+frame 0, because there exists no preceding frame.</p>
+<p>If you want to load the reference particle positions from a separate file instead of taking
+them from the currently loaded trajectory, you can select <span class="guilabel">External file</span> as data source.
+Activating this option will show an additional panel <span class="guilabel">Reference: External file</span> allowing you to
+pick the file containing the initial particle positions.</p>
+</section>
+<section id="particle-identities">
+<h2>Particle identities<a class="headerlink" href="#particle-identities" title="Permalink to this heading"></a></h2>
+<p>In order to calculate displacement vectors OVITO needs to establish a one-to-one mapping between the particles in the reference
+and the current configuration. If the particles have a property named <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code>,
+then OVITO will use these identifiers to generate the one-to-one mapping. In other words, if the particles possess unique identifier, then
+OVITO is able to handle changes in the storage order of particles. However, if particles do not possess unique identifiers, then the modifier requires that
+the reference configuration contains exactly the same number of particles as the current configuration
+and it assumes that the storage order is the same in both configuration. This assumption is not always correct as some simulation
+codes reorder particles during a simulation run for performance reasons.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you forget to dump particle/atom IDs during your simulation,
+you should be aware that OVITO may compute wrong displacement vectors if the particle storage order changes.
+Some simulation file format enforce a constant storage order and some do not (e.g. the LAMMPS file formats).
+Use the <a class="reference internal" href="../../data_inspector/index.html#data-inspector"><span class="std std-ref">Data inspector</span></a> to check whether the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code> property exists after file import.</p>
+</div>
+</section>
+<section id="affine-mapping-of-the-simulation-cell">
+<h2>Affine mapping of the simulation cell<a class="headerlink" href="#affine-mapping-of-the-simulation-cell" title="Permalink to this heading"></a></h2>
+<p>Note: This option applies to systems with periodic boundary conditions. For non-periodic systems (and typically also for
+systems with mixed boundary conditions) it should remain turned off.</p>
+<p>The <span class="guilabel">Affine mapping</span> setting controls how OVITO treats situations in which the shape or volume of the periodic simulation cell
+changes from the initial to the current configuration. Such a cell change typically occurs in simulations due to active straining or
+pressure/stress relaxation. Because the calculation of displacement vectors is ambiguous in such situations,
+the <span class="guilabel">Affine mapping</span> option lets you control the precise calculation method.</p>
+<p>If affine mapping is turned off (the default), displacements are calculated simply by subtracting the initial particle position from
+the current position. Any change of the simulation cell geometry is ignored.</p>
+<p>The option <span class="guilabel">To reference</span> performs a remapping of the current particle positions into the reference simulation cell
+before calculating the displacement vectors. For that, OVITO computes an affine transformation from the current and the reference
+simulation cell geometry and applies it to the particle coordinates. This mode may be used to effectively filter out contributions
+to the particle displacements that stem from the macroscopic deformation of the simulation cell, retaining only the internal (non-affine)
+displacements of the particles.</p>
+<p>The option <span class="guilabel">To current</span> performs the opposite: It transforms the particles of the reference configuration to the current
+configuration first before calculating the displacements. It does that by applying the affine transformation that is given by the
+simulation cell shape change.</p>
+<p>The following table visualizes the effect of the three mapping options on the resulting displacement vector of an exemplary particle.</p>
+<a class="reference internal image-reference" href="../../../_images/displacement_vectors_mapping.png"><img alt="../../../_images/displacement_vectors_mapping.png" src="../../../_images/displacement_vectors_mapping.png" style="width: 65%;" /></a>
+</section>
+<section id="minimum-image-convention">
+<h2>Minimum image convention<a class="headerlink" href="#minimum-image-convention" title="Permalink to this heading"></a></h2>
+<p>This option tells OVITO whether or not to use the <a class="reference external" href="https://en.wikipedia.org/wiki/Periodic_boundary_conditions#Practical_implementation:_continuity_and_the_minimum_image_convention">minimum image convention</a>
+when calculating the displacement vectors for systems with periodic boundary conditions.
+You should deactivate this option if you work with <em>unwrapped</em> particle coordinates. In this case
+OVITO assumes that particle trajectories are all continuous. On the other hand, if you work with
+<em>wrapped</em> particle coordinates, this option should be turned on. The minimum image convention
+ensures that displacements are calculated correctly even when particles cross a periodic boundary of the cell
+and were mapped back into the cell by the simulation code. On the other hand, if you intend to calculate displacements vectors
+that span more than half of the simulation box size, then the minimum imagine convention cannot be used. You <em>must</em>
+use unwrapped coordinates in this case, because large displacements would otherwise be folded back into the periodic cell thanks to
+the minimum image convention.</p>
+<p>The following figure shows the effect of the option:</p>
+<a class="reference internal image-reference" href="../../../_images/displacement_vectors_mapping.svg"><img alt="../../../_images/displacement_vectors_mapping.svg" src="../../../_images/displacement_vectors_mapping.svg" width="70%" /></a>
+<p>Note: For cell directions without periodic boundary conditions, the minimum image convention is never used.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="atomic_strain.html#particles-modifiers-atomic-strain"><span class="std std-ref">Atomic strain</span></a> modifier</p></li>
+<li><p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.CalculateDisplacementsModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.CalculateDisplacementsModifier</span></code></a> (Python API)</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dislocation_analysis.html" class="btn btn-neutral float-left" title="Dislocation analysis (DXA)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elastic_strain.html" class="btn btn-neutral float-right" title="Elastic strain calculation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

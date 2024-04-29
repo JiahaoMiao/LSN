@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data model &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/usage/data_model.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pipeline concept" href="pipeline.html" />
+    <link rel="prev" title="Viewport windows" href="viewports.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Basic usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="import.html">Data import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewports.html">Viewport windows</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#particle-properties">Particle properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-a-particle-property">What’s a particle property?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inspecting-properties">Inspecting properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assigning-property-values">Assigning property values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">Pipeline concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rendering.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html">Exporting data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Basic usage</a> &raquo;</li>
+      <li>Data model</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-particle-properties">
+<span id="data-model"></span><span id="usage-data-model"></span><h1>Data model<a class="headerlink" href="#usage-particle-properties" title="Permalink to this heading"></a></h1>
+<p>This page gives an introduction to the data model used by OVITO to represent molecular structures and other particle-based datasets.
+Understanding the basic concepts of OVITO’s data model is important for you to work efficiently with the data analysis and
+visualization functions of the program, which operate on particle simulation data.</p>
+<section id="particle-properties">
+<h2>Particle properties<a class="headerlink" href="#particle-properties" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="../reference/pipelines/data_objects/particles.html#scene-objects-particles"><span class="std std-ref">Particle properties</span></a> are numeric values associated with individual particles.
+They play a central role in the data model of OVITO and the way molecular and other structures are represented.
+Typical particle properties are the particle position, chemical type, and velocity. The user can assign any number of additional properties to particles,
+either explicitly or as a result of computations performed by the program.</p>
+<p>This general property concept is employed for other types of data elements as well, not only particles.
+For instance, the <a class="reference internal" href="../reference/pipelines/data_objects/bonds.html#scene-objects-bonds"><span class="std std-ref">interatomic bonds</span></a> may be associated with <em>bond properties</em>, e.g. bond type or color.
+Keep in mind that, while the following introduction focuses mainly on particles and their properties,
+the same principles apply also to other classes of data elements.</p>
+</section>
+<section id="what-s-a-particle-property">
+<h2>What’s a particle property?<a class="headerlink" href="#what-s-a-particle-property" title="Permalink to this heading"></a></h2>
+<p>Technically, an OVITO particle property is a uniform data array containing a numeric value for each particle in the system. All values
+are of the same data type, which may be scalar or vectorial. The length of the property array is always equal
+to the number of particles in the system.</p>
+<p>Each property has a unique name, for example, <code class="docutils literal notranslate"><span class="pre">Position</span></code> or <code class="docutils literal notranslate"><span class="pre">Potential</span> <span class="pre">Energy</span></code>.
+OVITO has a built-in list of <a class="reference external" href="../python/modules/ovito_data.html#particle-properties-list" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">commonly-used property names</span></a>, which have a meaning to the program and a prescribed data layout, but
+you are free to define additional properties with user-defined names.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Position</span></code> particle property is special because it is always present. Particles cannot exist without spatial coordinates.
+Other standard properties such as <code class="docutils literal notranslate"><span class="pre">Color</span></code>, <code class="docutils literal notranslate"><span class="pre">Radius</span></code>, or <code class="docutils literal notranslate"><span class="pre">Selection</span></code> are optional. They may or may not be present.
+If they are not already loaded from the imported simulation file, you can add them within the program using various functions.
+The mentioned standard properties <a class="reference internal" href="../reference/pipelines/data_objects/particles.html#usage-particle-properties-special"><span class="std std-ref">affect how OVITO renders the particles</span></a>.
+By assigning values to these properties, you can control the visual appearance of the particles.</p>
+<p>In OVITO, per-particle property values can have different data types (real or integer) and dimensionality (e.g. scalar, vector, tensor).
+The <code class="docutils literal notranslate"><span class="pre">Position</span></code> property, for instance, is a vector property with three components per particle, referred to as
+<code class="docutils literal notranslate"><span class="pre">Position.X</span></code>, <code class="docutils literal notranslate"><span class="pre">Position.Y</span></code> and <code class="docutils literal notranslate"><span class="pre">Position.Z</span></code> within OVITO’s user interface.</p>
+</section>
+<section id="inspecting-properties">
+<h2>Inspecting properties<a class="headerlink" href="#inspecting-properties" title="Permalink to this heading"></a></h2>
+<figure class="align-right" id="id1" style="width: 50%">
+<img alt="../_images/particle_inspection_example.png" src="../_images/particle_inspection_example.png" />
+<figcaption>
+<p><span class="caption-text">Data inspector displaying the table of particle properties</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Standard properties such as <code class="docutils literal notranslate"><span class="pre">Position</span></code>, <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code>, or <code class="docutils literal notranslate"><span class="pre">Velocity</span></code> are typically initialized from the
+imported simulation file. Some file formats such as <em>LAMMPS dump</em> or the <a class="reference external" href="http://libatoms.github.io/QUIP/io.html#module-ase.io.extxyz">extended XYZ format</a>
+can store an arbitrary number of extra data columns. These auxiliary attributes are automatically mapped to corresponding particle properties within OVITO.</p>
+<p>To find out which properties are currently associated with the particles, you can open OVITO’s <a class="reference internal" href="../reference/data_inspector/index.html#data-inspector"><span class="std std-ref">Data inspector</span></a> panel,
+which is shown in the screenshot on the right. Alternatively, you can simply point the mouse cursor at some particle in the viewports to let OVITO display
+its property values in the status bar.</p>
+</section>
+<section id="assigning-property-values">
+<h2>Assigning property values<a class="headerlink" href="#assigning-property-values" title="Permalink to this heading"></a></h2>
+<p>OVITO provides a rich set of functions for modifying the properties of particles. These so-called <em>modifiers</em>
+will be introduced in more detail in a later section of this manual. But to already give you a first idea of the principle:
+The <a class="reference internal" href="../reference/pipelines/modifiers/assign_color.html#particles-modifiers-assign-color"><span class="std std-ref">Assign color</span></a> modifier function lets you assign a uniform color of your choice
+to all currently selected particles. It does that by setting the <code class="docutils literal notranslate"><span class="pre">Color</span></code> property of the
+particles to the given RGB value (if the <code class="docutils literal notranslate"><span class="pre">Color</span></code> property doesn’t exist yet, it is automatically created).
+The subset of currently selected particles is determined by the <code class="docutils literal notranslate"><span class="pre">Selection</span></code> particle property: Particles whose <code class="docutils literal notranslate"><span class="pre">Selection</span></code>
+property has a non-zero value are part of the current selection set, while particles for which <code class="docutils literal notranslate"><span class="pre">Selection=0</span></code> are not selected.</p>
+<p>Fittingly, OVITO provides a number of selection modifiers, which let you define a particle selection set by appropriately setting the values of the <code class="docutils literal notranslate"><span class="pre">Selection</span></code> property.
+For example, the <a class="reference internal" href="../reference/pipelines/modifiers/select_particle_type.html#particles-modifiers-select-particle-type"><span class="std std-ref">Select type</span></a> modifier takes the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Type</span></code>
+property of each particle to decide whether or not to select that particle. It allows you to select all atoms of a particular chemical type, for example,
+and then perform some operation only on that subset of particles.</p>
+<p>Another typical modifier is the <a class="reference internal" href="../reference/pipelines/modifiers/coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">Coordination analysis</span></a> modifier.
+It computes the number of neighbors of each particle within a given cutoff range and stores the computation results in a new particle property named <code class="docutils literal notranslate"><span class="pre">Coordination</span></code>.
+Subsequently, you can refer to the values of this property, e.g., to select particles having a coordination number in a certain range
+or to color particles based on their coordination number (see <a class="reference internal" href="../reference/pipelines/modifiers/color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a> modifier).</p>
+<p>Of course, it is possible to export the particle property values to an output file. OVITO supports a variety of output formats for that (see the
+<a class="reference internal" href="export.html#usage-export"><span class="std std-ref">data export</span></a> section of this manual). For instance, the <em>XYZ</em> format is a simple table
+format supporting an arbitrary set of output columns.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="viewports.html" class="btn btn-neutral float-left" title="Viewport windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pipeline.html" class="btn btn-neutral float-right" title="Pipeline concept" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

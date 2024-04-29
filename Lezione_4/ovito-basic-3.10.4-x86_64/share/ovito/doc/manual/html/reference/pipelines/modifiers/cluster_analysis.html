@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cluster analysis &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/cluster_analysis.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Color by type pro" href="color_by_type.html" />
+    <link rel="prev" title="Clear selection" href="clear_selection.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Cluster analysis</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers-cluster-analysis">
+<span id="cluster-analysis"></span><h1>Cluster analysis<a class="headerlink" href="#particles-modifiers-cluster-analysis" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../_images/cluster_analysis_panel.png"><img alt="../../../_images/cluster_analysis_panel.png" class="align-right" src="../../../_images/cluster_analysis_panel.png" style="width: 35%;" /></a>
+<p>This modifier decomposes the particles into disconnected groups (so-called clusters) based on the
+selected neighboring criterion. The neighboring criterion can be distance-based (cutoff range) or topology-based (bond network).</p>
+<p>A <em>cluster</em> is defined as a set of connected particles, each of which is within the (indirect) reach of the other particles
+in the same cluster. Thus, any two particles from the same cluster are connected by a
+continuous path consisting of steps that fulfill the selected neighboring criterion.
+Conversely, two particles will belong to different clusters if
+there is no such continuous path connecting the two particles on the neighbor graph.</p>
+<figure class="align-default" id="id1" style="width: 20%">
+<img alt="../../../_images/cluster_analysis_example_input.png" src="../../../_images/cluster_analysis_example_input.png" />
+<figcaption>
+<p><span class="caption-text">Input</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 20%">
+<img alt="../../../_images/cluster_analysis_example_output.png" src="../../../_images/cluster_analysis_example_output.png" />
+<figcaption>
+<p><span class="caption-text">Output</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="connectivity-criterion">
+<h2>Connectivity criterion<a class="headerlink" href="#connectivity-criterion" title="Permalink to this heading"></a></h2>
+<p>You can choose between two clustering modes: In case of the distance-based mode, two particles are considered
+connected if they are within a specified proximity range of each other. In case of the bond-based mode,
+two particles are considered connected if there exists a bond between them.
+Note that particles not connected to any other particle will each form a single-particle cluster by itself.</p>
+</section>
+<section id="cluster-numbering">
+<h2>Cluster numbering<a class="headerlink" href="#cluster-numbering" title="Permalink to this heading"></a></h2>
+<p>The clusters identified by the modifier are given numeric identifiers ranging from 1 to <em>N</em>, the total number of clusters.
+The algorithm assigns each input particle to one of these clusters and outputs this information as a new particle property named <code class="docutils literal notranslate"><span class="pre">Cluster</span></code>.
+Note that the ordering of clusters is arbitrary by default and will generally depend on the storage order of the input particles.
+You can, however, activate the option <span class="guilabel">Sort clusters by size</span> to request the sorting of cluster IDs by descending particle count.
+This option guarantees that the first cluster (ID 1) will be the largest one in the system, i.e. the one containing the most particles.</p>
+</section>
+<section id="calculation-of-centers-of-mass">
+<h2>Calculation of centers of mass<a class="headerlink" href="#calculation-of-centers-of-mass" title="Permalink to this heading"></a></h2>
+<p>The modifier provides an option to compute the center of mass of each cluster. The center coordinates will be output as an additional column
+of the clusters table (see below). Finite clusters that are disrupted by periodic cell boundaries are handled correctly (using the <em>minimum image convention</em> if necessary).
+However, if a cluster is infinite in the sense that it reconnects to itself through a periodic cell boundary, then the computation results will be undefined.</p>
+<p>The algorithm uses particle masses as weights when calculating the center of mass of a cluster.
+The mass information will be taken from the <code class="docutils literal notranslate"><span class="pre">Mass</span></code> property of individual particles (if present) or
+from the mass parameter of the <a class="reference internal" href="../data_objects/particles.html#scene-objects-particle-types"><span class="std std-ref">particle types</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If neither the <code class="docutils literal notranslate"><span class="pre">Mass</span></code> particle property is present nor mass values have been specified for at least some of the particle types,
+then the algorithm uses uniform weights in the computation for all particles.</p>
+</div>
+</section>
+<section id="calculation-of-gyration-radius-and-gyration-tensor">
+<h2>Calculation of gyration radius and gyration tensor<a class="headerlink" href="#calculation-of-gyration-radius-and-gyration-tensor" title="Permalink to this heading"></a></h2>
+<p>The modifier can optionally compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Radius_of_gyration">radius of gyration</a>
+of each cluster as well as its <a class="reference external" href="https://en.wikipedia.org/wiki/Gyration_tensor">gyration tensor</a>.
+Both quantities will appear as additional columns in the generated table of clusters.</p>
+<p>The symmetric gyration tensor has six independent components: <code class="docutils literal notranslate"><span class="pre">xx</span></code>, <code class="docutils literal notranslate"><span class="pre">yy</span></code>, <code class="docutils literal notranslate"><span class="pre">zz</span></code>, <code class="docutils literal notranslate"><span class="pre">xy</span></code>, <code class="docutils literal notranslate"><span class="pre">xz</span></code>, <code class="docutils literal notranslate"><span class="pre">yz</span></code> (in simulation units of length squared).
+The output data table is found in the <a class="reference internal" href="../../data_inspector/data_tables.html#data-inspector-data-tables"><span class="std std-ref">data inspector panel</span></a>:</p>
+<a class="reference internal image-reference" href="../../../_images/cluster_analysis_table.png"><img alt="../../../_images/cluster_analysis_table.png" src="../../../_images/cluster_analysis_table.png" style="width: 100%;" /></a>
+<p>The calculation of the radius of gyration and the gyration tensor in OVITO follows the <a class="reference external" href="https://docs.lammps.org/compute_gyration.html">compute gyration</a> command
+of the LAMMPS simulation code. It takes into account the individual particle masses (if present) or masses specified for the <a class="reference internal" href="../data_objects/particles.html#scene-objects-particle-types"><span class="std std-ref">particle types</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If neither the <code class="docutils literal notranslate"><span class="pre">Mass</span></code> particle property is present nor mass values have been specified for at least some of the particle types,
+then the algorithm uses uniform weights in the computation for all particles.</p>
+</div>
+</section>
+<section id="unwrapping-of-particle-coordinates">
+<h2>Unwrapping of particle coordinates<a class="headerlink" href="#unwrapping-of-particle-coordinates" title="Permalink to this heading"></a></h2>
+<p>The modifier provides the option to “unwrap” the coordinates of particles belonging to the same cluster, mapping them outside the primary image of the periodic simulation domain
+such that each cluster appears as a contiguous object.</p>
+<p>Note that the unwrapping will yield meaningful results only for finite clusters. It will lead to undefined results for
+infinite clusters that are connected with themselves through a periodic cell boundary.</p>
+</section>
+<section id="coloring-option">
+<h2>Coloring option<a class="headerlink" href="#coloring-option" title="Permalink to this heading"></a></h2>
+<p>The modifier option <span class="guilabel">Color particles by cluster</span> gives each identified cluster a unique random color
+and colors the particles according to the clusters they belong to. It helps to quickly visualize the results of the
+clustering algorithm.</p>
+</section>
+<section id="restriction-to-selected-particles">
+<h2>Restriction to selected particles<a class="headerlink" href="#restriction-to-selected-particles" title="Permalink to this heading"></a></h2>
+<p>The option <span class="guilabel">Use only selected particles</span> restricts the clustering algorithm to the set of currently selected
+particles. Unselected particles will be treated as if they do not exist and will be assigned the special cluster ID 0.</p>
+</section>
+<section id="exporting-computation-results">
+<h2>Exporting computation results<a class="headerlink" href="#exporting-computation-results" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Total number of clusters</dt><dd><p>To export the total number of clusters found by the modifier to a text file (possibly as a function of time),
+use OVITO’s standard <a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export function</span></a>. Select the output format <strong>Table of values</strong>
+and make sure that the <code class="docutils literal notranslate"><span class="pre">ClusterAnalysis.cluster_count</span></code> global attribute is selected for export.</p>
+</dd>
+<dt>Size of the largest clusters</dt><dd><p>The modifier also outputs the global attribute <code class="docutils literal notranslate"><span class="pre">ClusterAnalysis.largest_size</span></code> to report
+the number of particles in the largest cluster (only if the sort-by-size option is used). This information can be
+exported from OVITO in the same way as explained above.</p>
+</dd>
+<dt>Particle assignment to clusters</dt><dd><p>To export the list of particles belonging to each cluster to a text file, use OVITO’s
+<a class="reference internal" href="../../../usage/export.html#usage-export"><span class="std std-ref">file export function</span></a>. Choose the output file format <strong>XYZ</strong>
+and mark the <code class="docutils literal notranslate"><span class="pre">Particle</span> <span class="pre">Identifier</span></code> and the <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> properties for export.
+This will yield a text file containing each particle’s cluster ID.</p>
+</dd>
+<dt>Cluster size list and centers of mass</dt><dd><p>The modifiers outputs the list of identified clusters as a <a class="reference internal" href="../data_objects/data_table.html#scene-objects-data-table"><span class="std std-ref">data table</span></a>,
+which consists of one row per cluster and columns for the cluster size (number of particles), center of mass and radius of gyration (if their calculation is enabled).
+You can open this table in the <a class="reference internal" href="../../data_inspector/data_tables.html#data-inspector-data-tables"><span class="std std-ref">data inspector panel</span></a> of OVITO by pressing the button <span class="guilabel">Show list of clusters</span>.
+The data inspector panel provides a function for exporting the table data to a text file.</p>
+</dd>
+<dt>Cluster size distribution</dt><dd><p>Since the cluster table generated by the modifier contains each cluster’s size,
+you can subsequently apply OVITO’s <a class="reference internal" href="histogram.html#particles-modifiers-histogram"><span class="std std-ref">Histogram</span></a> to the <code class="docutils literal notranslate"><span class="pre">Cluster</span> <span class="pre">Size</span></code>
+column of that table to calculate the cluster size distribution.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="../../../python/modules/ovito_modifiers.html#ovito.modifiers.ClusterAnalysisModifier" title="(in OVITO Python Reference v3.10.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ovito.modifiers.ClusterAnalysisModifier</span></code></a> (Python API)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clear_selection.html" class="btn btn-neutral float-left" title="Clear selection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="color_by_type.html" class="btn btn-neutral float-right" title="Color by type pro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

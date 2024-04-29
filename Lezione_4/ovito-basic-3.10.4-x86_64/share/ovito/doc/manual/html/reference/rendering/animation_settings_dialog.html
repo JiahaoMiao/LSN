@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation settings &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/rendering/animation_settings_dialog.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenGL renderer" href="opengl_renderer.html" />
+    <link rel="prev" title="Render settings" href="render_settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Rendering</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="render_settings.html">Render settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Animation settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="opengl_renderer.html">OpenGL renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospray_renderer.html">OSPRay renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tachyon_renderer.html">Tachyon renderer <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="visrtx_renderer.html">VisRTX renderer (experimental) <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+          <li><a href="index.html">Rendering</a> &raquo;</li>
+      <li>Animation settings</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="animation-animation-settings-dialog">
+<span id="animation-settings"></span><h1>Animation settings<a class="headerlink" href="#animation-animation-settings-dialog" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../_images/animation_settings_dialog.png"><img alt="../../_images/animation_settings_dialog.png" class="align-right" src="../../_images/animation_settings_dialog.png" style="width: 35%;" /></a>
+<p>The <em>Animation Settings</em> dialog can be opened from the animation toolbar:</p>
+<a class="reference internal image-reference" href="../../_images/animation_settings_button.png"><img alt="../../_images/animation_settings_button.png" src="../../_images/animation_settings_button.png" style="width: 25%;" /></a>
+<p>The dialog lets you manage animation-related settings, e.g. the playback frame rate and the length of the
+current animation. Note that a more detailed introduction to OVITO’s animation system can be found
+<a class="reference internal" href="../../advanced_topics/animation.html#usage-animation"><span class="std std-ref">here</span></a>.</p>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Frames per second</dt><dd><p>The playback speed of the animation in frames per second. This value determines both the frame rate of
+movie files rendered by OVITO and the playback of the animation in the interactive viewports.</p>
+</dd>
+<dt>Playback speed</dt><dd><p>Controls the playback speed of the animation in OVITO’s interactive viewports.
+This factor is multiplied by the frame rate (FPS) described
+parameter above. Note that the effective playback speed may be much slower if
+loading, computing, and displaying the next frame takes a long time.</p>
+</dd>
+<dt>Every Nth frame</dt><dd><p>Lets OVITO skip some animation frames during playback in the interactive viewports.
+Use this to accelerate the playback of a long trajectory, where loading and computing every
+frame would take too much time.</p>
+</dd>
+<dt>Loop playback</dt><dd><p>Controls whether animation playback in the viewport happens in a repeating loop.
+If turned off, playback stops when the end of the animation is reached.</p>
+</dd>
+<dt>Custom animation interval</dt><dd><p>This option lets you override the length of the animation interval shown in
+the timeline of OVITO. Normally, this interval is automatically adjusted
+to the length of the loaded simulation sequence(s).
+Setting a custom animation length is useful, for example, if the simulation
+dataset consists of just a static frame (not a trajectory) but you would like to create a
+<a class="reference internal" href="../../advanced_topics/animation.html#usage-animation"><span class="std std-ref">camera animation</span></a> moving around the dataset.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="render_settings.html" class="btn btn-neutral float-left" title="Render settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="opengl_renderer.html" class="btn btn-neutral float-right" title="OpenGL renderer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

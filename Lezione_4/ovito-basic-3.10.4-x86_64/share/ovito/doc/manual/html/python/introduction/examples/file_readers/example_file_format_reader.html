@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example FR1: Custom file reader loading particle properties and the simulation cell &mdash; OVITO Python Reference 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/python/introduction/examples/file_readers/example_file_format_reader.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example FR2: Optimizing the performance of Example FR1" href="example_file_format_reader_optimization.html" />
+    <link rel="prev" title="Example O3: Highlight a particle" href="../overlays/highlight_particle.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #b94429" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">High-level API overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_io.html">File I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines.html">Data pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_model.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_manipulation.html">Manipulating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_modifiers.html">User-defined modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_file_readers.html">User-defined file readers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_overlays.html">User-defined viewport layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rendering.html">Rendering &amp; visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Code examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#standalone-automation-scripts">Standalone automation scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-modifier-functions">User-defined modifier functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples.html#user-defined-viewport-layers">User-defined viewport layers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../examples.html#user-defined-file-readers">User-defined file readers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example FR1: Custom file reader loading particle properties and the simulation cell</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-detect-method">The <code class="docutils literal notranslate"><span class="pre">detect</span></code> method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-scan-method">The <code class="docutils literal notranslate"><span class="pre">scan</span></code> method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-parse-method">The <code class="docutils literal notranslate"><span class="pre">parse</span></code> method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-note-on-performance">A note on performance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="example_file_format_reader_optimization.html">Example FR2: Optimizing the performance of Example FR1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito.html"><code class="docutils literal notranslate"><span class="pre">ovito</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_data.html"><code class="docutils literal notranslate"><span class="pre">ovito.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io.html"><code class="docutils literal notranslate"><span class="pre">ovito.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_ase.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.ase</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_io_lammps.html"><code class="docutils literal notranslate"><span class="pre">ovito.io.lammps</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_modifiers.html"><code class="docutils literal notranslate"><span class="pre">ovito.modifiers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_pipeline.html"><code class="docutils literal notranslate"><span class="pre">ovito.pipeline</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_traits.html"><code class="docutils literal notranslate"><span class="pre">ovito.traits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/ovito_vis.html"><code class="docutils literal notranslate"><span class="pre">ovito.vis</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #b94429" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO Python Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Code examples</a> &raquo;</li>
+      <li>Example FR1: Custom file reader loading particle properties and the simulation cell</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../../index.html" style="padding: 1px;">User&nbsp;Manual&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-fr1-custom-file-reader-loading-particle-properties-and-the-simulation-cell">
+<span id="example-custom-file-reader-fr1"></span><h1>Example FR1: Custom file reader loading particle properties and the simulation cell<a class="headerlink" href="#example-fr1-custom-file-reader-loading-particle-properties-and-the-simulation-cell" title="Permalink to this heading"></a></h1>
+<p>In this example we will implement a reader component for a custom file format using OVITO’s <a class="reference internal" href="../../custom_file_readers.html#writing-custom-file-readers"><span class="std std-ref">custom file reader API</span></a>.</p>
+<p>A few key assumptions and provisions before we start writing a file reader for our custom file format:</p>
+<ul class="simple">
+<li><p>The file format is easily recognizable from the characteristic file suffix <code class="file docutils literal notranslate"><span class="pre">*.ExampleFormat</span></code>.</p></li>
+<li><p>We will use the <em>Timestep</em> tag as the delimiter separating successive trajectory frames in the file.</p></li>
+<li><p>The dimensions of the simulation cell may change in every frame. We assume the simulations always use 3D periodic boundary conditions.</p></li>
+<li><p>The total number of atoms and their types may change during a simulation. Notice how they do in the third trajectory frame below.</p></li>
+<li><p>Each line starts with the particle type of the atom encoded as the chemical symbol.</p></li>
+<li><p>Particle positions are given in reduced cell coordinates (preceded by the line <em>Reduced coordinates</em>).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Timestep</span> <span class="mi">0</span>
+<span class="mf">7.865954</span> <span class="mf">0.000000</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">7.865954</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">0.000000</span> <span class="mf">6.973035</span>
+<span class="n">Atoms</span> <span class="mi">18</span>
+<span class="n">Reduced</span> <span class="n">coordinates</span>
+<span class="n">Na</span> <span class="mf">0.09306390</span> <span class="mf">0.30261238</span> <span class="mf">0.46908935</span>
+<span class="n">Na</span> <span class="mf">0.90693610</span> <span class="mf">0.69738762</span> <span class="mf">0.46908938</span>
+<span class="n">Na</span> <span class="mf">0.30261235</span> <span class="mf">0.90693613</span> <span class="mf">0.53091062</span>
+<span class="n">Na</span> <span class="mf">0.69738763</span> <span class="mf">0.09306392</span> <span class="mf">0.53091062</span>
+<span class="n">Na</span> <span class="mf">0.40693612</span> <span class="mf">0.80261241</span> <span class="mf">0.03091062</span>
+<span class="n">Na</span> <span class="mf">0.59306393</span> <span class="mf">0.19738766</span> <span class="mf">0.03091059</span>
+<span class="n">Na</span> <span class="mf">0.19738763</span> <span class="mf">0.40693613</span> <span class="mf">0.96908938</span>
+<span class="n">Na</span> <span class="mf">0.80261236</span> <span class="mf">0.59306396</span> <span class="mf">0.96908938</span>
+<span class="n">S</span> <span class="mf">0.24180739</span> <span class="mf">0.09397526</span> <span class="mf">0.19064404</span>
+<span class="n">S</span> <span class="mf">0.75819276</span> <span class="mf">0.90602458</span> <span class="mf">0.19064394</span>
+<span class="n">S</span> <span class="mf">0.09397538</span> <span class="mf">0.75819274</span> <span class="mf">0.80935606</span>
+<span class="n">S</span> <span class="mf">0.90602453</span> <span class="mf">0.24180732</span> <span class="mf">0.80935606</span>
+<span class="n">S</span> <span class="mf">0.25819273</span> <span class="mf">0.59397545</span> <span class="mf">0.30935596</span>
+<span class="n">S</span> <span class="mf">0.74180726</span> <span class="mf">0.40602446</span> <span class="mf">0.30935606</span>
+<span class="n">S</span> <span class="mf">0.40602443</span> <span class="mf">0.25819271</span> <span class="mf">0.69064391</span>
+<span class="n">S</span> <span class="mf">0.59397545</span> <span class="mf">0.74180729</span> <span class="mf">0.69064404</span>
+<span class="n">Sn</span> <span class="mf">0.00000000</span> <span class="mf">0.00000000</span> <span class="mf">0.00000000</span>
+<span class="n">Sn</span> <span class="mf">0.50000000</span> <span class="mf">0.50000000</span> <span class="mf">0.49999997</span>
+<span class="n">Timestep</span> <span class="mi">100</span>
+<span class="mf">7.870939</span> <span class="mf">0.000000</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">7.870939</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">0.000000</span> <span class="mf">6.977331</span>
+<span class="n">Atoms</span> <span class="mi">18</span>
+<span class="n">Reduced</span> <span class="n">coordinates</span>
+<span class="n">Na</span> <span class="mf">0.09309428</span> <span class="mf">0.30260112</span> <span class="mf">0.46914038</span>
+<span class="n">Na</span> <span class="mf">0.90690570</span> <span class="mf">0.69739888</span> <span class="mf">0.46914042</span>
+<span class="n">Na</span> <span class="mf">0.30260109</span> <span class="mf">0.90690574</span> <span class="mf">0.53085958</span>
+<span class="n">Na</span> <span class="mf">0.69739888</span> <span class="mf">0.09309430</span> <span class="mf">0.53085958</span>
+<span class="n">Na</span> <span class="mf">0.40690573</span> <span class="mf">0.80260115</span> <span class="mf">0.03085957</span>
+<span class="n">Na</span> <span class="mf">0.59309430</span> <span class="mf">0.19739893</span> <span class="mf">0.03085954</span>
+<span class="n">Na</span> <span class="mf">0.19739889</span> <span class="mf">0.40690574</span> <span class="mf">0.96914042</span>
+<span class="n">Na</span> <span class="mf">0.80260110</span> <span class="mf">0.59309434</span> <span class="mf">0.96914043</span>
+<span class="n">S</span> <span class="mf">0.24179056</span> <span class="mf">0.09398270</span> <span class="mf">0.19066976</span>
+<span class="n">S</span> <span class="mf">0.75820959</span> <span class="mf">0.90601718</span> <span class="mf">0.19066973</span>
+<span class="n">S</span> <span class="mf">0.09398279</span> <span class="mf">0.75820959</span> <span class="mf">0.80933034</span>
+<span class="n">S</span> <span class="mf">0.90601713</span> <span class="mf">0.24179048</span> <span class="mf">0.80933037</span>
+<span class="n">S</span> <span class="mf">0.25820958</span> <span class="mf">0.59398272</span> <span class="mf">0.30933030</span>
+<span class="n">S</span> <span class="mf">0.74179038</span> <span class="mf">0.40601712</span> <span class="mf">0.30933031</span>
+<span class="n">S</span> <span class="mf">0.40601707</span> <span class="mf">0.25820957</span> <span class="mf">0.69066957</span>
+<span class="n">S</span> <span class="mf">0.59398288</span> <span class="mf">0.74179044</span> <span class="mf">0.69066971</span>
+<span class="n">Sn</span> <span class="mf">0.00000002</span> <span class="mf">0.00000002</span> <span class="o">-</span><span class="mf">0.00000002</span>
+<span class="n">Sn</span> <span class="mf">0.49999998</span> <span class="mf">0.50000000</span> <span class="mf">0.49999997</span>
+<span class="n">Timestep</span> <span class="mi">200</span>
+<span class="mf">7.878383</span> <span class="mf">0.000000</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">7.878383</span> <span class="mf">0.000000</span>
+<span class="mf">0.000000</span> <span class="mf">0.000000</span> <span class="mf">6.982911</span>
+<span class="n">Atoms</span> <span class="mi">19</span>
+<span class="n">Reduced</span> <span class="n">coordinates</span>
+<span class="n">Na</span> <span class="mf">0.09309963</span> <span class="mf">0.30259914</span> <span class="mf">0.46914936</span>
+<span class="n">Na</span> <span class="mf">0.90690035</span> <span class="mf">0.69740086</span> <span class="mf">0.46914940</span>
+<span class="n">Na</span> <span class="mf">0.30259910</span> <span class="mf">0.90690039</span> <span class="mf">0.53085060</span>
+<span class="n">Na</span> <span class="mf">0.69740086</span> <span class="mf">0.09309965</span> <span class="mf">0.53085059</span>
+<span class="n">Na</span> <span class="mf">0.40690038</span> <span class="mf">0.80259917</span> <span class="mf">0.03085059</span>
+<span class="n">Na</span> <span class="mf">0.59309965</span> <span class="mf">0.19740091</span> <span class="mf">0.03085055</span>
+<span class="n">Na</span> <span class="mf">0.19740087</span> <span class="mf">0.40690039</span> <span class="mf">0.96914940</span>
+<span class="n">Na</span> <span class="mf">0.80259911</span> <span class="mf">0.59309969</span> <span class="mf">0.96914941</span>
+<span class="n">S</span> <span class="mf">0.24178760</span> <span class="mf">0.09398401</span> <span class="mf">0.19067428</span>
+<span class="n">S</span> <span class="mf">0.75821255</span> <span class="mf">0.90601588</span> <span class="mf">0.19067427</span>
+<span class="n">S</span> <span class="mf">0.09398409</span> <span class="mf">0.75821256</span> <span class="mf">0.80932582</span>
+<span class="n">S</span> <span class="mf">0.90601583</span> <span class="mf">0.24178752</span> <span class="mf">0.80932585</span>
+<span class="n">S</span> <span class="mf">0.25821254</span> <span class="mf">0.59398400</span> <span class="mf">0.30932578</span>
+<span class="n">S</span> <span class="mf">0.74178741</span> <span class="mf">0.40601583</span> <span class="mf">0.30932578</span>
+<span class="n">S</span> <span class="mf">0.40601578</span> <span class="mf">0.25821253</span> <span class="mf">0.69067409</span>
+<span class="n">S</span> <span class="mf">0.59398418</span> <span class="mf">0.74178748</span> <span class="mf">0.69067423</span>
+<span class="n">Sn</span> <span class="mf">0.00000002</span> <span class="mf">0.00000002</span> <span class="o">-</span><span class="mf">0.00000002</span>
+<span class="n">Sn</span> <span class="mf">0.49999997</span> <span class="mf">0.50000000</span> <span class="mf">0.49999997</span>
+<span class="n">Fe</span> <span class="mf">0.32000002</span> <span class="mf">0.41690039</span> <span class="mf">0.42785059</span>
+</pre></div>
+</div>
+<section id="the-detect-method">
+<h2>The <code class="docutils literal notranslate"><span class="pre">detect</span></code> method<a class="headerlink" href="#the-detect-method" title="Permalink to this heading"></a></h2>
+<p>For simplicity we will identify this file type by its name. That means, if the file extension is <em>.ExampleFormat</em>,
+the file reader will attempt to parse it. Extracting and validating the file extension is done in
+line 10:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">ExampleFileFormatReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="nd">@staticmethod</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.ExampleFormat&quot;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="linenos">13</span>        <span class="o">...</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="the-scan-method">
+<h2>The <code class="docutils literal notranslate"><span class="pre">scan</span></code> method<a class="headerlink" href="#the-scan-method" title="Permalink to this heading"></a></h2>
+<p>Frames are delimited by the phrase <em>Timestep N</em>, where <em>N</em> is the simulation timestep at that frame.
+We will go through the file and track the line number of this tag. This line will also be used as a
+human readable label for each frame.</p>
+<p>Within the scan method, the whole file is read in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (lines 13-14). The following lines
+15-16 process each frame, here, each time the <em>Timestep</em> tag is
+encountered, the current line number and frame label are registered with OVITO using the
+<code class="docutils literal notranslate"><span class="pre">register_frame</span></code> callback. The line number will be used to find a specific frame, while
+the string is be used as a human readable label in the GUI.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">ExampleFileFormatReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="nd">@staticmethod</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.ExampleFormat&quot;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="linenos">13</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">14</span>            <span class="k">for</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="linenos">15</span>                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Timestep &quot;</span><span class="p">):</span>
+<span class="linenos">16</span>                    <span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="o">=</span><span class="n">line_number</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="linenos">19</span>        <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="the-parse-method">
+<h2>The <code class="docutils literal notranslate"><span class="pre">parse</span></code> method<a class="headerlink" href="#the-parse-method" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">parse</span></code> method has multiple tasks. The goal is to set
+the <a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a>, <code class="docutils literal notranslate"><span class="pre">particle</span> <span class="pre">positions</span></code>, and
+<a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.ParticleType" title="ovito.data.ParticleType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleType</span></code></a>. The current timestep will also be stored as
+<a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.DataCollection.attributes" title="ovito.data.DataCollection.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">attributes</span></code></a> for easier access inside the OVITO application
+window.</p>
+<p>First we skip thorugh the file until we reach the requested frame (lines 21-23). The starting line
+of the frame is can be obtained from the <code class="docutils literal notranslate"><span class="pre">frame_info</span></code> object set in the <code class="docutils literal notranslate"><span class="pre">scan</span></code> method.</p>
+<p>The next line in the file now contains the <em>Timestep</em> information which we would like to save as an
+OVITO attribute. The information is read in line 26 and stored in the attributes dictionary in line 27.
+This dictionary can be filled with custom fields which will all be accessible to the user from
+within OVITO.</p>
+<p>In line 30 an “empty” simulation <a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.SimulationCell" title="ovito.data.SimulationCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationCell</span></code></a> with all cell vectors set to 0 is created and its periodic
+boundary conditions are set. The cell vectors are subsequently read form the input file and
+placed in the simulation cell matrix (code lines 32-33).</p>
+<p>The next line after the simulation cell block contains the number of atoms stored in the file for
+the current frame. It is read in line 36. This information is use to create the
+<a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.Particles" title="ovito.data.Particles"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particles</span></code></a> <a class="reference internal" href="../../../modules/ovito_data.html#ovito.data.PropertyContainer" title="ovito.data.PropertyContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PropertyContainer</span></code></a> (line 38). Once this
+container is constructed it can be filled with particle properties. In this case we want to read the
+<em>particle type</em> and the <em>position</em> from the file. These properties are defined in lines 40 and 42,
+respectively.</p>
+<p>After skipping the <em>reduced coordinates</em> line we read the next <em>N</em> lines from the file, where <em>N</em> is
+the number of particles (lines 48-53). Each line contains the data for one particle.The first column contains the
+chemical symbol which can be automatically converted into OVITO particle types using the
+<code class="docutils literal notranslate"><span class="pre">type_property.add_type_name(tokens[0],</span> <span class="pre">particles).id</span></code> method, where <code class="docutils literal notranslate"><span class="pre">tokens[0]</span></code> is the chemical
+symbol. After parsing, all <em>Na</em> atoms will have the numeric type 1, all <em>S</em> atoms will have type 2,
+and so on. The result is stored in the <code class="docutils literal notranslate"><span class="pre">type_property</span></code> property array at the correct index.
+Lastly, positions for each particle are read from the file and converted into cartesian coordiantes
+by multiplication with the simulation cell matrix. The resulting position vector is stored in the
+<code class="docutils literal notranslate"><span class="pre">type_property</span></code> array.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">ovito.data</span> <span class="kn">import</span> <span class="n">DataCollection</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">ovito.io</span> <span class="kn">import</span> <span class="n">FileReaderInterface</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">ExampleFileFormatReader</span><span class="p">(</span><span class="n">FileReaderInterface</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="nd">@staticmethod</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.ExampleFormat&quot;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">register_frame</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="linenos">13</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">14</span>            <span class="k">for</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="linenos">15</span>                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">):</span>
+<span class="linenos">16</span>                    <span class="n">register_frame</span><span class="p">(</span><span class="n">frame_info</span><span class="o">=</span><span class="n">line_number</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataCollection</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">frame_info</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="linenos">19</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">20</span>            <span class="c1"># Seek to the beginning of the requested trajectory frame</span>
+<span class="linenos">21</span>            <span class="n">starting_line_number</span> <span class="o">=</span> <span class="n">frame_info</span>
+<span class="linenos">22</span>            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">starting_line_number</span><span class="p">):</span>
+<span class="linenos">23</span>                <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>            <span class="c1"># Parse the timestep number as a global attribute</span>
+<span class="linenos">26</span>            <span class="n">timestep</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">27</span>            <span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;Timestep&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">timestep</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>            <span class="c1"># Create 3D periodic cell</span>
+<span class="linenos">30</span>            <span class="n">cell</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">create_cell</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">pbc</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="linenos">31</span>            <span class="c1"># Parse cell vectors</span>
+<span class="linenos">32</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="linenos">33</span>                <span class="n">cell</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>            <span class="c1"># Parse particle count</span>
+<span class="linenos">36</span>            <span class="n">particle_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">37</span>            <span class="c1"># Create new particles container object</span>
+<span class="linenos">38</span>            <span class="n">particles</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">create_particles</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">particle_count</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="c1"># Create particles type property</span>
+<span class="linenos">40</span>            <span class="n">type_property</span> <span class="o">=</span> <span class="n">particles</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Particle Type&quot;</span><span class="p">)</span>
+<span class="linenos">41</span>            <span class="c1"># Create position property</span>
+<span class="linenos">42</span>            <span class="n">position_property</span> <span class="o">=</span> <span class="n">particles</span><span class="o">.</span><span class="n">create_property</span><span class="p">(</span><span class="s2">&quot;Position&quot;</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>            <span class="c1"># Skip &quot;Reduced coordinates&quot; line</span>
+<span class="linenos">45</span>            <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span>            <span class="c1"># Parse particle types and coordinates</span>
+<span class="linenos">48</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">particle_count</span><span class="p">):</span>
+<span class="linenos">49</span>                <span class="n">tokens</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="linenos">50</span>                <span class="c1"># Register named particle type and get its numeric ID assigned by OVITO</span>
+<span class="linenos">51</span>                <span class="n">type_property</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_property</span><span class="o">.</span><span class="n">add_type_name</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">particles</span><span class="p">)</span><span class="o">.</span><span class="n">id</span>
+<span class="linenos">52</span>                <span class="c1"># Convert reduced to cartesian particle coordinates</span>
+<span class="linenos">53</span>                <span class="n">position_property</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span> <span class="o">@</span> <span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="a-note-on-performance">
+<h2>A note on performance<a class="headerlink" href="#a-note-on-performance" title="Permalink to this heading"></a></h2>
+<p>This custom file reader exhibits two potential performance issues:</p>
+<ol class="arabic simple">
+<li><p>For long trajectories, seeking to a requested frame by reading all lines preceding that frame will become slower and slower for later frames.</p></li>
+<li><p>For simulations containing many atoms, performing many property assignments such as <code class="docutils literal notranslate"><span class="pre">type_property[i]</span> <span class="pre">=</span> <span class="pre">...</span></code> can become a bottleneck.</p></li>
+</ol>
+<p>These issues will be addressed in the next <a class="reference internal" href="example_file_format_reader_optimization.html#example-custom-file-reader-fr2"><span class="std std-ref">Example FR2: Optimizing the performance of Example FR1</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overlays/highlight_particle.html" class="btn btn-neutral float-left" title="Example O3: Highlight a particle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example_file_format_reader_optimization.html" class="btn btn-neutral float-right" title="Example FR2: Optimizing the performance of Example FR1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

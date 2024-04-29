@@ -1,0 +1,30 @@
+/*
+  This is customization stylesheet file for the Read-the-Docs Sphinx theme
+*/
+
+/* Increase the width of the RTD main content area from 800px. */
+.wy-nav-content {
+    max-width: 950px !important;
+}
+
+/* Break lines within table cells. */
+.wy-table-responsive table td {
+    white-space: normal;
+}
+
+/* Hide the "property" string in front of class member attributes. */
+/*
+em.property {
+	display: none !important;
+}
+*/
+
+/* Reduce space after "Returns:" lines. */
+.rst-content dl {
+  margin-bottom: 0px !important;
+}
+
+/* Make the blue title bar of Python classes and functions span the full width of the page column. */
+dl.py.class > dt, dl.py.function > dt {
+	display: inherit !important;
+}

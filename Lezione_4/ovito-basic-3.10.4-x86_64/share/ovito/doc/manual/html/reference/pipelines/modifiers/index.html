@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifiers &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/reference/pipelines/modifiers/index.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Ackland-Jones analysis" href="bond_angle_analysis.html" />
+    <link rel="prev" title="Dislocations" href="../visual_elements/dislocations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_sources/index.html">Data sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_objects/index.html">Data objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visual_elements/index.html">Visual elements</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bond_angle_analysis.html">Ackland-Jones analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="affine_transformation.html">Affine transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ambient_occlusion.html">Ambient occlusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="assign_color.html">Assign color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic_strain.html">Atomic strain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bond_analysis.html">Bond analysis <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="calculate_local_entropy.html">Calculate local entropy <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="centrosymmetry.html">Centrosymmetry parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chill_plus.html">Chill+</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clear_selection.html">Clear selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cluster_analysis.html">Cluster analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_by_type.html">Color by type <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_coding.html">Color coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_particle_sets.html">Combine datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common_neighbor_analysis.html">Common neighbor analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute_property.html">Compute property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_surface_mesh.html">Construct surface mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_analysis.html">Coordination analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coordination_polyhedra.html">Coordination polyhedra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_bonds.html">Create bonds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_isosurface.html">Create isosurface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete_selected_particles.html">Delete selected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dislocation_analysis.html">Dislocation analysis (DXA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displacement_vectors.html">Displacement vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elastic_strain.html">Elastic strain calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expand_selection.html">Expand selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression_select.html">Expression selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="freeze_property.html">Freeze property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generate_trajectory_lines.html">Generate trajectory lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grain_segmentation.html">Grain segmentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histogram.html">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_diamond.html">Identify diamond structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identify_fcc_planar_faults.html">Identify fcc planar faults <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interactive_molecular_dynamics.html">Interactive molecular dynamics (IMD)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="invert_selection.html">Invert selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="load_trajectory.html">Load trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manual_selection.html">Manual selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polyhedral_template_matching.html">Polyhedral template matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python_script.html">Python script <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="render_lammps_regions.html">Render LAMMPS regions <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_periodic_images.html">Replicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_plot.html">Scatter plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="select_particle_type.html">Select type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrink_wrap_box.html">Shrink-wrap simulation box <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="slice.html">Slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth_trajectory.html">Smooth trajectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bin_and_reduce.html">Spatial binning <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlation_function.html">Spatial correlation function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_averaging.html">Time averaging <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="time_series.html">Time series <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unwrap_trajectories.html">Unwrap trajectories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi_analysis.html">Voronoi analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vorotop_analysis.html">VoroTop analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wigner_seitz_analysis.html">Wigner-Seitz defect analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wrap_at_periodic_boundaries.html">Wrap at periodic boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../viewports/index.html">Viewports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rendering/index.html">Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_inspector/index.html">Data inspector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_settings/index.html">Application settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ovito_pro.html">OVITO Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Reference</a> &raquo;</li>
+          <li><a href="../index.html">Pipelines</a> &raquo;</li>
+      <li>Modifiers</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="../../../python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particles-modifiers">
+<span id="modifiers"></span><h1>Modifiers<a class="headerlink" href="#particles-modifiers" title="Permalink to this heading"></a></h1>
+<p>Modifiers are the basic building blocks for creating a <a class="reference internal" href="../../../usage/pipeline.html#usage-modification-pipeline"><span class="std std-ref">data pipeline</span></a> in OVITO.
+Like tools in a toolbox, each modifier implements a very specific, well-defined type of operation or computation, and typically you will need to
+combine several modifiers to accomplish more complex tasks.</p>
+<p><strong>List of modifiers available in OVITO:</strong></p>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Analysis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="atomic_strain.html#particles-modifiers-atomic-strain"><span class="std std-ref">Atomic strain</span></a></p></td>
+<td><p>Calculates local strain tensors based on the relative motion of neighboring particles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="bond_analysis.html#particles-modifiers-bond-analysis"><span class="std std-ref">Bond analysis </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Computes bond angle and bond length distributions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cluster_analysis.html#particles-modifiers-cluster-analysis"><span class="std std-ref">Cluster analysis</span></a></p></td>
+<td><p>Decomposes a particle system into clusters of particles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="coordination_analysis.html#particles-modifiers-coordination-analysis"><span class="std std-ref">Coordination analysis</span></a></p></td>
+<td><p>Determines the number of neighbors of each particle and computes the radial distribution function for the system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dislocation_analysis.html#particles-modifiers-dislocation-analysis"><span class="std std-ref">Dislocation analysis (DXA)</span></a></p></td>
+<td><p>Identifies dislocation defects in a crystal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="displacement_vectors.html#particles-modifiers-displacement-vectors"><span class="std std-ref">Displacement vectors</span></a></p></td>
+<td><p>Calculates the displacements of particles based on an initial and a deformed configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="elastic_strain.html#particles-modifiers-elastic-strain"><span class="std std-ref">Elastic strain calculation</span></a></p></td>
+<td><p>Calculates the atomic-level elastic strain tensors in crystalline systems.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="grain_segmentation.html#particles-modifiers-grain-segmentation"><span class="std std-ref">Grain segmentation</span></a></p></td>
+<td><p>Determines the grain structure in a polycrystalline microstructure.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="histogram.html#particles-modifiers-histogram"><span class="std std-ref">Histogram</span></a></p></td>
+<td><p>Computes the histogram of a property.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scatter_plot.html#particles-modifiers-scatter-plot"><span class="std std-ref">Scatter plot</span></a></p></td>
+<td><p>Generates a scatter plot of two properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="bin_and_reduce.html#particles-modifiers-bin-and-reduce"><span class="std std-ref">Spatial binning </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Aggregates a particle property over a one-, two- or three-dimensional bin grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="correlation_function.html#particles-modifiers-correlation-function"><span class="std std-ref">Spatial correlation function</span></a></p></td>
+<td><p>Calculates the spatial cross-correlation function between two particle properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="time_averaging.html#particles-modifiers-time-averaging"><span class="std std-ref">Time averaging </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Computes the average of some time-dependent input quantity over the entire trajectory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="time_series.html#particles-modifiers-time-series"><span class="std std-ref">Time series </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Plots the value of a global attribute as function of simulation time.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="voronoi_analysis.html#particles-modifiers-voronoi-analysis"><span class="std std-ref">Voronoi analysis</span></a></p></td>
+<td><p>Computes the coordination number, atomic volume, and Voronoi index of particles from their Voronoi polyhedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="wigner_seitz_analysis.html#particles-modifiers-wigner-seitz-analysis"><span class="std std-ref">Wigner-Seitz defect analysis</span></a></p></td>
+<td><p>Identifies point defects (vacancies and interstitials) in a crystal lattice.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Coloring</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="ambient_occlusion.html#particles-modifiers-ambient-occlusion"><span class="std std-ref">Ambient occlusion</span></a></p></td>
+<td><p>Performs an ambient occlusion calculation to shade particles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="assign_color.html#particles-modifiers-assign-color"><span class="std std-ref">Assign color</span></a></p></td>
+<td><p>Assigns a color to all selected elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="color_by_type.html#particles-modifiers-color-by-type"><span class="std std-ref">Color by type </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Colors particles or bonds according to a typed (discrete) property.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="color_coding.html#particles-modifiers-color-coding"><span class="std std-ref">Color coding</span></a></p></td>
+<td><p>Colors particles or bonds based on the value of a scalar (continuous) property.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Modification</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="affine_transformation.html#particles-modifiers-affine-transformation"><span class="std std-ref">Affine transformation</span></a></p></td>
+<td><p>Applies an affine transformation to the system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="combine_particle_sets.html#particles-modifiers-combine-particle-sets"><span class="std std-ref">Combine datasets</span></a></p></td>
+<td><p>Merges the particles and bonds from two separate input files into one dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compute_property.html#particles-modifiers-compute-property"><span class="std std-ref">Compute property</span></a></p></td>
+<td><p>Assigns property values to particles or bonds according to a user-defined formula.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="delete_selected_particles.html#particles-modifiers-delete-selected-particles"><span class="std std-ref">Delete selected</span></a></p></td>
+<td><p>Removes the selected elements from the visualization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="freeze_property.html#particles-modifiers-freeze-property"><span class="std std-ref">Freeze property</span></a></p></td>
+<td><p>Freezes the values of a dynamic particle property at a given animation time to make them available at other times.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="load_trajectory.html#particles-modifiers-load-trajectory"><span class="std std-ref">Load trajectory</span></a></p></td>
+<td><p>Loads time-dependent atomic positions from a separate trajectory file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="python_script.html#particles-modifiers-python-script"><span class="std std-ref">Python script </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Lets you write your own modifier function in Python.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="show_periodic_images.html#particles-modifiers-show-periodic-images"><span class="std std-ref">Replicate</span></a></p></td>
+<td><p>Duplicates particles and other data elements to visualize periodic images of the system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a></p></td>
+<td><p>Cuts the structure along an infinite plane.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="smooth_trajectory.html#particles-modifiers-smooth-trajectory"><span class="std std-ref">Smooth trajectory</span></a></p></td>
+<td><p>Computes time-averaged particle positions using a sliding window or generates intermediate sub-frames using linear interpolation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="unwrap_trajectories.html#particles-modifiers-unwrap-trajectories"><span class="std std-ref">Unwrap trajectories</span></a></p></td>
+<td><p>Computes unwrapped particle coordinates in order to generate continuous trajectories at periodic cell boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="wrap_at_periodic_boundaries.html#particles-modifiers-wrap-at-periodic-boundaries"><span class="std std-ref">Wrap at periodic boundaries</span></a></p></td>
+<td><p>Folds particles located outside of the periodic simulation box back into the box.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Selection</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="clear_selection.html#particles-modifiers-clear-selection"><span class="std std-ref">Clear selection</span></a></p></td>
+<td><p>Resets the selection state of all elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="expand_selection.html#particles-modifiers-expand-selection"><span class="std std-ref">Expand selection</span></a></p></td>
+<td><p>Selects particles that are neighbors of already selected particles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="expression_select.html#particles-modifiers-expression-select"><span class="std std-ref">Expression selection</span></a></p></td>
+<td><p>Selects particles and other elements based on a user-defined criterion.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="manual_selection.html#particles-modifiers-manual-selection"><span class="std std-ref">Manual selection</span></a></p></td>
+<td><p>Lets you select individual particles or bonds with the mouse.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="invert_selection.html#particles-modifiers-invert-selection"><span class="std std-ref">Invert selection</span></a></p></td>
+<td><p>Inverts the selection state of each element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="select_particle_type.html#particles-modifiers-select-particle-type"><span class="std std-ref">Select type</span></a></p></td>
+<td><p>Selects all elements of a particular type, e.g. all atoms of a chemical species.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Structure identification</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="bond_angle_analysis.html#particles-modifiers-bond-angle-analysis"><span class="std std-ref">Ackland-Jones analysis</span></a></p></td>
+<td><p>Identifies common crystal structures by an analysis of the bond-angle distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="centrosymmetry.html#particles-modifiers-centrosymmetry"><span class="std std-ref">Centrosymmetry parameter</span></a></p></td>
+<td><p>Calculates the centrosymmetry parameter for every particle.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="chill_plus.html#particles-modifiers-chill-plus"><span class="std std-ref">Chill+</span></a></p></td>
+<td><p>Identifies hexagonal ice, cubic ice, hydrate and other arrangements of water molecules.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="common_neighbor_analysis.html#particles-modifiers-common-neighbor-analysis"><span class="std std-ref">Common neighbor analysis</span></a></p></td>
+<td><p>Performs the common neighbor analysis (CNA) to determine local crystal structures.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="identify_diamond.html#particles-modifiers-identify-diamond-structure"><span class="std std-ref">Identify diamond structure</span></a></p></td>
+<td><p>Identifies atoms that are arranged in a cubic or hexagonal diamond lattice.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="polyhedral_template_matching.html#particles-modifiers-polyhedral-template-matching"><span class="std std-ref">Polyhedral template matching</span></a></p></td>
+<td><p>Identifies common crystal structures using the PTM method and computes local crystal orientations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vorotop_analysis.html#particles-modifiers-vorotop-analysis"><span class="std std-ref">VoroTop analysis</span></a></p></td>
+<td><p>Identifies local structure of particles using the topology of their Voronoi polyhedra.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Visualization</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="construct_surface_mesh.html#particles-modifiers-construct-surface-mesh"><span class="std std-ref">Construct surface mesh</span></a></p></td>
+<td><p>Constructs a triangle mesh representing the surface of a solid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_bonds.html#particles-modifiers-create-bonds"><span class="std std-ref">Create bonds</span></a></p></td>
+<td><p>Creates bonds between particles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_isosurface.html#particles-modifiers-create-isosurface"><span class="std std-ref">Create isosurface</span></a></p></td>
+<td><p>Generates an isosurface from a scalar field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="coordination_polyhedra.html#particles-modifiers-coordination-polyhedra"><span class="std std-ref">Coordination polyhedra</span></a></p></td>
+<td><p>Shows coordination polyhedra.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generate_trajectory_lines.html#particles-modifiers-generate-trajectory-lines"><span class="std std-ref">Generate trajectory lines</span></a></p></td>
+<td><p>Generates trajectory lines from the time-dependent particle positions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="interactive_molecular_dynamics.html#particles-modifiers-interactive-molecular-dynamics"><span class="std std-ref">Interactive molecular dynamics (IMD)</span></a></p></td>
+<td><p>Visualize live atomic trajectories from a running MD simulation as they are being calculated.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="particles-modifiers-pythonbased" style="width: 100%">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Python-based modifiers</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="calculate_local_entropy.html#modifiers-calculate-local-entropy"><span class="std std-ref">Calculate local entropy </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Computes local pair entropy fingerprints of particles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="identify_fcc_planar_faults.html#modifiers-identify-fcc-planar-faults"><span class="std std-ref">Identify fcc planar faults </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Discerns between stacking fault and twin boundary crystal defects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="render_lammps_regions.html#modifiers-render-lammps-regions"><span class="std std-ref">Render LAMMPS regions </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Visualize LAMMPS regions as surface meshes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="shrink_wrap_box.html#modifiers-shrink-wrap-box"><span class="std std-ref">Shrink-wrap simulation box </span></a> <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p></td>
+<td><p>Resets the simulation cell to tightly fit all particles.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../visual_elements/dislocations.html" class="btn btn-neutral float-left" title="Dislocations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bond_angle_analysis.html" class="btn btn-neutral float-right" title="Ackland-Jones analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

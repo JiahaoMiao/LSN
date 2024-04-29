@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OVITO Pro &mdash; OVITO User Manual 3.10.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css" />
+
+  
+    <link rel="shortcut icon" href="_static/ovito.ico"/>
+    <link rel="canonical" href="https://docs.ovito.org/ovito_pro.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer instructions" href="development/index.html" />
+    <link rel="prev" title="Particle-related settings" href="reference/app_settings/particle_settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/ovito_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.10.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">About OVITO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">What's new</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_topics/index.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OVITO Pro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#license-management">License management <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#activating-ovito-pro">Activating OVITO Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#online-license-validation">Online license validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#credits-ovito-pro-deactivation">Deactivating an installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#credits-ovito-pro-group-license">Managing a group license</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses/index.html">Licensing information</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OVITO User Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>OVITO Pro</li>
+      <li class="wy-breadcrumbs-aside" style="text-align: right;">
+          <a href="https://www.ovito.org" style="padding: 1px;"">www.ovito.org&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a><br>
+          <a href="python/index.html" style="padding: 1px;">Python&nbsp;Reference&nbsp;<span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="credits-ovito-pro">
+<span id="ovito-pro"></span><h1>OVITO Pro<a class="headerlink" href="#credits-ovito-pro" title="Permalink to this heading"></a></h1>
+<p>There exist two variants of our desktop application software: <strong>OVITO Basic</strong> and <strong>OVITO Pro</strong>.
+The two versions differ in terms of available program features and licensing conditions.
+This user manual covers both editions, and the program features exclusively available in the <em>Pro</em> edition have been
+marked with the following tag found throughout the manual: <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span></p>
+<p>A (nearly complete) list of the program features available only in <em>OVITO Pro</em> and not in <em>OVITO Basic</em>:</p>
+<a class="reference internal image-reference" href="_images/ovito_logo_128.png"><img alt="_images/ovito_logo_128.png" class="align-right" src="_images/ovito_logo_128.png" style="width: 15%;" /></a>
+<ul class="simple">
+<li><p><a class="reference internal" href="usage/import.html#usage-import-multiple-datasets"><span class="std std-ref">Multiple pipelines</span></a> in the same visualization scene (comparative analysis)</p></li>
+<li><p>Instant <a class="reference internal" href="advanced_topics/code_generation.html#python-code-generation"><span class="std std-ref">Python code generation</span></a> to greatly simplify script development for the OVITO Python package</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/python_script.html#particles-modifiers-python-script"><span class="std std-ref">User-defined modifier functions</span></a> including GUI controls for user-defined parameters</p></li>
+<li><p>Option to develop <a class="reference external" href="python/introduction/custom_file_readers.html#writing-custom-file-readers" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">file parsers for custom file formats</span></a> in Python</p></li>
+<li><p>LAMMPS integration via <a class="reference internal" href="reference/pipelines/data_sources/lammps_script.html#data-source-lammps-script"><span class="std std-ref">LAMMPS script </span></a> pipeline source</p></li>
+<li><p><a class="reference internal" href="reference/pipelines/data_sources/python_script.html#data-source-python-script"><span class="std std-ref">Python script </span></a> pipeline source to generate new particle structures via scripts</p></li>
+<li><p><a class="reference internal" href="advanced_topics/remote_file_access.html#usage-import-remote-openssh-connection-method"><span class="std std-ref">OpenSSH client integration</span></a> for remote file access (support for smartcards and 2FA authentication methods)</p></li>
+<li><p>High-quality rendering engines:</p>
+<ul>
+<li><p><a class="reference internal" href="reference/rendering/tachyon_renderer.html#rendering-tachyon-renderer"><span class="std std-ref">Tachyon</span></a></p></li>
+<li><p><a class="reference internal" href="reference/rendering/ospray_renderer.html#rendering-ospray-renderer"><span class="std std-ref">OSPRay</span></a></p></li>
+<li><p><a class="reference internal" href="reference/rendering/visrtx_renderer.html#rendering-visrtx-renderer"><span class="std std-ref">VisRTX</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="advanced_topics/remote_rendering.html#usage-remote-rendering"><span class="std std-ref">Remote rendering function</span></a></p></li>
+<li><p><a class="reference internal" href="advanced_topics/viewport_layouts.html#viewport-layouts-rendering"><span class="std std-ref">Multi-viewport layout rendering</span></a></p></li>
+<li><p>Additional modifier functions:</p>
+<ul>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/bin_and_reduce.html#particles-modifiers-bin-and-reduce"><span class="std std-ref">Spatial binning </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/bond_analysis.html#particles-modifiers-bond-analysis"><span class="std std-ref">Bond analysis </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/construct_surface_mesh.html#particles-modifiers-construct-surface-mesh-regions"><span class="std std-ref">Identification of volumetric regions </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/time_averaging.html#particles-modifiers-time-averaging"><span class="std std-ref">Time averaging </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/time_series.html#particles-modifiers-time-series"><span class="std std-ref">Time series </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/identify_fcc_planar_faults.html#modifiers-identify-fcc-planar-faults"><span class="std std-ref">Identify fcc planar faults </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/render_lammps_regions.html#modifiers-render-lammps-regions"><span class="std std-ref">Render LAMMPS regions </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/calculate_local_entropy.html#modifiers-calculate-local-entropy"><span class="std std-ref">Calculate local entropy </span></a></p></li>
+<li><p><a class="reference internal" href="reference/pipelines/modifiers/color_by_type.html#particles-modifiers-color-by-type"><span class="std std-ref">Color by type </span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="reference/file_formats/input/ase_database.html#file-formats-input-ase-database"><span class="std std-ref">ASE database reader </span></a> and <a class="reference internal" href="reference/file_formats/input/ase_trajectory.html#file-formats-input-ase-trajectory"><span class="std std-ref">ASE trajectory reader </span></a></p></li>
+<li><p><a class="reference internal" href="reference/file_formats/output/gltf.html#file-formats-output-gltf"><span class="std std-ref">glTF file exporter </span></a></p></li>
+<li><p>Use of Miller indices in the <a class="reference internal" href="reference/pipelines/modifiers/slice.html#particles-modifiers-slice"><span class="std std-ref">Slice</span></a> modifier</p></li>
+</ul>
+<p>Please visit <a class="reference external" href="https://www.ovito.org/#proFeatures">www.ovito.org</a> for further details on OVITO Pro, our support services, and pricing.
+By licensing OVITO Pro you support the development and maintenance of both editions our desktop software and the <a class="reference external" href="python/index.html#scripting-manual" title="(in OVITO Python Reference v3.10.4)"><span class="xref std std-ref">OVITO Python module</span></a>.</p>
+<section id="license-management">
+<span id="license-management-ovito-pro"></span><h2>License management <span class="ovito-pro-tag-role"><a class="ovito-pro-tag" href="https://www.ovito.org/#proFeatures" data-tooltip="This program feature is only available in OVITO Pro and not OVITO Basic. Click to learn more." data-tooltip-position="right">pro</a></span><a class="headerlink" href="#license-management" title="Permalink to this heading"></a></h2>
+<p>OVITO Pro must be activated after installation in order to use it on a new computer. During this one-time activation step,
+the validity of the license key and your entitlement to use the software will be verified by our cloud-based licensing server.</p>
+<section id="activating-ovito-pro">
+<h3>Activating OVITO Pro<a class="headerlink" href="#activating-ovito-pro" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/license_activation_dialog_1.png"><img alt="_images/license_activation_dialog_1.png" class="align-right" src="_images/license_activation_dialog_1.png" style="width: 50%;" /></a>
+<p>The first time you start up OVITO Pro after installation,
+you will see the <span class="guilabel">License Activation Dialog</span>.
+Please note the following:</p>
+<ul class="simple">
+<li><p>You must complete the activation procedure to unlock and use the software.
+If you cancel the activation process, OVITO Pro will quit, and the dialog will reappear the next time
+you start the software.</p></li>
+<li><p>An active internet connection is required as OVITO Pro will contact the central license server
+to check the validity of your license key and register the software installation.</p></li>
+</ul>
+<p>Please enter the OVITO Pro <em>license key</em> you have received from us or from
+the person that purchased a group license for you. If you are the license owner,
+you can retrieve the license key at <a class="reference external" href="https://www.ovito.org/account/purchases/">https://www.ovito.org/account/purchases/</a>.</p>
+<p>Next, enter your OVITO account name or email address under which you are registered on our website <a class="reference external" href="https://www.ovito.org">www.ovito.org</a>.
+Note that if you are a team member using an OVITO Pro group license, you should enter your <em>personal</em> OVITO account
+here, not the account name of the license owner.</p>
+<p>Click <span class="guilabel">Continue</span> to perform the activation. OVITO Pro will contact the licensing server to
+validate the entered license key and register your software installation. If either the entered license key or
+account name is invalid, OVITO Pro will display an error message and let you correct your input.
+If the activation was successful, you can start using the program.</p>
+</section>
+<section id="online-license-validation">
+<h3>Online license validation<a class="headerlink" href="#online-license-validation" title="Permalink to this heading"></a></h3>
+<p>From time to time, OVITO Pro needs to verify your license status by contacting the central license server.
+The validation occurs sporadically (typically once a week) during program startup and
+requires a working internet connection – but no user interaction.</p>
+<p>Without internet connectivity, you can continue using OVITO Pro offline – but only for a limited period of time.
+After a grace period of 7 days without successful validation attempts, OVITO Pro will block further use of the software
+until the next time the license status can be successfully validated again by connecting to the central OVITO server.</p>
+</section>
+<section id="credits-ovito-pro-deactivation">
+<span id="deactivating-an-installation"></span><h3>Deactivating an installation<a class="headerlink" href="#credits-ovito-pro-deactivation" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/deactivate_installation_screenshot.png"><img alt="_images/deactivate_installation_screenshot.png" class="align-right" src="_images/deactivate_installation_screenshot.png" style="width: 60%;" /></a>
+<p>Your OVITO Pro license allows you to install the software only on a limited number of computers simultaneously.
+This limit is enforced by the OVITO license server, which keeps track of all program installations.
+Once the maximum allowed number of installations is exhausted, the license server will reject attempts to activate OVITO Pro on further machines.</p>
+<p>Thus, in order to install OVITO Pro on a different machine, for instance, after a hardware replacement, employee turnover, or new installation
+of the operating system, you must first deactivate one of the existing OVITO Pro installations which are no longer needed.
+This is done online by visiting the URL <a class="reference external" href="https://www.ovito.org/account/myinstallations/">https://www.ovito.org/account/myinstallations/</a> and logging in with
+your personal OVITO account. The page lists all active OVITO Pro installations currently associated with your
+account. Click <span class="guilabel">Deactivate installation</span> to remove an installation from our records,
+which will also permanently disable the software on that machine after a synchronization period (up to 24 hours).</p>
+<p>This deactivation step decrements the usage counter of the license, and you will subsequently be able to activate OVITO Pro
+on a new workstation.</p>
+</section>
+<section id="credits-ovito-pro-group-license">
+<span id="managing-a-group-license"></span><h3>Managing a group license<a class="headerlink" href="#credits-ovito-pro-group-license" title="Permalink to this heading"></a></h3>
+<p>A group license key can be used by multiple team members. Each team member should create their own OVITO account
+by going to <a class="reference external" href="https://www.ovito.org/register/">https://www.ovito.org/register/</a>.</p>
+<p>The person who purchased the group license is the designated administrator and owner of the license key.
+The owner can retrieve the key on the OVITO website by reviewing the <a class="reference external" href="https://www.ovito.org/account/purchases/">history of purchases</a>
+and signing in with their account name. The owner may share the license key with
+all team members who use it to install OVITO Pro. However, it is the owner’s legal responsibility to prevent unauthorized use and ensure that the secret license key
+never leaves the group.</p>
+<p>The team members should independently activate their OVITO Pro installation(s) by entering the license key
+and their <em>own personal</em> OVITO account name. Only then will each team member be able to
+independently manage their own OVITO Pro installation(s) (but not those of other members) on the OVITO website. In case a team member needs
+to move their installation to a different computer, they can sign in with their personal account and deactivate the old installation
+at <a class="reference external" href="https://www.ovito.org/account/myinstallations/">https://www.ovito.org/account/myinstallations/</a>. No action by the license administrator is needed.</p>
+<p>The OVITO license server keeps track of all installations performed using the group license key and makes sure that
+the aggregate number of installations of all team members does not exceed the limit permitted by the license.
+The group license administrator can access the list of active installations (including the names of the corresponding team members)
+by going to <a class="reference external" href="https://www.ovito.org/account/purchases/">https://www.ovito.org/account/purchases/</a>.
+The license administrator has the power to deactivate any of the installations, for example, when a team member leaves the
+organization and is no longer eligible for using OVITO Pro under the group license.</p>
+<p>As a group license owner, if you notice that an unauthorized person continues to use the license key to activate
+new OVITO Pro installations without your permission, a former team member for example,
+please contact customer support. The old license key can be replaced with a new secret key.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference/app_settings/particle_settings.html" class="btn btn-neutral float-left" title="Particle-related settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development/index.html" class="btn btn-neutral float-right" title="Developer instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 OVITO GmbH, Germany.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
