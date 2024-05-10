@@ -5,10 +5,6 @@ Simulation::Simulation(double x0,double delta,double mu, double sigma):_x{x0},_d
     _Lnew = integrate(psi_T2,Hamiltonian,10000); //initialize the cost function to prepare for simulated annealing
 }
 
-inline double Simulation::error(double ave, double ave2, int n)const {
-    return n == 0 ? 0 : sqrt((ave2 - ave*ave)/(n-1));
-}
-
 void Simulation::data_blocking(int nblocks,int nsteps){
     double ave{}, sum{}, sum2{};
     for(int i{}; i < nblocks; i++){
@@ -40,19 +36,14 @@ double Simulation::metropolis(std::function<double (double,double,double)> pdf, 
 
 //can try inlining this function to see if it improves performance
 double Simulation::integrate(std::function<double(double,double,double)> pdf,std::function<double(double,double,double)> f,int nsteps){
-    double integral{},ave{},ave2{},appo{};
+    double integral{};
     for(int i{}; i < nsteps; i++){
         //sample the modulus squared of the wave function
         _x = this->metropolis(pdf,_x,_delta); //does the same as calling directly metropolis(pdf,_x,_delta)
-        integral = f(_x,_mu,_sigma); //integrate the function f
-        appo = static_cast<double>(i)/static_cast<double>(i+1);
-        //compute the running average and the running average of the square
-        ave = appo*ave + integral/static_cast<double>(i+1);
-        ave2 = appo*ave2 + integral*integral/static_cast<double>(i+1);
+        integral += f(_x,_mu,_sigma); //integrate the function f    
     }
-    //compute the error of the montecarlo integration using central limit theorem
-    _montecarlo_error = std::sqrt(ave2 - ave*ave)/static_cast<double>(nsteps-1);
-    return ave;
+    
+    return integral/nsteps;
 }
    
 double Simulation::simulated_annealing(std::function<double (double,double,double)> pdf,std::function<double(double,double,double)> L, double T, int steps,std::array<double,2> delta){

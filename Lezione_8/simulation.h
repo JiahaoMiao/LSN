@@ -51,7 +51,6 @@ class Simulation{
         double _mu_error{},_sigma_error{}; //parameters of the trial wave function
         double _block_ave{},_block_err{};  //for data blocking
         double _Lnew{},_Lold{}; //cost function for simulated annealing
-        double _montecarlo_error{}; //error of the montecarlo integration
     public:
     
     //Constructor: <starting point, step size, mu, sigma> and initialize the random number generator
@@ -60,8 +59,6 @@ class Simulation{
 
     //data blocking algorithm
     void data_blocking(int blocks, int steps);
-    //error function 
-    inline double error(double ave, double ave2, int n)const;
     
     //Metropolis algorithm: returns the new value of x 
     double metropolis(std::function<double (double,double,double)> pdf, double x0, double delta);
@@ -70,9 +67,12 @@ class Simulation{
     double simulated_annealing(std::function<double (double,double,double)> pdf,std::function<double (double,double,double)> L, double T, int steps,std::array<double,2> delta);
 
     //-integrate a function using metropolis algorithm to sample the pdf associated with the integral and return integral with nsteps montecarlo steps
-    //-it also saves the error of the montecarlo integration
     double integrate(std::function<double(double,double,double)> pdf,std::function<double(double,double,double)> f,int nsteps);
     
+    //error function 
+    inline double error(double ave, double ave2, int n) const{
+        return n == 1 ? 0 : sqrt((ave2 - ave*ave)/(n-1));
+    }
     //getters
     //return the value of mu
     inline double getmu() const {return _mu;}
@@ -94,9 +94,5 @@ class Simulation{
     inline double getLnew() const {return _Lnew;}
     //return the old value of the cost function
     inline double getLold() const {return _Lold;}
-    //return the error of the montecarlo integration
-    //the error is calculated by using the central limit theorem
-    inline double getmontecarlo_error() const {return _montecarlo_error;}
-
 
 };

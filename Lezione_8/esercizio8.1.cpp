@@ -14,7 +14,6 @@ int main(){
     double x0{0};
     double delta{1};
     Simulation sim{x0,delta,mu,sigma};
-    // int N{10000};
     int blk{100};
     
     ofstream out{"DATA/blk100steps100.dat"};
@@ -60,42 +59,6 @@ int main(){
     }
 
     out.close();
-
-    // double T{10000};
-
-    // int steps{1000};
-
-    // // Exponential Cooling
-    // auto exponentialCooling = [](double initialTemperature, double alpha, int iteration) {
-    //     return initialTemperature * std::pow(alpha, iteration);
-    // };
-
-    // // Linear Cooling
-    // auto linearCooling= [](double initialTemperature, double beta, int iteration) {
-    //     return initialTemperature - beta * iteration;
-    // };
-
-    // // Logarithmic Cooling
-    // auto logarithmicCooling = [](double initialTemperature, int iteration) {
-    //     return initialTemperature / std::log(iteration + 1);
-    // };
-
-    // // Boltzmann Cooling
-    // auto boltzmannCooling = [](double initialTemperature, int iteration) {
-    //     return initialTemperature / std::log(iteration + std::exp(1));
-    // };
-
-    // // Geometric Cooling
-    // auto geometricCooling =[](double initialTemperature, double alpha, int iteration) {
-    //     return initialTemperature / (1 + alpha * iteration);
-    // };
-
-    // Simulated Annealing
-
-    // Exponential Cooling
-
-
-
 
     return 0;
 }
