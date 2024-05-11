@@ -1,8 +1,62 @@
 #include "simulation.h"
 
-Simulation::Simulation(double x0,double delta,double mu, double sigma):_x{x0},_delta{delta},_mu{mu},_sigma{sigma}{
+Simulation::Simulation(){
+    input();
     rnd.initialize();
-    _Lnew = integrate(psi_T2,Hamiltonian,10000); //initialize the cost function to prepare for simulated annealing
+    //initialize the cost function for simulated annealing
+    data_blocking(_nblk,_steps);
+    _Lnew = _block_ave;
+    _Lnew_err = _block_err;
+}
+
+void Simulation::input(){
+    std::ifstream ReadInput;
+
+    std::cerr << '\n'
+        << ",=====================================," << '\n'
+        << "| Simulated Annealing                 |" << '\n'
+        << "| Monte Carlo simulation (Metropolis) |" << '\n'
+        << "'====================================='" << "\n\n";
+    
+    //Read input informations
+    ReadInput.open("input.dat");
+
+    if(!ReadInput.is_open()){
+        std::cerr << "Error: unable to open input.dat\n";
+        std::exit(1);
+    }
+
+    ReadInput >> _nblk;
+    ReadInput >> _nsteps;
+    ReadInput >> _delta;
+    ReadInput >> _x;
+
+    ReadInput >> _mu;
+    ReadInput >> _sigma;
+
+    ReadInput >> _T; //initial temperature             
+
+    ReadInput >> _delta_mu;     // step size for mu
+    ReadInput >> _delta_sigma;    // step size for sigma
+    ReadInput >> _mu_error; // desired error for mu
+    ReadInput >> _sigma_error; // desired error for sigma
+
+    _steps = _nsteps/_nblk;
+
+    std::cerr << "Total number of steps = " << _nsteps << '\n';
+    std::cerr << "Number of blocks = " << _nblk << '\n';
+    std::cerr << "Number of steps in one block = " << _steps << '\n' << '\n';
+    std::cerr << "Step lenght = " << _delta << '\n';
+    std::cerr << "Initial position = " << _x << '\n';
+    std::cerr << "Initial mu = " << _mu << '\n';
+    std::cerr << "Initial sigma = " << _sigma << '\n';
+    std::cerr << "Initial temperature = " << _T << '\n';
+    std::cerr << "Step size for mu = " << _delta_mu << '\n';
+    std::cerr << "Step size for sigma = " << _delta_sigma << '\n';
+    std::cerr << "Desired error for mu = " << _mu_error << '\n';
+    std::cerr << "Desired error for sigma = " << _sigma_error << '\n';
+
+    ReadInput.close();
 }
 
 void Simulation::data_blocking(int nblocks,int nsteps){
@@ -46,18 +100,28 @@ double Simulation::integrate(std::function<double(double,double,double)> pdf,std
     return integral/nsteps;
 }
    
-double Simulation::simulated_annealing(std::function<double (double,double,double)> pdf,std::function<double(double,double,double)> L, double T, int steps,std::array<double,2> delta){
+double Simulation::simulated_annealing(std::function<double (double,double,double)> pdf,std::function<double(double,double,double)> L,double T){
     
     _Lold = _Lnew;
+    _Lold_err = _Lnew_err;
     
-    //randomly change the parameters of the trial wave function
-    _mu += rnd.Rannyu(-delta[0],delta[0]);
-    _sigma += rnd.Rannyu(-delta[1],delta[1]);
+    _T = T;
 
-    _Lnew = integrate(pdf, L, steps);
+    //save the old parameters in case the new ones are not accepted
+    double mu_old{_mu};
+    double sigma_old{_sigma};
+
+    //change the parameters with uniform distribution
+    //at low T the parameters change very little
+    _mu += rnd.Rannyu(-_delta_mu,_delta_mu)*T;
+    _sigma += rnd.Rannyu(-_delta_sigma,_delta_sigma)*T; 
+
+    data_blocking(_nblk,_steps);
+    _Lnew = _block_ave;
+    _Lnew_err = _block_err;
 
     //Metropolis algorithm to accept or reject the new parameters
-    double p = exp(-(_Lnew - _Lold)/T);
+    double p = exp(-( _Lnew - _Lold )/T);
 
     if(p >= 1){
         return _Lnew;
@@ -66,5 +130,8 @@ double Simulation::simulated_annealing(std::function<double (double,double,doubl
             return _Lnew;
         }
     }
+    //not accepted, return the old parameters
+    _mu = mu_old;
+    _sigma = sigma_old;
     return _Lold;
 }

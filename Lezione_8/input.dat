@@ -1,0 +1,31 @@
+100
+100000
+3
+1
+
+0.8
+0.6
+
+1
+
+1
+1
+0.001
+0.001
+
+
+  ReadInput >> _nblk;      // ideale 100
+  ReadInput >> _nsteps;     // 10'000 per SA
+  ReadInput >> _delta;         // step of the uniform transition prob
+  ReadInput >> _x;        // x iniziale, ideale intorno a 1
+
+  ReadInput >> _mu;        // centro della gaussiana: 0.8 per SA
+  ReadInput >> _sigma;       // larghezza della gaussiana: 0.6 per SA
+  
+  ReadInput >> _T;      // temperatura
+
+
+  ReadInput >> Lmu;       // larghezza iniziale passi mu
+  ReadInput >> Lsgm;      // idem per sigma
+  ReadInput >> errMu;     // errore con cui voglio determinare mu
+  ReadInput >> errSgm;    // errore con cui voglio determinare sgm
