@@ -64,7 +64,9 @@ int main(int argc, char* argv[]){
     // double diff{fabs(sim.getLnew()-sim.getLold())};
     // double err{sqrt(pow(sim.getLnew_err(),2) + pow(sim.getLold_err(),2))};
 
-    while( 2*delta_mu *T > err_mu or 2*delta_sigma*T > err_sigma){ // stopping criterion, when the difference between the new and old value of the cost function is less than the error
+    //stopping criterion: when the step size in mu or sigma is smaller than the desired error then stop
+    //This does not guarantee that the error is smaller than the desired error, it's the temperature that is too low
+    while( 2*delta_mu *T > err_mu or 2*delta_sigma*T > err_sigma){ 
         switch(cooling){
             case 0:
                 T = exponentialCooling(T,0.9999,k);
@@ -101,24 +103,67 @@ int main(int argc, char* argv[]){
         //     cerr << "Difference between the new and old value of the cost function = " << diff << " is lower than the error = " << err << "\n"; 
         // }
     }
+
+    cerr << "Completed Simulated Annealing\n";
+    cerr << "Final temperature = " << T << "\n";
+    cerr << "Minimum found: H = " << sim.getL_min() << " with (mu,sigma) = (" << sim.getmu_min() << " , " << sim.getsigma_min() << ")\n"; 
     //after reaching the stopping criterion, data block to get values of mu and sigma with error
+    //the temperature is the last value of T that makes the stopping criterion true
     double mu{},sigma{},H{};
     double sum_mu{},sum2_mu{};
     double sum_sigma{},sum2_sigma{};
     double sum_H{},sum2_H{};
-    for(int i{}; i < 100; i++){
+
+    //before starting set the value of mu and sigma that make the cost function minimum (found during the simulated annealing) 
+    sim.setmu(sim.getmu_min());
+    sim.setsigma(sim.getsigma_min());
+
+    ofstream wave{"DATA/Minimum/"+cooling_schedules[cooling]+"/wave.dat",ios::out};
+    ofstream Hmin{"DATA/Minimum/"+cooling_schedules[cooling]+"/energy.dat",ios::out};
+    ofstream paramsmin{"DATA/Minimum/"+cooling_schedules[cooling]+"/parameters.dat",ios::out};
+
+    cerr << "starting to data block values of mu, sigma with error. Moving around the minimum using T = 0.001\n";
+    T = 0.01; //so that 2*delta_mu*T = 0.002 
+    //Data blocking to get the values of mu and sigma with error
+    for(int i{1}; i <= 100; i++){
         
         sim.simulated_annealing(psi_T2,Hamiltonian,T);
         mu = sim.getmu();
         sigma = sim.getsigma();
-        H = sim.getblock_ave();
+       
         sum_mu += mu;
         sum2_mu += mu*mu;
         sum_sigma += sigma;
         sum2_sigma += sigma*sigma;
+        
+        //write the values of mu and sigma in a file
+        paramsmin << i << " " << sum_mu/i << " " << sim.error(sum_mu/i,sum2_mu/i,i) << " " << sum_sigma/i << " " << sim.error(sum_sigma/i,sum2_sigma/i,i) << "\n";
+    }
+
+    cerr << "New values of mu and sigma found (mu,sigma) = (" << sim.getmu_min() << " , " << sim.getsigma_min() << ")\n"; 
+    
+    sim.setmu(sim.getmu_min());
+    sim.setsigma(sim.getsigma_min());
+
+    cerr << "Starting to sample the wave function with those new parameters\n";
+    //Sampling of the modulu square of the wave function
+    double x{};
+    for (int i{1}; i <= 100000; i++){
+        x = sim.metropolis(psi_T2,x,3);
+        wave  << x << "\n";
+    }
+    cerr << "Completed sampling of the wave function\n";
+    cerr << "Starting to data block the value of the Energy\n";
+    //Data blocking to get the value of the Energy
+    for (int i{1}; i <= 100; i++){
+        H = sim.integrate(psi_T2, Hamiltonian, 10000);
         sum_H += H;
         sum2_H += H*H;
+         //write the values of the cost function in a file
+        Hmin << i << " " << sum_H/i << " " << sim.error(sum_H/i,sum2_H/i,i) << "\n";
     }
+    cerr << "Completed data blocking of the Energy\n";
+   
     sum_mu /= 100;
     sum2_mu /= 100;
     sum_sigma /= 100;

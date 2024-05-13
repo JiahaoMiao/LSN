@@ -53,6 +53,7 @@ class Simulation{
         double _nblk{},_nsteps{},_steps{},_block_ave{},_block_err{};  //blocks, total steps, steps in one block, block average and block error
         double _Lnew{},_Lold{},_Lnew_err{},_Lold_err{}; //cost function for simulated annealing
         double _T{}; //temperature for simulated annealing
+        double _L_min{},_mu_min{},_sigma_min{}; //minimum value of the cost function and the corresponding parameters
     public:
     
     //Constructor: <starting point, step size, mu, sigma> and initialize the random number generator
@@ -113,5 +114,16 @@ class Simulation{
     inline double getmu_error_desired() const {return _mu_error;}
     //return the value of desired error for sigma
     inline double getsigma_error_desired() const {return _sigma_error;}
+    //return the minimum value of the cost function
+    inline double getL_min() const {return _L_min;}
+    //return the value of mu that minimizes the cost function
+    inline double getmu_min() const {return _mu_min;}
+    //return the value of sigma that minimizes the cost function
+    inline double getsigma_min() const {return _sigma_min;}
 
+    //setters
+    //set the value of mu
+    inline void setmu(double mu) {_mu = mu;}
+    //set the value of sigma
+    inline void setsigma(double sigma) {_sigma = sigma;}
 };

@@ -7,6 +7,10 @@ Simulation::Simulation(){
     data_blocking(_nblk,_steps);
     _Lnew = _block_ave;
     _Lnew_err = _block_err;
+    //initialize the minimum value of the cost function
+    _L_min = _Lnew;
+    _mu_min = _mu;
+    _sigma_min = _sigma;
 }
 
 void Simulation::input(){
@@ -96,7 +100,7 @@ double Simulation::integrate(std::function<double(double,double,double)> pdf,std
         _x = this->metropolis(pdf,_x,_delta); //does the same as calling directly metropolis(pdf,_x,_delta)
         integral += f(_x,_mu,_sigma); //integrate the function f    
     }
-    
+
     return integral/nsteps;
 }
    
@@ -114,11 +118,23 @@ double Simulation::simulated_annealing(std::function<double (double,double,doubl
     //change the parameters with uniform distribution
     //at low T the parameters change very little
     _mu += rnd.Rannyu(-_delta_mu,_delta_mu)*T;
-    _sigma += rnd.Rannyu(-_delta_sigma,_delta_sigma)*T; 
+
+    do{
+    _sigma += rnd.Rannyu(-_delta_sigma,_delta_sigma)*T;
+    if(fabs(_sigma) < 0.002) std::cerr << "Sigma "<< _sigma <<"\n";
+    }while(fabs(_sigma) < 0.002); //sigma cannot be too small or the wave function diverges
 
     data_blocking(_nblk,_steps);
     _Lnew = _block_ave;
     _Lnew_err = _block_err;
+
+    //save the minimum value of the cost function
+    //if the new value is lower than the minimum value, then it becomes the new minimum so far
+    if(_Lnew < _L_min){ 
+        _L_min = _Lnew;
+        _mu_min = _mu;
+        _sigma_min = _sigma;
+    }
 
     //Metropolis algorithm to accept or reject the new parameters
     double p = exp(-( _Lnew - _Lold )/T);
