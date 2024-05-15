@@ -123,10 +123,8 @@ int main(int argc, char* argv[]){
     ofstream paramsmin{"DATA/Minimum/"+cooling_schedules[cooling]+"/parameters.dat",ios::out};
 
     cerr << "starting to data block values of mu, sigma with error. Moving around the minimum using T = 0.001\n";
-    T = 0.01; //so that 2*delta_mu*T = 0.002 
-    //Data blocking to get the values of mu and sigma with error
+    T = 0.01; //so that delta_mu*T = 0.001, so this is the error 
     for(int i{1}; i <= 100; i++){
-        
         sim.simulated_annealing(psi_T2,Hamiltonian,T);
         mu = sim.getmu();
         sigma = sim.getsigma();
@@ -146,9 +144,9 @@ int main(int argc, char* argv[]){
     sim.setsigma(sim.getsigma_min());
 
     cerr << "Starting to sample the wave function with those new parameters\n";
-    //Sampling of the modulu square of the wave function
+    //Sampling of the modulus square of the wave function
     double x{};
-    for (int i{1}; i <= 100000; i++){
+    for (int i{1}; i <= 1000000; i++){
         x = sim.metropolis(psi_T2,x,3);
         wave  << x << "\n";
     }

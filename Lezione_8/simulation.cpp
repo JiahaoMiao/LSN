@@ -100,7 +100,7 @@ double Simulation::integrate(std::function<double(double,double,double)> pdf,std
         _x = this->metropolis(pdf,_x,_delta); //does the same as calling directly metropolis(pdf,_x,_delta)
         integral += f(_x,_mu,_sigma); //integrate the function f    
     }
-
+    
     return integral/nsteps;
 }
    
