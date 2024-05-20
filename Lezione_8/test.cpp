@@ -10,5 +10,5 @@ int main(){
     sim.setmu(0.86508);
     sim.setsigma(0.627365);
     //cout << Hamiltonian(1,0.86508,0.627365) << endl;
-    cout << sim.integrate(psi_T2,Hamiltonian,100000) <<endl;
+    cout << sim.integrate(psi_T2,Hamiltonian,1000000) <<endl;
 }

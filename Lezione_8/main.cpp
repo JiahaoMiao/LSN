@@ -110,8 +110,6 @@ int main(int argc, char* argv[]){
     //after reaching the stopping criterion, data block to get values of mu and sigma with error
     //the temperature is the last value of T that makes the stopping criterion true
     double mu{},sigma{},H{};
-    double sum_mu{},sum2_mu{};
-    double sum_sigma{},sum2_sigma{};
     double sum_H{},sum2_H{};
 
     //before starting set the value of mu and sigma that make the cost function minimum (found during the simulated annealing) 
@@ -124,18 +122,14 @@ int main(int argc, char* argv[]){
 
     cerr << "starting to data block values of mu, sigma with error. Moving around the minimum using T = 0.001\n";
     T = 0.01; //so that delta_mu*T = 0.001, so this is the error 
-    for(int i{1}; i <= 100; i++){
+    
+    
+    for(int j{}; j < 10000; j++){
         sim.simulated_annealing(psi_T2,Hamiltonian,T);
         mu = sim.getmu();
         sigma = sim.getsigma();
-       
-        sum_mu += mu;
-        sum2_mu += mu*mu;
-        sum_sigma += sigma;
-        sum2_sigma += sigma*sigma;
-        
         //write the values of mu and sigma in a file
-        paramsmin << i << " " << sum_mu/i << " " << sim.error(sum_mu/i,sum2_mu/i,i) << " " << sum_sigma/i << " " << sim.error(sum_sigma/i,sum2_sigma/i,i) << "\n";
+        paramsmin << j << " " << mu << " " << sigma << "\n";
     }
 
     cerr << "New values of mu and sigma found (mu,sigma) = (" << sim.getmu_min() << " , " << sim.getsigma_min() << ")\n"; 
@@ -162,18 +156,12 @@ int main(int argc, char* argv[]){
     }
     cerr << "Completed data blocking of the Energy\n";
    
-    sum_mu /= 100;
-    sum2_mu /= 100;
-    sum_sigma /= 100;
-    sum2_sigma /= 100;
     sum_H /= 100;
     sum2_H /= 100;
 
     cout << '\n'
             << ",=======================================," << '\n'
             << "|  H:          " << sum_H << " +/- " << sim.error(sum_H,sum2_H,100) << " |\n"
-            << "| mu:          " << sum_mu <<   " +/- " << sim.error(sum_mu, sum2_mu, 100) << " |\n"
-            << "| sigma:       " << sum_sigma  << " +/- " << sim.error(sum_sigma,sum2_sigma,100) << " |\n"
             << "'======================================='" << '\n' << '\n';
     
     return 0;
