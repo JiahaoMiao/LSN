@@ -350,6 +350,7 @@ void System :: initialize_properties(){ // Initialize data members used for meas
         _measure_penergy = true;
         index_property++;
         _vtail = 8*M_PI*_rho *(pow(1.0/_r_cut,9)/9.0 - pow(1.0/_r_cut,3)/3.0);
+        std::cerr << "tail correction for the potential energy = " << _vtail << std::endl;
       } else if( property == "KINETIC_ENERGY" ){
         ofstream coutk("../OUTPUT/kinetic_energy.dat");
         coutk << "#     BLOCK:   ACTUAL_KE:    KE_AVE:      ERROR:" << '\n';
@@ -383,6 +384,7 @@ void System :: initialize_properties(){ // Initialize data members used for meas
         _index_pressure = index_property;
         index_property++;
         _ptail = 32.0 * M_PI * _rho * (pow(1.0/_r_cut,9)/9.0 - pow(1.0/_r_cut,3)/6.0);
+        std::cerr << "tail correction for the pressure = " << _ptail << std::endl;
       } else if( property == "GOFR" ){
         ofstream coutgr("../OUTPUT/gofr.dat");
         coutgr << "# DISTANCE:     AVE_GOFR:        ERROR:" << '\n';

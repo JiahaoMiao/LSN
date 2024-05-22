@@ -1,0 +1,12 @@
+LJ SOLID SIMULATION
+LJ MONTE CARLO (NVT) SIMULATION
+TEMPERATURE= 0.8
+NPART= 108
+SIDE=      4.61329     4.61329     4.61329
+R_CUT= 2.2
+DELTA= 0.05
+NBLOCKS= 50
+NSTEPS= 2000
+Reading input completed!
+System initialized!
+Reading properties completed!
