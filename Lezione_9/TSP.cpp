@@ -13,10 +13,10 @@ bool path::CheckPath(const std::vector<int>& vec){
     std::unordered_set<int> labels;
     
     // Controlla se il vettore contiene 33 città, la prima città è 0 per tutti
-    if (vec.size() != 33) {
-        std::cerr << "error: the path does not contain 34 cities\n";
-        return false;
-    }
+    // if (vec.size() != 33) {
+    //     std::cerr << "error: the path does not contain 34 cities\n";
+    //     return false;
+    // }
     
     // Controlla se il numero è già presente nel set
     if (!std::all_of(vec.begin(), vec.end(), [&](int num){ return labels.insert(num).second; }) ) {
@@ -154,7 +154,7 @@ int TSP::Selection(){
     //p = 2 is equivalent of having 70.7% of the probability to select the first half of the paths 
     //p = 3 is equivalent of having 79.3% of the probability to select the first half of the paths
     //p = 4 is equivalent of having 84.1% of the probability to select the first half of the paths
-    return _paths.size()*pow(_rnd.Rannyu(),2);
+    return _paths.size()*pow(_rnd.Rannyu(),3);
 }
 
 //New generation of paths
@@ -163,9 +163,9 @@ void TSP::NewGeneration(){
     //CrossOver
     
     //using L1 norm to sort the paths in ascending order (shortest path first)
-    sort(_paths.begin(),_paths.end(),[&](path& a, path& b){return a.LengthL1(_cities) < b.LengthL1(_cities);});
+    // sort(_paths.begin(),_paths.end(),[&](path& a, path& b){return a.LengthL1(_cities) < b.LengthL1(_cities);});
     //using L2 norm to sort the paths in ascending order (shortest path first)
-    // sort(_paths.begin(),_paths.end(),[&](path& a, path& b){return a.LengthL2(_cities) < b.LengthL2(_cities);});
+    sort(_paths.begin(),_paths.end(),[&](path& a, path& b){return a.LengthL2(_cities) < b.LengthL2(_cities);});
    
     unsigned int start{0u};
     //Elitism: if _paths.size() is even, only the best path is copied to the new generation
@@ -194,7 +194,7 @@ void TSP::NewGeneration(){
         std::vector<int> child2(N-1);
         
         //Crossover
-        if(_rnd.Rannyu()<0.66){//66% of the probability to perform crossover
+        if(_rnd.Rannyu()<0.60){//60% of the probability to perform crossover
             //choose random cut point
             cut = _rnd.Rannyu(0,N-1);
             
@@ -252,10 +252,9 @@ void TSP::NewGeneration(){
 //Mutations
 path& TSP::Mutate(path& way){
     //10% of the probability to perform mutation
-    if(_rnd.Rannyu()< 0.1){
+    if(_rnd.Rannyu()< 0.2){
         // std::cout << "swap happened\n";
         way.swap(_rnd.Rannyu(0,_cities.size()-1),_rnd.Rannyu(0,_cities.size()-1));
-        // way.PrintPath();
         // if(!way.CheckPath(way.getPath())){
         //     std::cerr << "error: the path is not valid\n";
         //     exit(-1);
@@ -264,7 +263,6 @@ path& TSP::Mutate(path& way){
     if(_rnd.Rannyu()<0.1){
         // std::cout << "shift happened\n";
         way.shift(_rnd.Rannyu(0,_cities.size()-1),_rnd.Rannyu(1,_cities.size()-1),_rnd.Rannyu(0,_cities.size()-1));
-        // way.PrintPath();
         // if(!way.CheckPath(way.getPath())){
         //     std::cerr << "error: the path is not valid\n";
         //     exit(-1);
@@ -274,16 +272,13 @@ path& TSP::Mutate(path& way){
         // std::cout << "permutation happened\n";
         // m>1 to avoid the permutation of a single city(swap)
         way.Permutation(_rnd.Rannyu(1,_cities.size()-1),_rnd.Rannyu(0,_cities.size()-1),_rnd.Rannyu(0,_cities.size()-1));
-        // way.PrintPath();
         // if(!way.CheckPath(way.getPath())){
         //     std::cerr << "error: the path is not valid\n";
         //     exit(-1);
         // }
     }
-    if(_rnd.Rannyu()<0.1){
-        // std::cout << "inversion happened\n";
+    if(_rnd.Rannyu()<0.15){
         way.inversion(_rnd.Rannyu(0,_cities.size()-1),_rnd.Rannyu(0,_cities.size()-1)); 
-        // way.PrintPath();
         // if(!way.CheckPath(way.getPath())){
         //     std::cerr << "error: the path is not valid\n";
         //     exit(-1);
@@ -309,7 +304,7 @@ void TSP::PrintBest(){
 //Average of the best half of the paths
 double TSP::AverageLength(){
     double sum{};
-    for(unsigned int i = 0; i < _paths.size()/2; i++){
+    for(unsigned int i{}; i < _paths.size()/2; i++){
         sum += _paths[i].LengthL2(_cities);
     }
     return sum/double(_paths.size()/2);
@@ -327,7 +322,7 @@ void TSP::BestPath(const std::string& filename){
         exit(-1);
     }
     //Position of the first city
-    out << _cities[0].getX() << " " << _cities[0].getY() << "\n";
+    out <<_cities[0].getX() << " " << _cities[0].getY() << "\n";
     // _paths[0] is the best path (already sorted in ascending order)
     for(auto i: _paths[0].getPath()){
         out << _cities[i].getX() << " " << _cities[i].getY() << "\n";

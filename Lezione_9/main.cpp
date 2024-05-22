@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     //parameters
     int N = 34;//number of cities
     int L = 3000;//number of paths
-    int M =300;//number of generations
+    int M = 200;//number of generations
     string filename{};
     switch (choice){
     case 0:{
@@ -49,11 +49,12 @@ int main(int argc, char* argv[]){
 
     //Print initial cities
     ofstream config(filename+"config.dat");
-    for(auto& c: cities){
+    for(auto c : cities){
         config << c.getX() << " " << c.getY() << "\n";
     }
     //to close the path
     config << cities[0].getX() << " " << cities[0].getY() << "\n";
+    
     config.close();
     //start with the ordered path
     //path always starts from 0 so i omit it and work with the rest of the cities
@@ -64,14 +65,17 @@ int main(int argc, char* argv[]){
     path route{way};
     vector<path> paths(L);
     int i{},j{};
+    //generate L paths with random swaps 
     for(int k{};k<L;k++){
-        i = rnd.Rannyu(0,N-1);
-        j = rnd.Rannyu(0,N-1);
-        while(i==j){
-            j=rnd.Rannyu(0,N-1);
+        for(int l{};l<2*N;l++){//2*N swaps
+            i = rnd.Rannyu(0,N-1);
+            j = rnd.Rannyu(0,N-1);
+            while(i==j){
+                j= rnd.Rannyu(0,N-1);
+            }
+            // i % (N-1) and j % (N-1) to avoid the value N-1
+            route.swap(i%(N-1),j%(N-1));//swap of two cities
         }
-        // i % (N-1) and j % (N-1) to avoid the value N-1
-        route.swap(i%(N-1),j%(N-1));//swap of two cities
         paths[k] = route;
     }
     TSP tsp{cities,paths};
@@ -92,9 +96,9 @@ int main(int argc, char* argv[]){
         tsp.PrintBest();
         ave << i << " " << tsp.AverageLength() << "\n";
         best << i << " " << tsp.BestLength() << "\n";
-        if(i%2==0){
-            tsp.BestPath(filename+"/config/BestPath"+to_string(i)+".dat");
-        }
+        // if(i%2==0){
+        tsp.BestPath(filename+"/config/BestPath"+to_string(i)+".dat");
+        // }
     }
     //print the best path to file
     tsp.BestPath(filename+"BestPath.dat");

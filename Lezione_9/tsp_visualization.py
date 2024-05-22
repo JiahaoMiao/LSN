@@ -11,29 +11,30 @@ def load_data(path, problem, generation):
         X, Y = np.loadtxt(filename, usecols=(0, 1), delimiter=' ', unpack=True)
     except Exception as e:
         print(f"Error loading data from {filename}: {e}")
-        X, Y = [], []
+        X, Y = np.array([]), np.array([])
     return X, Y
 
 def plot_generation(X, Y, generation, best_length, output_path, problem):
     fig, ax = plt.subplots(figsize=(8, 8))
     
     # Scatter plot for the cities
-    ax.scatter(X, Y, marker='o', color='blue', label='Cities')
+    ax.scatter(X, Y, marker='o',s=34, color='blue', label='Cities')
     
     # Highlight the starting point
     if len(X) > 0 and len(Y) > 0:
-        ax.scatter(X[0], Y[0], marker='*', s=100, color='red', label='Start')
+        ax.scatter(X[0], Y[0], marker='*',s = 100, color='green', label='Start')
     
     # Plot the path
-    ax.plot(X, Y, marker=' ', color='blue', alpha=1, linewidth=2)
+    if len(X) > 1 and len(Y) > 1:
+        ax.plot(X, Y, marker=' ', color='red', alpha=1, linewidth=2)
     
     # Add the geometric shape based on the problem
     if problem == "Circumference":
-        circle = plt.Circle((0, 0), 1, fill=False)
+        circle = plt.Circle((0, 0), 1, linewidth=2, edgecolor='black',fill = False)
         ax.add_artist(circle)
         ax.set_aspect(1)
     elif problem == "Square":
-        square = patches.Rectangle((-1, -1), 2, 2, linewidth=2, edgecolor='r', facecolor='none')
+        square = patches.Rectangle((-1, -1), 2, 2, linewidth=2, edgecolor='black',fill = False)
         ax.add_patch(square)
         ax.set_aspect(1)
     
@@ -52,7 +53,7 @@ def plot_generation(X, Y, generation, best_length, output_path, problem):
 
 def create_gif(filenames, output_filename):
     with imageio.get_writer(output_filename, mode='I') as writer:
-        for i, filename in enumerate(tqdm(filenames, desc="Creating GIF")):
+        for filename in tqdm(filenames, desc="Creating GIF"):
             try:
                 image = imageio.imread(filename)
                 writer.append_data(image)
@@ -61,11 +62,11 @@ def create_gif(filenames, output_filename):
 
 def main():
     path = "DATA/"
-    # problem = "Circumference"  # Change this to "Square" if needed
     problem = "Square"
+    # problem = "Circumference"
     best_len_file = os.path.join(path, problem, "BestLength.dat")
     output_path = os.path.join("imgs", problem)
-    gif_output = problem+".gif"
+    gif_output = os.path.join(output_path, problem + ".gif")
     
     os.makedirs(output_path, exist_ok=True)
     
@@ -75,12 +76,12 @@ def main():
         print(f"Error loading best length data: {e}")
         return
     
-    best_gen = 300  # Total number of generations to plot
+    best_gen = 200  # Total number of generations to plot
     filenames = []
 
-    print(f"Generating {best_gen // 2} images...")
+    print(f"Generating {best_gen} images...")
     
-    for j in tqdm(range(0, best_gen, 2), desc="Generating images"):
+    for j in tqdm(range(best_gen), desc="Generating images"):
         X, Y = load_data(path, problem, j)
         if len(X) == 0 or len(Y) == 0:
             continue
@@ -89,6 +90,11 @@ def main():
 
     print("\nGenerating GIF...")
     create_gif(filenames, gif_output)
+    
+    # Cleanup generated image files
+    for filename in filenames:
+        os.remove(filename)
+    
     print("\nEND")
 
 if __name__ == "__main__":
