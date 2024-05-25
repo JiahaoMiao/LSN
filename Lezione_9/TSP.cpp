@@ -198,37 +198,23 @@ void TSP::NewGeneration(){
             //choose random cut point
             cut = _rnd.Rannyu(0,N-1);
             
-            // Create the first child by performing crossover
             // copy elements before cut from the first parent to the child1
-            for(int m = 0; m < cut; m++){
-                child1[m] = _paths[i].getPath()[m];
-            }
+            std::copy_n(_paths[i].getPath().begin(),cut,child1.begin());
+            std::copy_n(_paths[j].getPath().begin(),cut,child2.begin());
+
             // Add the remaining elements of the second parent to the child if they are not already present
-            for (int m{cut}; m < N-1; m++) {
-                for(int value: _paths[j].getPath()){
-                    //if the value is not already present in the child, add it
-                    if(std::count(child1.begin(),child1.end(),value)==0){
-                        child1[m] = value;
-                        break;
-                    }
+            // same for the seccond child
+            for(int l{}, m1{cut}, m2{cut}; l<N-1; l++){
+                //if the value is not already present in the child, add it
+                if(std::count(child1.begin(),child1.end(),_paths[j].getPath()[l])==0){
+                    child1[m1++] = _paths[j].getPath()[l];
+                }
+                if(std::count(child2.begin(),child2.end(),_paths[i].getPath()[l])==0){
+                    child2[m2++] = _paths[i].getPath()[l];
                 }
             }
 
             new_gen[k] = path(std::move(child1));
-            
-            //copy elements before cut from the second parent to the child2
-            for(int n = 0; n < cut; n++){
-                child2[n] = _paths[j].getPath()[n];
-            }
-            // Add the remaining elements of the first parent to the child if they are not already present
-            for (int n{cut}; n < N-1; n++) {
-                for(auto value: _paths[i].getPath()){
-                    if(std::count(child2.begin(),child2.end(),value)==0){
-                        child2[n] = value;
-                        break;
-                    }
-                }
-            }
             new_gen[k+1] = path(std::move(child2));
         }else{
             //if the crossover is not performed, copy the parents to the new generation
