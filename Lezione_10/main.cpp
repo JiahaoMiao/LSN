@@ -28,11 +28,10 @@ int main(int argc, char* argv[]){
 
     //parameters
     int L = 3000;//number of paths
-    int M = 10000;//number of generations
+    int M = 3500;//number of generations
     bool migration = true;
     int Mmigr = 30;//number of generations between migrations
     
-
     int size{},rank{};
 
     // Start MPI
@@ -164,9 +163,9 @@ int main(int argc, char* argv[]){
 
         ave << i << " " << tsp.AverageLength() << "\n";
         best << i << " " << tsp.BestLength() << "\n";
-        // if(i%2==0){
-        // tsp.BestPath(filename+"config/BestPath"+to_string(i)+".dat");
-        // }
+        if(i%10==0 && rank == 0){
+            tsp.BestPath(filename+"config/BestPath"+to_string(i)+".dat");
+        }
         // Show progress bar
         if(rank == 0){
             showProgressBar(i, M);

@@ -1,12 +1,13 @@
 import os
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import imageio.v2 as imageio
 from tqdm import tqdm
 
-def load_data(path, problem, generation):
-    filename = os.path.join(path, problem, 'config', f'BestPath{generation}.dat')
+def load_data(path, generation):
+    filename = os.path.join(path, 'config', f'BestPath{generation}.dat')
     try:
         X, Y = np.loadtxt(filename, usecols=(0, 1), delimiter=' ', unpack=True)
     except Exception as e:
@@ -14,35 +15,29 @@ def load_data(path, problem, generation):
         X, Y = np.array([]), np.array([])
     return X, Y
 
-def plot_generation(X, Y, generation, best_length, output_path, problem):
+def plot_generation(X, Y, generation, best_length, output_path, df, BBox, ruh_m):
     fig, ax = plt.subplots(figsize=(8, 8))
-    
+    # Add the map image
+    ax.imshow(ruh_m, zorder=0, extent=BBox, aspect='equal')
+
     # Scatter plot for the cities
-    ax.scatter(X, Y, marker='o',s=34, color='blue', label='Cities')
+    ax.scatter(df.Latitude, df.Longitude, zorder=1, alpha=1, c='b', s=10, label='Cities')
     
     # Highlight the starting point
     if len(X) > 0 and len(Y) > 0:
-        ax.scatter(X[0], Y[0], marker='*',s = 100, color='green', label='Start')
+        ax.scatter(X[0], Y[0], marker='*', s=100, color='green', label='Start')
     
     # Plot the path
     if len(X) > 1 and len(Y) > 1:
-        ax.plot(X, Y, marker=' ', color='red', alpha=1, linewidth=2)
+        ax.plot(X, Y, marker=' ', color='red', label='Best Path')
     
-    # Add the geometric shape based on the problem
-    if problem == "Circumference":
-        circle = plt.Circle((0, 0), 1, linewidth=2, edgecolor='black',fill = False)
-        ax.add_artist(circle)
-        ax.set_aspect(1)
-    elif problem == "Square":
-        square = patches.Rectangle((-1, -1), 2, 2, linewidth=2, edgecolor='black',fill = False)
-        ax.add_patch(square)
-        ax.set_aspect(1)
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_xlim(BBox[0], BBox[1])
+    ax.set_ylim(BBox[2], BBox[3])
+    ax.set_title(f"Generation {generation}, Euclidean Length = {best_length}")
     
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_ylim([-1.5, 1.5])
-    ax.set_xlim([-1.5, 1.5])
-    ax.set_title(f"Generation {generation}, Length = {best_length}")
+    
     ax.grid(True)
     ax.legend()
     
@@ -61,14 +56,12 @@ def create_gif(filenames, output_filename):
                 print(f"Error reading {filename}: {e}")
 
 def main():
-    path = "DATA/"
-    problem = "Square"
-    # problem = "Circumference"
-    best_len_file = os.path.join(path, problem, "BestLength.dat")
-    output_path = os.path.join("imgs", problem)
-    gif_output = os.path.join(output_path, problem + ".gif")
+    path = "DATA/Migration/0/"
+    best_len_file = os.path.join(path, "BestLength.dat")
+    output_path = "imgs"
+    gif_output = os.path.join(output_path, "Italy.gif")
     
-    os.makedirs(output_path, exist_ok=True)
+    os.makedirs(output_path, exist_ok=True)  # Create output directory if it doesn't exist
     
     try:
         gen, best = np.loadtxt(best_len_file, usecols=(0, 1), delimiter=' ', unpack=True)
@@ -76,16 +69,16 @@ def main():
         print(f"Error loading best length data: {e}")
         return
     
-    best_gen = 200  # Total number of generations to plot
+    best_gen = 350  # Total number of generations to plot
     filenames = []
 
     print(f"Generating {best_gen} images...")
-    
+
     for j in tqdm(range(best_gen), desc="Generating images"):
-        X, Y = load_data(path, problem, j)
+        X, Y = load_data(path, 10*(j+1))  # Load data every 10 generations
         if len(X) == 0 or len(Y) == 0:
             continue
-        filename = plot_generation(X, Y, j, best[j], output_path, problem)
+        filename = plot_generation(X, Y, 10*(j+1), best[10*(j+1)-1], output_path, df, BBox, ruh_m)  # Plot the generation and save the image
         filenames.append(filename)
 
     print("\nGenerating GIF...")
@@ -98,4 +91,11 @@ def main():
     print("\nEND")
 
 if __name__ == "__main__":
+    # Global variables
+    df = pd.read_csv('INPUT/cap_prov_ita.dat', sep=' ', header=None, names=['Latitude', 'Longitude'])
+    # Define the bounding box
+    BBox = ((df.Latitude.min(),   df.Latitude.max(),      
+         df.Longitude.min(), df.Longitude.max()))
+    # Load the map image once to avoid loading it multiple times
+    ruh_m = plt.imread('imgs/italy.png')
     main()
