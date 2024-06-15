@@ -8,170 +8,171 @@ _/    _/  _/_/_/  _/_/_/_/ email: Davide.Galli@unimi.it
 *****************************************************************
 *****************************************************************/
 
-#include <iostream>
-#include <fstream>
+#include "random.h"
+#include <cassert>
 #include <cmath>
 #include <cstdlib>
-#include "random.h"
+#include <fstream>
+#include <iostream>
 
-using namespace std;
-
-Random :: Random(){}
-// Default constructor, does not perform any action
-
-Random :: ~Random(){}
-// Default destructor, does not perform any action
-
-void Random :: SaveSeed(){
-   // This function saves the current state of the random number generator to a file "seed.out"
-   ofstream WriteSeed;
-   WriteSeed.open("seed.out");
-   if (WriteSeed.is_open()){
-      WriteSeed << "RANDOMSEED	" << l1 << " " << l2 << " " << l3 << " " << l4 << endl;;
-   } else cerr << "PROBLEM: Unable to open random.out" << endl;
-  WriteSeed.close();
-  return;
-}
-
-double Random :: Gauss(double mean, double sigma) {
-   // This function generates a random number from a Gaussian distribution with given mean and sigma
-   double s=Rannyu();
-   double t=Rannyu();
-   double x=sqrt(-2.*log(1.-s))*cos(2.*M_PI*t);
-   return mean + x * sigma;
-}
-
-double Random :: Rannyu(double min, double max){
-   // This function generates a random number in the range [min, max)
-   return min+(max-min)*Rannyu();
-}
-
-double Random :: Rannyu(void){
-  // This function generates a random number in the range [0,1)
-  const double twom12=0.000244140625;
-  int i1,i2,i3,i4;
-  double r;
-
-  i1 = l1*m4 + l2*m3 + l3*m2 + l4*m1 + n1;
-  i2 = l2*m4 + l3*m3 + l4*m2 + n2;
-  i3 = l3*m4 + l4*m3 + n3;
-  i4 = l4*m4 + n4;
-  l4 = i4%4096;
-  i3 = i3 + i4/4096;
-  l3 = i3%4096;
-  i2 = i2 + i3/4096;
-  l2 = i2%4096;
-  l1 = (i1 + i2/4096)%4096;
-  r=twom12*(l1+twom12*(l2+twom12*(l3+twom12*(l4))));
-
-  return r;
-}
-
-void Random :: SetRandom(int * s, int p1, int p2){
-  // This function sets the seed and parameters of the random number generator
-  m1 = 502;
-  m2 = 1521;
-  m3 = 4071;
-  m4 = 2107;
-  l1 = s[0];
-  l2 = s[1];
-  l3 = s[2];
-  l4 = s[3];
-  n1 = 0;
-  n2 = 0;
-  n3 = p1;
-  n4 = p2;
-
-  return;
-}
-
-double Random :: Exponential(double lambda){
-  // This function generates a random number from an exponential distribution with given lambda
-  double s=Rannyu();
-  return -log(1-s)/lambda;
-}
-
-double Random :: Lorentz(double mean, double gamma){
-  // This function generates a random number from a Lorentzian distribution with given mean and gamma
-  double s=Rannyu();
-  return mean + gamma*tan(M_PI*(s-0.5));
-}
-
-void Random :: initialize(){
-  // This function initializes the random number generator
-  int seed[4]; // Array per memorizzare il seme
-  int p1, p2; // Numeri primi per l'inizializzazione del generatore di numeri casuali
-
-  // Lettura dei numeri primi da file
-  std::ifstream Primes("RndGen/Primes");
-  if(Primes.is_open()){
-    Primes >> p1 >> p2;
-  }else{
-    std::cerr << "PROBLEM: Impossibile aprire il file Primes" << std::endl;
-    exit(1); // Uscita con errore
-  }
-  Primes.close();
-
-  // Lettura del seme da file
-  std::ifstream input("RndGen/seed.in");
-  std::string property;
-  if (input.is_open()){
-    while (!input.eof()){
-      input >> property;
-      if(property == "RANDOMSEED"){
-        input >> seed[0] >> seed[1] >> seed[2] >> seed[3];
-        SetRandom(seed, p1, p2);
-      }
+// Saves the current seed to a file
+void Random::SaveSeed(const std::string& filename) const
+{
+    std::ofstream writeSeed(filename);
+    if (writeSeed.is_open())
+    {
+        writeSeed << ((l_tot >> 36) & 4095) << " " << ((l_tot >> 24) & 4095) << " "
+                  << ((l_tot >> 12) & 4095) << " " << (l_tot & 4095) << std::endl;
     }
-    input.close();
-  }else {
-    std::cerr << "PROBLEM: Impossibile aprire il file seed.in" << std::endl;
-    exit(1); // Uscita con errore
-  }
+    else
+    {
+        std::cerr << "PROBLEM: Unable to open " << filename << std::endl;
+    }
 }
 
-void Random :: initialize(int rank){
-  int seed[4]; 
-  int p1, p2; 
-  // Every process reads the primes from the file
-  std::ifstream Primes("RndGen/Primes");
-  if (Primes.is_open()){
-      //skip the first rank*2 primes
-      for(int i{};i<rank+1;i++){
-          Primes >> p1 >> p2;
-      }
-      std::cout << "Process " << rank << " has p1 = " << p1 << " and p2 = " << p2 << "\n";
-  }else{
-      std::cerr << "PROBLEM: Unable to open Primes" << std::endl;
-      exit(1); // Abort MPI execution
-  }
-
-  Primes.close();
-
-  // the seed is common to all the processes
-  std::ifstream input("RndGen/seed.in");
-  std::string property;
-  if (input.is_open()){
-      while (!input.eof()){
-      input >> property;
-      if(property == "RANDOMSEED"){
-          input >> seed[0] >> seed[1] >> seed[2] >> seed[3];
-          SetRandom(seed, p1, p2);
-      }
-      }
-      input.close();
-  }else {
-      std::cerr << "PROBLEM: Impossible to open file seed.in" << std::endl;
-      exit(1); 
-  }
-  //end of random generator initialization
+// Generates a random number with a Gaussian distribution
+double Random::Gauss(const double mean, const double sigma)
+{
+    double s = Rannyu();
+    double t = Rannyu();
+    double x = sqrt(-2. * std::log(1. - s)) * std::cos(2. * M_PI * t);
+    return mean + x * sigma;
 }
 
-double Random :: error(double av, double av2, int n){
-  // This function calculates the standard deviation of the mean
-  return n==0 ? 0 : sqrt((av2 - av*av)/n);
+// Generates a random number in the range [min, max)
+double Random::Rannyu(const double min, const double max)
+{
+    assert(max > min && "Max should be greater than min");
+    return min + (max - min) * Rannyu();
 }
 
+// Generates a random number in the range [0, 1)
+double Random::Rannyu(void)
+{
+    constexpr double twom48 = 1. / (1ull << 48);
+    l_tot = l_tot * m_tot + n_tot;
+    l_tot &= ((1ull << 48) - 1);
+    double r = twom48 * l_tot;
+    return r;
+}
+
+// Sets the seed for the RNG
+void Random::SetRandom(int* s, int p1, int p2)
+{
+    l_tot = (static_cast<uint64_t>(s[0]) << (12 * 3)) + (static_cast<uint64_t>(s[1]) << (12 * 2)) + 
+            (static_cast<uint64_t>(s[2]) << 12) + static_cast<uint64_t>(s[3]);
+
+    uint16_t n1 = 0;
+    uint16_t n2 = 0;
+    uint16_t n3 = p1;
+    uint16_t n4 = p2;
+
+    n_tot = (static_cast<uint64_t>(n1) << (12 * 3)) + (static_cast<uint64_t>(n2) << (12 * 2)) + 
+            (static_cast<uint64_t>(n3) << 12) + static_cast<uint64_t>(n4);
+}
+
+// Generates a random number with an Exponential distribution
+double Random::Exponential(const double lambda)
+{
+    assert(lambda > 0 && "Lambda should be greater than zero");
+    double y = Rannyu();
+    double r = -std::log(1 - y) / lambda;
+    return r;
+}
+
+// Generates a random number with a Lorentzian distribution
+double Random::Lorentzian(const double x_0, const double gamma)
+{
+    assert(gamma > 0 && "Gamma should be greater than zero");
+    double y = Rannyu();
+    double r = gamma * std::tan(M_PI * (y - 0.5)) + x_0;
+    return r;
+}
+
+// Generates a random number using the Accept-Reject method
+double Random::AcceptReject(const double a, const double b, const double max, std::function<double(double)>& PDF)
+{
+    double x = 0, y = 0;
+    do
+    {
+        x = Rannyu(a, b);
+        y = Rannyu(0, max);
+    } while (PDF(x) < y);
+    return x;
+}
+
+// Generates a random number using an inverse cumulative distribution function
+double Random::ExternalInvCum(std::function<double(double)>& ICDF)
+{
+    return ICDF(Rannyu());
+}
+
+// Generates a random integer in the range [0, 2**48)
+uint64_t Random::Ranint()
+{
+    l_tot = l_tot * m_tot + n_tot;
+    l_tot &= ((1ull << 48) - 1);
+    uint64_t r = l_tot;
+    return r;
+}
+
+// Generates a random integer in the range [min, max)
+uint64_t Random::Ranint(const uint64_t min, const uint64_t max)
+{
+    assert((max > min) && "Supplied wrong value range");
+    auto range = max - min;
+    auto res = Ranint() % range + min;
+    return res;
+}
+
+// Initializes the RNG
+void Random::initialize(int thread)
+{
+    int seed[4]; // Array to store the seed
+    int p1, p2; // Prime numbers for RNG initialization
+
+    // Read prime numbers from file
+    std::ifstream primes("RndGen/Primes");
+    if (primes.is_open())
+    {
+        for (int i = 0; i < thread + 1; ++i)
+        primes >> p1 >> p2;
+    }
+    else
+    {
+        std::cerr << "PROBLEM: Unable to open Primes" << std::endl;
+        exit(1); // Exit with error
+    }
+    primes.close();
+
+    // Read the seed from file
+    std::ifstream input("RndGen/seed.in");
+    std::string property;
+    if (input.is_open())
+    {
+        while (!input.eof())
+        {
+            input >> property;
+            if (property == "RANDOMSEED")
+            {
+                input >> seed[0] >> seed[1] >> seed[2] >> seed[3];
+                SetRandom(seed, p1, p2);
+            }
+        }
+        input.close();
+    }
+    else
+    {
+        std::cerr << "PROBLEM: Unable to open seed.in" << std::endl;
+        exit(1); // Exit with error
+    }
+}
+
+// Calculates the standard deviation of the mean
+double Random::error(double av, double av2, int n)
+{
+    return n == 0 ? 0 : sqrt((av2 - av * av) / n);
+}
 /****************************************************************
 *****************************************************************
     _/    _/  _/_/_/  _/       Numerical Simulation Laboratory

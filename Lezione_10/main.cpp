@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     //parameters
     int L = 3000;//number of paths
     int M = 3500;//number of generations
-    bool migration = true;
+    bool migration = false;
     int Mmigr = 30;//number of generations between migrations
     
     int size{},rank{};

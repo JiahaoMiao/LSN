@@ -10,6 +10,6 @@ test.exe: test.o TSP.o RndGen/random.o
 %.o : %.cpp
 	$(CC) -o $@ -c $<  $(CFLAGS)
 clean:
-	rm *.exe *.o DATA/config/* 
+	rm *.exe *.o
 format:
 	clang-format -i -style=google *.cpp
