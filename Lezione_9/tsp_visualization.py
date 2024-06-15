@@ -62,8 +62,8 @@ def create_gif(filenames, output_filename):
 
 def main():
     path = "DATA/"
-    problem = "Square"
-    # problem = "Circumference"
+    # problem = "Square"
+    problem = "Circumference"
     best_len_file = os.path.join(path, problem, "BestLength.dat")
     output_path = os.path.join("imgs", problem)
     gif_output = os.path.join(output_path, problem + ".gif")

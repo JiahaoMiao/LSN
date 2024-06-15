@@ -70,7 +70,6 @@ void path::PrintPath(){
 //shift of m contiguous cities of n positions starting from the i-th city
 void path::shift(int i,int m, int n){
     // apply swap m times
-    // i--; //convention: because i work with a vector with 0 as first element and i work with the rest of the cities
     for(int j = 0; j < m; j++){
         //swap the i+j-th city with the (i+j+n)-th city
         std::swap(_path[(i+j)%_path.size()],_path[(i+j+n)%_path.size()]);
