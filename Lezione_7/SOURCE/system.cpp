@@ -29,12 +29,18 @@ void System :: Verlet(){
     _fz(i) = this->Force(i,2);
   }
   for(int i=0; i<_npart; i++){ //Verlet integration scheme
+    // r(t+dt) = 2r(t) - r(t-dt) + f(t)dt^2
     xnew = this->pbc( 2.0 * _particle(i).getposition(0,true) - _particle(i).getposition(0,false) + _fx(i) * pow(_delta,2), 0);
     ynew = this->pbc( 2.0 * _particle(i).getposition(1,true) - _particle(i).getposition(1,false) + _fy(i) * pow(_delta,2), 1);
     znew = this->pbc( 2.0 * _particle(i).getposition(2,true) - _particle(i).getposition(2,false) + _fz(i) * pow(_delta,2), 2);
+    // v(t) = [r(t+dt) - r(t-dt)]/(2dt)
     _particle(i).setvelocity(0, this->pbc(xnew - _particle(i).getposition(0,false), 0)/(2.0 * _delta));
     _particle(i).setvelocity(1, this->pbc(ynew - _particle(i).getposition(1,false), 1)/(2.0 * _delta));
     _particle(i).setvelocity(2, this->pbc(znew - _particle(i).getposition(2,false), 2)/(2.0 * _delta));
+    //v(t+dt) = v(t) + a(t)dt
+    _particle(i).setvelocity(0, _particle(i).getvelocity(0) + _fx(i) * _delta);
+    _particle(i).setvelocity(1, _particle(i).getvelocity(1) + _fy(i) * _delta);
+    _particle(i).setvelocity(2, _particle(i).getvelocity(2) + _fz(i) * _delta);
     _particle(i).acceptmove(); // xold = xnew
     _particle(i).setposition(0, xnew);
     _particle(i).setposition(1, ynew);
