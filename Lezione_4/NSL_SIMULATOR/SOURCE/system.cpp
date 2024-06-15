@@ -31,12 +31,18 @@ void System :: Verlet(){
     _fz(i) = this->Force(i,2);
   }
   for(int i=0; i<_npart; i++){ //Verlet integration scheme
+    //Calculate the position at time t+dt knowing position at time t and t-dt and the force at time t
     xnew = this->pbc( 2.0 * _particle(i).getposition(0,true) - _particle(i).getposition(0,false) + _fx(i) * pow(_delta,2), 0);
     ynew = this->pbc( 2.0 * _particle(i).getposition(1,true) - _particle(i).getposition(1,false) + _fy(i) * pow(_delta,2), 1);
     znew = this->pbc( 2.0 * _particle(i).getposition(2,true) - _particle(i).getposition(2,false) + _fz(i) * pow(_delta,2), 2);
+    //Calculate the velocity at time t
     _particle(i).setvelocity(0, this->pbc(xnew - _particle(i).getposition(0,false), 0)/(2.0 * _delta));
     _particle(i).setvelocity(1, this->pbc(ynew - _particle(i).getposition(1,false), 1)/(2.0 * _delta));
     _particle(i).setvelocity(2, this->pbc(znew - _particle(i).getposition(2,false), 2)/(2.0 * _delta));
+    //but i want velocity at time t+dt
+    _particle(i).setvelocity(0, this->pbc(_particle(i).getvelocity(0) + _fx(i) * _delta, 0));
+    _particle(i).setvelocity(1, this->pbc(_particle(i).getvelocity(1) + _fy(i) * _delta, 1));
+    _particle(i).setvelocity(2, this->pbc(_particle(i).getvelocity(2) + _fz(i) * _delta, 2));
     _particle(i).acceptmove(); // xold = xnew
     _particle(i).setposition(0, xnew);
     _particle(i).setposition(1, ynew);

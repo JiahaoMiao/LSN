@@ -54,32 +54,21 @@ restart_solid:
 termal_gas:
 	mv ../OUTPUT/temperature.dat ../DATA/Gas/Termal/temperature.dat
 	mv ../OUTPUT/total_energy.dat ../DATA/Gas/Termal/total_energy.dat
+	mv ../OUTPUT/output.dat ../DATA/Gas/Termal/output.dat
 termal_liquid:
 	mv ../OUTPUT/temperature.dat ../DATA/Liquid/Termal/temperature.dat
 	mv ../OUTPUT/total_energy.dat ../DATA/Liquid/Termal/total_energy.dat
+	mv ../OUTPUT/output.dat ../DATA/Liquid/Termal/output.dat
 termal_solid:
 	mv ../OUTPUT/temperature.dat ../DATA/Solid/Termal/temperature.dat
 	mv ../OUTPUT/total_energy.dat ../DATA/Solid/Termal/total_energy.dat
-
+	mv ../OUTPUT/output.dat ../DATA/Solid/Termal/output.dat
 gas:
-	mv ../OUTPUT/temperature.dat ../DATA/Gas/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/Gas/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/Gas/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/Gas/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/Gas/total_energy.dat
+	mv ../OUTPUT/*.dat ../DATA/Gas/
 liquid:
-	mv ../OUTPUT/temperature.dat ../DATA/Liquid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/Liquid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/Liquid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/Liquid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/Liquid/total_energy.dat
+	mv ../OUTPUT/*.dat ../DATA/Liquid/
 solid:
-
-	mv ../OUTPUT/temperature.dat ../DATA/Solid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/Solid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/Solid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/Solid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/Solid/total_energy.dat
+	mv ../OUTPUT/*.dat ../DATA/Solid/
 
 eq_ising_MRT_h0:
 	mv ../OUTPUT/total_energy.dat ../DATA/Equilibration/Metropolis/total_energy.dat

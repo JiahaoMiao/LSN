@@ -23,7 +23,7 @@ void Particle :: initialize(){
 }
 
 void Particle :: translate(vec delta, vec side){
-   for(unsigned int i=0; i<_ndim; i++){
+   for(int i=0; i<_ndim; i++){
      _x(i) = pbc(_x(i) + delta(i), side(i));
    }
 }

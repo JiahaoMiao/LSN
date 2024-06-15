@@ -30,7 +30,7 @@ void print_progress_bar(double progress) {
 int main (int argc, char *argv[]){
 
   if(argc != 2){
-    cerr << "Usage: " << argv[0] << " <phase> <#blocks_to_skip>\n";
+    cerr << "Usage: " << argv[0] << " <phase>\n";
     cerr << "<phase> :\n 0 = gas\n 1 = liquid\n 2 = solid\n 3 = Ising\n";
     return -1;
   }
@@ -48,10 +48,10 @@ int main (int argc, char *argv[]){
       steps_to_skip = 15000;
       break;
     case 1:
-      steps_to_skip = 2000;
+      steps_to_skip = 400;
       break;
     case 2:
-      steps_to_skip = 2000;
+      steps_to_skip = 400;
       break;
     case 3:
       steps_to_skip = 4000;
