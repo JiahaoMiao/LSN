@@ -29,7 +29,7 @@ int main(){
         for(int j = 0; j < M; j++){
             sum = 0;
             for(int k = 0; k < N[i]; k++){
-                sum += rnd.Lorentz(0, 1);
+                sum += rnd.Lorentzian(0, 1);
             }
             fout << sum / N[i] << std::endl;
         }
