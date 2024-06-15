@@ -10,7 +10,7 @@
 using namespace std;
 
 int main(){
-    
+    //Test the simulation class
     Simulation sim{};
     sim.setmu(0.89306);
     sim.setsigma(-0.001);

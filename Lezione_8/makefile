@@ -8,6 +8,6 @@ main.exe: main.o simulation.o RndGen/random.o
 %.o : %.cpp
 	$(CC) -o $@ -c $<  $(CFLAGS)
 clean:
-	rm *.exe
+	rm *.o *.exe
 format:
 	clang-format -i -style=google *.cpp
