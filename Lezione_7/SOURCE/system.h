@@ -65,7 +65,7 @@ private:
 public: // Function declarations
   int get_nbl();              // Get the number of blocks
   int get_nsteps();           // Get the number of steps in each block
-  void initialize(int phase);          // Initialize system properties
+  void initialize(int phase,int algorithm);          // Initialize system properties
   void initialize_properties();// Initialize properties for measurement
   void finalize();            // Finalize system and clean up
   void write_configuration(); // Write final system configuration to XYZ file

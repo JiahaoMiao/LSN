@@ -32,17 +32,19 @@ void displayProgressBar(int progress, int total, int width = 50) {
 
 int main (int argc, char *argv[]){
 
-  if(argc != 2){
-    cerr << "Usage: " << argv[0] << " <phase> <#blocks_to_skip>\n";
+  if(argc != 3){
+    cerr << "Usage: " << argv[0] << " <phase> <Algorithm>\n";
     cerr << "<phase> :\n 0 = gas\n 1 = liquid\n 2 = solid\n 3 = Ising\n";
+    cerr << "<Algorithm> :\n 0 = MD\n 1 = MC\n";
     return -1;
   }
 
   int phase{atoi(argv[1])};
+  int algorithm{atoi(argv[2])};
   int steps_to_skip{};
   int nconf{1};
   System SYS;
-  SYS.initialize(phase);
+  SYS.initialize(phase,algorithm);
   SYS.initialize_properties();
   SYS.block_reset(0);
 

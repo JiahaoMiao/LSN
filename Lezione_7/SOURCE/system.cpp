@@ -142,7 +142,7 @@ int System :: pbc(int i){ // Enforce periodic boundary conditions for spins
   return i;
 } 
 
-void System :: initialize(int phase){ // Initialize the System object according to the content of the input files in the ../INPUT/ directory
+void System :: initialize(int phase,int algorithm){ // Initialize the System object according to the content of the input files in the ../INPUT/ directory
 
   int p1, p2; // Read from ../INPUT/Primes a pair of numbers to be used to initialize the RNG
   ifstream Primes("../INPUT/Primes");
@@ -160,28 +160,32 @@ void System :: initialize(int phase){ // Initialize the System object according 
   ifstream input{};
   ofstream coutf;
   coutf.open("../OUTPUT/output.dat");
+  string file{"../INPUT/"};
+  if(algorithm == 0) file += "MD/";
+  else file += "MC/";
 
   switch(phase){ // Initialize the system according to the simulation type
     case 0:
-      input.open("../INPUT/input.gas");
+      file += "input.gas";
       coutf << "LJ GAS SIMULATION\n";
       break;
     case 1:
-      input.open("../INPUT/input.liquid");
+      file += "input.liquid";
       coutf << "LJ LIQUID SIMULATION\n";
       break;
     case 2:
-      input.open("../INPUT/input.solid");
+      file += "input.solid";
       coutf << "LJ SOLID SIMULATION\n";
       break;
     case 3: 
-      input.open("../INPUT/input.ising");
+      file += "input.ising";
       coutf << "ISING 1D SIMULATION\n";
       break;
     default:
       cerr << "PROBLEM: unknown phase\n";
       exit(EXIT_FAILURE);
   }
+  input.open(file);
 
   string property;
   double delta;

@@ -19,61 +19,19 @@ remove:
 	rm ../OUTPUT/CONFIG/*.*
 
 gasMC:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MC/Gas/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MC/Gas/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MC/Gas/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MC/Gas/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MC/Gas/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MC/Gas/gofr.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MC/Gas/output.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MC/Gas/acceptance.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MC/Gas/
 	
 liquidMC:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MC/Liquid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MC/Liquid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MC/Liquid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MC/Liquid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MC/Liquid/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MC/Liquid/gofr.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MC/Liquid/output.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MC/Liquid/acceptance.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MC/Liquid/
 
 solidMC:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MC/Solid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MC/Solid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MC/Solid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MC/Solid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MC/Solid/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MC/Solid/gofr.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MC/Solid/output.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MC/Solid/acceptance.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MC/Solid/
 
 gasMD:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MD/Gas/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MD/Gas/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MD/Gas/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MD/Gas/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MD/Gas/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MD/Gas/gofr.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MD/Gas/acceptance.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MD/Gas/output.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MD/Gas/
 
 liquidMD:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MD/Liquid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MD/Liquid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MD/Liquid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MD/Liquid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MD/Liquid/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MD/Liquid/gofr.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MD/Liquid/acceptance.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MD/Liquid/output.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MD/Liquid/
 
 solidMD:
-	mv ../OUTPUT/temperature.dat ../DATA/gofr/MD/Solid/temperature.dat
-	mv ../OUTPUT/pressure.dat ../DATA/gofr/MD/Solid/pressure.dat
-	mv ../OUTPUT/kinetic_energy.dat ../DATA/gofr/MD/Solid/kinetic_energy.dat
-	mv ../OUTPUT/potential_energy.dat ../DATA/gofr/MD/Solid/potential_energy.dat
-	mv ../OUTPUT/total_energy.dat ../DATA/gofr/MD/Solid/total_energy.dat
-	mv ../OUTPUT/gofr.dat ../DATA/gofr/MD/Solid/gofr.dat
-	mv ../OUTPUT/acceptance.dat ../DATA/gofr/MD/Solid/acceptance.dat
-	mv ../OUTPUT/output.dat ../DATA/gofr/MD/Solid/output.dat
+	mv ../OUTPUT/*.dat ../DATA/gofr/MD/Solid/
